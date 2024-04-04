@@ -75,3 +75,7 @@ body {
   --tw-shadow-colored: inset 0px 1px 0px 0px var(--tw-shadow-color), inset 0px 0px 0px 1px var(--tw-shadow-color),
     0px 0px 0px 1px var(--tw-shadow-color);
 }
+
+.nav-link-label {
+  @apply text-lg;
+}

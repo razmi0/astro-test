@@ -5,18 +5,17 @@ import "../tailwind/input.css";
 interface Props {
   title: string;
   headerTitle: string;
+  image?: {
+    href: string;
+    alt: string;
+  };
 }
 
-const { title, headerTitle } = Astro.props;
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
+const { title, headerTitle, image } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -25,10 +24,17 @@ const links = [
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="min-w-full flex flex-col container justify-start">
-    <header class="text-wt-500 p-4 w-full flex flex-col gap-12 bg-element-300">
+  <body class="min-w-full flex flex-col justify-start">
+    <header class="text-wt-500 py-4 w-full flex flex-col gap-12 bg-element-300 items-center justify-center">
       <h1>{headerTitle}</h1>
-      <Nav links={links} client:load />
+      {
+        image && (
+          <div class="bg">
+            <img src={image.href} alt={image.alt} class="-z-20" />
+          </div>
+        )
+      }
+      <Nav client:load />
     </header>
     <main class="grow">
       <slot name="main" />
