@@ -27,13 +27,6 @@ const { title, headerTitle, image } = Astro.props;
   <body class="min-w-full flex flex-col justify-start">
     <header class="text-wt-500 py-4 w-full flex flex-col gap-12 bg-element-300 items-center justify-center">
       <h1>{headerTitle}</h1>
-      {
-        image && (
-          <div class="bg">
-            <img src={image.href} alt={image.alt} class="-z-20" />
-          </div>
-        )
-      }
       <Nav client:load />
     </header>
     <main class="grow">
