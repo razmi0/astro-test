@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bg-1o70: #213547af;
+  --bg-1: #213547;
+  --bg-2: #243342;
+  --font-1: #f5f5f5;
+  --font-2: #ebe9e9;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #242424;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  background-color: var(--bg-1);
+  color: var(--color-2);
+  height: fit-content;
+  padding: 7px 12px;
+  border: 1px solid #254b6c6b;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
+.btn.ghost {
+  background-color: transparent;
+  color: var(--font-2);
+}
+
+.btn:hover {
+  background-color: var(--bg-2);
+  color: var(--font-1);
+  box-shadow: none;
+}
+
+.card {
+  --tw-shadow-color: black;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.4);
+  --tw-shadow: 0px 1px 0px 0px hsla(0, 0%, 100%, 0.02) inset, 0px 0px 0px 1px hsla(0, 0%, 100%, 0.02) inset,
+    0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+  --tw-shadow-colored: inset 0px 1px 0px 0px var(--tw-shadow-color), inset 0px 0px 0px 1px var(--tw-shadow-color),
+    0px 0px 0px 1px var(--tw-shadow-color);
+}
