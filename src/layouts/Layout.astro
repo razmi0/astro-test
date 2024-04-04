@@ -1,6 +1,6 @@
 ---
-import "../tailwind/input.css";
 import Nav from "../components/Nav";
+import "../tailwind/input.css";
 
 interface Props {
   title: string;
@@ -25,11 +25,16 @@ const links = [
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="min-w-full flex flex-col container">
-    <header class="bg-gray-800 text-white p-4">
+  <body class="min-w-full flex flex-col container justify-start">
+    <header class="text-wt-500 p-4 w-full flex flex-col gap-12 bg-element-300">
       <h1>{headerTitle}</h1>
+      <Nav links={links} client:load />
     </header>
-    <Nav links={links} client:load />
-    <slot />
+    <main class="grow">
+      <slot name="main" />
+    </main>
+    <footer class="text-wt-500 p-4 w-full bg-element-300">
+      <p>&copy; 2024 Astro</p>
+    </footer>
   </body>
 </html>

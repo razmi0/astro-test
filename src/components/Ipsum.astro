@@ -1,0 +1,56 @@
+---
+import Background from './ui/Background';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  /** The number of words to generate */
+  words: number;
+  input?: boolean;
+  button?: boolean;
+}
+
+const { title, words, button, input, subtitle } = Astro.props;
+const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit".split(" ");
+let text = "",
+  i = words;
+while (i > 0) {
+  text += lorem[i % lorem.length] + " ";
+  i--;
+}
+---
+
+<script>
+  const onClick = (e: MouseEvent) => {
+    e.preventDefault();
+    console.log("clicked!");
+  };
+  (document.querySelector("[data-button-lorem]") as HTMLFormElement).addEventListener(
+    "mousedown",
+    onClick as unknown as (event: MouseEvent) => void
+  );
+</script>
+
+<article class="flex flex-col card py-4 px-7 max-w-[300px] rounded-lg relative">
+  <div class="before:w-full before:h-full before:top-0 before:left-0 before:backdrop-blur-sm before:absolute before:-z-10 before:rounded-lg"></div>
+  <Background type='mosaic' className='rounded-lg opacity-20'/>
+  {title && <h2>{title}</h2>}
+  {subtitle && <small>{subtitle}</small>}
+  <p class="max-w-[30ch] text-balance my-3">{text}</p>
+  {
+    (input || button) && (
+      <form class="flex flex-col" data-form-lorem>
+        {input && (
+          <label for={title} class="font-bold"> Input label : </label>
+          <input type="text" id={title} class="w-full min-h-9" placeholder="Lorem placeholder..." />
+        )}
+        {button && (
+          <button type="button" data-button-lorem class="btn ghost card mt-2">
+            I'm a submit button
+          </button>
+        )}
+      </form>
+    )
+  }
+</article>
+</div>

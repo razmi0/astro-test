@@ -1,8 +1,16 @@
 ---
+import Lorem from "@/components/Ipsum.astro";
 import Layout from "../layouts/Layout.astro";
 const headerTitle = "Home";
 ---
 
 <Layout title="Welcome to Astro." headerTitle={headerTitle}>
-  <main></main>
+  <section class="flex gap-6 flex-wrap my-5" slot="main">
+    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button input />
+    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button input />
+    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button input />
+    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button input />
+    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button input />
+    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button input />
+  </section>
 </Layout>

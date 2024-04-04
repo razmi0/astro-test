@@ -10,15 +10,17 @@ import {
 export default function Nav({ links }: { links: { href: string; label: string }[] }) {
   return (
     <>
-      <NavigationMenu>
-        <NavigationMenuList>
+      <NavigationMenu data-is="MENU" className="">
+        <NavigationMenuList data-is="LIST" className="">
           {links.map((link) => {
             const { href, label } = link;
             return (
-              <NavigationMenuItem key={label}>
-                <NavigationMenuTrigger>{label}</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <NavigationMenuLink className="p-5" href={href}>
+              <NavigationMenuItem data-is="ITEM" key={label} className="bg-def-500">
+                <NavigationMenuTrigger className="px-8" data-is="TRIGGER">
+                  {label}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent data-is="CONTENT">
+                  <NavigationMenuLink className="p-5 " href={href} data-is="LINK">
                     {label}
                   </NavigationMenuLink>
                 </NavigationMenuContent>

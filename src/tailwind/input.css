@@ -15,11 +15,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg-1o70: #213547af;
-  --bg-1: #213547;
-  --bg-2: #243342;
-  --font-1: #f5f5f5;
-  --font-2: #ebe9e9;
+  --body-radial-color-1: #242424;
+  --body-radial-color-2: #213547;
 }
 
 *,
@@ -30,35 +27,42 @@
   margin: 0;
 }
 
+h1 {
+  @apply text-5xl font-bold text-center;
+}
+
+h2 {
+  @apply text-4xl font-bold;
+}
+
+small {
+  @apply text-sm;
+}
+
 body {
   display: flex;
-  place-content: center;
-  place-items: center;
   min-width: 320px;
-  min-height: 100vh;
-  background-color: #242424;
+  min-height: 100dvh;
+  background: radial-gradient(circle at center, var(--body-radial-color-2) 0%, var(--body-radial-color-1) 100%);
 }
 
 .btn {
+  @apply bg-element-300 border border-element-300/40 text-wt-400;
   cursor: pointer;
   border: none;
-  background-color: var(--bg-1);
-  color: var(--color-2);
   height: fit-content;
   padding: 7px 12px;
-  border: 1px solid #254b6c6b;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   user-select: none;
 }
 
 .btn.ghost {
+  @apply bg-transparent text-wt-400;
   background-color: transparent;
-  color: var(--font-2);
 }
 
 .btn:hover {
-  background-color: var(--bg-2);
-  color: var(--font-1);
+  @apply bg-element-400 text-wt-300;
   box-shadow: none;
 }
 

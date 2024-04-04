@@ -12,6 +12,18 @@ export default {
       },
     },
     extend: {
+      colors: {
+        element: {
+          500: "#242424",
+          400: "#243342",
+          300: "#213547",
+        },
+        wt: {
+          500: "#ffffff",
+          400: "#ebe9e9",
+          300: "#f5f5f5",
+        },
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
