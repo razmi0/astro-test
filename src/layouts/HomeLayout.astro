@@ -26,9 +26,13 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <Nav navClassname="fixed" />
-    <Paralax />
-    <main class="grow">
+    <header class="flex px-3 items-center justify-center bg-main-900/90 w-full fixed z-50">
+      <div class="font-bold text-wt-500 text-4xl">LOGO</div>
+      <div class="grow"></div>
+      <Nav navClassname="h-24 " client:idle />
+    </header>
+    <Paralax heading="A l'abord d'arbre" anchor="#main" />
+    <main class="grow" id="main">
       <slot name="main" />
     </main>
     <footer class="text-wt-500 p-4 w-full bg-main-900">

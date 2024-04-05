@@ -1,5 +1,5 @@
 ---
-
+const { heading, anchor } = Astro.props;
 ---
 
 <section class="paralax-wrapper">
@@ -9,7 +9,12 @@
   <img src="/cartoon/hill4.png" class="hill4" />
   <img src="/cartoon/hill5.png" class="hill5" />
   <img src="/cartoon/tree.png" />
-  <h1 class="opacity-95 text-6xl title" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.205);">A la bord d'arbre</h1>
+  <div class="title flex items-center justify-center">
+    <h1 class="opacity-95 text-6xl" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.205);">{heading}</h1>
+    <a href={anchor} class="cursor-pointer">
+      <img src="/icons/arrow-down.svg" width="60px" height="60px" />
+    </a>
+  </div>
   <img src="/cartoon/plant.png" />
   <img src="/cartoon/leaf.png" class="leaf" />
 </section>

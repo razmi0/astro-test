@@ -5,10 +5,9 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-  ],
+  build: {
+    // https://astro.build/reference/configuration#output
+    output: "./dist",
+  },
+  integrations: [tailwind(), react()],
 });

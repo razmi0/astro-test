@@ -20,8 +20,12 @@
   --body-radial-color-2: #f0f3f2;
 
   --color-main-900: "#003329";
+}
 
-  scroll-behavior: smooth;
+*,
+html,
+body {
+  scroll-behavior: smooth !important;
 }
 
 *,
@@ -30,6 +34,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth !important;
 }
 
 h1 {
