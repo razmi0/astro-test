@@ -3,19 +3,20 @@
 ---
 
 <section class="paralax-wrapper">
-  <img src="/cartoon/hill1.png" />
+  <img src="/cartoon/hill1.png" class="hill1" />
   <img src="/cartoon/hill2.png" />
   <img src="/cartoon/hill3.png" />
   <img src="/cartoon/hill4.png" class="hill4" />
   <img src="/cartoon/hill5.png" class="hill5" />
-  <img src="/cartoon/leaf.png" class="leaf" />
-  <img src="/cartoon/plant.png" />
   <img src="/cartoon/tree.png" />
   <h1 class="opacity-95 text-6xl title" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.205);">A la bord d'arbre</h1>
+  <img src="/cartoon/plant.png" />
+  <img src="/cartoon/leaf.png" class="leaf" />
 </section>
 <style>
   h1.title {
     position: absolute;
+    z-index: -1;
   }
   .paralax-wrapper {
     position: relative;
@@ -23,7 +24,9 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100%;
     overflow-x: hidden;
+    overflow-y: hidden;
   }
   .paralax-wrapper > img {
     position: absolute;
@@ -31,25 +34,28 @@
     width: 100%;
     top: 0;
     left: 0;
-    /* object-fit: cover; */
+    object-fit: cover;
     z-index: -1;
     pointer-events: none;
+    overflow: hidden;
   }
 </style>
 <script>
   const title = document.querySelector(".title") as HTMLElement;
   const leaf = document.querySelector(".leaf") as HTMLElement;
-  const hill1 = document.querySelector(".hill5") as HTMLElement;
+  const hill1 = document.querySelector(".hill1") as HTMLElement;
   const hill4 = document.querySelector(".hill4") as HTMLElement;
   const hill5 = document.querySelector(".hill5") as HTMLElement;
 
   document.addEventListener("scroll", () => {
     const scroll = window.scrollY;
     title.style.marginTop = scroll * 2.5 + "px";
+    title.style.opacity = (0.98 - scroll / 1000).toString();
     leaf.style.top = scroll * -1.5 + "px";
     leaf.style.left = scroll * 1.5 + "px";
     hill5.style.left = scroll * 1.5 + "px";
     hill4.style.left = scroll * -1.5 + "px";
-    hill1.style.left = scroll * 1.5 + "px";
+    hill4.style.top = scroll * 1 + "px";
+    hill1.style.top = scroll * 1 + "px";
   });
 </script>
