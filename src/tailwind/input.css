@@ -16,8 +16,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --body-radial-color-1: #242424;
-  --body-radial-color-2: #213547;
+  --body-radial-color-1: #7ee2c7;
+  --body-radial-color-2: #f0f3f2;
+
+  --color-main-900: "#003329";
 }
 
 *,

@@ -1,0 +1,38 @@
+---
+import Paralax from "@/components/ui/Paralax.astro";
+import "../tailwind/input.css";
+import Nav from "@/components/Nav";
+
+interface Props {
+  title: string;
+  headerTitle?: string;
+  image?: {
+    href: string;
+    alt: string;
+  };
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="block">
+    <Nav />
+    <Paralax />
+    <main class="grow">
+      <slot name="main" />
+    </main>
+    <footer class="text-wt-500 p-4 w-full bg-main-900">
+      <p>&copy; 2024 Astro</p>
+    </footer>
+  </body>
+</html>

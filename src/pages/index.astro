@@ -1,15 +1,10 @@
 ---
 import Lorem from "@/components/Ipsum.astro";
-import Layout from "../layouts/Layout.astro";
-const headerTitle = "Home";
-const image = {
-  href: "/banner.webp",
-  alt: "Welcome banner is a beautifull image of a tree, ready to be climbed.",
-};
+import HomeLayout from "@/layouts/HomeLayout.astro";
 ---
 
-<Layout title='Accueil"' image={image} headerTitle={headerTitle}>
-  <section class="flex gap-6 flex-wrap my-5" slot="main">
+<HomeLayout title="Accueil">
+  <section class="flex gap-6 flex-wrap bg-main-900 h-full" slot="main">
     <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" />
     <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" input />
     <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" input />
@@ -17,4 +12,4 @@ const image = {
     <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button input />
     <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" />
   </section>
-</Layout>
+</HomeLayout>

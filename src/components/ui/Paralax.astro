@@ -1,0 +1,54 @@
+---
+
+---
+
+<section class="paralax-wrapper">
+  <img src="/cartoon/hill1.png" />
+  <img src="/cartoon/hill2.png" />
+  <img src="/cartoon/hill3.png" />
+  <img src="/cartoon/hill4.png" class="hill4" />
+  <img src="/cartoon/hill5.png" class="hill5" />
+  <img src="/cartoon/leaf.png" class="leaf" />
+  <img src="/cartoon/plant.png" />
+  <img src="/cartoon/tree.png" />
+  <h1 class="opacity-95 text-6xl title" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.205);">A la bord d'arbre</h1>
+</section>
+<style>
+  h1.title {
+    position: absolute;
+  }
+  .paralax-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .paralax-wrapper > img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    /* object-fit: cover; */
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>
+<script>
+  const title = document.querySelector(".title") as HTMLElement;
+  const leaf = document.querySelector(".leaf") as HTMLElement;
+  const hill1 = document.querySelector(".hill5") as HTMLElement;
+  const hill4 = document.querySelector(".hill4") as HTMLElement;
+  const hill5 = document.querySelector(".hill5") as HTMLElement;
+
+  document.addEventListener("scroll", () => {
+    const scroll = window.scrollY;
+    title.style.marginTop = scroll * 2.5 + "px";
+    leaf.style.top = scroll * -1.5 + "px";
+    leaf.style.left = scroll * 1.5 + "px";
+    hill5.style.left = scroll * 1.5 + "px";
+    hill4.style.left = scroll * -1.5 + "px";
+    hill1.style.left = scroll * 1.5 + "px";
+  });
+</script>

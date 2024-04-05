@@ -19,7 +19,7 @@ const links = [
 export default function Nav() {
   return (
     <>
-      <NavigationMenu data-is="MENU" viewportClassName="right-0">
+      <NavigationMenu data-is="MENU" viewportClassName="right-0" className="absolute">
         <NavigationMenuList data-is="LIST">
           {links.map((link) => {
             const { href, label, noContent } = link;
