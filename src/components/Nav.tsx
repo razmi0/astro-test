@@ -16,16 +16,16 @@ const links = [
   { href: "/faq", label: "FAQ" },
 ];
 
-export default function Nav() {
+export default function Nav({ navClassname }: { navClassname?: string }) {
   return (
     <>
-      <NavigationMenu data-is="MENU" viewportClassName="right-0" className="absolute">
-        <NavigationMenuList data-is="LIST">
+      <NavigationMenu viewportClassName="right-0" className={navClassname || ""}>
+        <NavigationMenuList>
           {links.map((link) => {
             const { href, label, noContent } = link;
             if (noContent) {
               return (
-                <NavigationMenuItem data-is="ITEM" key={label}>
+                <NavigationMenuItem key={label}>
                   <a href={href} className={`bg-transparent ghost nav-link-label ${navigationMenuTriggerStyle()}`}>
                     {label}
                   </a>
@@ -33,12 +33,12 @@ export default function Nav() {
               );
             }
             return (
-              <NavigationMenuItem data-is="ITEM" key={label}>
-                <NavigationMenuTrigger className="bg-transparent ghost nav-link-label" data-is="TRIGGER">
+              <NavigationMenuItem key={label}>
+                <NavigationMenuTrigger className="bg-transparent ghost nav-link-label">
                   <a href={href}>{label}</a>
                 </NavigationMenuTrigger>
-                <NavigationMenuContent data-is="CONTENT">
-                  <NavigationMenuLink data-is="LINK" asChild>
+                <NavigationMenuContent className="fixed">
+                  <NavigationMenuLink asChild>
                     <div className="p-5 flex max-h-[300px] gap-4 w-[615px]">
                       <a href={href} className="underline">
                         {label}
