@@ -6,7 +6,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/NavigationMenu";
 
 const links = [
   { href: "/", label: "Accueil", noContent: true },
