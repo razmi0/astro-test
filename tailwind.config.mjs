@@ -57,5 +57,17 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    ({ addVariant, e, postcss }) => {
+      addVariant("hover", ({ container, separator }) => {
+        const hoverRule = postcss.atRule({ name: "media", params: "(hover: hover)" });
+        hoverRule.append(container.nodes);
+        container.append(hoverRule);
+        hoverRule.walkRules((rule) => {
+          rule.selector = `.${e(`hover${separator}${rule.selector.slice(1)}`)}:hover`;
+        });
+      });
+    },
+  ],
 };
