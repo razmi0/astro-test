@@ -1,16 +1,11 @@
 ---
-import Nav from "../components/Nav";
-
 interface Props {
   title: string;
-  headerTitle: string;
-  image?: {
-    href: string;
-    alt: string;
-  };
 }
 
-const { title, headerTitle, image } = Astro.props;
+const { title } = Astro.props;
+const { pathname } = Astro.url;
+const isHome = pathname === "/";
 ---
 
 <!doctype html>
@@ -23,16 +18,12 @@ const { title, headerTitle, image } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="min-w-full flex flex-col justify-start">
-    <header class="text-wt-500 py-4 w-full flex flex-col gap-12 bg-element-300 items-center justify-center">
-      <h1>{headerTitle}</h1>
-      <Nav client:load />
-    </header>
-    <main class="grow">
+  <body class="flex flex-col min-h-dvh bg-element-300">
+    <slot name="header" />
+    <slot name="paralax" />
+    <main class="" class:list={["grow h-full", { "mt-24": !isHome }]}>
       <slot name="main" />
     </main>
-    <footer class="text-wt-500 p-4 w-full bg-element-300">
-      <p>&copy; 2024 Astro</p>
-    </footer>
+    <slot name="footer" />
   </body>
 </html>
