@@ -1,0 +1,104 @@
+---
+import Background from './ui/Background';
+import { generateLorem } from "../helpers"
+
+interface Props {
+  type? : "card" | "text" | "image-text" | "text-image";
+  title?: { content: string, class? : string} | boolean;
+  subtitle?: { content: string, class? : string} | boolean;
+  /** The number of words to generate */
+  text?: { words: number, class? : string} | number;
+  input?: {class? : string, content? : string} | boolean;
+  button?: { class? : string, content? : string} | boolean;
+  formClass?: string;
+  articleClass?: string;
+}
+
+const { 
+  title ,
+  subtitle ,
+  text = 0,
+  button ,
+  input,
+  type = "card",
+  formClass ,
+  articleClass
+} = Astro.props;
+
+const finalTitle = title ? typeof title === "boolean" ? generateLorem(4) : title.content : "";
+const finalSubtitle = subtitle ? typeof subtitle === "boolean" ? generateLorem(5) : subtitle.content : "";
+const finalButtonContent = button ? typeof button === "boolean" ? generateLorem(3)  : button.content : "";
+const finalInputPlaceholder = input ? typeof input === "boolean" ? generateLorem(3)  : input.content : "";
+const finalText = typeof text === "number" ? generateLorem(text) : generateLorem(text.words);
+// --
+const finalTitleClass = title ? typeof title === "boolean" ? "" : title.class : "";
+const finalSubtitleClass = subtitle ? typeof subtitle === "boolean" ? "" : subtitle.class : "";
+const finalTextClass = text ? typeof text === "number" ? "" : text.class : "";
+const finalButtonClass = button ? typeof button === "boolean" ? "" : button.class : "";
+const finalInputClass = input ? typeof input === "boolean" ? "" : input.class : "";
+
+
+const id = `input-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<script>
+  const onClick = (e: MouseEvent) => {
+    e.preventDefault();
+    console.log("clicked!");
+  };
+  (document.querySelectorAll("[data-button-lorem]") as unknown as HTMLFormElement[]).map((el) => el.addEventListener(
+    "mousedown",
+    onClick as unknown as (event: MouseEvent) => void
+  ));
+</script>
+
+<Fragment>
+
+{type === "card" && (
+<article class:list={["flex flex-col card py-4 px-7 max-w-[300px] rounded-lg relative h-fit"  ,articleClass]}>
+  <div class="before:w-full before:h-full before:top-0 before:left-0 before:backdrop-blur-sm before:absolute before:-z-10 before:rounded-lg"></div>
+  <Background type='mosaic' className='rounded-lg opacity-20'/>
+  {title && <h2 class:list={[finalTitleClass]}>{finalTitle}</h2>}
+  {subtitle && <small class:list={[finalSubtitleClass]}>{finalSubtitle}</small>}
+  <p class="max-w-[30ch] text-balance my-3" class:list={[finalTextClass]}>{finalText}</p>
+  {
+    (input || button) && (
+      <form class:list={["flex flex-col",formClass]} data-form-lorem>
+        {input && (
+          <label for={id} class="font-bold"> Input label : </label>
+          <input type="text" id={id} class:list={["w-full min-h-9", finalInputClass]} placeholder={finalInputPlaceholder} />
+        )}
+        {button && (
+          <button type="button" data-button-lorem class:list={["btn ghost card mt-2", finalButtonClass]}>
+            {finalButtonContent}
+          </button>
+        )}
+      </form>
+    )
+  }
+</article>
+)}
+
+{type === "text" && (
+  <article class:list={["w-full", articleClass]} >
+    {title && <h2 class:list={[finalTitleClass]} > {finalTitle}</h2>}
+    {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
+    <p class:list={["text-balance my-3", finalTextClass]}>{finalText}</p>
+    {
+      (input || button) && (
+        <form class:list={["flex flex-col",formClass]} data-form-lorem>
+          {input && (
+            <label for={id} class="font-bold"> Input label : </label>
+            <input type="text" id={id} class:list={["w-full min-h-9", finalInputClass]} placeholder={finalInputPlaceholder} />
+          )}
+          {button && (
+            <button type="button" data-button-lorem class:list={["btn ghost card mt-2 w-fit px-6", finalButtonClass]}>
+            {finalButtonContent}
+          </button>
+          )}
+        </form>
+      )
+    }
+  </article>
+)}
+</Fragment>

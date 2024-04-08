@@ -1,9 +1,21 @@
 ---
+import Header from "@/components/Header.astro";
 import Layout from "../layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+import Lorem from "@/components/Lorem.astro";
 import "../styles/index.css";
-
-const title = "Cuesta Thomas";
-const headerTitle = "About";
+import Paralax from "@/components/ui/Paralax.astro";
 ---
 
-<Layout title=`About | ${title}` headerTitle={headerTitle} />
+<Layout title="A propos">
+  <Header slot="header" />
+  <section class="flex gap-6 flex-wrap bg-main-900 h-full" slot="main" id="main">
+    <Lorem text={25} />
+    <Lorem text={25} />
+    <Lorem text={25} />
+    <Lorem text={25} />
+    <Lorem text={25} />
+    <Lorem text={25} />
+  </section>
+  <Footer slot="footer" />
+</Layout>

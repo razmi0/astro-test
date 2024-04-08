@@ -1,17 +1,28 @@
 ---
-import Lorem from "@/components/Ipsum.astro";
-import HomeLayout from "@/layouts/HomeLayout.astro";
+import Lorem from "@/components/Lorem.astro";
+import Layout from "@/layouts/Layout.astro";
 import "../styles/index.css";
-
+import Paralax from "@/components/ui/Paralax.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import ScreenUnit from "@/layouts/ScreenUnit.astro";
 ---
 
-<HomeLayout title="Accueil">
-  <section class="flex gap-6 flex-wrap bg-main-900 h-full" slot="main">
-    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" />
-    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" input />
-    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" input />
-    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button />
-    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" button input />
-    <Lorem words={25} subtitle="I'm a subtitle" title="I'm a title" />
-  </section>
-</HomeLayout>
+<Layout title="Accueil">
+  <Header slot="header" />
+  <Paralax slot="paralax" heading="A l'abord d'arbre" anchor="#main" />
+  <Fragment slot="main" id="main">
+    <ScreenUnit id="first-wrapper" className="bg-main-900 flex items-center justify-center">
+      <Lorem type="text" text={200} />
+    </ScreenUnit>
+    <ScreenUnit id="second-wrapper">
+      <Lorem type="card" text={25} />
+      <Lorem type="card" text={25} />
+    </ScreenUnit>
+    <ScreenUnit id="third-wrapper">
+      <Lorem type="card" text={25} />
+      <Lorem type="card" text={25} />
+    </ScreenUnit>
+  </Fragment>
+  <Footer slot="footer" />
+</Layout>
