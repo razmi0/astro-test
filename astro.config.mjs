@@ -9,5 +9,10 @@ export default defineConfig({
     // https://astro.build/reference/configuration#output
     output: "./dist",
   },
-  integrations: [tailwind(), react()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    react(),
+  ],
 });
