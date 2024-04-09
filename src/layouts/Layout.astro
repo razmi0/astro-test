@@ -18,7 +18,7 @@ const isHome = pathname === "/";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="flex flex-col min-h-dvh bg-element-300">
+  <body class="flex flex-col min-h-dvh">
     <slot name="header" />
     <slot name="paralax" />
     <main class="" class:list={["grow h-full", { "mt-24": !isHome }]}>
