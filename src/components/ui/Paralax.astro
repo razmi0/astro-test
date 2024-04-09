@@ -10,7 +10,7 @@ const { heading } = Astro.props;
   <img src="/cartoon/hill5.png" class="hill5" />
   <img src="/cartoon/tree.png" />
   <div class="title flex items-center justify-center ml-5">
-    <h1 class="opacity-95 text-6xl" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.205);">{heading}</h1>
+    <h1 class="text-6xl" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.205);">{heading}</h1>
   </div>
   <img src="/cartoon/plant.png" />
   <img src="/cartoon/leaf.png" class="leaf" />
@@ -49,7 +49,6 @@ const { heading } = Astro.props;
   document.addEventListener("scroll", () => {
     const scroll = window.scrollY;
     title.style.marginTop = scroll * 2.5 + "px";
-    title.style.opacity = (0.98 - scroll / 1000).toString();
     leaf.style.top = scroll * -1.5 + "px";
     leaf.style.left = scroll * 1.5 + "px";
     hill5.style.left = scroll * 1.5 + "px";

@@ -14,10 +14,10 @@ const { id, className, title } = Astro.props;
 <script>
   import { setupIntersectionObserver } from "@/helpers";
   const element = document.querySelector("[data-is='section-unit-observer-wrapper']") as HTMLElement;
-  setupIntersectionObserver(element, "debug-obs-wrapper");
+  setupIntersectionObserver({ element, debugLog: "debug-obs-title" });
 </script>
 
 <section class:list={["min-h-dvh px-12 py-12", [className] || ""]} id={id} data-is="section-unit-observer-wrapper">
-  {title && <Heading title={title} />}
+  {title && <Heading title={title} className="w-full text-left" />}
   <slot />
 </section>

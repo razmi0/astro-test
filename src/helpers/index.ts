@@ -22,9 +22,15 @@ const handleIntersection = (entries: IntersectionObserverEntry[], debugLog: stri
   });
 };
 
-const setupIntersectionObserver = (element: HTMLElement, debugLog = "") => {
+type SetupObserverProps = {
+  element: HTMLElement;
+  debugLog?: string;
+  threshold?: number;
+};
+
+const setupIntersectionObserver = ({ element, debugLog = "", threshold = 0.5 }: SetupObserverProps) => {
   const observer = new IntersectionObserver((entry) => handleIntersection(entry, debugLog), {
-    threshold: 0.5,
+    threshold: threshold,
   });
 
   // Observe the target element
