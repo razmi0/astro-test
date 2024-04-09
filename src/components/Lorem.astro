@@ -1,6 +1,7 @@
 ---
 import Background from './ui/Background';
 import { generateLorem } from "../helpers"
+import Image from './ui/Image.astro';
 
 interface Props {
   type? : "card" | "text" | "image-text" | "text-image";
@@ -99,9 +100,7 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 
 {(type === "image-text" || type === "text-image") && (
   <article class:list={["flex justify-between items-center  text-slate-900 dark:text-slate-100", {"flex-row" : type === "image-text" ,"flex-row-reverse" : type === "text-image"}, articleClass]} >
-    <figure class=" h-[400px] w-[400px]">
-      <img src={img ??" https://source.unsplash.com/random/400x400"} alt="random" class="object-cover w-full h-full rounded-lg" />
-    </figure>
+    <Image img={{src : img}} />
     <div class:list={"flex flex-col"} data-is="card">
     {title && <h2 class:list={[finalTitleClass, "max-w-1/2"]} > {finalTitle}</h2>}
     {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
