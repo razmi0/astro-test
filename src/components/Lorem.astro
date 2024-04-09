@@ -55,7 +55,7 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 <Fragment>
 
 {type === "card" && (
-<article class:list={["flex flex-col card py-4 px-7 max-w-[300px] rounded-lg relative h-fit"  ,articleClass]}>
+<article class:list={["flex flex-col card py-4 px-7 max-w-[300px] rounded-lg relative h-fit  text-slate-900 dark:text-slate-100"  ,articleClass]}>
   <div class="before:w-full before:h-full before:top-0 before:left-0 before:backdrop-blur-sm before:absolute before:-z-10 before:rounded-lg"></div>
   <Background type='mosaic' className='rounded-lg opacity-20'/>
   {title && <h2 class:list={[finalTitleClass]}>{finalTitle}</h2>}
@@ -80,7 +80,7 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 )}
 
 {type === "text" && (
-  <article class:list={["w-full", articleClass]} >
+  <article class:list={["w-full  text-slate-900 dark:text-slate-100", articleClass]} >
     {title && <h2 class:list={[finalTitleClass]} > {finalTitle}</h2>}
     {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
     <p class:list={["text-balance my-3", finalTextClass]}>{finalText}</p>
@@ -103,7 +103,7 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 )}
 
 {(type === "image-text" || type === "text-image") && (
-  <article class:list={["flex justify-between items-center", {"flex-row" : type === "image-text" ,"flex-row-reverse" : type === "text-image"}, articleClass]} >
+  <article class:list={["flex justify-between items-center  text-slate-900 dark:text-slate-100", {"flex-row" : type === "image-text" ,"flex-row-reverse" : type === "text-image"}, articleClass]} >
     <figure class=" h-[400px] w-[400px]">
       <img src="https://source.unsplash.com/random/400x400" alt="random" class="object-cover w-full h-full rounded-lg" />
     </figure>
