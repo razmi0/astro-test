@@ -11,16 +11,13 @@ const { id, className, title } = Astro.props;
 
 <script>
   import { setupIntersectionObserver } from "@/helpers";
+  // --
   const element = document.querySelector("[data-is='section-unit-observer-wrapper']") as HTMLElement;
   const titleElement = document.querySelector("[data-is='section-unit-observer-title']") as HTMLElement;
-
-  const onIntersect = () => {
-    titleElement.classList.add("animate-slide-in");
-  };
-  const onDisappear = () => {
-    titleElement.classList.remove("animate-slide-in");
-  };
+  const onIntersect = () => titleElement.classList.add("animate-slide-in");
+  const onDisappear = () => titleElement.classList.remove("animate-slide-in");
   // 0.4 is the threshold where H1 dissappears in parallax => title appears
+  // --
   setupIntersectionObserver({ element, debugLog: "debug-obs-wrapper", threshold: 0.4, onIntersect, onDisappear });
 </script>
 
@@ -33,15 +30,17 @@ const { id, className, title } = Astro.props;
   }
 
   @keyframes slideIn {
-    from {
-      transform: translateY(-100px);
+    0% {
+      transform: translateY(-140px);
       opacity: 0;
       filter: blur(2px);
     }
-    to {
-      transform: translateY(40vh);
-      opacity: 1;
+    50% {
       filter: blur(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(40vh);
     }
   }
 </style>
@@ -49,7 +48,7 @@ const { id, className, title } = Astro.props;
 <section class:list={["min-h-dvh px-12 py-12", [className] || ""]} id={id} data-is="section-unit-observer-wrapper">
   {
     title && (
-      <h2 class="w-full text-left  opacity-0" data-is="section-unit-observer-title">
+      <h2 class="w-full text-right opacity-0 -z-10 dark:text-white text-black" data-is="section-unit-observer-title">
         {title}
       </h2>
     )

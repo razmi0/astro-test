@@ -1,33 +1,73 @@
 ---
 interface Props {
   figure?: { content?: string; class?: string };
-  img: { src?: string; alt?: string; class?: string };
+  img: { src?: string; alt: string; class?: string };
   captionClass?: string;
 }
 
 const { figure, img, captionClass } = Astro.props;
 ---
 
-<style>
-  img:hover {
-    transform: scale(1.1);
-    filter: brightness(1.1);
-    transition-property: transform, filter;
-    transition-duration: 0.5s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  img {
-    transition-property: transform, filter;
-    transition-duration: 0.5s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-</style>
+<Fragment>
+  <style>
+    img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+      transition-property: transform, filter;
+      transition-duration: 0.5s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    img {
+      transition-property: transform, filter;
+      transition-duration: 0.5s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-<figure class:list={["overflow-hidden h-[400px] w-[400px]", figure?.class]}>
-  <img
-    src={img.src ?? "https://source.unsplash.com/random/400x400"}
-    alt={img.alt ?? "random"}
-    class:list={["object-cover w-full h-full rounded-lg", img.class]}
-  />
-  {figure && figure.content && <figcaption class:list={["", captionClass]}>{figure.content}</figcaption>}
-</figure>
+    .animate-fade-in-image {
+      animation: fade-in-image 1s ease-out;
+      animation-fill-mode: forwards;
+    }
+    @keyframes fade-in-image {
+      0% {
+        transform: scale(0.98);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <figure class:list={["overflow-hidden h-[400px] w-[400px] ", figure?.class]}>
+    <script>
+      import { setupIntersectionObserver } from "@/helpers";
+
+      const elements = Array.from(document.querySelectorAll("img[data-anim='animate-fade-in-image']")) as HTMLElement[];
+      const onIntersect = (element: HTMLElement) => {
+        element.classList.add("animate-fade-in-image");
+      };
+      const onDisappear = (element: HTMLElement) => {
+        // element.classList.remove("animate-fade-in-image");
+      };
+      elements.map((element) => {
+        setupIntersectionObserver({
+          element,
+          debugLog: "image",
+          onIntersect: () => {
+            onIntersect(element);
+          },
+          threshold: 1,
+          onDisappear: () => onDisappear(element),
+        });
+      });
+    </script>
+    <img
+      src={img.src ?? "https://source.unsplash.com/random/400x400"}
+      alt={img.alt}
+      class:list={["object-cover w-full h-full rounded-lg opacity-0", img.class]}
+      data-anim="animate-fade-in-image"
+    />
+    {figure && figure.content && <figcaption class:list={["", captionClass]}>{figure.content}</figcaption>}
+  </figure>
+</Fragment>
