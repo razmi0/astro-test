@@ -14,7 +14,7 @@ const { id, className, title } = Astro.props;
 <script>
   import { setupIntersectionObserver } from "@/helpers";
   const element = document.querySelector("[data-is='section-unit-observer-wrapper']") as HTMLElement;
-  setupIntersectionObserver({ element, debugLog: "debug-obs-title" });
+  setupIntersectionObserver({ element, debugLog: "debug-obs-wrapper" });
 </script>
 
 <section class:list={["min-h-dvh px-12 py-12", [className] || ""]} id={id} data-is="section-unit-observer-wrapper">
