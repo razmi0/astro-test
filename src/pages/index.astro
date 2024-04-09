@@ -12,8 +12,9 @@ import ScreenUnit from "@/layouts/ScreenUnit.astro";
   <Header slot="header" />
   <Paralax slot="paralax" heading="A l'abord d'arbre" anchor="#main" />
   <Fragment slot="main" id="main">
-    <ScreenUnit id="first-wrapper" className="bg-main-900 flex items-center justify-center">
-      <Lorem type="text" text={200} title subtitle />
+    <ScreenUnit id="first-wrapper" data-is="first-wrapper" className="flex flex-col items-center justify-center">
+      <Lorem type="text-image" text={45} articleClass="gap-6 [&>[data-is='card']]:w-[500px]" title subtitle />
+      <Lorem type="image-text" text={20} articleClass="gap-6 [&>[data-is='card']]:w-[500px]" title subtitle />
     </ScreenUnit>
     <ScreenUnit id="second-wrapper">
       <Lorem type="card" text={25} />
@@ -26,3 +27,20 @@ import ScreenUnit from "@/layouts/ScreenUnit.astro";
   </Fragment>
   <Footer slot="footer" />
 </Layout>
+
+<!-- <style>
+  [data-is="first-wrapper"] {
+    --color-main-800: #1b472c;
+    --color-main-700: #286b42;
+    background: linear-gradient(90deg, var(--color-main-800) 50%, var(--color-main-700) 50%);
+    background-color: #1b472c;
+  }
+
+  #second-wrapper {
+    background-color: var(--main-800);
+  }
+
+  #third-wrapper {
+    background-color: var(--main-700);
+  }
+</style> -->
