@@ -13,8 +13,22 @@ import ScreenUnit from "@/layouts/ScreenUnit.astro";
   <Paralax slot="paralax" heading="A l'abord d'arbre" anchor="#main" />
   <Fragment slot="main" id="main">
     <ScreenUnit id="first-wrapper" data-is="first-wrapper" className="flex flex-col items-center justify-center">
-      <Lorem type="text-image" text={45} articleClass="gap-6 [&>[data-is='card']]:w-[500px]" title subtitle />
-      <Lorem type="image-text" text={20} articleClass="gap-6 [&>[data-is='card']]:w-[500px]" title subtitle />
+      <Lorem
+        type="text-image"
+        img="lorem-vijay.webp"
+        text={45}
+        articleClass="gap-6 [&>[data-is='card']]:w-[500px]"
+        title={{ content: "Vijay Leblanc" }}
+        subtitle={{ content: "Cordiste exégète et collectioneur de cordes" }}
+      />
+      <Lorem
+        type="image-text"
+        img="lorem-lou.webp"
+        text={20}
+        articleClass="gap-6 [&>[data-is='card']]:w-[500px]"
+        title={{ content: "Lou Bideau" }}
+        subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
+      />
     </ScreenUnit>
     <ScreenUnit id="second-wrapper">
       <Lorem type="card" text={25} />

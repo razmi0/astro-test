@@ -12,6 +12,7 @@ interface Props {
   button?: { class? : string, content? : string} | boolean;
   formClass?: string;
   articleClass?: string;
+  img?: string;
 }
 
 const { 
@@ -22,7 +23,8 @@ const {
   input,
   type = "card",
   formClass ,
-  articleClass
+  articleClass,
+  img
 } = Astro.props;
 
 const finalTitle = title ? typeof title === "boolean" ? generateLorem(4) : title.content : "";
@@ -42,14 +44,7 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 ---
 
 <script>
-  const onClick = (e: MouseEvent) => {
-    e.preventDefault();
-    console.log("clicked!");
-  };
-  (document.querySelectorAll("[data-button-lorem]") as unknown as HTMLFormElement[]).map((el) => el.addEventListener(
-    "mousedown",
-    onClick as unknown as (event: MouseEvent) => void
-  ));
+  
 </script>
 
 <Fragment>
@@ -105,7 +100,7 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 {(type === "image-text" || type === "text-image") && (
   <article class:list={["flex justify-between items-center  text-slate-900 dark:text-slate-100", {"flex-row" : type === "image-text" ,"flex-row-reverse" : type === "text-image"}, articleClass]} >
     <figure class=" h-[400px] w-[400px]">
-      <img src="https://source.unsplash.com/random/400x400" alt="random" class="object-cover w-full h-full rounded-lg" />
+      <img src={img ??" https://source.unsplash.com/random/400x400"} alt="random" class="object-cover w-full h-full rounded-lg" />
     </figure>
     <div class:list={"flex flex-col"} data-is="card">
     {title && <h2 class:list={[finalTitleClass, "max-w-1/2"]} > {finalTitle}</h2>}
