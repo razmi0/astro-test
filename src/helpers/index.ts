@@ -10,14 +10,17 @@ const generateLorem = (length: number): string => {
   return generatedText;
 };
 
-const handleIntersection = (entries: IntersectionObserverEntry[], debugLog: string) => {
+const handleIntersection = (
+  entries: IntersectionObserverEntry[],
+  debugLog: string,
+  onIntersect: () => void,
+  onDisappear: () => void
+) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-      console.log(`Element : ${debugLog} is visible!`);
-      // LOGIC HERE
-      // --
+    if (entry.isIntersecting) {
+      onIntersect();
     } else {
-      console.log(`Element ${debugLog} is not visible`);
+      onDisappear();
     }
   });
 };
@@ -26,15 +29,23 @@ type SetupObserverProps = {
   element: HTMLElement;
   debugLog?: string;
   threshold?: number;
+  onIntersect?: () => void;
+  onDisappear?: () => void;
 };
 
-const setupIntersectionObserver = ({ element, debugLog = "", threshold = 0.5 }: SetupObserverProps) => {
-  const observer = new IntersectionObserver((entry) => handleIntersection(entry, debugLog), {
+const setupIntersectionObserver = ({
+  element,
+  debugLog = "",
+  threshold = 0.5,
+  onIntersect = () => {},
+  onDisappear = () => {},
+}: SetupObserverProps) => {
+  const observer = new IntersectionObserver((entry) => handleIntersection(entry, debugLog, onIntersect, onDisappear), {
     threshold: threshold,
   });
 
   // Observe the target element
-  console.log(`Observing element : ${debugLog}`);
+  // console.log(`Observing element : ${debugLog}`);
   observer.observe(element);
 };
 
