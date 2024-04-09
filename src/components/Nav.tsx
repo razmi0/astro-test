@@ -16,7 +16,7 @@ const links = [
   { href: "/faq", label: "FAQ" },
 ];
 
-export default function Nav({ navClassname }: { navClassname?: string }) {
+export default function Nav({ navClassname, children }: { navClassname?: string; children: React.ReactNode }) {
   return (
     <>
       <NavigationMenu viewportClassName="right-0" className={navClassname || ""}>
@@ -54,6 +54,7 @@ export default function Nav({ navClassname }: { navClassname?: string }) {
               </NavigationMenuItem>
             );
           })}
+          <NavigationMenuItem>{children}</NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </>
