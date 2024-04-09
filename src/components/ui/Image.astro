@@ -1,0 +1,33 @@
+---
+interface Props {
+  figure?: { content?: string; class?: string };
+  img: { src?: string; alt?: string; class?: string };
+  captionClass?: string;
+}
+
+const { figure, img, captionClass } = Astro.props;
+---
+
+<style>
+  img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+    transition-property: transform, filter;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  img {
+    transition-property: transform, filter;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
+
+<figure class:list={["overflow-hidden h-[400px] w-[400px]", figure?.class]}>
+  <img
+    src={img.src ?? "https://source.unsplash.com/random/400x400"}
+    alt={img.alt ?? "random"}
+    class:list={["object-cover w-full h-full rounded-lg", img.class]}
+  />
+  {figure && figure.content && <figcaption class:list={["", captionClass]}>{figure.content}</figcaption>}
+</figure>
