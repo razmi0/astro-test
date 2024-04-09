@@ -22,10 +22,9 @@ import { ModeToggle } from "./ui/ModeToggle";
   }
 </script>
 
-<header class="flex px-3 items-center justify-center bg-main-400 w-full fixed z-50 top-0">
+<header class="flex px-3 items-center justify-center bg-main-400 w-full fixed z-10 top-0 left-0">
   <div class="font-bold text-wt-500 text-4xl">LOGO</div>
   <div class="grow"></div>
-  <Nav navClassname="h-24 " client:idle>
-    <ModeToggle />
-  </Nav>
+  <Nav navClassname="h-24 me-4" client:idle />
+  <ModeToggle client:idle />
 </header>
