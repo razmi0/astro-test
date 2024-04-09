@@ -43,13 +43,13 @@ const classes = [
   "hover:border-white",
   // FOCUS
   // --
-  "focus:ring-2 focus:ring-main-400 focus:outline-none",
+  "focus:ring-2 focus:ring-main-400 focus:outline-none ",
   // DISABLED
   // --
   "disabled:pointer-events-none disabled:opacity-50",
   // DARK
-  // --
-  "dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50 dark:focus:bg-slate-800 dark:focus:text-slate-50 dark:data-[active]:bg-slate-800/50 dark:data-[state=open]:bg-slate-800/50",
+  // -- bg-wt-400 dark:bg-element-800
+  " dark:focus:bg-slate-800 dark:focus:text-slate-50 dark:data-[active]:bg-slate-800/50",
 ];
 
 const navigationMenuTriggerStyle = cva(classes.join(" "));
@@ -97,7 +97,7 @@ const NavigationMenuViewport = React.forwardRef<
   <div className={cn("absolute top-full flex justify-center right-0 left-auto")}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-slate-200 bg-white text-slate-950 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)] dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50",
+        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-slate-200 bg-white text-slate-950 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)] dark:border-slate-800 dark:bg-element-800 dark:text-slate-50",
         className
       )}
       ref={ref}
