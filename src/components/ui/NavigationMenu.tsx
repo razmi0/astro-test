@@ -34,9 +34,25 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
-const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-10 w-max items-center justify-center rounded-full  px-4 py-2 text-wt-500 font-medium transition-colors hover:border-main-100 border border-transparent hover:bg-main-400 hover:text-main-800 focus:ring-2 focus:ring-main-400 focus:outline-none disabled:pointer-events-none disabled:opacity-50  dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50 dark:focus:bg-slate-800 dark:focus:text-slate-50 dark:data-[active]:bg-slate-800/50 dark:data-[state=open]:bg-slate-800/50"
-);
+const classes = [
+  // BASE
+  // --
+  "group flex items-center text-white justify-center w-max h-10 px-4 font-medium rounded-full transition-colors border-2 border-transparent",
+  // HOVER
+  // --
+  "hover:border-white",
+  // FOCUS
+  // --
+  "focus:ring-2 focus:ring-main-400 focus:outline-none",
+  // DISABLED
+  // --
+  "disabled:pointer-events-none disabled:opacity-50",
+  // DARK
+  // --
+  "dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50 dark:focus:bg-slate-800 dark:focus:text-slate-50 dark:data-[active]:bg-slate-800/50 dark:data-[state=open]:bg-slate-800/50",
+];
+
+const navigationMenuTriggerStyle = cva(classes.join(" "));
 
 const NavigationMenuTrigger = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
