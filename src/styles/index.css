@@ -62,12 +62,6 @@ small {
   @apply text-sm;
 }
 
-body {
-  @apply bg-wt-400 dark:bg-element-800;
-  min-width: 320px;
-  overflow-x: hidden;
-}
-
 .card {
   --tw-shadow-color: black;
   border-width: 1px;
