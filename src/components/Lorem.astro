@@ -101,4 +101,33 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
     }
   </article>
 )}
+
+{(type === "image-text" || type === "text-image") && (
+  <article class:list={["flex justify-between items-center", {"flex-row" : type === "image-text" ,"flex-row-reverse" : type === "text-image"}, articleClass]} >
+    <figure class=" h-[400px] w-[400px]">
+      <img src="https://source.unsplash.com/random/400x400" alt="random" class="object-cover w-full h-full rounded-lg" />
+    </figure>
+    <div class:list={"flex flex-col"} data-is="card">
+    {title && <h2 class:list={[finalTitleClass, "max-w-1/2"]} > {finalTitle}</h2>}
+    {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
+    <p class:list={["text-balance my-3", finalTextClass]}>{finalText}</p>
+    {
+      (input || button) && (
+        <form class:list={["flex flex-col",formClass]} data-form-lorem>
+          {input && (
+            <label for={id} class="font-bold"> Input label : </label>
+            <input type="text" id={id} class:list={["w-full min-h-9", finalInputClass]} placeholder={finalInputPlaceholder} />
+          )}
+          {button && (
+            <button type="button" data-button-lorem class:list={["btn ghost card mt-2 w-fit px-6", finalButtonClass]}>
+            {finalButtonContent}
+          </button>
+          )}
+        </form>
+      )
+    }
+    </div>
+  </article>
+)}
+
 </Fragment>
