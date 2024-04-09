@@ -1,13 +1,23 @@
 ---
+import Heading from "@/components/Heading.astro";
+
 interface Props {
   id: string;
   className?: string;
+  title?: string;
   children: any;
 }
 
-const { id, className } = Astro.props;
+const { id, className, title } = Astro.props;
 ---
 
-<section class:list={["min-h-dvh px-12 py-12", [className] || ""]} id={id}>
+<script>
+  import { setupIntersectionObserver } from "@/helpers";
+  const element = document.querySelector("[data-is='section-unit-observer-wrapper']") as HTMLElement;
+  setupIntersectionObserver(element, "debug-obs-wrapper");
+</script>
+
+<section class:list={["min-h-dvh px-12 py-12", [className] || ""]} id={id} data-is="section-unit-observer-wrapper">
+  {title && <Heading title={title} />}
   <slot />
 </section>
