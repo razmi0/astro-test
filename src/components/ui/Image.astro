@@ -24,7 +24,7 @@ const { figure, img, captionClass } = Astro.props;
     }
 
     .animate-fade-in-image {
-      animation: fade-in-image 1s ease-out;
+      animation: fade-in-image 0.8s;
       animation-fill-mode: forwards;
     }
     @keyframes fade-in-image {
@@ -38,30 +38,26 @@ const { figure, img, captionClass } = Astro.props;
       }
     }
   </style>
+  <script>
+    import { setupIntersectionObserver } from "@/helpers";
 
-  <figure class:list={["overflow-hidden h-[400px] w-[400px] ", figure?.class]}>
-    <script>
-      import { setupIntersectionObserver } from "@/helpers";
+    const elements = Array.from(document.querySelectorAll("img[data-anim='animate-fade-in-image']")) as HTMLElement[];
+    const onIntersect = (element: HTMLElement) => {
+      element.classList.add("animate-fade-in-image");
+    };
 
-      const elements = Array.from(document.querySelectorAll("img[data-anim='animate-fade-in-image']")) as HTMLElement[];
-      const onIntersect = (element: HTMLElement) => {
-        element.classList.add("animate-fade-in-image");
-      };
-      const onDisappear = (element: HTMLElement) => {
-        // element.classList.remove("animate-fade-in-image");
-      };
-      elements.map((element) => {
-        setupIntersectionObserver({
-          element,
-          debugLog: "image",
-          onIntersect: () => {
-            onIntersect(element);
-          },
-          threshold: 1,
-          onDisappear: () => onDisappear(element),
-        });
+    elements.map((element) => {
+      setupIntersectionObserver({
+        element,
+        debugLog: "image",
+        onIntersect: () => {
+          onIntersect(element);
+        },
+        threshold: 1,
       });
-    </script>
+    });
+  </script>
+  <figure class:list={["overflow-hidden h-[500px] w-[400px] ", figure?.class]}>
     <img
       src={img.src ?? "https://source.unsplash.com/random/400x400"}
       alt={img.alt}

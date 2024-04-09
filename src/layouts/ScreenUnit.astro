@@ -31,7 +31,7 @@ const { id, className, title } = Astro.props;
 
   @keyframes slideIn {
     0% {
-      transform: translateY(-140px);
+      transform: translateY(-340px);
       opacity: 0;
       filter: blur(2px);
     }
@@ -40,12 +40,12 @@ const { id, className, title } = Astro.props;
       opacity: 1;
     }
     100% {
-      transform: translateY(40vh);
+      transform: translateY(100vh);
     }
   }
 </style>
 
-<section class:list={["min-h-dvh px-12 py-12", [className] || ""]} id={id} data-is="section-unit-observer-wrapper">
+<section class:list={["min-h-dvh px-12 py-12 ", [className] || ""]} id={id} data-is="section-unit-observer-wrapper">
   {
     title && (
       <h2 class="w-full text-right opacity-0 -z-10 dark:text-white text-black" data-is="section-unit-observer-title">
