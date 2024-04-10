@@ -6,6 +6,7 @@ import Paralax from "@/components/ui/Paralax.astro";
 import Header from "@/layouts/Header.astro";
 import Footer from "@/layouts/Footer.astro";
 import ScreenUnit from "@/layouts/ScreenUnit.astro";
+import Fondateur from "@/components/Fondateur.astro";
 ---
 
 <Layout title="Accueil">
@@ -13,47 +14,31 @@ import ScreenUnit from "@/layouts/ScreenUnit.astro";
   <Paralax slot="paralax" heading="A l'abord d'arbre" />
   <Fragment slot="main" id="main">
     <ScreenUnit
-      id="first-wrapper"
-      data-is="first-wrapper"
+      idWrapper="first-wrapper"
+      idTitle="first-title"
       className="flex flex-col items-start gap-12"
       title="Les fondateurs"
+      threshold={0.4}
+    >
+      <Fondateur />
+    </ScreenUnit>
+    <ScreenUnit
+      idWrapper="second-wrapper"
+      idTitle="second-title"
+      title="Notre histoire"
+      className=" flex flex-col bg-main-300 justify-center items-start"
+      threshold={0.2}
     >
       <Lorem
-        type="image-text"
-        img="lorem-vijay.webp"
-        text={45}
+        type="text-image"
+        img="vijay-et-lou.webp"
+        text={120}
         articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
-        title={{ content: "Vijay Leblanc" }}
-        subtitle={{ content: "Cordiste exégète et collectioneur de cordes" }}
-      />
-      <Lorem
-        type="image-text"
-        img="lorem-lou.webp"
-        text={40}
-        articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
-        title={{ content: "Lou Bideau" }}
-        subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
+        title={{ content: "L'histoire d'une vie" }}
+        subtitle={{ content: "Grandir ensemble" }}
       />
     </ScreenUnit>
-    <ScreenUnit id="second-wrapper" title="Notre histoire">
-      <Lorem
-        type="image-text"
-        img="lorem-vijay.webp"
-        text={45}
-        articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
-        title={{ content: "Vijay Leblanc" }}
-        subtitle={{ content: "Cordiste exégète et collectioneur de cordes" }}
-      />
-      <Lorem
-        type="image-text"
-        img="lorem-lou.webp"
-        text={40}
-        articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
-        title={{ content: "Lou Bideau" }}
-        subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
-      />
-    </ScreenUnit>
-    <ScreenUnit id="third-wrapper">
+    <ScreenUnit idWrapper="third-wrapper" idTitle="thirdTitle" title="NEXT">
       <Lorem type="card" text={25} />
       <Lorem type="card" text={25} />
     </ScreenUnit>
