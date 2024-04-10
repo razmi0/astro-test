@@ -51,3 +51,9 @@
 ### Ã€ venir
 
 - Envisager d'inclure une carte pour localiser les sites.
+
+## audit
+
+- strat inbout marketing (inbound marketing) : attirer les clients par page de blog, mots clée recherche, travail de contenu, payer par article. Partager sur réseau sociaux
+- google annonce : payer des mots clées, google te met en haut de page
+- campagne google ads, 500 euros,
