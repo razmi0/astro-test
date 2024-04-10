@@ -1,0 +1,15 @@
+---
+interface Props {
+  src: string;
+  imgClasses?: string;
+  figureClasses?: string;
+}
+import { cn } from "@/lib/utils";
+const { src, imgClasses, figureClasses } = Astro.props;
+const finalFigClasses = cn(figureClasses);
+const finalImgClasses = cn(imgClasses);
+---
+
+<figure class:list={["", finalFigClasses]}>
+  <img class:list={["", finalImgClasses]} src={src} alt={"Colorful logo of the company"} />
+</figure>
