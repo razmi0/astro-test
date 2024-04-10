@@ -1,24 +1,42 @@
 ---
 interface Props {
-  id: string;
+  idWrapper: string;
+  idTitle: string;
   className?: string;
   title?: string;
+  threshold?: number;
   children: any;
 }
 
-const { id, className, title } = Astro.props;
+const { idWrapper, idTitle, className, title, threshold = 0.5 } = Astro.props;
 ---
 
 <script>
   import { setupIntersectionObserver } from "@/helpers";
   // --
-  const element = document.querySelector("[data-is='section-unit-observer-wrapper']") as HTMLElement;
-  const titleElement = document.querySelector("[data-is='section-unit-observer-title']") as HTMLElement;
-  const onIntersect = () => titleElement.classList.add("animate-slide-in");
-  const onDisappear = () => titleElement.classList.remove("animate-slide-in");
+  const wrappers = Array.from(document.querySelectorAll("[data-is='section-unit-observer-wrapper']")) as HTMLElement[];
+  const titleElements = Array.from(
+    document.querySelectorAll("[data-is='section-unit-observer-title']")
+  ) as HTMLHeadingElement[];
+
+  const groupedObservers: [HTMLElement, HTMLHeadingElement][] = wrappers.map((wrapper, i) => [
+    wrapper,
+    titleElements[i],
+  ]);
+
+  const onIntersect = (titleElement: HTMLHeadingElement) => titleElement.classList.add("animate-slide-in");
+  const onDisappear = (titleElement: HTMLHeadingElement) => titleElement.classList.remove("animate-slide-in");
   // 0.4 is the threshold where H1 dissappears in parallax => title appears
   // --
-  setupIntersectionObserver({ element, debugLog: "debug-obs-wrapper", threshold: 0.4, onIntersect, onDisappear });
+  groupedObservers.forEach((group) =>
+    setupIntersectionObserver({
+      element: group[0],
+      debugLog: `debug-obs-title-${group[0].id}`,
+      threshold: parseInt(group[0].dataset.threshold || "") || 0.4,
+      onIntersect: () => onIntersect(group[1]),
+      onDisappear: () => onDisappear(group[1]),
+    })
+  );
 </script>
 
 <style>
@@ -45,10 +63,19 @@ const { id, className, title } = Astro.props;
   }
 </style>
 
-<section class:list={["min-h-dvh px-12 py-12 ", [className] || ""]} id={id} data-is="section-unit-observer-wrapper">
+<section
+  class:list={["min-h-dvh px-12 py-12 ", [className] || ""]}
+  id={idWrapper}
+  data-is="section-unit-observer-wrapper"
+  data-threshold={threshold}
+>
   {
     title && (
-      <h2 class="w-full text-right opacity-0 -z-10 dark:text-white text-black" data-is="section-unit-observer-title">
+      <h2
+        class="w-full text-right opacity-0 -z-10 dark:text-white text-black"
+        id={idTitle}
+        data-is="section-unit-observer-title"
+      >
         {title}
       </h2>
     )
