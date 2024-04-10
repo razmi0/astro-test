@@ -35,9 +35,23 @@ import ScreenUnit from "@/layouts/ScreenUnit.astro";
         subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
       />
     </ScreenUnit>
-    <ScreenUnit id="second-wrapper">
-      <Lorem type="card" text={25} />
-      <Lorem type="card" text={25} />
+    <ScreenUnit id="second-wrapper" title="Notre histoire">
+      <Lorem
+        type="image-text"
+        img="lorem-vijay.webp"
+        text={45}
+        articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
+        title={{ content: "Vijay Leblanc" }}
+        subtitle={{ content: "Cordiste exégète et collectioneur de cordes" }}
+      />
+      <Lorem
+        type="image-text"
+        img="lorem-lou.webp"
+        text={40}
+        articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
+        title={{ content: "Lou Bideau" }}
+        subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
+      />
     </ScreenUnit>
     <ScreenUnit id="third-wrapper">
       <Lorem type="card" text={25} />

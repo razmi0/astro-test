@@ -1,7 +1,7 @@
 ---
 import Background from './ui/Background';
 import { generateLorem } from "../helpers"
-import Image from './ui/Image.astro';
+import FadeImage from './ui/FadeImage.astro';
 
 interface Props {
   type? : "card" | "text" | "image-text" | "text-image";
@@ -74,11 +74,13 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(30px);
+      filter:blur(2px)
     }
     to {
       opacity: 1;
       transform: translateY(0);
+      filter:blur(0)
     }
   }
 </style>
@@ -133,7 +135,7 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 
 {(type === "image-text" || type === "text-image") && (
   <article class:list={["flex justify-between items-center  text-slate-900 dark:text-slate-100", {"flex-row" : type === "image-text" ,"flex-row-reverse" : type === "text-image"}, articleClass]} >
-    <Image img={{src : img, alt : ""}} />
+    <FadeImage img={{src : img, alt : ""}} />
     <div class:list={"flex flex-col opacity-0"} data-is="card">
        {title && <h2 class:list={[finalTitleClass, "max-w-1/2"]} > {finalTitle}</h2>}
        {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
