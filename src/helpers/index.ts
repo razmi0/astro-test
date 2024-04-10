@@ -1,3 +1,5 @@
+const debug = true;
+
 const generateLorem = (length: number): string => {
   let i = length;
   const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit".split(" ");
@@ -18,9 +20,11 @@ const handleIntersection = (
 ) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
+      debug && console.log(`Element ${debugLog} is intersecting`);
       onIntersect();
     } else {
       onDisappear();
+      debug && console.log(`Element ${debugLog} is not intersecting`);
     }
   });
 };
