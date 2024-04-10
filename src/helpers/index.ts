@@ -16,7 +16,8 @@ const handleIntersection = (
   entries: IntersectionObserverEntry[],
   debugLog: string,
   onIntersect: () => void,
-  onDisappear: () => void
+  onDisappear: () => void,
+  threshold: number
 ) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -44,9 +45,12 @@ const setupIntersectionObserver = ({
   onIntersect = () => {},
   onDisappear = () => {},
 }: SetupObserverProps) => {
-  const observer = new IntersectionObserver((entry) => handleIntersection(entry, debugLog, onIntersect, onDisappear), {
-    threshold: threshold,
-  });
+  const observer = new IntersectionObserver(
+    (entry) => handleIntersection(entry, debugLog, onIntersect, onDisappear, threshold),
+    {
+      threshold: threshold,
+    }
+  );
 
   // console.log(`Observing element : ${debugLog}`);
   observer.observe(element);
