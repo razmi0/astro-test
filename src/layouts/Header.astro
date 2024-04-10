@@ -2,7 +2,7 @@
 import Spacer from "@/components/ui/Spacer.astro";
 import Nav from "../components/Nav";
 import { ModeToggle } from "../components/ui/ModeToggle";
-import FadeImage from "@/components/ui/FadeImage.astro";
+import Logo from "@/components/ui/Logo.astro";
 ---
 
 <script is:inline>
@@ -25,12 +25,7 @@ import FadeImage from "@/components/ui/FadeImage.astro";
 </script>
 
 <header class="flex px-3 items-center justify-center bg-main-400 dark:bg-main-900 w-full fixed z-10 top-0 left-0">
-  <!-- <div class="font-bold text-wt-500 text-4xl">LOGO</div> -->
-
-  <FadeImage
-    img={{ src: "logo.webp", alt: "colorful logo of the company", class: "border-none" }}
-    figure={{ class: "h-20 w-20 border-none rounded-full" }}
-  />
+  <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-20 w-20 " />
   <Spacer />
   <Nav navClassname="h-24 me-4" client:idle />
   <ModeToggle client:idle />
