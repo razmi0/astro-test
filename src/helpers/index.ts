@@ -44,7 +44,6 @@ const setupIntersectionObserver = ({
     threshold: threshold,
   });
 
-  // Observe the target element
   // console.log(`Observing element : ${debugLog}`);
   observer.observe(element);
 };
