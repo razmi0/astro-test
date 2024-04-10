@@ -1,4 +1,4 @@
-const debug = true;
+const debug = import.meta.env.DEV && true;
 
 const generateLorem = (length: number): string => {
   let i = length;
