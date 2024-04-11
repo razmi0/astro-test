@@ -1,0 +1,101 @@
+---
+interface Props {}
+
+import Oak from "../assets/oak.webp";
+import { Image } from "astro:assets";
+import { generateLorem } from "@/helpers";
+import { Button } from "@/components/ui/Button";
+---
+
+<script></script>
+
+<style>
+  .center {
+    position: absolute;
+    top: 25%;
+  }
+
+  div[data-is="hero-text-wrapper"] {
+    --speedRatio: 0.2;
+    --title-delay: calc(0.2s * var(--speedRatio));
+    --sub-title-delay: calc(0.7s * var(--speedRatio));
+    --paragraph-delay: calc(1s * var(--speedRatio));
+    --button-delay: calc(2s * var(--speedRatio));
+  }
+
+  .animation-start {
+    opacity: 0;
+    filter: blur(2px);
+    scale: 0.9;
+  }
+
+  .animation-start-button {
+    transform: translateY(50px);
+    opacity: 0;
+    filter: blur(2px);
+  }
+
+  .animation-in-title {
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: var(--title-delay);
+  }
+
+  .animation-in-subtitle {
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: var(--sub-title-delay);
+  }
+
+  .animation-in-paragraph {
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: var(--paragraph-delay);
+  }
+
+  .animation-in-button {
+    animation: fadeInButton 1s ease-in-out forwards;
+    animation-delay: var(--button-delay);
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      filter: blur(0px);
+      scale: 1;
+    }
+  }
+
+  @keyframes fadeInButton {
+    to {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0px);
+    }
+  }
+
+  .blur-line {
+    mix-blend-mode: overlay;
+    filter: blur(20px);
+    background: rgba(0, 0, 0, 1);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
+  }
+</style>
+
+<section>
+  <Image src={Oak} alt="Oak" class="object-cover w-full h-full max-h-dvh" />
+  <div
+    class="z-10 bg-transparent center flex flex-col max-w-[40ch] sm:max-w-[50ch] md:max-w-[60ch] lg:max-w-[75ch] ps-2 sm:ps-5 md:ps-10 gap-3"
+    data-is="hero-text-wrapper"
+  >
+    <h1 class="font-bold animation-start animation-in-title text-[2rem] sm:text-[3rem]">{generateLorem(3)}</h1>
+    <small class="text-md animation-start animation-in-subtitle"
+      >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small
+    >
+    <p class="text-pretty animation-start animation-in-paragraph text-[0.9rem] sm:text-[1rem] md:text-[1.1rem]">
+      {generateLorem(40)}
+    </p>
+    <div class="flex gap-6 animation-start-button animation-in-button">
+      <a href="/activities"> <Button variant={"outline"} className="bg-transparent text-lg">S'inscrire</Button></a>
+      <a href="/about"> <Button variant={"ghost"} className="text-lg">En savoir plus</Button></a>
+    </div>
+  </div>
+  <div class="w-full h-[300px] -translate-y-[200px] blur-line"></div>
+</section>

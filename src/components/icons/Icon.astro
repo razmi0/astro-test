@@ -1,0 +1,19 @@
+---
+import menu from "./menu.svg?raw";
+
+type IconName = "menu";
+
+interface Props {
+  name: IconName;
+}
+
+const { name } = Astro.props;
+
+const icons: Record<IconName, string> = {
+  menu: menu,
+};
+
+const selected = icons[name as IconName];
+---
+
+<Fragment set:html={selected} />
