@@ -2,7 +2,7 @@ const debug = import.meta.env.DEV && true;
 
 const generateLorem = (length: number): string => {
   let i = length;
-  const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit".split(" ");
+  const lorem = "Lorem ipsum dolor sit amet, Consectetur adipiscing elit".split(" ");
   let generatedText = "";
   // --
   while (i > 0) {

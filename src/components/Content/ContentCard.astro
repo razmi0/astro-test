@@ -1,17 +1,17 @@
 ---
 import { generateLorem } from '@/helpers';
 import Background from '@/components/ui/Background';
-
-interface Props {
-  title?: { content: string, class? : string} | boolean;
-  subtitle?: { content: string, class? : string} | boolean;
-  /** The number of words to generate */
-  text?: { words: number, class? : string} | number;
-  input?: {class? : string, content? : string} | boolean;
-  button?: { class? : string, content? : string} | boolean;
-  formClass?: string;
-  articleClass?: string;
-}
+import type { Props } from "./Content.astro";
+// interface Props {
+//   title?: { content: string, class? : string} | boolean;
+//   subtitle?: { content: string, class? : string} | boolean;
+//   /** The number of words to generate */
+//   text?: { words: number, class? : string} | number;
+//   input?: {class? : string, content? : string} | boolean;
+//   button?: { class? : string, content? : string} | boolean;
+//   formClass?: string;
+//   articleClass?: string;
+// }
 
 const { 
   title ,

@@ -1,5 +1,11 @@
 ---
 import Content from "./Content/Content.astro";
+
+interface Props {
+  theme: "light" | "dark";
+}
+
+const { theme } = Astro.props;
 ---
 
 <Content
@@ -7,6 +13,8 @@ import Content from "./Content/Content.astro";
   img="vijay-et-lou.webp"
   text={120}
   articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
+  figureClass="h-[600px]"
   title={{ content: "L'histoire d'une vie" }}
   subtitle={{ content: "Grandir ensemble" }}
+  theme={theme}
 />

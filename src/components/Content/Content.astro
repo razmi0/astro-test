@@ -3,7 +3,7 @@ import ContentText from "./ContentText.astro";
 import ContentCard from "./ContentCard.astro";
 import ContentImageText from "./ContentImageText.astro";
 
-interface Props {
+export interface Props {
   type: "card" | "text" | "image-text" | "text-image";
   title?: { content: string; class?: string } | boolean;
   subtitle?: { content: string; class?: string } | boolean;
@@ -13,6 +13,8 @@ interface Props {
   formClass?: string;
   articleClass?: string;
   img?: string;
+  theme?: "light" | "dark";
+  figureClass?: string;
 }
 
 const { type } = Astro.props;

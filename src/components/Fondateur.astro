@@ -1,14 +1,21 @@
 ---
 import Content from "./Content/Content.astro";
+
+interface Props {
+  theme: "light" | "dark";
+}
+
+const { theme } = Astro.props;
 ---
 
 <Content
   type="image-text"
   img="lorem-vijay.webp"
-  text={45}
+  text={60}
   articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
   title={{ content: "Vijay Leblanc" }}
   subtitle={{ content: "Cordiste exégète et collectioneur de cordes" }}
+  theme={theme}
 />
 <Content
   type="image-text"
@@ -17,4 +24,5 @@ import Content from "./Content/Content.astro";
   articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
   title={{ content: "Lou Bideau" }}
   subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
+  theme={theme}
 />

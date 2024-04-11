@@ -1,19 +1,7 @@
 ---
 import { generateLorem } from '@/helpers';
 import FadeImage from '@/components/ui/FadeImage.astro';
-
-interface Props {
-  type? : "card" | "text" | "image-text" | "text-image";
-  title?: { content: string, class? : string} | boolean;
-  subtitle?: { content: string, class? : string} | boolean;
-  /** The number of words to generate */
-  text?: { words: number, class? : string} | number;
-  input?: {class? : string, content? : string} | boolean;
-  button?: { class? : string, content? : string} | boolean;
-  formClass?: string;
-  articleClass?: string;
-  img?: string;
-}
+import type { Props } from "./Content.astro";
 
 const { 
   title ,
@@ -24,7 +12,9 @@ const {
   type = "image-text",
   formClass ,
   articleClass,
-  img
+  img,
+  theme = "light",
+  figureClass
 } = Astro.props;
 
 const finalTitle = title ? typeof title === "boolean" ? generateLorem(4) : title.content : "";
@@ -42,6 +32,16 @@ const finalInputClass = input ? typeof input === "boolean" ? "" : input.class : 
 const defaultArticleClass = "flex justify-between items-center  text-slate-900 dark:text-slate-100";
 const articleTextImgLayout = {"flex-row" : type === "image-text" ,"flex-row-reverse" : type === "text-image"}
 
+const themeProperties = {
+  light : {
+    titleBorder : "border-s-main-300 dark:border-s-main-900",
+  },
+  dark : {
+    titleBorder : "border-s-main-900 dark:border-s-main-300",
+  }
+}
+
+const themeClass = themeProperties[theme] || themeProperties.light;
 
 const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 ---
@@ -83,15 +83,20 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
       filter:blur(0)
     }
   }
+
+  
+
 </style>
 
 
   <article class:list={[defaultArticleClass,articleTextImgLayout,articleClass]}>
-    <FadeImage img={{src : img, alt : ""}} />
+    <FadeImage img={{src : img, alt : ""}} figure={{class : figureClass}} />
     <div class:list={"flex flex-col opacity-0"} data-is="card">
-       {title && <h2 class:list={[finalTitleClass, "max-w-1/2"]} > {finalTitle}</h2>}
-       {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
-       <p class:list={["text-balance my-3", finalTextClass]}>{finalText}</p>
+       <div class="flex flex-col gap-3 border-s-8 ps-5" class:list={[themeClass.titleBorder]}>
+          {title && <h2 class:list={[finalTitleClass, "max-w-1/2"]} > {finalTitle}</h2>}
+          {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
+       </div>
+       <p class:list={["text-balance my-6", finalTextClass]}>{finalText}</p>
        {
         (input || button) && (
           <form class:list={["flex flex-col",formClass]} data-form-lorem>

@@ -29,7 +29,7 @@ const wrappers: ScreenUnitType = {
   histoire: {
     wrapper: {
       id: "histoire-wrapper",
-      className: "flex flex-col bg-main-300 items-start gap-12",
+      className: "flex flex-col bg-main-300 dark:bg-main-900 items-start justify-center gap-12",
       threshold: 0.2,
     },
     title: {
@@ -57,10 +57,10 @@ const wrappers: ScreenUnitType = {
   <Paralax slot="paralax" heading="A l'abord d'arbre" />
   <Fragment slot="main" id="main">
     <ScreenUnit {...wrappers.fondateur}>
-      <Fondateur />
+      <Fondateur theme="light" />
     </ScreenUnit>
     <ScreenUnit {...wrappers.histoire}>
-      <Histoire />
+      <Histoire theme="dark" />
     </ScreenUnit>
     <ScreenUnit {...wrappers.presentation}>
       <Content
@@ -70,6 +70,7 @@ const wrappers: ScreenUnitType = {
         articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
         title={{ content: "L'histoire d'une vie" }}
         subtitle={{ content: "Grandir ensemble" }}
+        theme="light"
       />
     </ScreenUnit>
   </Fragment>
