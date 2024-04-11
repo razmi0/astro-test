@@ -1,14 +1,33 @@
 ---
+import { cn } from "@/lib/utils";
+import type { Prettyfy } from "@/types";
+
 interface Props {
-  idWrapper: string;
-  idTitle: string;
-  className?: string;
-  title?: string;
-  threshold?: number;
+  wrapper: {
+    id: string;
+    className?: string;
+    threshold?: number;
+  };
+  title?: {
+    text: string;
+    className?: string;
+    startingPos?: string;
+    endingPos?: string;
+    id: string;
+  };
+
   children: any;
 }
 
-const { idWrapper, idTitle, className, title, threshold = 0.5 } = Astro.props;
+export type ScreenUnitProps = Prettyfy<Props>;
+
+const { title, wrapper } = Astro.props;
+
+const titleClass = cn("w-full text-right opacity-0 -z-10 dark:text-white text-black", title?.className);
+const wrapperClass = cn("min-h-dvh px-12 py-12", wrapper?.className);
+const startingPos = title?.startingPos || "-300px";
+const endingPos = title?.endingPos || "0";
+const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 ---
 
 <script>
@@ -39,44 +58,31 @@ const { idWrapper, idTitle, className, title, threshold = 0.5 } = Astro.props;
   );
 </script>
 
-<style>
-  .animate-slide-in {
-    animation-name: slideIn;
-    -moz-animation-duration: 1ms;
-    animation-direction: alternate;
-    animation-timeline: scroll(y);
+<style define:vars={{ bezier, startingPos, endingPos }}>
+  h2 {
+    opacity: 0;
+    transform: translateY(var(--startingPos));
+    transition:
+      transform 1s var(--bezier),
+      opacity 0.5s var(--bezier);
   }
 
-  @keyframes slideIn {
-    0% {
-      transform: translateY(-340px);
-      opacity: 0;
-      filter: blur(2px);
-    }
-    50% {
-      filter: blur(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100vh);
-    }
+  h2.animate-slide-in {
+    transform: translateY(var(--endingPos));
+    opacity: 1;
   }
 </style>
 
 <section
-  class:list={["min-h-dvh px-12 py-12 ", [className] || ""]}
-  id={idWrapper}
+  class:list={[wrapperClass]}
+  id={wrapper.id}
   data-is="section-unit-observer-wrapper"
-  data-threshold={threshold}
+  data-threshold={wrapper.threshold || 0.4}
 >
   {
     title && (
-      <h2
-        class="w-full text-right opacity-0 -z-10 dark:text-white text-black"
-        id={idTitle}
-        data-is="section-unit-observer-title"
-      >
-        {title}
+      <h2 class:list={[titleClass, "bg-red-500"]} id={title.id} data-is="section-unit-observer-title">
+        {title.text}
       </h2>
     )
   }
