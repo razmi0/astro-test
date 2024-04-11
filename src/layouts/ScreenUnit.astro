@@ -23,7 +23,7 @@ export type ScreenUnitProps = Prettyfy<Props>;
 
 const { title, wrapper } = Astro.props;
 
-const titleClass = cn("w-full text-right opacity-0 -z-10 dark:text-white text-black", title?.className);
+const titleClass = cn("opacity-0 -z-10 dark:text-white text-black", title?.className);
 const wrapperClass = cn("min-h-dvh px-12 py-12", wrapper?.className);
 const startingPos = title?.startingPos || "-300px";
 const endingPos = title?.endingPos || "0";
@@ -61,14 +61,19 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 <style define:vars={{ bezier, startingPos, endingPos }}>
   h2 {
     opacity: 0;
-    transform: translateY(var(--startingPos));
+    filter: blur(2px);
+    transform: translateY(var(--startingPos)) scale(0.9);
     transition:
       transform 1s var(--bezier),
-      opacity 0.5s var(--bezier);
+      opacity 0.5s var(--bezier),
+      filter 0.5s var(--bezier),
+      scale 0.5s var(--bezier);
   }
 
   h2.animate-slide-in {
-    transform: translateY(var(--endingPos));
+    filter: blur(0);
+
+    transform: translateY(var(--endingPos)) scale(1);
     opacity: 1;
   }
 </style>
@@ -81,9 +86,11 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 >
   {
     title && (
-      <h2 class:list={[titleClass]} id={title.id} data-is="section-unit-observer-title">
-        {title.text}
-      </h2>
+      <div class:list={["w-full flex items-center justify-end"]}>
+        <h2 class:list={[titleClass]} id={title.id} data-is="section-unit-observer-title">
+          {title.text}
+        </h2>
+      </div>
     )
   }
   <slot />
