@@ -1,0 +1,111 @@
+---
+import { generateLorem } from '@/helpers';
+import FadeImage from '../FadeImage.astro';
+
+interface Props {
+  type? : "card" | "text" | "image-text" | "text-image";
+  title?: { content: string, class? : string} | boolean;
+  subtitle?: { content: string, class? : string} | boolean;
+  /** The number of words to generate */
+  text?: { words: number, class? : string} | number;
+  input?: {class? : string, content? : string} | boolean;
+  button?: { class? : string, content? : string} | boolean;
+  formClass?: string;
+  articleClass?: string;
+  img?: string;
+}
+
+const { 
+  title ,
+  subtitle ,
+  text = 0,
+  button ,
+  input,
+  type = "image-text",
+  formClass ,
+  articleClass,
+  img
+} = Astro.props;
+
+const finalTitle = title ? typeof title === "boolean" ? generateLorem(4) : title.content : "";
+const finalSubtitle = subtitle ? typeof subtitle === "boolean" ? generateLorem(5) : subtitle.content : "";
+const finalButtonContent = button ? typeof button === "boolean" ? generateLorem(3)  : button.content : "";
+const finalInputPlaceholder = input ? typeof input === "boolean" ? generateLorem(3)  : input.content : "";
+const finalText = typeof text === "number" ? generateLorem(text) : generateLorem(text.words);
+// --
+const finalTitleClass = title ? typeof title === "boolean" ? "" : title.class : "";
+const finalSubtitleClass = subtitle ? typeof subtitle === "boolean" ? "" : subtitle.class : "";
+const finalTextClass = text ? typeof text === "number" ? "" : text.class : "";
+const finalButtonClass = button ? typeof button === "boolean" ? "" : button.class : "";
+const finalInputClass = input ? typeof input === "boolean" ? "" : input.class : "";
+
+const defaultArticleClass = "flex justify-between items-center  text-slate-900 dark:text-slate-100";
+const articleTextImgLayout = {"flex-row" : type === "image-text" ,"flex-row-reverse" : type === "text-image"}
+
+
+const id = `input-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<script>
+    import { setupIntersectionObserver } from "@/helpers";
+  // --
+  const elements = Array.from(document.querySelectorAll("[data-is='card']")) as HTMLElement[];
+  const onIntersect = (element: HTMLElement) => {
+      element.classList.add("animate-fade-in-card");
+    };
+
+    elements.map((element) => {
+      setupIntersectionObserver({
+        element,
+        debugLog: "image",
+        onIntersect: () => {
+          onIntersect(element);
+        },
+        threshold: 1,
+      });
+    });
+</script>
+
+<style>
+  .animate-fade-in-card {
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+      filter:blur(2px)
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter:blur(0)
+    }
+  }
+</style>
+
+
+  <article class:list={[defaultArticleClass,articleTextImgLayout,articleClass]}>
+    <FadeImage img={{src : img, alt : ""}} />
+    <div class:list={"flex flex-col opacity-0"} data-is="card">
+       {title && <h2 class:list={[finalTitleClass, "max-w-1/2"]} > {finalTitle}</h2>}
+       {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
+       <p class:list={["text-balance my-3", finalTextClass]}>{finalText}</p>
+       {
+        (input || button) && (
+          <form class:list={["flex flex-col",formClass]} data-form-lorem>
+            {input && (
+              <label for={id} class="font-bold"> Input label : </label>
+              <input type="text" id={id} class:list={["w-full min-h-9", finalInputClass]} placeholder={finalInputPlaceholder} />
+            )}
+            {button && (
+              <button type="button" data-button-lorem class:list={["btn ghost card mt-2 w-fit px-6", finalButtonClass]}>
+              {finalButtonContent}
+            </button>
+            )}
+          </form>
+        )
+       }
+    </div>
+  </article>
