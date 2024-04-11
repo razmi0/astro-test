@@ -1,5 +1,5 @@
 ---
-import Lorem from "@/components/ui/Lorem/Lorem.astro";
+import Content from "@/components/ui/Lorem/Content.astro";
 import Layout from "@/layouts/Layout.astro";
 import "../styles/index.css";
 import Paralax from "@/components/ui/Paralax.astro";
@@ -61,6 +61,16 @@ const wrappers: ScreenUnitType = {
     </ScreenUnit>
     <ScreenUnit {...wrappers.histoire}>
       <Histoire />
+    </ScreenUnit>
+    <ScreenUnit {...wrappers.presentation}>
+      <Content
+        type="text-image"
+        img="vijay-et-lou.webp"
+        text={120}
+        articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
+        title={{ content: "L'histoire d'une vie" }}
+        subtitle={{ content: "Grandir ensemble" }}
+      />
     </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />
