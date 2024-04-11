@@ -1,5 +1,5 @@
 ---
-import Lorem from "@/components/Lorem.astro";
+import Lorem from "@/components/ui/Lorem/Lorem.astro";
 import Layout from "@/layouts/Layout.astro";
 import "../styles/index.css";
 import Paralax from "@/components/ui/Paralax.astro";
@@ -8,33 +8,45 @@ import Footer from "@/layouts/Footer.astro";
 import ScreenUnit from "@/layouts/ScreenUnit.astro";
 import Fondateur from "@/components/Fondateur.astro";
 import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
+import Histoire from "@/components/Histoire.astro";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
 };
 
 const wrappers: ScreenUnitType = {
-  first: {
+  fondateur: {
     wrapper: {
-      id: "first-wrapper",
+      id: "fondateur-wrapper",
       className: "flex flex-col items-start gap-12",
       threshold: 0.4,
     },
     title: {
-      id: "first-title",
+      id: "fondateur-title",
       text: "Les fondateurs",
     },
   },
-  second: {
+  histoire: {
     wrapper: {
-      id: "second-wrapper",
+      id: "histoire-wrapper",
       className: "flex flex-col bg-main-300 items-start gap-12",
       threshold: 0.2,
     },
     title: {
-      id: "second-title",
+      id: "histoire-title",
       text: "Notre histoire",
       className: "z-10",
+    },
+  },
+  presentation: {
+    wrapper: {
+      id: "presentation-wrapper",
+      className: "flex flex-col items-start gap-12",
+      threshold: 0.2,
+    },
+    title: {
+      id: "presentation-title",
+      text: "Présentation",
     },
   },
 };
@@ -44,18 +56,11 @@ const wrappers: ScreenUnitType = {
   <Header slot="header" />
   <Paralax slot="paralax" heading="A l'abord d'arbre" />
   <Fragment slot="main" id="main">
-    <ScreenUnit {...wrappers.first}>
+    <ScreenUnit {...wrappers.fondateur}>
       <Fondateur />
     </ScreenUnit>
-    <ScreenUnit {...wrappers.second}>
-      <Lorem
-        type="text-image"
-        img="vijay-et-lou.webp"
-        text={120}
-        articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
-        title={{ content: "L'histoire d'une vie" }}
-        subtitle={{ content: "Grandir ensemble" }}
-      />
+    <ScreenUnit {...wrappers.histoire}>
+      <Histoire />
     </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />

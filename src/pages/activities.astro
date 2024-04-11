@@ -2,23 +2,13 @@
 import Header from "@/layouts/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import Footer from "@/layouts/Footer.astro";
-import Lorem from "@/components/Lorem.astro";
+import Lorem from "@/components/ui/Lorem/Lorem.astro";
 import "../styles/index.css";
 import Paralax from "@/components/ui/Paralax.astro";
 ---
 
 <Layout title="Activités et tarifs">
   <Header slot="header" />
-  <section class="flex gap-6 flex-wrap bg-main-900 h-full" slot="main" id="main">
-    <Lorem text={25} />
-    <Lorem text={25} />
-    <Lorem text={25} />
-    <Lorem text={25} />
-    <Lorem text={25} />
-    <Lorem text={25} />
-    <Lorem text={25} />
-    <Lorem text={25} />
-    <Lorem text={25} />
-  </section>
+  <section class="flex gap-6 flex-wrap bg-main-900 h-full" slot="main" id="main"></section>
   <Footer slot="footer" />
 </Layout>
