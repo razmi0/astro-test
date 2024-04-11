@@ -8,8 +8,6 @@ const { pathname } = Astro.url;
 const isHome = pathname === "/";
 ---
 
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,9 +18,9 @@ const isHome = pathname === "/";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="flex flex-col min-h-dvh min-w-[320px] overflow-x-hidden bg-wt-400 dark:bg-element-800">
+  <body class="flex flex-col min-h-dvh min-w-[320px] overflow-x-hidden bg-[#010101]">
     <slot name="header" />
-    <slot name="paralax" />
+    <slot name="hero" />
     <main class="" class:list={["grow h-full", { "mt-24": !isHome }]}>
       <slot name="main" />
     </main>
