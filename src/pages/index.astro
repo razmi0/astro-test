@@ -9,6 +9,7 @@ import ScreenUnit from "@/layouts/ScreenUnit.astro";
 import Fondateur from "@/components/Fondateur.astro";
 import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
 import Histoire from "@/components/Histoire.astro";
+import Hero from "@/components/Hero.astro";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
@@ -54,7 +55,7 @@ const wrappers: ScreenUnitType = {
 
 <Layout title="Accueil">
   <Header slot="header" />
-  <Paralax slot="paralax" heading="A l'abord d'arbre" />
+  <Hero slot="hero" />
   <Fragment slot="main" id="main">
     <ScreenUnit {...wrappers.fondateur}>
       <Fondateur theme="light" />
