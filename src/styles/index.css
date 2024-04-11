@@ -50,18 +50,6 @@
   scroll-behavior: smooth !important;
 }
 
-h1 {
-  @apply text-5xl font-bold text-center;
-}
-
-h2 {
-  @apply text-5xl font-bold;
-}
-
-small {
-  @apply text-sm;
-}
-
 .card {
   --tw-shadow-color: black;
   border-width: 1px;
@@ -70,8 +58,4 @@ small {
     0px 0px 0px 1px rgba(0, 0, 0, 0.25);
   --tw-shadow-colored: inset 0px 1px 0px 0px var(--tw-shadow-color), inset 0px 0px 0px 1px var(--tw-shadow-color),
     0px 0px 0px 1px var(--tw-shadow-color);
-}
-
-.nav-link-label {
-  @apply text-lg;
 }
