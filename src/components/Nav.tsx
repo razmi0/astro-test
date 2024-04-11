@@ -19,7 +19,7 @@ const links = [
 export default function Nav({ navClassname, children }: { navClassname?: string; children?: React.ReactNode }) {
   return (
     <>
-      <NavigationMenu viewportClassName="right-0" className={navClassname || ""}>
+      <NavigationMenu viewportClassName="right-0 z-50" className={navClassname || ""}>
         <NavigationMenuList>
           {links.map((link) => {
             const { href, label, noContent } = link;
