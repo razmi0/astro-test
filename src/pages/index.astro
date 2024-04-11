@@ -7,28 +7,49 @@ import Header from "@/layouts/Header.astro";
 import Footer from "@/layouts/Footer.astro";
 import ScreenUnit from "@/layouts/ScreenUnit.astro";
 import Fondateur from "@/components/Fondateur.astro";
+import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
+
+type ScreenUnitType = {
+  [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
+};
+
+const wrappers: ScreenUnitType = {
+  first: {
+    wrapper: {
+      id: "first-wrapper",
+      className: "flex flex-col items-start gap-12",
+      threshold: 0.4,
+    },
+    title: {
+      id: "first-title",
+      text: "Les fondateurs",
+    },
+  },
+  second: {
+    wrapper: {
+      id: "second-wrapper",
+      className: "flex flex-col bg-main-300 items-start gap-12",
+      threshold: 0.2,
+    },
+    title: {
+      id: "second-title",
+      text: "Notre histoire",
+      startingPos: "-20vh",
+      endingPos: "90px",
+      className: "z-10",
+    },
+  },
+};
 ---
 
 <Layout title="Accueil">
   <Header slot="header" />
   <Paralax slot="paralax" heading="A l'abord d'arbre" />
   <Fragment slot="main" id="main">
-    <ScreenUnit
-      idWrapper="first-wrapper"
-      idTitle="first-title"
-      className="flex flex-col items-start gap-12"
-      title="Les fondateurs"
-      threshold={0.4}
-    >
+    <ScreenUnit {...wrappers.first}>
       <Fondateur />
     </ScreenUnit>
-    <ScreenUnit
-      idWrapper="second-wrapper"
-      idTitle="second-title"
-      title="Notre histoire"
-      className=" flex flex-col bg-main-300 justify-center items-start"
-      threshold={0.2}
-    >
+    <ScreenUnit {...wrappers.second}>
       <Lorem
         type="text-image"
         img="vijay-et-lou.webp"
@@ -38,27 +59,6 @@ import Fondateur from "@/components/Fondateur.astro";
         subtitle={{ content: "Grandir ensemble" }}
       />
     </ScreenUnit>
-    <ScreenUnit idWrapper="third-wrapper" idTitle="thirdTitle" title="NEXT">
-      <Lorem type="card" text={25} />
-      <Lorem type="card" text={25} />
-    </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />
 </Layout>
-
-<!-- <style>
-  [data-is="first-wrapper"] {
-    --color-main-800: #1b472c;
-    --color-main-700: #286b42;
-    background: linear-gradient(90deg, var(--color-main-800) 50%, var(--color-main-700) 50%);
-    background-color: #1b472c;
-  }
-
-  #second-wrapper {
-    background-color: var(--main-800);
-  }
-
-  #third-wrapper {
-    background-color: var(--main-700);
-  }
-</style> -->
