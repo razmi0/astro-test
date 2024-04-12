@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,css}"],
@@ -9,9 +11,12 @@ export default {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
-        xs: "475px",
-        "2xs": "375px",
       },
+    },
+    screens: {
+      "2xs": "375px",
+      xs: "475px",
+      ...defaultTheme.screens,
     },
     extend: {
       colors: {
