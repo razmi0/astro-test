@@ -15,30 +15,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  --color-element-800: #1a1a1a;
-  --color-element-700: #242424;
-  --color-element-600: #2d2d2d;
-  --color-element-500: #333333;
-  --color-element-400: #243342;
-  --color-element-300: #213547;
-  --color-element-200: #1e3b4c;
-  --color-element-100: #1b4151;
-
-  --color-wt-500: #ffffff;
-  --color-wt-400: #ebe9e9;
-  --color-wt-300: #f5f5f5;
-
-  --color-main-100: #f0f3f2;
-  --color-main-200: #d1e0e0;
-  --color-main-300: #7ee2c7;
-  --color-main-400: #4db6ac;
-  --color-main-500: #50ac93;
-  --color-main-600: #0b9e8f;
-  --color-main-700: #286b42;
-  --color-main-800: #1b472c;
-  --color-main-900: #003329;
-  --color-main-950: #11301d;
 }
 
 *,
@@ -72,3 +48,27 @@ h5,
 h6 {
   @apply montserrat;
 }
+
+/* --color-element-800: #1a1a1a;
+--color-element-700: #242424;
+--color-element-600: #2d2d2d;
+--color-element-500: #333333;
+--color-element-400: #243342;
+--color-element-300: #213547;
+--color-element-200: #1e3b4c;
+--color-element-100: #1b4151;
+
+--color-wt-500: #ffffff;
+--color-wt-400: #ebe9e9;
+--color-wt-300: #f5f5f5;
+
+--color-main-100: #f0f3f2;
+--color-main-200: #d1e0e0;
+--color-main-300: #7ee2c7;
+--color-main-400: #4db6ac;
+--color-main-500: #50ac93;
+--color-main-600: #0b9e8f;
+--color-main-700: #286b42;
+--color-main-800: #1b472c;
+--color-main-900: #003329;
+--color-main-950: #11301d; */
