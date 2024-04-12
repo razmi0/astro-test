@@ -34,7 +34,7 @@ export default function Nav({ navClassname, children }: { navClassname?: string;
             }
             return (
               <NavigationMenuItem key={label}>
-                <NavigationMenuTrigger className="bg-transparent ghost nav-link-label">
+                <NavigationMenuTrigger className="bg-transparent ghost nav-link-label " data-is="BUTTON">
                   <a href={href}>{label}</a>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="fixed">
