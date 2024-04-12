@@ -32,12 +32,16 @@ import Icon from "@/components/icons/Icon.astro";
     }
     header[data-media="mobile"] {
       display: none;
+      width: 0;
+      height: 0;
     }
   }
 
   @media (max-width: 768px) {
     header[data-media="desktop"] {
       display: none;
+      width: 0;
+      height: 0;
     }
     header[data-media="mobile"] {
       display: flex;
