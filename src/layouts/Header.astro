@@ -45,14 +45,14 @@ import Icon from "@/components/icons/Icon.astro";
   }
 </style>
 
-<header class="flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0" data-media="desktop">
+<header data-media="desktop" class="flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0" >
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
   <Spacer />
   <Nav navClassname="h-24 me-4" client:idle />
   <ModeToggle client:idle />
 </header>
 
-<header class="flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4" data-media="mobile">
+<header  data-media="mobile" class="flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4">
   <Icon name="menu" />
   <Spacer />
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
