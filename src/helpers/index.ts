@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const debug = import.meta.env.DEV && true;
 
 const generateLorem = (length: number): string => {
@@ -56,4 +58,26 @@ const setupIntersectionObserver = ({
   observer.observe(element);
 };
 
-export { generateLorem, handleIntersection, setupIntersectionObserver };
+const mediaQueries = {
+  sm: "(min-width: 640px)",
+  md: "(min-width: 768px)",
+  lg: "(min-width: 1024px)",
+  xl: "(min-width: 1280px)",
+};
+
+type Breakpoints = keyof typeof mediaQueries;
+const useMedia = (breakpoint: Breakpoints, matchCb: () => void, unMatchCb: () => void) => {
+  breakpoint in mediaQueries || console.error(`Invalid breakpoint : ${breakpoint} `);
+  const mediaQuery = mediaQueries[breakpoint];
+
+  const handler = (e: MediaQueryList | MediaQueryListEvent) => (e.matches ? matchCb() : unMatchCb());
+
+  useEffect(() => {
+    const media = window.matchMedia(mediaQuery);
+    handler(media);
+    media.addEventListener("change", handler, { passive: true });
+    return () => media.removeEventListener("change", () => {});
+  }, []);
+};
+
+export { generateLorem, handleIntersection, setupIntersectionObserver, useMedia };
