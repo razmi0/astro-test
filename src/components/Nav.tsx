@@ -7,6 +7,17 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/NavigationMenu";
+import { Button } from "./ui/Button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./ui/Drawer";
 
 const links = [
   { href: "/", label: "Accueil", noContent: true },
@@ -16,10 +27,49 @@ const links = [
   { href: "/faq", label: "FAQ" },
 ];
 
-export default function Nav({ navClassname, children }: { navClassname?: string; children?: React.ReactNode }) {
+const MenuIcon = () => {
+  return (
+    <svg
+      viewBox="0 0 25 25"
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      className="pointer"
+      transform="scale(-1, 1)"
+    >
+      <style>{`
+        .rects > .rect-1 {
+          width: 25px;
+          transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
+        }
+        .rects > .rect-2 {
+          width: 15px;
+          transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
+        }
+        .rects > .rect-3 {
+          width: 10px;
+          transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
+        }
+        svg:hover > .rects > .rect-1 {
+          width: 10px;
+        }
+        svg:hover > .rects > .rect-3 {
+          width: 25px;
+        }
+      `}</style>
+      <g className="rects">
+        <rect y="25%" height="3" rx="1" className="rect-1" fill="#FFF" />
+        <rect y="50%" height="3" rx="1" className="rect-2" fill="#FFF" />
+        <rect y="75%" height="3" rx="1" className="rect-3" fill="#FFF" />
+      </g>
+    </svg>
+  );
+};
+
+export function NavDesktop({ children }: { children?: React.ReactNode }) {
   return (
     <>
-      <NavigationMenu viewportClassName="right-0" className={navClassname || ""}>
+      <NavigationMenu viewportClassName="right-0" className="h-24 me-4">
         <NavigationMenuList>
           {links.map((link) => {
             const { href, label, noContent } = link;
@@ -58,6 +108,28 @@ export default function Nav({ navClassname, children }: { navClassname?: string;
         </NavigationMenuList>
       </NavigationMenu>
     </>
+  );
+}
+
+export function NavMobile() {
+  return (
+    <Drawer>
+      <DrawerTrigger>
+        <MenuIcon />
+      </DrawerTrigger>
+      <DrawerContent className="h-[90dvh]">
+        <DrawerHeader>
+          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <Button>Submit</Button>
+          <DrawerClose>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 }
 
