@@ -45,6 +45,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 
   const onIntersect = (titleElement: HTMLHeadingElement) => titleElement.classList.add("animate-slide-in");
   const onDisappear = (titleElement: HTMLHeadingElement) => titleElement.classList.remove("animate-slide-in");
+  console.log(groupedObservers[0][0].dataset.threshold);
   groupedObservers.forEach((group) =>
     setupIntersectionObserver({
       element: group[0],
@@ -62,7 +63,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
     filter: blur(2px);
     transform: translateY(var(--startingPos)) scale(0.9);
     transition:
-      transform 1s var(--bezier),
+      transform 0.8s var(--bezier),
       opacity 0.5s var(--bezier),
       filter 0.5s var(--bezier),
       scale 0.5s var(--bezier);

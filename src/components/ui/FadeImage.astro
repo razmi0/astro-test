@@ -14,7 +14,10 @@ const figureClasses = cn(
   "overflow-hidden rounded-none w-full h-full max-w-[400px] max-h-[400px] sm:rounded-lg hover-animation",
   figure?.class
 );
-const imgClasses = cn("object-cover rounded-none max-w-[400px] max-h-[400px] sm:rounded-lg opacity-0", img?.class);
+const imgClasses = cn(
+  "object-cover rounded-none w-full h-full aspect-[16/16] max-w-[400px] max-h-[400px] sm:rounded-lg opacity-0",
+  img?.class
+);
 
 const imgPath = `/src/assets/${img.name}`;
 
