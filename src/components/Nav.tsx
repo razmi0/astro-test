@@ -1,3 +1,4 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/Accordion";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -7,17 +8,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/NavigationMenu";
-import { Button } from "./ui/Button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./ui/Drawer";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "./ui/Drawer";
+import { ModeToggle } from "./ui/ModeToggle";
 
 const links = [
   { href: "/", label: "Accueil", noContent: true },
@@ -117,15 +109,25 @@ export function NavMobile() {
       <DrawerTrigger>
         <MenuIcon />
       </DrawerTrigger>
-      <DrawerContent className="h-[90dvh]">
-        <DrawerHeader>
-          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+      <DrawerContent className="h-[85dvh]">
+        <DrawerHeader className="flex-row-reverse w-full flex items-center">
+          <ModeToggle />
         </DrawerHeader>
-        <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose>{/* <Button variant="outline">Cancel</Button> */}</DrawerClose>
-        </DrawerFooter>
+        <Accordion type="single" collapsible className="flex-grow px-2 justify-center">
+          {links.map((link) => {
+            const { href, label } = link;
+            return (
+              <AccordionItem key={label} value={label} className="mb-3">
+                <AccordionTrigger>
+                  <a href={href}>{label}</a>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <a href={href}>{label}</a>
+                </AccordionContent>
+              </AccordionItem>
+            );
+          })}
+        </Accordion>
       </DrawerContent>
     </Drawer>
   );
