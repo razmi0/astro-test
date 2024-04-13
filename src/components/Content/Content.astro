@@ -2,6 +2,7 @@
 import ContentText from "./ContentText.astro";
 import ContentCard from "./ContentCard.astro";
 import ContentImageText from "./ContentImageText.astro";
+import type { ImageNames } from "@/types";
 
 export interface Props {
   type: "card" | "text" | "image-text" | "text-image";
@@ -12,7 +13,7 @@ export interface Props {
   button?: { class?: string; content?: string } | boolean;
   formClass?: string;
   articleClass?: string;
-  img?: string;
+  img?: ImageNames;
   theme?: "light" | "dark";
   figureClass?: string;
 }
