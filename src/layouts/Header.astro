@@ -25,38 +25,29 @@ import Icon from "@/components/icons/Icon.astro";
   }
 </script>
 
-<style>
-  @media (min-width: 768px) {
-    header[data-media="desktop"] {
-      display: flex;
-    }
-    header[data-media="mobile"] {
-      display: none;
-      width: 0;
-      height: 0;
-    }
-  }
+<script>
+  import { actOnMedia } from "@/helpers";
 
-  @media (max-width: 768px) {
-    header[data-media="desktop"] {
-      display: none;
-      width: 0;
-      height: 0;
-    }
-    header[data-media="mobile"] {
-      display: flex;
-    }
-  }
-</style>
+  const desktopHeader = document.querySelector("header[data-media='desktop']");
+  const mobileHeader = document.querySelector("header[data-media='mobile']");
+  const parentNode = document.querySelector("header")?.parentNode!;
 
-<header data-media="desktop" class="px-3 items-center justify-center w-full fixed z-50 top-0 left-0">
+  const onMobile = () =>
+    parentNode && mobileHeader && desktopHeader && parentNode.replaceChild(mobileHeader, desktopHeader);
+  const onDesktop = () =>
+    parentNode && mobileHeader && desktopHeader && parentNode.replaceChild(desktopHeader, mobileHeader);
+
+  actOnMedia("md", onDesktop, onMobile);
+</script>
+
+<header data-media="desktop" class="flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0">
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
   <Spacer />
   <NavDesktop client:idle />
   <ModeToggle client:idle />
 </header>
 
-<header data-media="mobile" class="px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4">
+<header data-media="mobile" class="flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4">
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-12 w-12 sm:h-16 sm:w-16" />
   <Spacer />
   <NavMobile client:visible />
