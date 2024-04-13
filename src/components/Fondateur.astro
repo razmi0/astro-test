@@ -1,5 +1,6 @@
 ---
 import Content from "./Content/Content.astro";
+import Separator from "@/components/ui/Separator.astro";
 
 interface Props {
   theme: "light" | "dark";
@@ -11,11 +12,12 @@ const { theme } = Astro.props;
 <Content
   type="image-text"
   img="lorem-vijay.webp"
-  text={60}
+  text={40}
   title={{ content: "Vijay Leblanc" }}
   subtitle={{ content: "Cordiste exégète et collectioneur de cordes" }}
   theme={theme}
 />
+<Separator />
 <Content
   type="image-text"
   img="lorem-lou.webp"
@@ -24,3 +26,4 @@ const { theme } = Astro.props;
   subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
   theme={theme}
 />
+<Separator />

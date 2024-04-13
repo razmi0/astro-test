@@ -39,17 +39,17 @@ const wrappers: ScreenUnitType = {
       className: "z-10",
     },
   },
-  presentation: {
-    wrapper: {
-      id: "presentation-wrapper",
-      className: "flex flex-col items-start gap-12",
-      threshold: 0.1,
-    },
-    title: {
-      id: "presentation-title",
-      text: "Présentation",
-    },
-  },
+  // presentation: {
+  //   wrapper: {
+  //     id: "presentation-wrapper",
+  //     className: "flex flex-col items-start gap-12",
+  //     threshold: 0.1,
+  //   },
+  //   title: {
+  //     id: "presentation-title",
+  //     text: "Présentation",
+  //   },
+  // },
 };
 ---
 
@@ -60,10 +60,10 @@ const wrappers: ScreenUnitType = {
     <ScreenUnit {...wrappers.fondateur}>
       <Fondateur theme="light" />
     </ScreenUnit>
-    <ScreenUnit {...wrappers.histoire}>
+    <!-- <ScreenUnit {...wrappers.histoire}>
       <Histoire theme="dark" />
-    </ScreenUnit>
-    <ScreenUnit {...wrappers.presentation}>
+    </ScreenUnit> -->
+    <!-- <ScreenUnit {...wrappers.presentation}>
       <Content
         type="text-image"
         img="vijay-et-lou.webp"
@@ -73,7 +73,7 @@ const wrappers: ScreenUnitType = {
         subtitle={{ content: "Grandir ensemble" }}
         theme="light"
       />
-    </ScreenUnit>
+    </ScreenUnit> -->
   </Fragment>
   <Footer slot="footer" />
 </Layout>

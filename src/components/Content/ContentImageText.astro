@@ -97,7 +97,7 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
           {title && <h3 class:list={[finalTitleClass, "max-w-1/2 text-2xl"]} > {finalTitle}</h3>}
           {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
        </div>
-       <p class:list={["text-balance my-6 ps-2", finalTextClass]}>{finalText}</p>
+       <p class:list={["text-balance my-6 ps-2 text-[0.9rem] sm:text-[1rem]", finalTextClass]}>{finalText}</p>
        {
         (input || button) && (
           <form class:list={["flex flex-col",formClass]} data-form-lorem>

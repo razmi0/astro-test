@@ -11,10 +11,10 @@ interface Props {
 
 const { figure, img, captionClass } = Astro.props;
 const figureClasses = cn(
-  "overflow-hidden rounded-lg w-full h-full md:h-[400px] md:w-[400px] hover-animation",
+  "overflow-hidden rounded-none w-full h-full max-w-[400px] max-h-[400px] sm:rounded-lg hover-animation",
   figure?.class
 );
-const imgClasses = cn("object-cover w-full h-full rounded-lg opacity-0", img?.class);
+const imgClasses = cn("object-cover rounded-none max-w-[400px] max-h-[400px] sm:rounded-lg opacity-0", img?.class);
 
 const imgPath = `/src/assets/${img.name}`;
 
@@ -79,7 +79,7 @@ const duration = "0.3s";
       });
     });
   </script>
-  <div class="overflow-hidden rounded-lg min-w-fit">
+  <div class="overflow-hidden rounded-none md:rounded-lg min-w-fit">
     <figure class:list={[figureClasses]}>
       <Image src={images[imgPath]()} alt={img.alt} class:list={[imgClasses]} data-anim="animate-fade-in-image" />
       {figure && figure.content && <figcaption class:list={["", captionClass]}>{figure.content}</figcaption>}
