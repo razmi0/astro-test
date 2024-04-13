@@ -68,7 +68,13 @@ export function NavDesktop({ children, currentPath }: { children?: React.ReactNo
             if (noContent) {
               return (
                 <NavigationMenuItem key={label}>
-                  <a href={href} className={`bg-transparent ghost nav-link-label ${navigationMenuTriggerStyle()}`}>
+                  <a
+                    href={href}
+                    className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
+                      currentPath === href ? "hover:border-main-300" : ""
+                    } `}
+                    style={{ color: currentPath === href ? "var(--color-main-300)" : "inherit" }}
+                  >
                     {label}
                   </a>
                 </NavigationMenuItem>
@@ -76,7 +82,13 @@ export function NavDesktop({ children, currentPath }: { children?: React.ReactNo
             }
             return (
               <NavigationMenuItem key={label}>
-                <NavigationMenuTrigger className="bg-transparent ghost nav-link-label " data-is="BUTTON">
+                <NavigationMenuTrigger
+                  className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
+                    currentPath === href ? "hover:border-main-300" : ""
+                  } `}
+                  style={{ color: currentPath === href ? "var(--color-main-300)" : "inherit" }}
+                  data-is="BUTTON"
+                >
                   <a href={href}>{label}</a>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="fixed">
@@ -113,15 +125,13 @@ export function NavMobile({ currentPath }: { currentPath: string }) {
         <DrawerHeader className="flex-row-reverse w-full flex items-center">
           <ModeToggle />
         </DrawerHeader>
-        <Accordion type="single" collapsible className="flex-grow px-2 justify-center">
+        <Accordion type="single" collapsible className="px-2 justify-center">
           {links.map((link) => {
             const { href, label } = link;
             return (
               <AccordionItem key={label} value={label} className="mb-3">
-                <AccordionTrigger>
-                  <a href={href} className={currentPath === href ? "text-main-300" : ""}>
-                    {label}
-                  </a>
+                <AccordionTrigger className=" hover:no-underline no-underline">
+                  <span className={`${currentPath === href ? "text-main-300" : ""}`}>{label}</span>
                 </AccordionTrigger>
                 <AccordionContent>
                   <a href={href}>{label}</a>

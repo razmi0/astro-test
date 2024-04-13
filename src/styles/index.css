@@ -15,6 +15,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-main-900: #003329;
+  --color-main-300: #7ee2c7;
 }
 
 *,
@@ -64,11 +67,11 @@ h6 {
 
 --color-main-100: #f0f3f2;
 --color-main-200: #d1e0e0;
---color-main-300: #7ee2c7;
+
 --color-main-400: #4db6ac;
 --color-main-500: #50ac93;
 --color-main-600: #0b9e8f;
 --color-main-700: #286b42;
 --color-main-800: #1b472c;
---color-main-900: #003329;
+
 --color-main-950: #11301d; */
