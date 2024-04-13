@@ -23,8 +23,8 @@ export type ScreenUnitProps = Prettyfy<Props>;
 
 const { title, wrapper } = Astro.props;
 
-const titleClass = cn("opacity-0 -z-10 dark:text-white text-black", title?.className);
-const wrapperClass = cn("min-h-dvh px-12 py-12", wrapper?.className);
+const titleClass = cn("opacity-0 -z-10 dark:text-white text-black text-3xl", title?.className);
+const wrapperClass = cn("min-h-dvh px-0 py-4 md:px-12 md:py-12 gap-4 md:gap-12", wrapper?.className);
 const startingPos = title?.startingPos || "-300px";
 const endingPos = title?.endingPos || "0";
 const bezier = "cubic-bezier(.25,.75,.5,1.05)";
@@ -86,7 +86,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 >
   {
     title && (
-      <div class:list={["w-full flex items-center justify-end"]}>
+      <div class:list={["w-full flex items-center justify-center md:justify-end"]}>
         <h2 class:list={[titleClass]} id={title.id} data-is="section-unit-observer-title">
           {title.text}
         </h2>

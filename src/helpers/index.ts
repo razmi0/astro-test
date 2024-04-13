@@ -64,7 +64,7 @@ const mediaQueries = {
 };
 
 type Breakpoints = keyof typeof mediaQueries;
-const actOnMedia = (breakpoint: Breakpoints, matchCb: () => void, unMatchCb: () => void) => {
+const actOnMedia = (breakpoint: Breakpoints, matchCb?: () => void, unMatchCb?: () => void) => {
   if (!mediaQueries || !(breakpoint in mediaQueries)) {
     console.error(`Invalid breakpoint: ${breakpoint}`);
     return;
@@ -73,11 +73,7 @@ const actOnMedia = (breakpoint: Breakpoints, matchCb: () => void, unMatchCb: () 
   const mediaQuery = mediaQueries[breakpoint];
 
   const handler = (event: MediaQueryList | MediaQueryListEvent) => {
-    if (event.matches) {
-      matchCb();
-    } else {
-      unMatchCb();
-    }
+    event.matches ? matchCb && matchCb() : unMatchCb && unMatchCb();
   };
 
   // Manually handling the initial state and cleanup
