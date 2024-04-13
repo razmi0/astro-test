@@ -38,9 +38,6 @@ const classes = [
   // BASE
   // --
   "group flex items-center text-white justify-center w-max h-10 px-1 sm:px-1 md:px-3 lg:px-5 font-medium rounded-full transition-colors border-2 border-transparent",
-  // HOVER
-  // --
-  "hover:border-white",
   // FOCUS
   // --
   "focus:ring-2 focus:ring-main-400 focus:outline-none ",

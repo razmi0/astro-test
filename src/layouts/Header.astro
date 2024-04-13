@@ -5,7 +5,6 @@ import { ModeToggle } from "../components/ui/ModeToggle";
 import Logo from "@/components/ui/Logo.astro";
 
 const currentPath = Astro.url.pathname;
-console.log(currentPath);
 ---
 
 <script is:inline>
@@ -42,7 +41,10 @@ console.log(currentPath);
   actOnMedia("md", onDesktop, onMobile);
 </script>
 
-<header data-media="desktop" class="hidden md:flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0">
+<header
+  data-media="desktop"
+  class="hidden md:flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-20"
+>
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
   <Spacer />
   <NavDesktop client:visible currentPath={currentPath} />

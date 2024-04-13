@@ -2,14 +2,18 @@ const debug = import.meta.env.DEV && false;
 
 const generateLorem = (length: number): string => {
   let i = length;
-  const lorem = "Lorem ipsum dolor sit amet, Consectetur adipiscing elit".split(" ");
+  const lorem = (
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam voluptates odit ducimus, " +
+    "eos quod nulla commodi minima, maiores illum consectetur itaque quis, quisquam distinctio autem " +
+    "ex tenetur perferendis enim. Tempora?"
+  ).split(" ");
   let generatedText = "";
   // --
   while (i > 0) {
-    generatedText += lorem[i % lorem.length] + " ";
+    generatedText += lorem[(i + Math.floor(Math.random() * 100)) % lorem.length] + " ";
     i--;
   }
-  return generatedText;
+  return generatedText.charAt(0).toUpperCase() + generatedText.slice(1).toLowerCase();
 };
 
 const handleIntersection = (
