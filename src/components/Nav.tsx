@@ -124,9 +124,7 @@ export function NavMobile() {
         </DrawerHeader>
         <DrawerFooter>
           <Button>Submit</Button>
-          <DrawerClose>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
+          <DrawerClose>{/* <Button variant="outline">Cancel</Button> */}</DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
