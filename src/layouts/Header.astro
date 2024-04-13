@@ -40,14 +40,17 @@ import Icon from "@/components/icons/Icon.astro";
   actOnMedia("md", onDesktop, onMobile);
 </script>
 
-<header data-media="desktop" class="flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0">
+<header data-media="desktop" class="hidden md:flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0">
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
   <Spacer />
   <NavDesktop client:idle />
   <ModeToggle client:idle />
 </header>
 
-<header data-media="mobile" class="flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4">
+<header
+  data-media="mobile"
+  class="flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4"
+>
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-12 w-12 sm:h-16 sm:w-16" />
   <Spacer />
   <NavMobile client:visible />
