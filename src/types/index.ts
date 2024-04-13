@@ -1,6 +1,7 @@
-
 // Add your types here
 
- export type Prettyfy<T> = {
+export type IconNames = "menu";
+
+export type Prettyfy<T> = {
   [K in keyof T]: T[K];
 };
