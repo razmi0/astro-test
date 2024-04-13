@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-
-const debug = import.meta.env.DEV && true;
+const debug = import.meta.env.DEV && false;
 
 const generateLorem = (length: number): string => {
   let i = length;
@@ -66,18 +64,28 @@ const mediaQueries = {
 };
 
 type Breakpoints = keyof typeof mediaQueries;
-const useMedia = (breakpoint: Breakpoints, matchCb: () => void, unMatchCb: () => void) => {
-  breakpoint in mediaQueries || console.error(`Invalid breakpoint : ${breakpoint} `);
+const actOnMedia = (breakpoint: Breakpoints, matchCb: () => void, unMatchCb: () => void) => {
+  if (!mediaQueries || !(breakpoint in mediaQueries)) {
+    console.error(`Invalid breakpoint: ${breakpoint}`);
+    return;
+  }
+
   const mediaQuery = mediaQueries[breakpoint];
 
-  const handler = (e: MediaQueryList | MediaQueryListEvent) => (e.matches ? matchCb() : unMatchCb());
+  const handler = (event: MediaQueryList | MediaQueryListEvent) => {
+    if (event.matches) {
+      matchCb();
+    } else {
+      unMatchCb();
+    }
+  };
 
-  useEffect(() => {
-    const media = window.matchMedia(mediaQuery);
-    handler(media);
-    media.addEventListener("change", handler, { passive: true });
-    return () => media.removeEventListener("change", () => {});
-  }, []);
+  // Manually handling the initial state and cleanup
+  const media = window.matchMedia(mediaQuery);
+  handler(media);
+  media.addEventListener("change", handler, { passive: true });
+
+  return () => media.removeEventListener("change", handler);
 };
 
-export { generateLorem, handleIntersection, setupIntersectionObserver, useMedia };
+export { actOnMedia, generateLorem, handleIntersection, setupIntersectionObserver };
