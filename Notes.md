@@ -43,6 +43,8 @@
   - 4 / Contact
   - 5 / FAQ.
 
+-add site map to counter balance the low number of pages and SEO
+
 ## Notes esthétiques
 
 - Couleurs vert, marron et orange recommandées, avec une cohérence esthétique.
