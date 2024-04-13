@@ -58,7 +58,7 @@ const MenuIcon = () => {
   );
 };
 
-export function NavDesktop({ children }: { children?: React.ReactNode }) {
+export function NavDesktop({ children, currentPath }: { children?: React.ReactNode; currentPath: string }) {
   return (
     <>
       <NavigationMenu viewportClassName="right-0" className="h-24 me-4">
@@ -103,7 +103,7 @@ export function NavDesktop({ children }: { children?: React.ReactNode }) {
   );
 }
 
-export function NavMobile() {
+export function NavMobile({ currentPath }: { currentPath: string }) {
   return (
     <Drawer>
       <DrawerTrigger>
@@ -119,7 +119,9 @@ export function NavMobile() {
             return (
               <AccordionItem key={label} value={label} className="mb-3">
                 <AccordionTrigger>
-                  <a href={href}>{label}</a>
+                  <a href={href} className={currentPath === href ? "text-main-300" : ""}>
+                    {label}
+                  </a>
                 </AccordionTrigger>
                 <AccordionContent>
                   <a href={href}>{label}</a>
