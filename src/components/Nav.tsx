@@ -50,66 +50,66 @@ const content = {
   activities: [
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "activities/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "activities/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "activities/#",
     },
   ],
   about: [
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "about/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "about/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "about/#",
     },
   ],
   faq: [
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "faq/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "faq/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "faq/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "faq/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "faq/#",
     },
     {
       title: generateLorem(2),
-      description: generateLorem(10),
+      description: generateLorem(8),
       anchor: "faq/#",
     },
   ],
@@ -184,26 +184,22 @@ export function NavDesktop({ currentPath }: { currentPath: string }) {
           {/* ACTIVITES */}
           {/* ACTIVITES */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>{links[1].label}</NavigationMenuTrigger>
-            <NavigationMenuContent className="flex flex-row p-5 h-[300px] gap-6 max-w-[600px]">
-              <div className="max-w-[40%] h-full rounded-md flex items-center justify-center">
-                <NavigationMenuLink asChild>
-                  <a href={links[1].href}>
-                    <figure className="rounded-md">
-                      <img
-                        className="object-cover aspect-[14/16] rounded-md"
-                        src="src/assets/oak.webp"
-                        alt="placeholder"
-                      />
-                    </figure>
-                  </a>
-                </NavigationMenuLink>
-              </div>
-              <ul className="w-[615px] flex flex-col h-full items-start justify-between">
+            <Trigger href={links[1].href} currentPath={currentPath}>
+              {links[1].label}
+            </Trigger>
+            <NavigationMenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
+              <NavigationMenuLink asChild>
+                <a
+                  href={links[1].href}
+                  className="max-w-[40%] [&:hover>h4]:underline h-full rounded-md flex flex-col card bg-gradient-to-b from-slate-200/90 to-slate-300/90 dark:bg-gradient-to-b dark:from-slate-800/90 dark:to-slate-900/90 items-center justify-evenly p-4 shadow-md  dark:text-white"
+                >
+                  <h4 className="text-left w-full">{generateLorem(3)}</h4>
+                  <p className="text-sm">{generateLorem(20)}</p>
+                </a>
+              </NavigationMenuLink>
+              <ul className="w-[615px] flex flex-col h-full items-start justify-start">
                 {content.activities.map((element) => (
-                  <li key={element.title} className="hover:bg-slate-200 dark:hover:bg-slate-800 py-2 px-3 rounded-md">
-                    <ListElement {...element} />
-                  </li>
+                  <ListElement key={element.title} {...element} />
                 ))}
               </ul>
             </NavigationMenuContent>
@@ -213,17 +209,22 @@ export function NavDesktop({ currentPath }: { currentPath: string }) {
           {/* QUI SOMMES NOUS */}
           {/* QUI SOMMES NOUS */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>{links[2].label}</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div>
-                <h4></h4>
-                <p></p>
-              </div>
+            <Trigger href={links[2].href} currentPath={currentPath}>
+              {links[2].label}
+            </Trigger>
+            <NavigationMenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
+              <NavigationMenuLink asChild>
+                <a
+                  href={links[2].href}
+                  className="max-w-[40%] [&:hover>h4]:underline h-full rounded-md flex flex-col card bg-gradient-to-b from-slate-200/90 to-slate-300/90 dark:bg-gradient-to-b dark:from-slate-800/90 dark:to-slate-900/90 items-center justify-evenly p-4 shadow-md  dark:text-white"
+                >
+                  <h4 className="text-left w-full">{generateLorem(3)}</h4>
+                  <p className="text-sm">{generateLorem(20)}</p>
+                </a>
+              </NavigationMenuLink>
               <ul className="w-[615px]">
                 {content.about.map((element) => (
-                  <li key={element.title}>
-                    <ListElement {...element} />
-                  </li>
+                  <ListElement key={element.title} {...element} />
                 ))}
               </ul>
             </NavigationMenuContent>
@@ -233,13 +234,13 @@ export function NavDesktop({ currentPath }: { currentPath: string }) {
           {/* FAQ */}
           {/* FAQ */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>{links[3].label}</NavigationMenuTrigger>
+            <Trigger href={links[3].href} currentPath={currentPath}>
+              {links[3].label}
+            </Trigger>
             <NavigationMenuContent>
-              <ul className="w-[615px]">
+              <ul className="w-[615px] grid grid-cols-2 p-5">
                 {content.faq.map((element) => (
-                  <li key={element.title}>
-                    <ListElement {...element} />
-                  </li>
+                  <ListElement key={element.title} {...element} />
                 ))}
               </ul>
             </NavigationMenuContent>
@@ -287,10 +288,10 @@ export function NavMobile({ currentPath }: { currentPath: string }) {
 
 const ListElement = ({ title, description, anchor }: ListElementType) => {
   const Main = () => (
-    <>
+    <li className="hover:bg-slate-200 dark:hover:bg-slate-700 py-2 transition-colors px-3 rounded-md">
       <h4 className="text-base text-black dark:text-white">{title}</h4>
       <p className="text-sm dark:text-slate-100 text-balance">{description}</p>
-    </>
+    </li>
   );
 
   return anchor ? (
@@ -301,6 +302,20 @@ const ListElement = ({ title, description, anchor }: ListElementType) => {
     </NavigationMenuLink>
   ) : (
     <Main />
+  );
+};
+
+const Trigger = ({ currentPath, children, href }: { currentPath: string; children: any; href: string }) => {
+  const isPath = currentPath.includes(href);
+  return (
+    <NavigationMenuTrigger
+      className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
+        isPath ? "hover:border-main-300" : "hover:border-white"
+      } `}
+      style={{ color: isPath ? "var(--color-main-300)" : "inherit" }}
+    >
+      {children}
+    </NavigationMenuTrigger>
   );
 };
 
