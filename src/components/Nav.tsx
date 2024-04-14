@@ -1,10 +1,10 @@
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
+  NavigationMenu as Menu,
+  NavigationMenuContent as MenuContent,
+  NavigationMenuItem as MenuItem,
+  NavigationMenuLink as MenuLink,
+  NavigationMenuList as MenuList,
+  NavigationMenuTrigger as MenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/NavigationMenu";
 import { generateLorem } from "@/helpers";
@@ -116,6 +116,160 @@ const content = {
   ],
 };
 
+/**
+ * For NavDesktop
+ * @description The trigger for the NavDesktop
+ */
+const Trigger = ({ currentPath, children, href }: { currentPath: string; children: any; href: string }) => {
+  const isPath = currentPath.includes(href);
+  return (
+    <MenuTrigger
+      className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
+        isPath ? "hover:border-main-300" : "hover:border-white"
+      } `}
+      style={{ color: isPath ? "var(--color-main-300)" : "inherit" }}
+    >
+      {children}
+    </MenuTrigger>
+  );
+};
+
+/**
+ * For NavDesktop
+ * @description A component for repeated NavigationMenuLink
+ */
+const ListElement = ({ title, description, anchor }: ListElementType) => {
+  const Main = () => (
+    <li className="hover:bg-slate-200 dark:hover:bg-slate-700 py-2 transition-colors px-3 rounded-md">
+      <h4 className="text-base text-black dark:text-white">{title}</h4>
+      <p className="text-sm dark:text-slate-100 text-balance">{description}</p>
+    </li>
+  );
+
+  return anchor ? (
+    <MenuLink asChild>
+      <a href={anchor}>
+        <Main />
+      </a>
+    </MenuLink>
+  ) : (
+    <Main />
+  );
+};
+
+/**
+ * For NavDesktop
+ * @description Just the trigger with no content in NavigationMenu
+ */
+const NoContentItem = ({ label, href, currentPath }: { label: string; href: string; currentPath: string }) => (
+  <MenuLink asChild>
+    <a
+      href={href}
+      className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
+        currentPath === href ? "hover:border-main-300" : "hover:border-white"
+      } `}
+      style={{ color: currentPath === href ? "var(--color-main-300)" : "inherit" }}
+    >
+      {label}
+    </a>
+  </MenuLink>
+);
+
+const menuLinkClass = [
+  // BASE
+  "max-w-[40%] h-full rounded-md flex flex-col card items-center justify-evenly p-4 shadow-md",
+  // LIGHT
+  "bg-gradient-to-b from-slate-200/90 to-slate-300/90",
+  // DARK
+  "dark:bg-gradient-to-b dark:from-slate-800/90 dark:to-slate-900/90 dark:text-white",
+  // HOVER
+  "[&:hover>h4]:underline",
+].join(" ");
+
+/**
+ * @description NAVDESKTOP COMPONENT
+ */
+export function NavDesktop({ currentPath }: { currentPath: string }) {
+  return (
+    <>
+      <Menu viewportClassName="right-0" className="me-4">
+        <MenuList>
+          {/* ACCUEIL */}
+          {/* ACCUEIL */}
+          {/* ACCUEIL */}
+          {/* ACCUEIL */}
+          <NoContentItem currentPath={currentPath} href={links[0].href} label={links[0].label} />
+          {/* ACTIVITES */}
+          {/* ACTIVITES */}
+          {/* ACTIVITES */}
+          {/* ACTIVITES */}
+          <MenuItem>
+            <Trigger href={links[1].href} currentPath={currentPath}>
+              {links[1].label}
+            </Trigger>
+            <MenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
+              <MenuLink asChild>
+                <a href={links[1].href} className={menuLinkClass}>
+                  <h4 className="text-left w-full">{generateLorem(3)}</h4>
+                  <p className="text-sm">{generateLorem(20)}</p>
+                </a>
+              </MenuLink>
+              <ul className="w-[615px] flex flex-col h-full items-start justify-start">
+                {content.activities.map((element) => (
+                  <ListElement key={element.title} {...element} />
+                ))}
+              </ul>
+            </MenuContent>
+          </MenuItem>
+          {/* QUI SOMMES NOUS (about)*/}
+          {/* QUI SOMMES NOUS */}
+          {/* QUI SOMMES NOUS */}
+          {/* QUI SOMMES NOUS */}
+          <MenuItem>
+            <Trigger href={links[2].href} currentPath={currentPath}>
+              {links[2].label}
+            </Trigger>
+            <MenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
+              <MenuLink asChild>
+                <a href={links[2].href} className={menuLinkClass}>
+                  <h4 className="text-left w-full">{generateLorem(3)}</h4>
+                  <p className="text-sm">{generateLorem(20)}</p>
+                </a>
+              </MenuLink>
+              <ul className="w-[615px]">
+                {content.about.map((element) => (
+                  <ListElement key={element.title} {...element} />
+                ))}
+              </ul>
+            </MenuContent>
+          </MenuItem>
+          {/* FAQ */}
+          {/* FAQ */}
+          {/* FAQ */}
+          {/* FAQ */}
+          <MenuItem>
+            <Trigger href={links[3].href} currentPath={currentPath}>
+              {links[3].label}
+            </Trigger>
+            <MenuContent>
+              <ul className="w-[615px] grid grid-cols-2 p-5">
+                {content.faq.map((element) => (
+                  <ListElement key={element.title} {...element} />
+                ))}
+              </ul>
+            </MenuContent>
+          </MenuItem>
+          {/* CONTACT */}
+          {/* CONTACT */}
+          {/* CONTACT */}
+          {/* CONTACT */}
+          <NoContentItem currentPath={currentPath} href={links[4].href} label={links[4].label} />
+        </MenuList>
+      </Menu>
+    </>
+  );
+}
+
 const MenuIcon = () => {
   return (
     <svg
@@ -155,114 +309,10 @@ const MenuIcon = () => {
   );
 };
 
-export function NavDesktop({ currentPath }: { currentPath: string }) {
-  const NoContentItem = ({ label, href }: { label: string; href: string }) => {
-    return (
-      <NavigationMenuLink asChild>
-        <a
-          href={href}
-          className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
-            currentPath === href ? "hover:border-main-300" : "hover:border-white"
-          } `}
-          style={{ color: currentPath === href ? "var(--color-main-300)" : "inherit" }}
-        >
-          {label}
-        </a>
-      </NavigationMenuLink>
-    );
-  };
-  return (
-    <>
-      <NavigationMenu viewportClassName="right-0" className="me-4">
-        <NavigationMenuList>
-          {/* ACCUEIL */}
-          {/* ACCUEIL */}
-          {/* ACCUEIL */}
-          {/* ACCUEIL */}
-          <NoContentItem href={links[0].href} label={links[0].label} />
-          {/* ACTIVITES */}
-          {/* ACTIVITES */}
-          {/* ACTIVITES */}
-          {/* ACTIVITES */}
-          <NavigationMenuItem>
-            <Trigger href={links[1].href} currentPath={currentPath}>
-              {links[1].label}
-            </Trigger>
-            <NavigationMenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
-              <NavigationMenuLink asChild>
-                <a
-                  href={links[1].href}
-                  className="max-w-[40%] [&:hover>h4]:underline h-full rounded-md flex flex-col card bg-gradient-to-b from-slate-200/90 to-slate-300/90 dark:bg-gradient-to-b dark:from-slate-800/90 dark:to-slate-900/90 items-center justify-evenly p-4 shadow-md  dark:text-white"
-                >
-                  <h4 className="text-left w-full">{generateLorem(3)}</h4>
-                  <p className="text-sm">{generateLorem(20)}</p>
-                </a>
-              </NavigationMenuLink>
-              <ul className="w-[615px] flex flex-col h-full items-start justify-start">
-                {content.activities.map((element) => (
-                  <ListElement key={element.title} {...element} />
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          {/* QUI SOMMES NOUS (about)*/}
-          {/* QUI SOMMES NOUS */}
-          {/* QUI SOMMES NOUS */}
-          {/* QUI SOMMES NOUS */}
-          <NavigationMenuItem>
-            <Trigger href={links[2].href} currentPath={currentPath}>
-              {links[2].label}
-            </Trigger>
-            <NavigationMenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
-              <NavigationMenuLink asChild>
-                <a
-                  href={links[2].href}
-                  className="max-w-[40%] [&:hover>h4]:underline h-full rounded-md flex flex-col card bg-gradient-to-b from-slate-200/90 to-slate-300/90 dark:bg-gradient-to-b dark:from-slate-800/90 dark:to-slate-900/90 items-center justify-evenly p-4 shadow-md  dark:text-white"
-                >
-                  <h4 className="text-left w-full">{generateLorem(3)}</h4>
-                  <p className="text-sm">{generateLorem(20)}</p>
-                </a>
-              </NavigationMenuLink>
-              <ul className="w-[615px]">
-                {content.about.map((element) => (
-                  <ListElement key={element.title} {...element} />
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          {/* FAQ */}
-          {/* FAQ */}
-          {/* FAQ */}
-          {/* FAQ */}
-          <NavigationMenuItem>
-            <Trigger href={links[3].href} currentPath={currentPath}>
-              {links[3].label}
-            </Trigger>
-            <NavigationMenuContent>
-              <ul className="w-[615px] grid grid-cols-2 p-5">
-                {content.faq.map((element) => (
-                  <ListElement key={element.title} {...element} />
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          {/* CONTACT */}
-          {/* CONTACT */}
-          {/* CONTACT */}
-          {/* CONTACT */}
-          <NoContentItem href={links[4].href} label={links[4].label} />
-        </NavigationMenuList>
-      </NavigationMenu>
-    </>
-  );
-}
-
+/**
+ * @description NAVMOBILE COMPONENT
+ */
 export function NavMobile({ currentPath }: { currentPath: string }) {
-  const Trigger = ({ currentPath, children, href }: { currentPath: string; children: any; href: string }) => (
-    <AccordionTrigger className=" hover:no-underline no-underline">
-      <span className={`${currentPath.includes(href) ? "text-main-300" : ""}`}>{children}</span>
-    </AccordionTrigger>
-  );
   return (
     <Drawer>
       <DrawerTrigger>
@@ -273,85 +323,39 @@ export function NavMobile({ currentPath }: { currentPath: string }) {
           <ModeToggle />
         </DrawerHeader>
         <Accordion type="single" collapsible className="px-2 justify-center">
-          <AccordionItem key={links[0].label} value={links[0].label} className="mb-3">
-            <Trigger currentPath={currentPath} href={links[0].href}>
-              {links[0].label}
-            </Trigger>
-            <AccordionContent></AccordionContent>
-          </AccordionItem>
-          <AccordionItem key={links[1].label} value={links[1].label} className="mb-3">
-            <Trigger currentPath={currentPath} href={links[1].href}>
-              {links[1].label}
-            </Trigger>
-            <AccordionContent></AccordionContent>
-          </AccordionItem>
-          <AccordionItem key={links[2].label} value={links[2].label} className="mb-3">
-            <Trigger currentPath={currentPath} href={links[2].href}>
-              {links[2].label}
-            </Trigger>
-            <AccordionContent></AccordionContent>
-          </AccordionItem>
-          <AccordionItem key={links[3].label} value={links[3].label} className="mb-3">
-            <Trigger currentPath={currentPath} href={links[3].href}>
-              {links[3].label}
-            </Trigger>
-            <AccordionContent></AccordionContent>
-          </AccordionItem>
-          <AccordionItem key={links[4].label} value={links[4].label} className="mb-3">
-            <Trigger currentPath={currentPath} href={links[4].href}>
-              {links[4].label}
-            </Trigger>
-            <AccordionContent></AccordionContent>
-          </AccordionItem>
+          <Item currentPath={currentPath} href={links[0].href} label={links[0].label}></Item>
+          <Item currentPath={currentPath} href={links[1].href} label={links[1].label}></Item>
+          <Item currentPath={currentPath} href={links[2].href} label={links[2].label}></Item>
+          <Item currentPath={currentPath} href={links[3].href} label={links[3].label}></Item>
+          <Item currentPath={currentPath} href={links[4].href} label={links[4].label}></Item>
         </Accordion>
       </DrawerContent>
     </Drawer>
   );
 }
 
-const ListElement = ({ title, description, anchor }: ListElementType) => {
-  const Main = () => (
-    <li className="hover:bg-slate-200 dark:hover:bg-slate-700 py-2 transition-colors px-3 rounded-md">
-      <h4 className="text-base text-black dark:text-white">{title}</h4>
-      <p className="text-sm dark:text-slate-100 text-balance">{description}</p>
-    </li>
-  );
-
-  return anchor ? (
-    <NavigationMenuLink asChild>
-      <a href={anchor}>
-        <Main />
-      </a>
-    </NavigationMenuLink>
-  ) : (
-    <Main />
-  );
-};
-
-const Trigger = ({ currentPath, children, href }: { currentPath: string; children: any; href: string }) => {
-  const isPath = currentPath.includes(href);
-  return (
-    <NavigationMenuTrigger
-      className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
-        isPath ? "hover:border-main-300" : "hover:border-white"
-      } `}
-      style={{ color: isPath ? "var(--color-main-300)" : "inherit" }}
-    >
-      {children}
-    </NavigationMenuTrigger>
-  );
-};
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/**
+ * For NavMobile
+ * @description A AccordionItem with a AccordionTrigger and children is the content
+ */
+const Item = ({
+  currentPath,
+  children,
+  href,
+  label,
+}: {
+  currentPath: string;
+  children?: any;
+  href: string;
+  label: string;
+}) => (
+  <AccordionItem key={label} value={label} className="mb-3">
+    <AccordionTrigger className=" hover:no-underline no-underline">
+      <span className={`${currentPath.includes(href) ? "text-main-300" : ""}`}>{label}</span>
+    </AccordionTrigger>
+    {children && <AccordionContent>{children}</AccordionContent>}
+  </AccordionItem>
+);
 
 // const components: { title: string; href: string; description: string }[] = [
 //   {
