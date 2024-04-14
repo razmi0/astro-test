@@ -135,7 +135,7 @@ const content = {
  *
  */
 const Trigger = ({ currentPath, children, href }: { currentPath: string; children: any; href: string }) => {
-  const isPath = currentPath.includes(href);
+  const isPath = currentPath.replace("/", "") === href.replace("/", "");
   return (
     <MenuTrigger
       className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
@@ -417,15 +417,15 @@ export function NavMobile({ currentPath }: { currentPath: string }) {
         <MenuIcon />
       </DrawerTrigger>
       <DrawerContent className="h-[85dvh] bg-slate-200 dark:bg-slate-800 text-black dark:text-white">
-        <DrawerHeader className="flex-row-reverse w-full flex items-center">
-          <ModeToggle />
-          <Spacer />
-          <HeaderItem href={links[4].href} currentPath={currentPath}>
-            Contact
-          </HeaderItem>
+        <DrawerHeader className="flex-row w-full flex items-center">
           <HeaderItem href={links[0].href} currentPath={currentPath}>
             Accueil
           </HeaderItem>
+          <HeaderItem href={links[4].href} currentPath={currentPath} classNames="ml-2">
+            Contact
+          </HeaderItem>
+          <Spacer />
+          <ModeToggle />
         </DrawerHeader>
         <Accordion type="single" collapsible className="px-2 justify-center">
           <Item currentPath={currentPath} href={links[1].href} label={links[1].label}>
@@ -459,14 +459,24 @@ const headerItemClass = [
   // BASE
   "inline-flex gap-2 items-center font-medium transition-colors montserrat",
   // HOVER
-  "hover:underline",
+  "hover:underline focus:underline",
 ].join(" ");
 
-const HeaderItem = ({ href, currentPath, children }: { href: string; currentPath: string; children: any }) => {
-  const isPathStyle = currentPath.includes(href) ? "text-main-500 dark:text-main-300" : "";
+const HeaderItem = ({
+  href,
+  currentPath,
+  children,
+  classNames,
+}: {
+  classNames?: string;
+  href: string;
+  currentPath: string;
+  children: any;
+}) => {
+  const isPathStyle = currentPath.replace("/", "") === href.replace("/", "") ? "text-main-500 dark:text-main-300" : "";
   return (
-    <a href={href} className={[headerItemClass, isPathStyle].join(" ")}>
-      <LucideSquareArrowOutUpRight size={18} className="-translate-y-[1px]" />
+    <a href={href} className={[headerItemClass, isPathStyle, classNames].join(" ")}>
+      <LucideSquareArrowOutUpRight size={16} className="translate-y-[0px]" />
       {children}
     </a>
   );
@@ -506,7 +516,13 @@ const Item = ({
     className="mb-3 border-black dark:border-white hover:text-main-500 hover:dark:border-main-300 hover:dark:text-main-300 hover:border-main-500 transition-colors"
   >
     <AccordionTrigger className="hover:no-underline no-underline ">
-      <span className={`${currentPath.includes(href) ? "text-main-500 dark:text-main-300" : ""}`}>{label}</span>
+      <span
+        className={`${
+          currentPath.replace("/", "") === href.replace("/", "") ? "text-main-500 dark:text-main-300" : ""
+        }`}
+      >
+        {label}
+      </span>
     </AccordionTrigger>
     {children && <AccordionContent>{children}</AccordionContent>}
   </AccordionItem>
