@@ -9,9 +9,11 @@ import {
 } from "@/components/ui/NavigationMenu";
 import { generateLorem } from "@/helpers";
 import type { ImageNames } from "@/types";
+import { LucideSquareArrowOutUpRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/Accordion";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "./ui/Drawer";
 import { ModeToggle } from "./ui/ModeToggle";
+import Spacer from "./ui/Spacer";
 
 type ListElementType = {
   title?: string;
@@ -117,8 +119,20 @@ const content = {
 };
 
 /**
+ *
+ *
+ *
+ *
+ *
+ *
  * For NavDesktop
  * @description The trigger for the NavDesktop
+ *
+ *
+ *
+ *
+ *
+ *
  */
 const Trigger = ({ currentPath, children, href }: { currentPath: string; children: any; href: string }) => {
   const isPath = currentPath.includes(href);
@@ -135,31 +149,65 @@ const Trigger = ({ currentPath, children, href }: { currentPath: string; childre
 };
 
 /**
+ *
+ *
+ *
+ *
+ *
+ *
  * For NavDesktop
  * @description A component for repeated NavigationMenuLink
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
-const ListElement = ({ title, description, anchor }: ListElementType) => {
+const ListElement = ({ title, description, anchor, mobile = false }: ListElementType & { mobile?: boolean }) => {
   const Main = () => (
-    <li className="hover:bg-slate-200 dark:hover:bg-slate-700 py-2 transition-colors px-3 rounded-md">
-      <h4 className="text-base text-black dark:text-white">{title}</h4>
+    <li className="hover:bg-slate-200 dark:hover:bg-slate-700 py-2 transition-colors px-3 rounded-md w-full">
+      <h4 className="text-base text-main-500 dark:text-main-300">{title}</h4>
       <p className="text-sm dark:text-slate-100 text-balance">{description}</p>
     </li>
   );
 
-  return anchor ? (
-    <MenuLink asChild>
+  if (!mobile && anchor) {
+    return (
+      <MenuLink asChild>
+        <a href={anchor}>
+          <Main />
+        </a>
+      </MenuLink>
+    );
+  } else if (mobile && anchor) {
+    return (
       <a href={anchor}>
         <Main />
       </a>
-    </MenuLink>
-  ) : (
-    <Main />
-  );
+    );
+  }
+  return <Main />;
 };
 
 /**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  * For NavDesktop
  * @description Just the trigger with no content in NavigationMenu
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 const NoContentItem = ({ label, href, currentPath }: { label: string; href: string; currentPath: string }) => (
   <MenuLink asChild>
@@ -177,17 +225,62 @@ const NoContentItem = ({ label, href, currentPath }: { label: string; href: stri
 
 const menuLinkClass = [
   // BASE
-  "max-w-[40%] h-full rounded-md flex flex-col card items-center justify-evenly p-4 shadow-md",
+  "max-w-[40%] h-full rounded-md flex flex-col card items-start justify-evenly p-4 shadow-md",
   // LIGHT
   "bg-gradient-to-b from-slate-200/90 to-slate-300/90",
   // DARK
   "dark:bg-gradient-to-b dark:from-slate-800/90 dark:to-slate-900/90 dark:text-white",
   // HOVER
-  "[&:hover>h4]:underline",
+  "[&:hover>span>h4]:underline",
 ].join(" ");
 
 /**
+ *
+ *
+ *
+ *
+ *
+ *
+ * NAVDESKTOP
+ * @description The big item in the content of a element of NavDesktop
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+const AsideMenuLink = ({ href }: { href: string }) => (
+  <MenuLink asChild>
+    <a href={href} className={menuLinkClass}>
+      <span className="flex flex-col justify-center items-start">
+        <LucideSquareArrowOutUpRight size={18} className="text-main-500 dark:text-main-300 mb-2" />
+        <h4 className="w-full text-main-500 dark:text-main-300">{generateLorem(3)}</h4>
+      </span>
+      <p className="text-sm">{generateLorem(20)}</p>
+    </a>
+  </MenuLink>
+);
+
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  * @description NAVDESKTOP COMPONENT
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 export function NavDesktop({ currentPath }: { currentPath: string }) {
   return (
@@ -208,12 +301,7 @@ export function NavDesktop({ currentPath }: { currentPath: string }) {
               {links[1].label}
             </Trigger>
             <MenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
-              <MenuLink asChild>
-                <a href={links[1].href} className={menuLinkClass}>
-                  <h4 className="text-left w-full">{generateLorem(3)}</h4>
-                  <p className="text-sm">{generateLorem(20)}</p>
-                </a>
-              </MenuLink>
+              <AsideMenuLink href={links[1].href} />
               <ul className="w-[615px] flex flex-col h-full items-start justify-start">
                 {content.activities.map((element) => (
                   <ListElement key={element.title} {...element} />
@@ -230,12 +318,7 @@ export function NavDesktop({ currentPath }: { currentPath: string }) {
               {links[2].label}
             </Trigger>
             <MenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
-              <MenuLink asChild>
-                <a href={links[2].href} className={menuLinkClass}>
-                  <h4 className="text-left w-full">{generateLorem(3)}</h4>
-                  <p className="text-sm">{generateLorem(20)}</p>
-                </a>
-              </MenuLink>
+              <AsideMenuLink href={links[2].href} />
               <ul className="w-[615px]">
                 {content.about.map((element) => (
                   <ListElement key={element.title} {...element} />
@@ -310,7 +393,22 @@ const MenuIcon = () => {
 };
 
 /**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  * @description NAVMOBILE COMPONENT
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 export function NavMobile({ currentPath }: { currentPath: string }) {
   return (
@@ -318,25 +416,78 @@ export function NavMobile({ currentPath }: { currentPath: string }) {
       <DrawerTrigger>
         <MenuIcon />
       </DrawerTrigger>
-      <DrawerContent className="h-[85dvh]">
+      <DrawerContent className="h-[85dvh] bg-slate-200 dark:bg-slate-800 text-black dark:text-white">
         <DrawerHeader className="flex-row-reverse w-full flex items-center">
           <ModeToggle />
+          <Spacer />
+          <HeaderItem href={links[4].href} currentPath={currentPath}>
+            Contact
+          </HeaderItem>
+          <HeaderItem href={links[0].href} currentPath={currentPath}>
+            Accueil
+          </HeaderItem>
         </DrawerHeader>
         <Accordion type="single" collapsible className="px-2 justify-center">
-          <Item currentPath={currentPath} href={links[0].href} label={links[0].label}></Item>
-          <Item currentPath={currentPath} href={links[1].href} label={links[1].label}></Item>
-          <Item currentPath={currentPath} href={links[2].href} label={links[2].label}></Item>
-          <Item currentPath={currentPath} href={links[3].href} label={links[3].label}></Item>
-          <Item currentPath={currentPath} href={links[4].href} label={links[4].label}></Item>
+          <Item currentPath={currentPath} href={links[1].href} label={links[1].label}>
+            <ul className="w-full flex flex-col h-full items-start justify-start">
+              {content.activities.map((element) => (
+                <ListElement key={element.title} {...element} mobile />
+              ))}
+            </ul>
+          </Item>
+          <Item currentPath={currentPath} href={links[2].href} label={links[2].label}>
+            <ul className="w-full">
+              {content.about.map((element) => (
+                <ListElement key={element.title} {...element} mobile />
+              ))}
+            </ul>
+          </Item>
+          <Item currentPath={currentPath} href={links[3].href} label={links[3].label}>
+            <ul className="w-full grid grid-cols-2">
+              {content.faq.map((element) => (
+                <ListElement key={element.title} {...element} mobile />
+              ))}
+            </ul>
+          </Item>
         </Accordion>
       </DrawerContent>
     </Drawer>
   );
 }
 
+const headerItemClass = [
+  // BASE
+  "inline-flex gap-2 items-center font-medium transition-colors montserrat",
+  // HOVER
+  "hover:underline",
+].join(" ");
+
+const HeaderItem = ({ href, currentPath, children }: { href: string; currentPath: string; children: any }) => {
+  const isPathStyle = currentPath.includes(href) ? "text-main-500 dark:text-main-300" : "";
+  return (
+    <a href={href} className={[headerItemClass, isPathStyle].join(" ")}>
+      <LucideSquareArrowOutUpRight size={18} className="-translate-y-[1px]" />
+      {children}
+    </a>
+  );
+};
+
 /**
+ *
+ *
+ *
+ *
+ *
+ *
  * For NavMobile
  * @description A AccordionItem with a AccordionTrigger and children is the content
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 const Item = ({
   currentPath,
@@ -349,9 +500,13 @@ const Item = ({
   href: string;
   label: string;
 }) => (
-  <AccordionItem key={label} value={label} className="mb-3">
-    <AccordionTrigger className=" hover:no-underline no-underline">
-      <span className={`${currentPath.includes(href) ? "text-main-300" : ""}`}>{label}</span>
+  <AccordionItem
+    key={label}
+    value={label}
+    className="mb-3 border-black dark:border-white hover:text-main-500 hover:dark:border-main-300 hover:dark:text-main-300 hover:border-main-500 transition-colors"
+  >
+    <AccordionTrigger className="hover:no-underline no-underline ">
+      <span className={`${currentPath.includes(href) ? "text-main-500 dark:text-main-300" : ""}`}>{label}</span>
     </AccordionTrigger>
     {children && <AccordionContent>{children}</AccordionContent>}
   </AccordionItem>

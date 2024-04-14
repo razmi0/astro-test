@@ -3,8 +3,6 @@ import { Drawer as DrawerPrimitive } from "vaul";
 
 import { cn } from "@/lib/utils";
 
-const contentClasses = "flex flex-col gap-4 p-4";
-
 const Drawer = ({ shouldScaleBackground = true, ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
   <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />
 );
@@ -24,21 +22,31 @@ const DrawerOverlay = React.forwardRef<
 ));
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
+const contentClass = [
+  // BASE
+  "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border",
+  // LIGHT
+  // DARK
+  "dark:border-slate-800",
+];
+
+const contentChildClass = [
+  // BASE
+  "mx-auto mt-4 h-2 w-[100px] rounded-full",
+  // LIGHT
+  "bg-slate-300",
+  // DARK
+  "dark:bg-slate-100",
+].join(" ");
+
 const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> & { handlerClassName?: string }
+>(({ className, handlerClassName, children, ...props }, ref) => (
   <DrawerPortal>
     <DrawerOverlay />
-    <DrawerPrimitive.Content
-      ref={ref}
-      className={cn(
-        "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-zinc-200 bg-zinc-100 dark:border-slate-800 dark:bg-zinc-950",
-        className
-      )}
-      {...props}
-    >
-      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-zinc-100 dark:bg-zinc-800" />
+    <DrawerPrimitive.Content ref={ref} className={cn(contentClass, className)} {...props}>
+      <div className={cn(contentChildClass, handlerClassName)} />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
