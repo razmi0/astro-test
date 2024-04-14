@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/NavigationMenu";
 import { generateLorem } from "@/helpers";
 import type { ImageNames } from "@/types";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/Accordion";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "./ui/Drawer";
 import { ModeToggle } from "./ui/ModeToggle";
 
@@ -257,6 +258,11 @@ export function NavDesktop({ currentPath }: { currentPath: string }) {
 }
 
 export function NavMobile({ currentPath }: { currentPath: string }) {
+  const Trigger = ({ currentPath, children, href }: { currentPath: string; children: any; href: string }) => (
+    <AccordionTrigger className=" hover:no-underline no-underline">
+      <span className={`${currentPath.includes(href) ? "text-main-300" : ""}`}>{children}</span>
+    </AccordionTrigger>
+  );
   return (
     <Drawer>
       <DrawerTrigger>
@@ -266,21 +272,38 @@ export function NavMobile({ currentPath }: { currentPath: string }) {
         <DrawerHeader className="flex-row-reverse w-full flex items-center">
           <ModeToggle />
         </DrawerHeader>
-        {/* <Accordion type="single" collapsible className="px-2 justify-center">
-          {content.map((element) => {
-            const { href, label } = element;
-            return (
-              <AccordionItem key={label} value={label} className="mb-3">
-                <AccordionTrigger className=" hover:no-underline no-underline">
-                  <span className={`${currentPath === href ? "text-main-300" : ""}`}>{label}</span>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <a href={href}>{label}</a>
-                </AccordionContent>
-              </AccordionItem>
-            );
-          })}
-        </Accordion> */}
+        <Accordion type="single" collapsible className="px-2 justify-center">
+          <AccordionItem key={links[0].label} value={links[0].label} className="mb-3">
+            <Trigger currentPath={currentPath} href={links[0].href}>
+              {links[0].label}
+            </Trigger>
+            <AccordionContent></AccordionContent>
+          </AccordionItem>
+          <AccordionItem key={links[1].label} value={links[1].label} className="mb-3">
+            <Trigger currentPath={currentPath} href={links[1].href}>
+              {links[1].label}
+            </Trigger>
+            <AccordionContent></AccordionContent>
+          </AccordionItem>
+          <AccordionItem key={links[2].label} value={links[2].label} className="mb-3">
+            <Trigger currentPath={currentPath} href={links[2].href}>
+              {links[2].label}
+            </Trigger>
+            <AccordionContent></AccordionContent>
+          </AccordionItem>
+          <AccordionItem key={links[3].label} value={links[3].label} className="mb-3">
+            <Trigger currentPath={currentPath} href={links[3].href}>
+              {links[3].label}
+            </Trigger>
+            <AccordionContent></AccordionContent>
+          </AccordionItem>
+          <AccordionItem key={links[4].label} value={links[4].label} className="mb-3">
+            <Trigger currentPath={currentPath} href={links[4].href}>
+              {links[4].label}
+            </Trigger>
+            <AccordionContent></AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </DrawerContent>
     </Drawer>
   );
