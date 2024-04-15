@@ -4,27 +4,59 @@ import "../styles/index.css";
 import Header from "@/layouts/Header.astro";
 import Footer from "@/layouts/Footer.astro";
 import ScreenUnit from "@/layouts/ScreenUnit.astro";
-import Fondateur from "@/components/Fondateur.astro";
 import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
 import Hero from "@/components/Hero.astro";
+import Content from "@/components/Content/Content.astro";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
 };
 
 const wrappers: ScreenUnitType = {
-  fondateur: {
+  fondateurHeader: {
+    theme: "light",
     wrapper: {
-      id: "fondateur-wrapper",
-      className: "flex flex-col items-start",
-      threshold: 0.1,
+      id: "fondateur-header-wrapper",
+      className: "flex justify-center items-center",
+      threshold: 1,
+      size: "quarter",
     },
     title: {
-      id: "fondateur-title",
+      id: "fondateur-header-title",
       text: "Les fondateurs",
+      className: "text-main-500 dark:text-main-300",
     },
   },
+  fondateurVijay: {
+    theme: "light",
+    wrapper: {
+      id: "fondateur-wrapper-vijay",
+      className: "flex flex-col items-center justify-center",
+      threshold: 0.5,
+      size: "half",
+    },
+    // title: {
+    //   id: "fondateur-title-vijay",
+    //   text: "LeBlanc Vijay",
+    //   className: "text-main-500 dark:text-main-300",
+    // },
+  },
+  fondateurLou: {
+    theme: "light",
+    wrapper: {
+      id: "fondateur-wrapper-lou",
+      className: "flex flex-col items-center justify-center",
+      threshold: 0.5,
+      size: "half",
+    },
+    // title: {
+    //   id: "fondateur-title-vijay",
+    //   text: "Bideau Lou",
+    //   className: "text-main-500 dark:text-main-300",
+    // },
+  },
   histoire: {
+    theme: "dark",
     wrapper: {
       id: "histoire-wrapper",
       className: "flex flex-col bg-main-300 dark:bg-main-900 items-start justify-center",
@@ -36,17 +68,6 @@ const wrappers: ScreenUnitType = {
       className: "z-10",
     },
   },
-  // presentation: {
-  //   wrapper: {
-  //     id: "presentation-wrapper",
-  //     className: "flex flex-col items-start gap-12",
-  //     threshold: 0.1,
-  //   },
-  //   title: {
-  //     id: "presentation-title",
-  //     text: "Présentation",
-  //   },
-  // },
 };
 ---
 
@@ -54,8 +75,26 @@ const wrappers: ScreenUnitType = {
   <Header slot="header" />
   <Hero slot="hero" />
   <Fragment slot="main" id="main">
-    <ScreenUnit {...wrappers.fondateur}>
-      <Fondateur theme="light" />
+    <ScreenUnit {...wrappers.fondateurHeader} />
+    <ScreenUnit {...wrappers.fondateurVijay}>
+      <Content
+        type="image-text"
+        img="lorem-vijay.webp"
+        text={{ words: 40, class: "text-white" }}
+        title={{ content: "Vijay Leblanc", class: "text-white" }}
+        subtitle={{ content: "Cordiste exégète et collectioneur de cordes" }}
+        theme="light"
+      />
+    </ScreenUnit>
+    <ScreenUnit {...wrappers.fondateurLou}>
+      <Content
+        type="image-text"
+        img="lorem-lou.webp"
+        text={{ words: 40, class: "text-white" }}
+        title={{ content: "Lou Bideau", class: "text-white" }}
+        subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
+        theme="light"
+      />
     </ScreenUnit>
     <!-- <ScreenUnit {...wrappers.histoire}>
       <Histoire theme="dark" />
