@@ -4,12 +4,17 @@ import "../styles/index.css";
 import Header from "@/layouts/Header.astro";
 import Footer from "@/layouts/Footer.astro";
 import ScreenUnit from "@/layouts/ScreenUnit.astro";
-import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
 import Hero from "@/components/Hero.astro";
 import Content from "@/components/Content/Content.astro";
+import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
+import type { ContentProps } from "@/components/Content/Content.astro";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
+};
+
+type ContentType = {
+  [key: string]: ContentProps;
 };
 
 const wrappers: ScreenUnitType = {
@@ -17,7 +22,6 @@ const wrappers: ScreenUnitType = {
     theme: "light",
     wrapper: {
       name: "fondateur",
-      className: "flex justify-center items-center",
       threshold: 1,
       size: "quarter",
     },
@@ -30,7 +34,6 @@ const wrappers: ScreenUnitType = {
   fondateurVijay: {
     theme: "light",
     wrapper: {
-      className: "flex flex-col items-center justify-center",
       threshold: 0.5,
       size: "half",
     },
@@ -38,31 +41,56 @@ const wrappers: ScreenUnitType = {
   fondateurLou: {
     theme: "light",
     wrapper: {
-      className: "flex flex-col items-center justify-center",
       threshold: 0.5,
       size: "half",
+      className: "pb-20",
     },
   },
   histoireHeader: {
     theme: "dark",
     wrapper: {
       name: "histoire",
-      className: "flex justify-center items-center",
       threshold: 1,
       size: "quarter",
     },
     title: {
       name: "histoire",
       text: "Notre histoire",
-      className: "text-main-500 dark:text-main-300",
+      className: "text-main-300 dark:text-main-300",
     },
   },
   histoire: {
     theme: "dark",
     wrapper: {
-      className: "flex flex-col bg-main-300 dark:bg-main-900 items-start justify-center",
       threshold: 0.5,
     },
+  },
+};
+
+const content: ContentType = {
+  vijay: {
+    type: "image-text",
+    img: "lorem-vijay.webp",
+    text: 40,
+    title: { content: "Vijay Leblanc" },
+    subtitle: { content: "Cordiste exégète et collectioneur de cordes" },
+    theme: "light",
+  },
+  lou: {
+    type: "image-text",
+    img: "lorem-lou.webp",
+    text: 40,
+    title: { content: "Lou Bideau" },
+    subtitle: { content: "Psychologue sur cordage et intellectuelle en bleu" },
+    theme: "light",
+  },
+  histoire: {
+    type: "image-text",
+    img: "vijay-et-lou.webp",
+    text: 60,
+    title: { content: "L'histoire d'une vie" },
+    subtitle: { content: "Grandir ensemble" },
+    theme: "dark",
   },
 };
 ---
@@ -73,35 +101,14 @@ const wrappers: ScreenUnitType = {
   <Fragment slot="main" id="main">
     <ScreenUnit {...wrappers.fondateurHeader} />
     <ScreenUnit {...wrappers.fondateurVijay}>
-      <Content
-        type="image-text"
-        img="lorem-vijay.webp"
-        text={40}
-        title={{ content: "Vijay Leblanc" }}
-        subtitle={{ content: "Cordiste exégète et collectioneur de cordes" }}
-        theme="light"
-      />
+      <Content {...content.vijay} />
     </ScreenUnit>
     <ScreenUnit {...wrappers.fondateurLou}>
-      <Content
-        type="image-text"
-        img="lorem-lou.webp"
-        text={40}
-        title={{ content: "Lou Bideau" }}
-        subtitle={{ content: "Psychologue sur cordage et intellectuelle en bleu" }}
-        theme="light"
-      />
+      <Content {...content.lou} />
     </ScreenUnit>
     <ScreenUnit {...wrappers.histoireHeader} />
     <ScreenUnit {...wrappers.histoire}>
-      <Content
-        type="image-text"
-        img="vijay-et-lou.webp"
-        text={60}
-        title={{ content: "L'histoire d'une vie" }}
-        subtitle={{ content: "Grandir ensemble" }}
-        theme="dark"
-      />
+      <Content {...content.histoire} />
     </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />

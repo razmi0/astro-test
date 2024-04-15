@@ -2,7 +2,7 @@
 import ContentText from "./ContentText.astro";
 import ContentCard from "./ContentCard.astro";
 import ContentImageText from "./ContentImageText.astro";
-import type { ImageNames } from "@/types";
+import type { ImageNames, Prettyfy } from "@/types";
 
 export interface Props {
   type: "card" | "text" | "image-text" | "text-image";
@@ -17,6 +17,8 @@ export interface Props {
   theme?: "light" | "dark";
   figureClass?: string;
 }
+
+export type ContentProps = Prettyfy<Props>;
 
 const { type } = Astro.props;
 

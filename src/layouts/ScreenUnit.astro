@@ -44,9 +44,9 @@ const selectedSize = `min-h-${sizes[wrapper?.size || "full"]}`;
 const titleClass = cn("opacity-0 dark:text-defs-100 text-defs-100 text-3xl", title?.className);
 const wrapperClass = cn(
   selectedSize,
+  wrapper?.className,
   "px-0 py-4 md:px-12 md:py-12 gap-4 md:gap-12 border-none",
-  themes[theme].container,
-  wrapper?.className
+  themes[theme].container
 );
 const startingPos = title?.startingPos || "-100vw";
 const endingPos = title?.endingPos || "0";
