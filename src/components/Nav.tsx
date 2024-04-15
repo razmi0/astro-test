@@ -206,22 +206,22 @@ const ListElement = ({ title, description, anchor, mobile = false }: ListElement
  *
  *
  *
- *
+ *text-main-500 dark:text-main-300
  *
  */
-const NoContentItem = ({ label, href, currentPath }: { label: string; href: string; currentPath: string }) => (
-  <MenuLink asChild>
-    <a
-      href={href}
-      className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
-        currentPath === href ? "hover:border-main-300" : "hover:border-white"
-      } `}
-      style={{ color: currentPath === href ? "var(--color-main-300)" : "inherit" }}
-    >
-      {label}
-    </a>
-  </MenuLink>
-);
+const NoContentItem = ({ label, href, currentPath }: { label: string; href: string; currentPath: string }) => {
+  const isPathClasses =
+    currentPath === href
+      ? "dark:hover:border-main-300 dark:text-main-300 text-main-500 hover:border-main-500"
+      : "hover:border-white";
+  return (
+    <MenuLink asChild>
+      <a href={href} className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${isPathClasses} `}>
+        {label}
+      </a>
+    </MenuLink>
+  );
+};
 
 const menuLinkClass = [
   // BASE
