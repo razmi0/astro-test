@@ -16,6 +16,7 @@ interface Props {
     startingPos?: string;
     endingPos?: string;
     name?: string;
+    direction?: "rtl" | "ltr";
   };
   children?: any;
 }
@@ -23,6 +24,9 @@ interface Props {
 export type ScreenUnitProps = Prettyfy<Props>;
 
 const { title, wrapper, theme } = Astro.props;
+
+// -- Theme
+// --
 
 const themes = {
   light: {
@@ -38,18 +42,35 @@ const sizes = {
   half: "[50vh]",
   quarter: "[25vh]",
 };
-
 const selectedSize = `min-h-${sizes[wrapper?.size || "full"]}`;
 
-const titleClass = cn("opacity-0 dark:text-defs-100 text-defs-100 text-3xl", title?.className);
+// -- Classes
+// --
+
+const titleClass = cn("opacity-0 dark:text-defs-100 text-defs-100 text-3xl sm:text-4xl", title?.className);
 const wrapperClass = cn(
   selectedSize,
   "ps-0 pe-0 pt-12 pb-12 md:ps-12 md:pe-12 md:pt-12 md:pb-12 border-none",
   themes[theme].container,
   wrapper?.className
 );
-const startingPos = title?.startingPos || "-100vw";
-const endingPos = title?.endingPos || "0";
+
+// -- Animation
+// --
+
+const directions = {
+  ltr: {
+    startingPos: "-100vw",
+    endingPos: "0",
+  },
+  rtl: {
+    startingPos: "100vw",
+    endingPos: "0",
+  },
+};
+
+const startingPos = title?.startingPos || directions[title?.direction || "ltr"].startingPos;
+const endingPos = title?.endingPos || directions[title?.direction || "ltr"].endingPos;
 const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 ---
 
