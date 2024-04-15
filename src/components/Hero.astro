@@ -73,11 +73,11 @@ import { Button } from "@/components/ui/Button";
   }
 </style>
 
-<section class="max-h-screen w-full">
+<section class="max-h-screen h-screen w-full border-none">
   <Image
     src={Oak}
     alt="Oak"
-    class="w-full h-full max-h-screen aspect-[6/16] 2xs:aspect-[9/16] md:aspect-auto object-cover"
+    class="w-full h-full max-h-screen aspect-[6/16] 2xs:aspect-[9/16] md:aspect-auto object-cover border-none"
   />
   <div
     class="z-10 bg-transparent absolute top-0 mt-[50%] md:mt-[35%] lg:mt-[30%] xl:mt-[20%] flex flex-col max-w-[35ch] sm:max-w-[50ch] md:max-w-[60ch] lg:max-w-[75ch] ps-5 sm:ps-5 md:ps-10 gap-3"
@@ -91,9 +91,12 @@ import { Button } from "@/components/ui/Button";
       {generateLorem(20)}
     </p>
     <div class="flex gap-6 animation-start-button animation-in-button">
-      <a href="/activities"> <Button variant={"outline"} className="bg-transparent ">S'inscrire</Button></a>
+      <a href="/activities">
+        <Button variant={"outline"} className=" bg-slate-300 dark:bg-slate-800  text-defs-900 dark:text-defs-100"
+          >S'inscrire</Button
+        ></a
+      >
       <a href="/about"> <Button variant={"ghost"} className="">En savoir plus</Button></a>
     </div>
   </div>
-  <div class="w-full h-[300px] -translate-y-[200px] blur-line"></div>
 </section>
