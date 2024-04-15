@@ -169,7 +169,7 @@ const ListElement = ({ title, description, anchor, mobile = false }: ListElement
   const Main = () => (
     <li className="hover:bg-slate-200 dark:hover:bg-slate-700 py-2 transition-colors px-3 rounded-md w-full">
       <h4 className="text-base text-main-500 dark:text-main-300">{title}</h4>
-      <p className="text-sm dark:text-slate-100 text-balance">{description}</p>
+      <p className="text-sm dark:text-defs-100 text-defs-900 text-balance">{description}</p>
     </li>
   );
 
