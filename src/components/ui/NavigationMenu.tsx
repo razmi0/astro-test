@@ -45,7 +45,7 @@ const classes = [
   // --
   "disabled:pointer-events-none disabled:opacity-50",
   // DARK
-  // -- bg-wt-400 dark:bg-element-800
+  // --
   " dark:focus:bg-slate-800 dark:focus:text-slate-50 dark:data-[active]:bg-slate-800/50",
 ];
 
