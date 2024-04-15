@@ -30,6 +30,7 @@ const wrappers: ScreenUnitType = {
       name: "fondateur",
       text: "Les fondateurs",
       className: "text-main-500 dark:text-main-300",
+      direction: "ltr",
     },
   },
   fondateurVijay: {
@@ -58,10 +59,32 @@ const wrappers: ScreenUnitType = {
       name: "histoire",
       text: "Notre histoire",
       className: "text-main-300 dark:text-main-300",
+      direction: "rtl",
     },
   },
   histoire: {
     theme: "dark",
+    wrapper: {
+      threshold: 0.5,
+    },
+  },
+  valeurHeader: {
+    theme: "light",
+    wrapper: {
+      name: "valeur",
+      threshold: 1,
+      size: "quarter",
+      className: "pb-0",
+    },
+    title: {
+      name: "valeur",
+      text: "Nos valeurs",
+      className: "text-main-500 dark:text-main-300",
+      direction: "rtl",
+    },
+  },
+  valeur: {
+    theme: "light",
     wrapper: {
       threshold: 0.5,
     },
@@ -93,6 +116,14 @@ const content: ContentType = {
     subtitle: { content: "Grandir ensemble" },
     theme: "dark",
   },
+  valeur: {
+    type: "card",
+    img: "lorem-lou.webp",
+    text: 40,
+    title: { content: "Lou Bideau" },
+    subtitle: { content: "Psychologue sur cordage et intellectuelle en bleu" },
+    theme: "light",
+  },
 };
 ---
 
@@ -110,6 +141,10 @@ const content: ContentType = {
     <ScreenUnit {...wrappers.histoireHeader} />
     <ScreenUnit {...wrappers.histoire}>
       <Content {...content.histoire} />
+    </ScreenUnit>
+    <ScreenUnit {...wrappers.valeurHeader} />
+    <ScreenUnit {...wrappers.valeur}>
+      <Content {...content.valeur} />
     </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />
