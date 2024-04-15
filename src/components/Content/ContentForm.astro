@@ -2,38 +2,42 @@
 import type { HTMLAttributes, ComponentProps } from "astro/types";
 import { Button } from "../ui/Button";
 interface Props {
-  inputProps: HTMLAttributes<"input">;
-  buttonProps: ComponentProps<typeof Button>;
-  labelProps: HTMLAttributes<"label">;
-  formProps: HTMLAttributes<"form">;
+  inputProps?: HTMLAttributes<"input">;
+  buttonProps?: ComponentProps<typeof Button>;
+  labelProps?: HTMLAttributes<"label">;
+  formProps?: HTMLAttributes<"form">;
   input?: boolean;
   button?: boolean;
 }
 
-const { inputProps, buttonProps, labelProps, formProps, input, button } = Astro.props as Props;
+const { inputProps, buttonProps, labelProps, formProps, input = false, button = false } = Astro.props as Props;
 ---
+{
+    (input || button) && (
 
-<form class:list={["flex flex-col", formProps.class]} {...formProps} data-form-lorem>
-  {
-    input && (
-      <>
-        <label for={inputProps.id} class:list={["font-bold", labelProps.class]} {...labelProps}>
-          <slot name="label" />
-        </label>
-        <input type="text" name={inputProps.id} class:list={["w-full min-h-9", inputProps.class]} {...inputProps} />
-      </>
+        <form class:list={["flex flex-col", formProps?.class]} {...formProps} data-form-lorem>
+          {
+            input && (
+              <>
+                <label for={inputProps?.id} class:list={["font-bold", labelProps?.class]} {...labelProps}>
+                  <slot name="label" />
+                </label>
+                <input type="text" name={inputProps?.id} class:list={["w-full min-h-9", inputProps?.class]} {...inputProps} />
+              </>
+            )
+          }
+          {
+            button && (
+              <Button
+                type="button"
+                data-button-lorem
+                class:list={["btn ghost card mt-2 w-fit px-6", buttonProps?.className]}
+                {...buttonProps}
+              >
+                <slot name="button" />
+              </Button>
+            )
+          }
     )
-  }
-  {
-    button && (
-      <Button
-        type="button"
-        data-button-lorem
-        class:list={["btn ghost card mt-2 w-fit px-6", buttonProps.className]}
-        {...buttonProps}
-      >
-        <slot name="button" />
-      </Button>
-    )
-  }
+}
 </form>
