@@ -5,7 +5,7 @@ import type { Prettyfy } from "@/types";
 interface Props {
   theme: "light" | "dark";
   wrapper: {
-    id: string;
+    name?: string;
     className?: string;
     threshold?: number;
     size?: "full" | "half" | "quarter";
@@ -15,7 +15,7 @@ interface Props {
     className?: string;
     startingPos?: string;
     endingPos?: string;
-    id: string;
+    name?: string;
   };
   children?: any;
 }
@@ -55,20 +55,26 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 
 <script>
   import { setupIntersectionObserver } from "@/helpers";
-  // --
-  const wrappers = Array.from(document.querySelectorAll("[data-is='section-unit-observer-wrapper']")) as HTMLElement[];
-  const titleElements = Array.from(
-    document.querySelectorAll("[data-is='section-unit-observer-title']")
-  ) as HTMLHeadingElement[];
 
-  const groupedObservers: [HTMLElement, HTMLHeadingElement][] = wrappers.map((wrapper, i) => [
-    wrapper,
-    titleElements[i],
-  ]);
+  // --
+  type ElementNamedType<T, P> = P & { dataset: { name: T } };
+  type GroupedByName<T> = [ElementNamedType<T, HTMLElement>, ElementNamedType<T, HTMLHeadingElement>];
+
+  // --
+  const wrappers = Array.from(document.querySelectorAll("[data-is='wrapper'][data-name]")) as HTMLElement[];
+  const titles = Array.from(document.querySelectorAll("[data-is='title'][data-name]")) as HTMLHeadingElement[];
+
+  const groupedObservers: GroupedByName<string>[] = wrappers.reduce((acc: GroupedByName<string>[], cur) => {
+    const title = titles.find((title) => title.dataset.name === cur.dataset.name);
+    if (title) acc.push([cur, title] as GroupedByName<string>);
+    return acc;
+  }, []);
 
   const onIntersect = (titleElement: HTMLHeadingElement) => titleElement.classList.add("animate-slide-in");
   const onDisappear = (titleElement: HTMLHeadingElement) => titleElement.classList.remove("animate-slide-in");
   groupedObservers.forEach((group) => {
+    if (!group[1] || !group[0])
+      console.warn(`[ScreenUnit ${group[0].id} not defined] : wrapper : ${group[0]} , title : ${group[1]}`);
     if (group[1] && group[0]) {
       setupIntersectionObserver({
         element: group[0],
@@ -102,14 +108,14 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 
 <section
   class:list={[wrapperClass]}
-  id={wrapper.id}
-  data-is="section-unit-observer-wrapper"
+  data-is="wrapper"
   data-threshold={wrapper.threshold || 0.4}
+  data-name={wrapper.name}
 >
   {
     title && (
       <div class:list={["w-full flex items-center justify-center md:justify-end h-24"]}>
-        <h2 class:list={[titleClass]} id={title.id} data-is="section-unit-observer-title">
+        <h2 class:list={[titleClass]} data-is="title" data-name={title.name}>
           {title.text}
         </h2>
       </div>

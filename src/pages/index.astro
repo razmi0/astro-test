@@ -16,13 +16,13 @@ const wrappers: ScreenUnitType = {
   fondateurHeader: {
     theme: "light",
     wrapper: {
-      id: "fondateur-header-wrapper",
+      name: "fondateur",
       className: "flex justify-center items-center",
       threshold: 1,
       size: "quarter",
     },
     title: {
-      id: "fondateur-header-title",
+      name: "fondateur",
       text: "Les fondateurs",
       className: "text-main-500 dark:text-main-300",
     },
@@ -30,42 +30,38 @@ const wrappers: ScreenUnitType = {
   fondateurVijay: {
     theme: "light",
     wrapper: {
-      id: "fondateur-wrapper-vijay",
       className: "flex flex-col items-center justify-center",
       threshold: 0.5,
       size: "half",
     },
-    // title: {
-    //   id: "fondateur-title-vijay",
-    //   text: "LeBlanc Vijay",
-    //   className: "text-main-500 dark:text-main-300",
-    // },
   },
   fondateurLou: {
     theme: "light",
     wrapper: {
-      id: "fondateur-wrapper-lou",
       className: "flex flex-col items-center justify-center",
       threshold: 0.5,
       size: "half",
     },
-    // title: {
-    //   id: "fondateur-title-vijay",
-    //   text: "Bideau Lou",
-    //   className: "text-main-500 dark:text-main-300",
-    // },
+  },
+  histoireHeader: {
+    theme: "dark",
+    wrapper: {
+      name: "histoire",
+      className: "flex justify-center items-center",
+      threshold: 1,
+      size: "quarter",
+    },
+    title: {
+      name: "histoire",
+      text: "Notre histoire",
+      className: "text-main-500 dark:text-main-300",
+    },
   },
   histoire: {
     theme: "dark",
     wrapper: {
-      id: "histoire-wrapper",
       className: "flex flex-col bg-main-300 dark:bg-main-900 items-start justify-center",
-      threshold: 0.1,
-    },
-    title: {
-      id: "histoire-title",
-      text: "Notre histoire",
-      className: "z-10",
+      threshold: 0.5,
     },
   },
 };
@@ -96,20 +92,17 @@ const wrappers: ScreenUnitType = {
         theme="light"
       />
     </ScreenUnit>
-    <!-- <ScreenUnit {...wrappers.histoire}>
-      <Histoire theme="dark" />
-    </ScreenUnit> -->
-    <!-- <ScreenUnit {...wrappers.presentation}>
+    <ScreenUnit {...wrappers.histoireHeader} />
+    <ScreenUnit {...wrappers.histoire}>
       <Content
-        type="text-image"
+        type="image-text"
         img="vijay-et-lou.webp"
-        text={120}
-        articleClass="gap-12 [&>[data-is='card']]:w-[500px]"
+        text={60}
         title={{ content: "L'histoire d'une vie" }}
         subtitle={{ content: "Grandir ensemble" }}
-        theme="light"
+        theme="dark"
       />
-    </ScreenUnit> -->
+    </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />
 </Layout>
