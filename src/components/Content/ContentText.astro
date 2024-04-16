@@ -1,61 +1,59 @@
 ---
-import { generateLorem } from '@/helpers';
-import type { Props } from "./Content.astro";
-// interface Props {
-//   title?: { content: string, class? : string} | boolean;
-//   subtitle?: { content: string, class? : string} | boolean;
-//   /** The number of words to generate */
-//   text?: { words: number, class? : string} | number;
-//   input?: {class? : string, content? : string} | boolean;
-//   button?: { class? : string, content? : string} | boolean;
-//   formClass?: string;
-//   articleClass?: string;
-// }
+import ContentForm from "./ContentForm.astro";
 
-const { 
-  title ,
-  subtitle ,
-  text = 0,
-  button ,
+const {
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   * FORM PROPS
+   */
   input,
-  formClass ,
-  articleClass,
+  button,
+  form,
+  label,
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   * SHARED PROPS
+   */
+  title,
+  subtitle,
+  text,
+  theme = "light",
+  article,
 } = Astro.props;
-
-const finalTitle = title ? typeof title === "boolean" ? generateLorem(4) : title.content : "";
-const finalSubtitle = subtitle ? typeof subtitle === "boolean" ? generateLorem(5) : subtitle.content : "";
-const finalButtonContent = button ? typeof button === "boolean" ? generateLorem(3)  : button.content : "";
-const finalInputPlaceholder = input ? typeof input === "boolean" ? generateLorem(3)  : input.content : "";
-const finalText = typeof text === "number" ? generateLorem(text) : generateLorem(text.words);
-// --
-const finalTitleClass = title ? typeof title === "boolean" ? "" : title.class : "";
-const finalSubtitleClass = subtitle ? typeof subtitle === "boolean" ? "" : subtitle.class : "";
-const finalTextClass = text ? typeof text === "number" ? "" : text.class : "";
-const finalButtonClass = button ? typeof button === "boolean" ? "" : button.class : "";
-const finalInputClass = input ? typeof input === "boolean" ? "" : input.class : "";
-
-const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 ---
 
-
-
-  <article class:list={["w-full  text-slate-900 dark:text-slate-100", articleClass]} >
-    {title && <h2 class:list={[finalTitleClass]} > {finalTitle}</h2>}
-    {subtitle && <small class:list={[finalSubtitleClass]} >{finalSubtitle}</small>}
-    <p class:list={["text-balance my-3", finalTextClass]}>{finalText}</p>
-    {
-      (input || button) && (
-        <form class:list={["flex flex-col",formClass]} data-form-lorem>
-          {input && (
-            <label for={id} class="font-bold"> Input label : </label>
-            <input type="text" id={id} class:list={["w-full min-h-9", finalInputClass]} placeholder={finalInputPlaceholder} />
-          )}
-          {button && (
-            <button type="button" data-button-lorem class:list={["btn ghost card mt-2 w-fit px-6", finalButtonClass]}>
-            {finalButtonContent}
-          </button>
-          )}
-        </form>
-      )
-    }
-  </article>
+<article class:list={["w-full text-slate-900 dark:text-slate-100", article?.props?.class]} {...article?.props}>
+  {
+    title && (
+      <h2 class:list={[title.props?.class]} {...title.props}>
+        {" "}
+        {subtitle.content}
+      </h2>
+    )
+  }
+  {
+    subtitle && (
+      <small class:list={[subtitle.props?.class]} {...subtitle.props}>
+        {subtitle.content}
+      </small>
+    )
+  }
+  {
+    text && (
+      <p class:list={["text-balance my-3", text.props?.class]} {...text.props}>
+        {text.content}
+      </p>
+    )
+  }
+  {(input || button) && <ContentForm input={input} button={button} form={form} label={label} />}
+</article>

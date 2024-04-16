@@ -1,43 +1,56 @@
 ---
-import { generateLorem } from "@/helpers";
 import FadeImage from "@/components/ui/FadeImage.astro";
-import type { Props as ContentProps } from "./Content.astro";
+import type { ContentProps } from "./Content.astro";
 import ContentForm from "./ContentForm.astro";
 
-interface Props extends ContentProps {}
+interface Props extends ContentProps<"image-text"> {}
 
 const {
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   * FORM PROPS
+   */
   input,
   button,
-  inputProps,
-  buttonProps,
-  formProps,
-  labelProps,
+  form,
+  label,
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   * SHARED PROPS
+   */
   title,
   subtitle,
-  text = 0,
-  type = "image-text",
-  articleClass,
-  img = "placeholder.webp",
+  text,
   theme = "light",
-  figureClass,
+  article,
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   * IMAGE PROPS
+   */
+  img,
+  figure,
+  figCaption,
 } = Astro.props;
 
-const finalTitle = title ? (typeof title === "boolean" ? generateLorem(4) : title.content) : "";
-const finalSubtitle = subtitle ? (typeof subtitle === "boolean" ? generateLorem(5) : subtitle.content) : "";
-const finalText = typeof text === "number" ? generateLorem(text) : generateLorem(text.words);
-// --
-const finalTitleClass = title ? (typeof title === "boolean" ? "" : title.class) : "";
-const finalSubtitleClass = subtitle ? (typeof subtitle === "boolean" ? "" : subtitle.class) : "";
-const finalTextClass = text ? (typeof text === "number" ? "" : text.class) : "";
-
 const defaultArticleClass = "flex justify-between items-center text-slate-900 dark:text-slate-100 gap-8 md:gap-12";
-const articleTextImgLayout = {
-  "flex-col md:flex-row": type === "image-text",
-  "flex-col-reverse md:flex-row-reverse": type === "text-image",
-};
 
-const themeProperties = {
+const themeMap = {
   light: {
     titleBorder: "border-s-main-500 dark:border-s-main-300",
   },
@@ -45,8 +58,6 @@ const themeProperties = {
     titleBorder: "border-s-main-300 dark:border-s-main-500",
   },
 };
-
-const themeClass = themeProperties[theme] || themeProperties.light;
 ---
 
 <script>
@@ -88,28 +99,37 @@ const themeClass = themeProperties[theme] || themeProperties.light;
   }
 </style>
 
-<article class:list={[defaultArticleClass, articleTextImgLayout, articleClass]}>
-  <FadeImage img={{ name: img, alt: "", class: "shadow-md" }} figure={{ class: figureClass + "shadow-md" }} />
+<article class:list={[defaultArticleClass, article?.props?.class]} {...article?.props}>
+  <FadeImage img={img} figure={figure} figCaption={figCaption} />
   <div class:list={"flex flex-col opacity-0 gap-8"} data-is="card">
-    <div class="flex flex-col gap-3 border-s-8 ps-5 ms-5 md:ms-0" class:list={[themeClass.titleBorder]}>
-      {title && <h3 class:list={[finalTitleClass, "max-w-1/2 text-2xl"]}> {finalTitle}</h3>}
-      {subtitle && <small class:list={[finalSubtitleClass]}>{finalSubtitle}</small>}
+    <div
+      class:list={[
+        "flex flex-col gap-3 border-s-8 ps-5 ms-5 md:ms-0",
+        themeMap[theme].titleBorder || themeMap.light.titleBorder,
+      ]}
+    >
+      {
+        title && (
+          <h3 class:list={["max-w-1/2 text-2xl", title.props?.class]} {...title.props}>
+            {title.content}
+          </h3>
+        )
+      }
+      {
+        subtitle && (
+          <small class:list={[subtitle.props?.class]} {...subtitle.props}>
+            {subtitle.content}
+          </small>
+        )
+      }
     </div>
-    <p class:list={["text-balance ps-2 text-[0.9rem] sm:text-[1rem]", finalTextClass]}>{finalText}</p>
     {
-      (input || button) && (
-        <ContentForm
-          input
-          button
-          inputProps={inputProps}
-          buttonProps={buttonProps}
-          formProps={formProps}
-          labelProps={labelProps}
-        >
-          <slot name="button" />
-          <slot name="label" />
-        </ContentForm>
+      text && (
+        <p class:list={["text-balance ps-2 text-[0.9rem] sm:text-[1rem]", text.props?.class]} {...text.props}>
+          {text.content}
+        </p>
       )
     }
+    {(input || button) && <ContentForm input={input} button={button} form={form} label={label} />}
   </div>
 </article>

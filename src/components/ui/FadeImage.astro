@@ -2,27 +2,28 @@
 import { cn } from "@/lib/utils";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
-import type { ImageNames } from "@/types";
+import type { ImageProps } from "@/types";
 
-interface Props {
-  figure?: { content?: string; class?: string };
-  img: { name: ImageNames; alt: string; class?: string };
-  captionClass?: string;
-}
+interface Props extends ImageProps {}
 
-const { figure, img, captionClass } = Astro.props;
-const figureClasses = cn(
+const { figCaption, figure, img } = Astro.props;
+
+const figureClass = cn(
   "overflow-hidden rounded-none w-full h-full max-w-[400px] max-h-[400px] sm:rounded-lg hover-animation",
-  figure?.class
+  figure?.props?.class
 );
-const imgClasses = cn(
+
+const imgClass = cn(
   "object-cover rounded-none w-full h-full aspect-[16/16] max-w-[400px] max-h-[400px] sm:rounded-lg opacity-0",
-  img?.class
+  img?.props?.class
 );
 
-const imgPath = `/src/assets/${img.name}`;
+const captionClass = cn("text-center text-sm text-gray-500", figCaption?.props?.class);
 
-const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/*.webp"); // src/assets/*.{webp}
+const imgPath = `/src/assets/${img?.name}`;
+
+// import all images in the assets folder as a glob
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/*.webp");
 if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "/src/assets/*.webp"`);
 
 const bezier = "cubic-bezier(.25,.75,.5,1.25)";
@@ -84,9 +85,23 @@ const duration = "0.3s";
     });
   </script>
   <div class="overflow-hidden rounded-none md:rounded-lg min-w-fit">
-    <figure class:list={[figureClasses]}>
-      <Image src={images[imgPath]()} alt={img.alt} class:list={[imgClasses]} data-anim="animate-fade-in-image" />
-      {figure && figure.content && <figcaption class:list={["", captionClass]}>{figure.content}</figcaption>}
+    <figure class:list={[figureClass]}>
+      {
+        /**
+         *
+         * ...img?.props as any
+         * astro assets image lib need more investigation
+         *
+         */
+      }
+      <Image
+        src={images[imgPath]()}
+        class:list={[imgClass]}
+        data-anim="animate-fade-in-image"
+        alt={img?.props?.alt || ""}
+        {...img?.props as any}
+      />
+      {figCaption && <figcaption class:list={[captionClass]}>{figCaption?.content}</figcaption>}
     </figure>
   </div>
 </Fragment>

@@ -1,67 +1,84 @@
 ---
-import { generateLorem } from "@/helpers";
 import Background from "@/components/ui/Background";
 import ContentForm from "./ContentForm.astro";
-import type { ComponentProps } from "astro/types";
-import type { Props as ContentProps } from "./Content.astro";
+import type { ContentProps } from "./Content.astro";
 
-interface Props extends ContentProps {
-  background?: boolean;
-  backgroundProps?: ComponentProps<typeof Background>;
-}
+interface Props extends ContentProps<"card"> {}
 
 const {
-  button,
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   * FORM PROPS
+   */
   input,
-  buttonProps,
-  inputProps,
-  labelProps,
-  formProps,
+  button,
+  form,
+  label,
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   * SHARED PROPS
+   */
   title,
   subtitle,
-  text = 0,
-  articleClass,
-  theme = "light",
-  background = false,
+  text,
+  article,
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   * CARD PROPS
+   */
   backgroundProps,
 } = Astro.props;
-
-const finalTitle = title ? (typeof title === "boolean" ? generateLorem(4) : title.content) : "";
-const finalSubtitle = subtitle ? (typeof subtitle === "boolean" ? generateLorem(5) : subtitle.content) : "";
-const finalText = typeof text === "number" ? generateLorem(text) : generateLorem(text.words);
-// --
-const finalTitleClass = title ? (typeof title === "boolean" ? "" : title.class) : "";
-const finalSubtitleClass = subtitle ? (typeof subtitle === "boolean" ? "" : subtitle.class) : "";
-const finalTextClass = text ? (typeof text === "number" ? "" : text.class) : "";
 ---
 
 <article
   class:list={[
     "flex flex-col card py-4 px-7 max-w-[300px] rounded-lg relative h-fit  text-slate-900 dark:text-slate-100",
-    articleClass,
+    article?.props?.class,
   ]}
+  {...article?.props}
 >
   <div
-    class="before:w-full before:h-full before:top-0 before:left-0 before:backdrop-blur-sm before:absolute before:-z-10 before:rounded-lg"
+    class:list={[
+      "before:w-full before:h-full before:top-0 before:left-0 before:backdrop-blur-sm before:absolute before:-z-10 before:rounded-lg",
+    ]}
   >
   </div>
-  <Background type="mosaic" className="rounded-lg opacity-20" />
-  {title && <h2 class:list={[finalTitleClass]}>{finalTitle}</h2>}
-  {subtitle && <small class:list={[finalSubtitleClass]}>{finalSubtitle}</small>}
-  <p class="max-w-[30ch] text-balance my-3" class:list={[finalTextClass]}>{finalText}</p>
+  {backgroundProps && <Background {...backgroundProps} className="rounded-lg opacity-20" />}
   {
-    (input || button) && (
-      <ContentForm
-        input
-        button
-        inputProps={inputProps}
-        buttonProps={buttonProps}
-        formProps={formProps}
-        labelProps={labelProps}
-      >
-        <slot name="button" />
-        <slot name="label" />
-      </ContentForm>
+    title && (
+      <h3 class:list={["max-w-1/2 text-2xl", title.props?.class]} {...title.props}>
+        {title.content}
+      </h3>
     )
   }
+  {
+    subtitle && (
+      <small class:list={[subtitle.props?.class]} {...subtitle.props}>
+        {subtitle.content}
+      </small>
+    )
+  }
+  {
+    text && (
+      <p class:list={["text-balance ps-2 text-[0.9rem] sm:text-[1rem]", text.props?.class]} {...text.props}>
+        {text.content}
+      </p>
+    )
+  }
+  {(input || button) && <ContentForm input={input} button={button} form={form} label={label} />}
 </article>

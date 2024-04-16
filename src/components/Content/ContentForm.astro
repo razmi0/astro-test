@@ -4,35 +4,30 @@ import type { FormProps } from "@/types";
 
 interface Props extends FormProps {}
 
-const { inputProps, buttonProps, labelProps, formProps } = Astro.props;
-const formClass = formProps?.props?.class;
-const inputClass = inputProps?.props?.class;
-const buttonClass = buttonProps?.props?.className;
-const labelClass = labelProps?.props?.class;
+const { input, button, label, form } = Astro.props;
+const formClass = form?.props?.class;
+const inputClass = input?.props?.class;
+const buttonClass = button?.props?.className;
+const labelClass = label?.props?.class;
 ---
 
-<form class:list={["flex flex-col", formClass]} {...formProps} data-form-lorem>
+<form class:list={["flex flex-col", formClass]} {...form} data-form-lorem>
   {
-    inputProps && (
+    input && (
       <>
-        {labelProps && (
-          <label for={inputProps?.props?.id} class:list={["font-bold", labelClass]} {...labelProps}>
-            {labelProps?.content}
+        {label && (
+          <label for={input?.props?.id} class:list={["font-bold", labelClass]} {...label}>
+            {label?.content}
           </label>
         )}
-        <input type="text" name={inputProps?.props?.id} class:list={["w-full min-h-9", inputClass]} {...inputProps} />
+        <input type="text" name={input?.props?.id} class:list={["w-full min-h-9", inputClass]} {...input} />
       </>
     )
   }
   {
-    buttonProps && (
-      <Button
-        type="button"
-        data-button-lorem
-        class:list={["btn ghost card mt-2 w-fit px-6", buttonClass]}
-        {...buttonProps}
-      >
-        {buttonProps?.content}
+    button && (
+      <Button type="button" data-button-lorem class:list={["btn ghost card mt-2 w-fit px-6", buttonClass]} {...button}>
+        {button?.content}
       </Button>
     )
   }

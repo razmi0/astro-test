@@ -1,5 +1,6 @@
 // Add your types here
 
+import type Background from "@/components/ui/Background";
 import type { Button } from "@/components/ui/Button";
 import type { LocalImageProps } from "astro/assets";
 import type { ComponentProps, HTMLAttributes, HTMLTag } from "astro/types";
@@ -29,7 +30,7 @@ type FadeImageProps = {
 };
 
 type HTMLHeadingTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-type ContentFormat = "card" | "text" | "image-text" | "text-image";
+type ContentFormat = "card" | "text" | "image-text";
 
 interface SharedProps<T extends ContentFormat> {
   type: T;
@@ -46,17 +47,20 @@ interface ImageProps {
   figCaption?: PropsWithContent<"figcaption">;
 }
 
+interface CardProps {
+  backgroundProps?: ComponentProps<typeof Background>;
+}
+
 interface FormProps {
-  inputProps?: PropsNoContent<"input">;
-  buttonProps?: ReactPropsWithContent<ComponentProps<typeof Button>>;
-  labelProps?: PropsWithContent<"label">;
-  formProps?: PropsNoContent<"form">;
+  input?: PropsNoContent<"input">;
+  button?: ReactPropsWithContent<ComponentProps<typeof Button>>;
+  label?: PropsWithContent<"label">;
+  form?: PropsNoContent<"form">;
 }
 
 type ContentPropsMap = {
   "image-text": ImageProps & SharedProps<"image-text"> & FormProps;
-  "text-image": ImageProps & SharedProps<"text-image"> & FormProps;
-  card: SharedProps<"card"> & FormProps;
+  card: SharedProps<"card"> & FormProps & CardProps;
   text: SharedProps<"text"> & FormProps;
 };
 
@@ -72,6 +76,7 @@ export type {
   HTMLHeadingTags,
   IconNames,
   ImageNames,
+  ImageProps,
   Prettify,
   Theme,
 };
