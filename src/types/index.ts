@@ -60,7 +60,7 @@ type ContentPropsMap = {
   text: SharedProps<"text"> & FormProps;
 };
 
-type Prettyfy<T> = {
+type Prettify<T> = {
   [K in keyof T]: T[K];
 };
 
@@ -72,6 +72,6 @@ export type {
   HTMLHeadingTags,
   IconNames,
   ImageNames,
-  Prettyfy,
+  Prettify,
   Theme,
 };

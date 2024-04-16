@@ -1,6 +1,6 @@
 ---
 import { cn } from "@/lib/utils";
-import type { Prettyfy } from "@/types";
+import type { Prettify } from "@/types";
 
 interface Props {
   theme: "light" | "dark";
@@ -21,7 +21,7 @@ interface Props {
   children?: any;
 }
 
-export type ScreenUnitProps = Prettyfy<Props>;
+export type ScreenUnitProps = Prettify<Props>;
 
 const { title, wrapper, theme } = Astro.props;
 
