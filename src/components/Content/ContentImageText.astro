@@ -1,34 +1,35 @@
 ---
 import { generateLorem } from "@/helpers";
 import FadeImage from "@/components/ui/FadeImage.astro";
-import type { Props } from "./Content.astro";
+import type { Props as ContentProps } from "./Content.astro";
 import ContentForm from "./ContentForm.astro";
 
+interface Props extends ContentProps {}
+
 const {
+  input,
+  button,
+  inputProps,
+  buttonProps,
+  formProps,
+  labelProps,
   title,
   subtitle,
   text = 0,
-  button,
-  input,
   type = "image-text",
-  formClass,
   articleClass,
-  img = "placeholder",
+  img = "placeholder.webp",
   theme = "light",
   figureClass,
 } = Astro.props;
 
 const finalTitle = title ? (typeof title === "boolean" ? generateLorem(4) : title.content) : "";
 const finalSubtitle = subtitle ? (typeof subtitle === "boolean" ? generateLorem(5) : subtitle.content) : "";
-const finalButtonContent = button ? (typeof button === "boolean" ? generateLorem(3) : button.content) : "";
-const finalInputPlaceholder = input ? (typeof input === "boolean" ? generateLorem(3) : input.content) : "";
 const finalText = typeof text === "number" ? generateLorem(text) : generateLorem(text.words);
 // --
 const finalTitleClass = title ? (typeof title === "boolean" ? "" : title.class) : "";
 const finalSubtitleClass = subtitle ? (typeof subtitle === "boolean" ? "" : subtitle.class) : "";
 const finalTextClass = text ? (typeof text === "number" ? "" : text.class) : "";
-const finalButtonClass = button ? (typeof button === "boolean" ? "" : button.class) : "";
-const finalInputClass = input ? (typeof input === "boolean" ? "" : input.class) : "";
 
 const defaultArticleClass = "flex justify-between items-center text-slate-900 dark:text-slate-100 gap-8 md:gap-12";
 const articleTextImgLayout = {
@@ -46,8 +47,6 @@ const themeProperties = {
 };
 
 const themeClass = themeProperties[theme] || themeProperties.light;
-
-const id = `input-${Math.random().toString(36).slice(2, 9)}`;
 ---
 
 <script>
@@ -97,6 +96,20 @@ const id = `input-${Math.random().toString(36).slice(2, 9)}`;
       {subtitle && <small class:list={[finalSubtitleClass]}>{finalSubtitle}</small>}
     </div>
     <p class:list={["text-balance ps-2 text-[0.9rem] sm:text-[1rem]", finalTextClass]}>{finalText}</p>
-    {(input || button) && <ContentForm input button />}
+    {
+      (input || button) && (
+        <ContentForm
+          input
+          button
+          inputProps={inputProps}
+          buttonProps={buttonProps}
+          formProps={formProps}
+          labelProps={labelProps}
+        >
+          <slot name="button" />
+          <slot name="label" />
+        </ContentForm>
+      )
+    }
   </div>
 </article>

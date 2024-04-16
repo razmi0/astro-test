@@ -2,34 +2,62 @@
 import ContentText from "./ContentText.astro";
 import ContentCard from "./ContentCard.astro";
 import ContentImageText from "./ContentImageText.astro";
-import type { ImageNames, Prettyfy } from "@/types";
+import type { ComponentProps } from "astro/types";
+import type {
+  PropsNoContent,
+  PropsWithContent,
+  ReactPropsWithContent,
+  Theme,
+  FadeImageProps,
+  HTMLHeadingTags,
+  ContentFormat,
+} from "@/types";
 
-export interface Props {
-  type: "card" | "text" | "image-text" | "text-image";
-  title?: { content: string; class?: string } | boolean;
-  subtitle?: { content: string; class?: string } | boolean;
-  text?: { words: number; class?: string } | number;
-  input?: { class?: string; content?: string } | boolean;
-  button?: { class?: string; content?: string } | boolean;
-  formClass?: string;
-  articleClass?: string;
-  img?: ImageNames;
-  theme?: "light" | "dark";
-  figureClass?: string;
+import type { Button } from "@/components/ui/Button";
+
+interface SharedProps<T extends ContentFormat> {
+  type: T;
+  title?: PropsWithContent<HTMLHeadingTags>;
+  subtitle?: PropsWithContent<"small">;
+  text?: PropsWithContent<"p">;
+  article?: PropsNoContent<"article">;
+  theme?: Theme;
 }
 
-export type ContentProps = Prettyfy<Props>;
+interface ImageProps {
+  img?: FadeImageProps;
+  figure?: PropsNoContent<"figure">;
+  figCaption?: PropsWithContent<"figcaption">;
+}
 
-const { type } = Astro.props;
+interface FormProps {
+  inputProps?: PropsNoContent<"input">;
+  buttonProps?: ReactPropsWithContent<ComponentProps<typeof Button>>;
+  labelProps?: PropsWithContent<"label">;
+  formProps?: PropsNoContent<"form">;
+}
+
+type ContentPropsMap = {
+  "image-text": ImageProps & SharedProps<"image-text"> & FormProps;
+  "text-image": ImageProps & SharedProps<"text-image"> & FormProps;
+  card: SharedProps<"card"> & FormProps;
+  text: SharedProps<"text"> & FormProps;
+};
+
+export type ContentProps<T extends ContentFormat> = ContentPropsMap[T];
 
 const ContentComponent = (() => {
-  switch (type) {
+  switch (Astro.props.type) {
     case "card":
       return ContentCard;
+    case "image-text":
+      return ContentImageText;
+    case "text-image":
+      return ContentImageText;
     case "text":
       return ContentText;
     default:
-      return ContentImageText;
+      return ContentText;
   }
 })();
 ---

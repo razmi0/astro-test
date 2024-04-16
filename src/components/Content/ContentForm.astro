@@ -1,31 +1,33 @@
 ---
-import type { HTMLAttributes, ComponentProps } from "astro/types";
 import { Button } from "../ui/Button";
+import type { Prettyfy } from "@/types";
+import type { HTMLAttributes, ComponentProps } from "astro/types";
+
 interface Props {
   inputProps?: HTMLAttributes<"input">;
   buttonProps?: ComponentProps<typeof Button>;
   labelProps?: HTMLAttributes<"label">;
   formProps?: HTMLAttributes<"form">;
-  input?: boolean;
-  button?: boolean;
 }
 
-const { inputProps, buttonProps, labelProps, formProps, input = false, button = false } = Astro.props as Props;
+export type FormProps = Prettyfy<Props>;
+
+const { inputProps, buttonProps, labelProps, formProps } = Astro.props as Props;
 ---
 
 <form class:list={["flex flex-col", formProps?.class]} {...formProps} data-form-lorem>
   {
-    input && (
+    inputProps && (
       <>
         <label for={inputProps?.id} class:list={["font-bold", labelProps?.class]} {...labelProps}>
-          <slot name="label" />
+          {labelProps.content}
         </label>
         <input type="text" name={inputProps?.id} class:list={["w-full min-h-9", inputProps?.class]} {...inputProps} />
       </>
     )
   }
   {
-    button && (
+    buttonProps && (
       <Button
         type="button"
         data-button-lorem

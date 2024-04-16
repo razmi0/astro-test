@@ -8,13 +8,15 @@ import Hero from "@/components/Hero.astro";
 import Content from "@/components/Content/Content.astro";
 import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
 import type { ContentProps } from "@/components/Content/Content.astro";
+import type { ContentFormat } from "@/types";
+import { generateLorem } from "@/helpers";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
 };
 
-type ContentType = {
-  [key: string]: ContentProps;
+type ContentType<T extends ContentFormat> = {
+  [key: string]: ContentProps<T>;
 };
 
 const wrappers: ScreenUnitType = {
@@ -91,37 +93,82 @@ const wrappers: ScreenUnitType = {
   },
 };
 
-const content: ContentType = {
+const imageTextContent: ContentType<"image-text"> = {
   vijay: {
     type: "image-text",
-    img: "lorem-vijay.webp",
-    text: 40,
-    title: { content: "Vijay Leblanc" },
-    subtitle: { content: "Cordiste exégète et collectioneur de cordes" },
+    // "lorem-vijay.webp"
+    img: {
+      name: "lorem-vijay.webp",
+      props: {
+        alt: "le lorem de vijay",
+        class: "shadow-md",
+      },
+    },
+    text: {
+      content: generateLorem(40),
+    },
+    title: {
+      content: "Vijay Leblanc",
+    },
+    subtitle: {
+      content: "Cordiste exégète et collectioneur de cordes",
+    },
     theme: "light",
   },
   lou: {
     type: "image-text",
-    img: "lorem-lou.webp",
-    text: 40,
-    title: { content: "Lou Bideau" },
-    subtitle: { content: "Psychologue sur cordage et intellectuelle en bleu" },
+    img: {
+      name: "lorem-lou.webp",
+      props: {
+        alt: "l'image lorem de lou",
+        class: "shadow-md",
+      },
+    },
+    text: {
+      content: generateLorem(40),
+    },
+    title: {
+      content: "Lou Bideau",
+    },
+    subtitle: {
+      content: "Psychologue sur cordage et intellectuelle en bleu",
+    },
     theme: "light",
   },
   histoire: {
     type: "image-text",
-    img: "vijay-et-lou.webp",
-    text: 60,
-    title: { content: "L'histoire d'une vie" },
-    subtitle: { content: "Grandir ensemble" },
+    img: {
+      name: "vijay-et-lou.webp",
+      props: {
+        alt: "l'image lorem de d'histoire",
+        class: "shadow-md",
+      },
+    },
+    text: {
+      content: generateLorem(60),
+    },
+    title: {
+      content: "L'histoire d'une vie",
+    },
+    subtitle: {
+      content: "Grandir ensemble",
+    },
     theme: "dark",
   },
+};
+
+const cardContent: ContentType<"card"> = {
   valeur: {
     type: "card",
-    img: "lorem-lou.webp",
-    text: 40,
-    title: { content: "Lou Bideau" },
-    subtitle: { content: "Psychologue sur cordage et intellectuelle en bleu" },
+    text: {
+      content: generateLorem(40),
+    },
+    title: {
+      content: "Lou Bideau",
+    },
+    subtitle: {
+      content: "Psychologue sur cordage et intellectuelle en bleu",
+    },
     theme: "light",
   },
 };
@@ -133,18 +180,18 @@ const content: ContentType = {
   <Fragment slot="main" id="main">
     <ScreenUnit {...wrappers.fondateurHeader} />
     <ScreenUnit {...wrappers.fondateurVijay}>
-      <Content {...content.vijay} />
+      <Content {...imageTextContent.vijay} />
     </ScreenUnit>
     <ScreenUnit {...wrappers.fondateurLou}>
-      <Content {...content.lou} />
+      <Content {...imageTextContent.lou} />
     </ScreenUnit>
     <ScreenUnit {...wrappers.histoireHeader} />
     <ScreenUnit {...wrappers.histoire}>
-      <Content {...content.histoire} />
+      <Content {...imageTextContent.histoire} />
     </ScreenUnit>
     <ScreenUnit {...wrappers.valeurHeader} />
     <ScreenUnit {...wrappers.valeur}>
-      <Content {...content.valeur} />
+      <Content {...cardContent.valeur} />
     </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />

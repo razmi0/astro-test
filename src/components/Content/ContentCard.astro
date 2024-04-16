@@ -1,55 +1,67 @@
 ---
-import { generateLorem } from '@/helpers';
-import Background from '@/components/ui/Background';
-import type { Props } from "./Content.astro";
+import { generateLorem } from "@/helpers";
+import Background from "@/components/ui/Background";
+import ContentForm from "./ContentForm.astro";
+import type { ComponentProps } from "astro/types";
+import type { Props as ContentProps } from "./Content.astro";
 
+interface Props extends ContentProps {
+  background?: boolean;
+  backgroundProps?: ComponentProps<typeof Background>;
+}
 
-const { 
-  title ,
-  subtitle ,
-  text = 0,
-  button ,
+const {
+  button,
   input,
-  formClass ,
+  buttonProps,
+  inputProps,
+  labelProps,
+  formProps,
+  title,
+  subtitle,
+  text = 0,
   articleClass,
-  theme = "light"
+  theme = "light",
+  background = false,
+  backgroundProps,
 } = Astro.props;
 
-const finalTitle = title ? typeof title === "boolean" ? generateLorem(4) : title.content : "";
-const finalSubtitle = subtitle ? typeof subtitle === "boolean" ? generateLorem(5) : subtitle.content : "";
-const finalButtonContent = button ? typeof button === "boolean" ? generateLorem(3)  : button.content : "";
-const finalInputPlaceholder = input ? typeof input === "boolean" ? generateLorem(3)  : input.content : "";
+const finalTitle = title ? (typeof title === "boolean" ? generateLorem(4) : title.content) : "";
+const finalSubtitle = subtitle ? (typeof subtitle === "boolean" ? generateLorem(5) : subtitle.content) : "";
 const finalText = typeof text === "number" ? generateLorem(text) : generateLorem(text.words);
 // --
-const finalTitleClass = title ? typeof title === "boolean" ? "" : title.class : "";
-const finalSubtitleClass = subtitle ? typeof subtitle === "boolean" ? "" : subtitle.class : "";
-const finalTextClass = text ? typeof text === "number" ? "" : text.class : "";
-const finalButtonClass = button ? typeof button === "boolean" ? "" : button.class : "";
-const finalInputClass = input ? typeof input === "boolean" ? "" : input.class : "";
-const id = `input-${Math.random().toString(36).slice(2, 9)}`;
+const finalTitleClass = title ? (typeof title === "boolean" ? "" : title.class) : "";
+const finalSubtitleClass = subtitle ? (typeof subtitle === "boolean" ? "" : subtitle.class) : "";
+const finalTextClass = text ? (typeof text === "number" ? "" : text.class) : "";
 ---
 
-
-
-<article class:list={["flex flex-col card py-4 px-7 max-w-[300px] rounded-lg relative h-fit  text-slate-900 dark:text-slate-100"  ,articleClass]}>
-  <div class="before:w-full before:h-full before:top-0 before:left-0 before:backdrop-blur-sm before:absolute before:-z-10 before:rounded-lg"></div>
-  <Background type='mosaic' className='rounded-lg opacity-20'/>
+<article
+  class:list={[
+    "flex flex-col card py-4 px-7 max-w-[300px] rounded-lg relative h-fit  text-slate-900 dark:text-slate-100",
+    articleClass,
+  ]}
+>
+  <div
+    class="before:w-full before:h-full before:top-0 before:left-0 before:backdrop-blur-sm before:absolute before:-z-10 before:rounded-lg"
+  >
+  </div>
+  <Background type="mosaic" className="rounded-lg opacity-20" />
   {title && <h2 class:list={[finalTitleClass]}>{finalTitle}</h2>}
   {subtitle && <small class:list={[finalSubtitleClass]}>{finalSubtitle}</small>}
   <p class="max-w-[30ch] text-balance my-3" class:list={[finalTextClass]}>{finalText}</p>
   {
     (input || button) && (
-      <form class:list={["flex flex-col",formClass]} data-form-lorem>
-        {input && (
-          <label for={id} class="font-bold"> Input label : </label>
-          <input type="text" id={id} class:list={["w-full min-h-9", finalInputClass]} placeholder={finalInputPlaceholder} />
-        )}
-        {button && (
-          <button type="button" data-button-lorem class:list={["btn ghost card mt-2", finalButtonClass]}>
-            {finalButtonContent}
-          </button>
-        )}
-      </form>
+      <ContentForm
+        input
+        button
+        inputProps={inputProps}
+        buttonProps={buttonProps}
+        formProps={formProps}
+        labelProps={labelProps}
+      >
+        <slot name="button" />
+        <slot name="label" />
+      </ContentForm>
     )
   }
 </article>
