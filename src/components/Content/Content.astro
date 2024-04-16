@@ -2,47 +2,8 @@
 import ContentText from "./ContentText.astro";
 import ContentCard from "./ContentCard.astro";
 import ContentImageText from "./ContentImageText.astro";
-import type { ComponentProps } from "astro/types";
-import type {
-  PropsNoContent,
-  PropsWithContent,
-  ReactPropsWithContent,
-  Theme,
-  FadeImageProps,
-  HTMLHeadingTags,
-  ContentFormat,
-} from "@/types";
 
-import type { Button } from "@/components/ui/Button";
-
-interface SharedProps<T extends ContentFormat> {
-  type: T;
-  title?: PropsWithContent<HTMLHeadingTags>;
-  subtitle?: PropsWithContent<"small">;
-  text?: PropsWithContent<"p">;
-  article?: PropsNoContent<"article">;
-  theme?: Theme;
-}
-
-interface ImageProps {
-  img?: FadeImageProps;
-  figure?: PropsNoContent<"figure">;
-  figCaption?: PropsWithContent<"figcaption">;
-}
-
-interface FormProps {
-  inputProps?: PropsNoContent<"input">;
-  buttonProps?: ReactPropsWithContent<ComponentProps<typeof Button>>;
-  labelProps?: PropsWithContent<"label">;
-  formProps?: PropsNoContent<"form">;
-}
-
-type ContentPropsMap = {
-  "image-text": ImageProps & SharedProps<"image-text"> & FormProps;
-  "text-image": ImageProps & SharedProps<"text-image"> & FormProps;
-  card: SharedProps<"card"> & FormProps;
-  text: SharedProps<"text"> & FormProps;
-};
+import type { ContentFormat, ContentPropsMap } from "@/types";
 
 export type ContentProps<T extends ContentFormat> = ContentPropsMap[T];
 
