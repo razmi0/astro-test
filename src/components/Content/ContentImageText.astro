@@ -48,7 +48,7 @@ const {
   figCaption,
 } = Astro.props;
 
-const defaultArticleClass = "flex justify-between items-center text-slate-900 dark:text-slate-100 gap-8 md:gap-12";
+const defaultArticleClass = "flex justify-evenly items-center text-slate-900 dark:text-slate-100 gap-16 md:gap-12";
 
 const themeMap = {
   light: {
@@ -75,7 +75,7 @@ const themeMap = {
       onIntersect: () => {
         onIntersect(element);
       },
-      threshold: 0.5,
+      threshold: parseInt(element?.dataset?.threshold ?? "") || 0.5,
     });
   });
 </script>
@@ -101,7 +101,11 @@ const themeMap = {
 
 <article class:list={[defaultArticleClass, article?.props?.class]} {...article?.props}>
   <FadeImage img={img} figure={figure} figCaption={figCaption} />
-  <div class:list={"flex flex-col opacity-0 gap-8"} data-is="card">
+  <div
+    class:list={"flex flex-col opacity-0 gap-8 max-w-[400px] md:w-full"}
+    data-is="card"
+    data-threshold={text?.threshold}
+  >
     <div
       class:list={[
         "flex flex-col gap-3 border-s-8 ps-5 ms-5 md:ms-0",

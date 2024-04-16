@@ -36,7 +36,7 @@ interface SharedProps<T extends ContentFormat> {
   type: T;
   title?: PropsWithContent<HTMLHeadingTags>;
   subtitle?: PropsWithContent<"small">;
-  text?: PropsWithContent<"p">;
+  text?: PropsWithContent<"p"> & { threshold?: number };
   article?: PropsNoContent<"article">;
   theme?: Theme;
 }

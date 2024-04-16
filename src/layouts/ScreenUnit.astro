@@ -38,19 +38,17 @@ const themes = {
 };
 
 const sizes = {
-  full: "screen",
-  half: "[50vh]",
-  quarter: "[25vh]",
+  full: "100vh",
+  half: "50vh",
+  quarter: "25vh",
 };
-const selectedSize = `min-h-${sizes[wrapper?.size || "full"]}`;
 
 // -- Classes
 // --
 
 const titleClass = cn("opacity-0 dark:text-defs-100 text-defs-100 text-3xl sm:text-4xl", title?.className);
 const wrapperClass = cn(
-  selectedSize,
-  "ps-0 pe-0 pt-12 pb-12 md:ps-12 md:pe-12 md:pt-12 md:pb-12 border-none",
+  "ps-0 pe-0 pt-12 pb-12 sm:ps-6 sm:pe-6 md:ps-12 md:pe-12 md:pt-12 md:pb-12 border-none",
   themes[theme].container,
   wrapper?.className
 );
@@ -132,6 +130,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
   data-is="wrapper"
   data-threshold={wrapper.threshold || 0.4}
   data-name={wrapper.name}
+  style={{ minHeight: sizes[wrapper.size || "full"] }}
 >
   {
     title && (

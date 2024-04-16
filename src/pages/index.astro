@@ -19,14 +19,22 @@ type ContentType<T extends ContentFormat> = {
   [key: string]: ContentProps<T>;
 };
 
+const thresholds = {
+  wrapper: {
+    header: 1,
+    content: 0.5,
+  },
+  text: 1,
+};
+
 const wrappers: ScreenUnitType = {
   fondateurHeader: {
     theme: "light",
     wrapper: {
       name: "fondateur",
-      threshold: 1,
+      threshold: thresholds.wrapper.header,
       size: "quarter",
-      className: "pb-0 md:pb-0",
+      className: "pb-0 md:pb-0 flex items-center",
     },
     title: {
       name: "fondateur",
@@ -38,14 +46,14 @@ const wrappers: ScreenUnitType = {
   fondateurVijay: {
     theme: "light",
     wrapper: {
-      threshold: 0.5,
+      threshold: thresholds.wrapper.content,
       size: "half",
     },
   },
   fondateurLou: {
     theme: "light",
     wrapper: {
-      threshold: 0.5,
+      threshold: thresholds.wrapper.content,
       size: "half",
     },
   },
@@ -53,9 +61,9 @@ const wrappers: ScreenUnitType = {
     theme: "dark",
     wrapper: {
       name: "histoire",
-      threshold: 1,
+      threshold: thresholds.wrapper.header,
       size: "quarter",
-      className: "pb-0 md:pb-0",
+      className: "pb-0 md:pb-0 flex items-center",
     },
     title: {
       name: "histoire",
@@ -67,28 +75,31 @@ const wrappers: ScreenUnitType = {
   histoire: {
     theme: "dark",
     wrapper: {
-      threshold: 0.5,
+      threshold: thresholds.wrapper.content,
+      size: "half",
     },
   },
-  valeurHeader: {
+  presentationHeader: {
     theme: "light",
     wrapper: {
-      name: "valeur",
-      threshold: 1,
+      name: "presentation",
+      threshold: thresholds.wrapper.header,
       size: "quarter",
-      className: "pb-0 md:pb-0",
+      className: "pb-0 md:pb-0 flex items-center",
     },
     title: {
-      name: "valeur",
-      text: "Nos valeurs",
+      name: "presentation",
+      text: "Présentation",
       className: "text-main-500 dark:text-main-300",
       direction: "ltr",
     },
   },
-  valeur: {
+  presentation: {
     theme: "light",
     wrapper: {
-      threshold: 0.5,
+      threshold: thresholds.wrapper.content,
+      size: "half",
+      className: "",
     },
   },
 };
@@ -109,6 +120,7 @@ const imageTextContent: ContentType<"image-text"> = {
     },
     text: {
       content: generateLorem(40),
+      threshold: thresholds.text,
     },
     title: {
       content: "Vijay Leblanc",
@@ -128,11 +140,12 @@ const imageTextContent: ContentType<"image-text"> = {
     },
     article: {
       props: {
-        class: "flex-col md:flex-row",
+        class: "flex-col md:flex-row sm:pb-12",
       },
     },
     text: {
       content: generateLorem(40),
+      threshold: thresholds.text,
     },
     title: {
       content: "Lou Bideau",
@@ -152,11 +165,12 @@ const imageTextContent: ContentType<"image-text"> = {
     },
     article: {
       props: {
-        class: "flex-col md:flex-row",
+        class: "flex-col md:flex-row sm:pb-12",
       },
     },
     text: {
       content: generateLorem(60),
+      threshold: thresholds.text,
     },
     title: {
       content: "L'histoire d'une vie",
@@ -168,19 +182,19 @@ const imageTextContent: ContentType<"image-text"> = {
   },
 };
 
-const cardContent: ContentType<"card"> = {
-  valeur: {
-    type: "card",
-    text: {
-      content: generateLorem(40),
-    },
-    title: {
-      content: "Lou Bideau",
-    },
-    subtitle: {
-      content: "Psychologue sur cordage et intellectuelle en bleu",
-    },
+const textContent: ContentType<"text"> = {
+  presentation: {
     theme: "light",
+    type: "text",
+    text: {
+      content: generateLorem(60),
+      threshold: thresholds.text,
+    },
+    article: {
+      props: {
+        class: "md:max-w-[65ch]",
+      },
+    },
   },
 };
 ---
@@ -189,6 +203,17 @@ const cardContent: ContentType<"card"> = {
   <Header slot="header" />
   <Hero slot="hero" />
   <Fragment slot="main" id="main">
+    {
+      /**
+       *
+       *
+       *
+       * Fondateurs
+       *
+       *
+       *
+       */
+    }
     <ScreenUnit {...wrappers.fondateurHeader} />
     <ScreenUnit {...wrappers.fondateurVijay}>
       <Content {...imageTextContent.vijay} />
@@ -196,13 +221,35 @@ const cardContent: ContentType<"card"> = {
     <ScreenUnit {...wrappers.fondateurLou}>
       <Content {...imageTextContent.lou} />
     </ScreenUnit>
+    {
+      /**
+       *
+       *
+       *
+       * Histoire
+       *
+       *
+       *
+       */
+    }
     <ScreenUnit {...wrappers.histoireHeader} />
     <ScreenUnit {...wrappers.histoire}>
       <Content {...imageTextContent.histoire} />
     </ScreenUnit>
-    <ScreenUnit {...wrappers.valeurHeader} />
-    <ScreenUnit {...wrappers.valeur}>
-      <Content {...cardContent.valeur} />
+    {
+      /**
+       *
+       *
+       *
+       * Presentation
+       *
+       *
+       *
+       */
+    }
+    <ScreenUnit {...wrappers.presentationHeader} />
+    <ScreenUnit {...wrappers.presentation}>
+      <Content {...textContent.presentation} />
     </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />
