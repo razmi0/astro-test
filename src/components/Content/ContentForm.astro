@@ -1,28 +1,26 @@
 ---
 import { Button } from "../ui/Button";
-import type { Prettyfy } from "@/types";
-import type { HTMLAttributes, ComponentProps } from "astro/types";
+import type { FormProps } from "@/types";
 
-interface Props {
-  inputProps?: HTMLAttributes<"input">;
-  buttonProps?: ComponentProps<typeof Button>;
-  labelProps?: HTMLAttributes<"label">;
-  formProps?: HTMLAttributes<"form">;
-}
+interface Props extends FormProps {}
 
-export type FormProps = Prettyfy<Props>;
-
-const { inputProps, buttonProps, labelProps, formProps } = Astro.props as Props;
+const { inputProps, buttonProps, labelProps, formProps } = Astro.props;
+const formClass = formProps?.props?.class;
+const inputClass = inputProps?.props?.class;
+const buttonClass = buttonProps?.props?.className;
+const labelClass = labelProps?.props?.class;
 ---
 
-<form class:list={["flex flex-col", formProps?.class]} {...formProps} data-form-lorem>
+<form class:list={["flex flex-col", formClass]} {...formProps} data-form-lorem>
   {
     inputProps && (
       <>
-        <label for={inputProps?.id} class:list={["font-bold", labelProps?.class]} {...labelProps}>
-          {labelProps.content}
-        </label>
-        <input type="text" name={inputProps?.id} class:list={["w-full min-h-9", inputProps?.class]} {...inputProps} />
+        {labelProps && (
+          <label for={inputProps?.props?.id} class:list={["font-bold", labelClass]} {...labelProps}>
+            {labelProps?.content}
+          </label>
+        )}
+        <input type="text" name={inputProps?.props?.id} class:list={["w-full min-h-9", inputClass]} {...inputProps} />
       </>
     )
   }
@@ -31,10 +29,10 @@ const { inputProps, buttonProps, labelProps, formProps } = Astro.props as Props;
       <Button
         type="button"
         data-button-lorem
-        class:list={["btn ghost card mt-2 w-fit px-6", buttonProps?.className]}
+        class:list={["btn ghost card mt-2 w-fit px-6", buttonClass]}
         {...buttonProps}
       >
-        <slot name="button" />
+        {buttonProps?.content}
       </Button>
     )
   }
