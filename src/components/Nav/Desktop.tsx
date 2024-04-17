@@ -57,7 +57,6 @@ const Trigger = ({ currentPath, children, href }: { currentPath: string; childre
  *
  *
  *
- *text-main-500 dark:text-main-300
  *
  */
 const NoContentItem = ({ label, href, currentPath }: { label: string; href: string; currentPath: string }) => {

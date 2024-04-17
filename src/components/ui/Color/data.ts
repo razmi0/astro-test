@@ -4,7 +4,7 @@
 
 const colorThemes = {
   light: {
-    container: "bg-slate-300 dark:bg-slate-800",
+    container: "bg-defs-100 dark:bg-slate-800",
     carpet: "before:bg-slate-400 dark:before:bg-slate-900",
     title: "text-main-500 dark:text-main-300",
     titleBorder: "border-s-main-500 dark:border-s-main-300",

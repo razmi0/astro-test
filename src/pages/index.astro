@@ -363,13 +363,33 @@ const textContent: ContentType<"text"> = {
        *
        *
        *
-       * Fondateurs
+       * Presentation
        *
        *
        *
        */
     }
     <ColorTheme theme="light">
+      <ScreenUnit {...wrappers.presentationHeader} />
+      <ScreenUnit {...wrappers.presentation}>
+        <Content {...textContent.presentationContentOne} />
+        <Content {...textContent.presentationContentTwo} />
+        <Content {...textContent.presentationContentThree} />
+        <Content {...textContent.presentationContentFour} />
+      </ScreenUnit>
+    </ColorTheme>
+    {
+      /**
+       *
+       *
+       *
+       * Fondateurs
+       *
+       *
+       *
+       */
+    }
+    <ColorTheme theme="dark">
       <ScreenUnit {...wrappers.fondateurHeader} />
       <ScreenUnit {...wrappers.fondateurVijay}>
         <Content {...imageTextContent.vijay} />
@@ -389,32 +409,13 @@ const textContent: ContentType<"text"> = {
        *
        */
     }
-    <ColorTheme theme="dark">
+    <ColorTheme theme="light">
       <ScreenUnit {...wrappers.histoireHeader} />
       <ScreenUnit {...wrappers.histoire}>
         <Content {...imageTextContent.histoire} />
       </ScreenUnit>
     </ColorTheme>
-    {
-      /**
-       *
-       *
-       *
-       * Presentation
-       *
-       *
-       *
-       */
-    }
-    <ColorTheme theme="light">
-      <ScreenUnit {...wrappers.presentationHeader} />
-      <ScreenUnit {...wrappers.presentation}>
-        <Content {...textContent.presentationContentOne} />
-        <Content {...textContent.presentationContentTwo} />
-        <Content {...textContent.presentationContentThree} />
-        <Content {...textContent.presentationContentFour} />
-      </ScreenUnit>
-    </ColorTheme>
+
     {
       /**
        *

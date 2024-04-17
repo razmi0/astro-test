@@ -37,9 +37,9 @@ const MenuIcon = () => {
           }
         `}</style>
       <g className="rects">
-        <rect y="25%" height="3" rx="1" className="rect-1" fill="#FFF" />
-        <rect y="50%" height="3" rx="1" className="rect-2" fill="#FFF" />
-        <rect y="75%" height="3" rx="1" className="rect-3" fill="#FFF" />
+        <rect y="25%" height="3" rx="1" className="rect-1" fill="#000" />
+        <rect y="50%" height="3" rx="1" className="rect-2" fill="#000" />
+        <rect y="75%" height="3" rx="1" className="rect-3" fill="#000" />
       </g>
     </svg>
   );
