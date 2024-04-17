@@ -1,6 +1,7 @@
 ---
-import { cn } from "@/lib/utils";
+import Separator from "@/components/ui/Separator.astro";
 import type { Prettify } from "@/types";
+import type { ComponentProps } from "astro/types";
 
 interface Props {
   theme: "light" | "dark";
@@ -10,6 +11,9 @@ interface Props {
     threshold?: number;
     size?: "full" | "half" | "quarter";
   };
+  titleWrapper?: {
+    className?: string;
+  };
   title?: {
     text: string;
     className?: string;
@@ -18,12 +22,24 @@ interface Props {
     name?: string;
     direction?: "rtl" | "ltr";
   };
+  subtitle?: {
+    name: string;
+    startingPos?: string;
+    endingPos?: string;
+    separator?: {
+      props: ComponentProps<typeof Separator>;
+    };
+    text: {
+      className?: string;
+      content: string;
+    };
+  };
   children?: any;
 }
 
 export type ScreenUnitProps = Prettify<Props>;
 
-const { title, wrapper, theme } = Astro.props;
+const { title, titleWrapper, subtitle, wrapper, theme } = Astro.props;
 
 // -- Theme
 // --
@@ -57,8 +73,11 @@ const directions = {
   },
 };
 
-const startingPos = title?.startingPos || directions[title?.direction || "ltr"].startingPos;
-const endingPos = title?.endingPos || directions[title?.direction || "ltr"].endingPos;
+const titleStartingPos = title?.startingPos || directions[title?.direction || "ltr"].startingPos;
+const titleEndingPos = title?.endingPos || directions[title?.direction || "ltr"].endingPos;
+const subtitleStartingPos = subtitle?.startingPos || directions[title?.direction || "ltr"].startingPos;
+const subtitleEndingPos = subtitle?.endingPos || directions[title?.direction || "ltr"].endingPos;
+
 const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 ---
 
@@ -67,40 +86,49 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 
   // --
   type ElementNamedType<T, P> = P & { dataset: { name: T } };
-  type GroupedByName<T> = [ElementNamedType<T, HTMLElement>, ElementNamedType<T, HTMLHeadingElement>];
+  type GroupedByName<T> = [ElementNamedType<T, HTMLElement>, ElementNamedType<T, HTMLElement>[]];
 
   // --
   const wrappers = Array.from(document.querySelectorAll("[data-is='wrapper'][data-name]")) as HTMLElement[];
-  const titles = Array.from(document.querySelectorAll("[data-is='title'][data-name]")) as HTMLHeadingElement[];
+  const titles = Array.from(document.querySelectorAll("[data-is='title'][data-name]")) as HTMLElement[];
 
   const groupedObservers: GroupedByName<string>[] = wrappers.reduce((acc: GroupedByName<string>[], cur) => {
-    const title = titles.find((title) => title.dataset.name === cur.dataset.name);
-    if (title) acc.push([cur, title] as GroupedByName<string>);
+    let temp = [cur, []] as [any, any[]];
+    titles.forEach((title) => title.dataset.name === cur.dataset.name && temp[1].push(title));
+    if (temp[1].length > 0) acc.push(temp);
     return acc;
   }, []);
 
-  const onIntersect = (titleElement: HTMLHeadingElement) => titleElement.classList.add("animate-slide-in");
-  const onDisappear = (titleElement: HTMLHeadingElement) => titleElement.classList.remove("animate-slide-in");
+  const onIntersect = (titleElement: HTMLElement) => {
+    const animationType = titleElement.dataset.animate;
+    animationType && titleElement.classList.add(animationType);
+  };
+  const onDisappear = (titleElement: HTMLElement) => {
+    const animationType = titleElement.dataset.animate;
+    animationType && titleElement.classList.remove(animationType);
+  };
+
   groupedObservers.forEach((group) => {
     if (!group[1] || !group[0])
-      console.warn(`[ScreenUnit ${group[0].id} not defined] : wrapper : ${group[0]} , title : ${group[1]}`);
-    if (group[1] && group[0]) {
-      setupIntersectionObserver({
-        element: group[0],
-        debugLog: `debug-obs-title-${group[0].id}`,
-        threshold: parseInt(group[0].dataset.threshold || "") || 0.4,
-        onIntersect: () => onIntersect(group[1]),
-        onDisappear: () => onDisappear(group[1]),
+      console.warn(`[ERROR] : wrapper : ${group[0].id} , title : ${group[1].map((g) => g.dataset.name)}`);
+    else if (group[1].length > 0 && group[0]) {
+      group[1].forEach((title) => {
+        setupIntersectionObserver({
+          element: group[0],
+          debugLog: `debug-obs-title-${group[0].id}`,
+          threshold: parseInt(group[0].dataset.threshold || "") || 0.4,
+          onIntersect: () => onIntersect(title),
+          onDisappear: () => onDisappear(title),
+        });
       });
     }
   });
 </script>
 
-<style define:vars={{ bezier, startingPos, endingPos }}>
-  h2 {
+<style define:vars={{ bezier, titleStartingPos, titleEndingPos, subtitleStartingPos, subtitleEndingPos }}>
+  [data-animate] {
     opacity: 0;
     filter: blur(2px);
-    transform: translateX(var(--startingPos)) scale(0.9);
     transition:
       transform 0.5s var(--bezier),
       opacity 0.5s var(--bezier),
@@ -108,18 +136,33 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
       scale 0.5s var(--bezier);
   }
 
-  h2.animate-slide-in {
+  [data-animate="animate-slide-in"] {
+    transform: translateX(var(--titleStartingPos)) scale(0.9);
+  }
+
+  [data-animate="animate-slide-in"].animate-slide-in {
     filter: blur(0);
-    transform: translateX(var(--endingPos)) scale(1);
+    transform: translateX(var(--titleEndingPos)) scale(1);
+    opacity: 1;
+  }
+
+  [data-animate="animate-fade-in"] {
+    transform: translateY(var(--subtitleStartingPos)) scale(0.9);
+  }
+
+  [data-animate="animate-fade-in"].animate-fade-in {
+    filter: blur(0);
+    transform: translateY(var(--subtitleEndingPos)) scale(1);
     opacity: 1;
   }
 </style>
 
 <section
   class:list={[
-    wrapper?.className,
-    themes[theme].container,
     "ps-0 pe-0 pt-12 sm:ps-6 sm:pe-6 md:ps-12 md:pe-12 md:pt-12 border-none",
+    { "flex-col": subtitle },
+    themes[theme].container,
+    wrapper?.className,
   ]}
   data-is="wrapper"
   data-threshold={wrapper.threshold || 0.4}
@@ -128,15 +171,45 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 >
   {
     title && (
-      <div class:list={["w-full flex items-center justify-center md:justify-end h-24"]}>
+      <div class:list={["w-full flex items-center h-24", titleWrapper?.className]}>
         <h2
           class:list={["opacity-0 dark:text-defs-100 text-defs-100 text-3xl sm:text-4xl", title?.className]}
           data-is="title"
           data-name={title.name}
+          data-animate="animate-slide-in"
         >
           {title.text}
         </h2>
       </div>
+    )
+  }
+  {
+    subtitle && (
+      <>
+        {subtitle.separator ? (
+          <div
+            class="flex flex-row place-items-center w-full px-2"
+            data-name={subtitle.name}
+            data-is="title"
+            data-animate="animate-fade-in"
+          >
+            <Separator {...subtitle.separator.props} class="bg-main-500 dark:bg-main-300 mx-auto" />
+            <h4 class:list={["text-center text-main-500 dark:text-main-300", subtitle.text.className]}>
+              {subtitle.text.content}
+            </h4>
+            <Separator {...subtitle.separator.props} class="bg-main-500 dark:bg-main-300" />
+          </div>
+        ) : (
+          <h4
+            class:list={["text-center text-main-500 dark:text-main-300", subtitle.text.className]}
+            data-name={subtitle.name}
+            data-is="title"
+            data-animate="animate-fade-in"
+          >
+            {subtitle.text.content}
+          </h4>
+        )}
+      </>
     )
   }
   <slot />

@@ -32,10 +32,55 @@ const {
 } = Astro.props;
 ---
 
-<article class:list={["w-full text-slate-900 dark:text-slate-100", article?.props?.class]} {...article?.props}>
+<script>
+  import { setupIntersectionObserver } from "@/helpers";
+  // --
+  const elements = Array.from(document.querySelectorAll("[data-is='card']")) as HTMLElement[];
+  const onIntersect = (element: HTMLElement) => {
+    element.classList.add("animate-fade-in-card");
+  };
+
+  elements.map((element) => {
+    setupIntersectionObserver({
+      element,
+      debugLog: "image",
+      onIntersect: () => {
+        onIntersect(element);
+      },
+      threshold: parseInt(element?.dataset?.threshold ?? "") || 0.5,
+    });
+  });
+</script>
+
+<style>
+  [data-is="card"] {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(2px);
+  }
+
+  [data-is="card"].animate-fade-in-card {
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+</style>
+
+<article
+  class:list={["w-full text-slate-900 dark:text-slate-100", article?.props?.class]}
+  {...article?.props}
+  data-is="card"
+  data-threshold={text?.threshold}
+>
   {
     title && (
-      <h2 class:list={["text-2xl", title.props?.class]} {...title.props}>
+      <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
         {title.content}
       </h2>
     )
@@ -49,7 +94,12 @@ const {
   }
   {
     text && (
-      <p class:list={["text-balance my-3", text.props?.class]} {...text.props}>
+      <p
+        class:list={["text-balance", text.props?.class]}
+        {...text.props}
+        data-is="card"
+        data-threshold={text?.threshold}
+      >
         {text.content}
       </p>
     )

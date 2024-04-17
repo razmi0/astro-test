@@ -10,6 +10,7 @@ import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
 import type { ContentProps } from "@/components/Content/Content.astro";
 import type { ContentFormat } from "@/types";
 import { generateLorem } from "@/helpers";
+import { links } from "@/components/Nav/shared/data";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
@@ -34,12 +35,15 @@ const wrappers: ScreenUnitType = {
       name: "fondateur",
       threshold: thresholds.wrapper.header,
       size: "quarter",
-      className: "pb-0 md:pb-0 flex items-center",
+      className: "pb-0 md:pb-0 flex items-start",
+    },
+    titleWrapper: {
+      className: "justify-center md:justify-end",
     },
     title: {
       name: "fondateur",
       text: "Les fondateurs",
-      className: "text-main-500 dark:text-main-300",
+      className: "text-main-500 dark:text-main-300 ",
       direction: "ltr",
     },
   },
@@ -65,7 +69,10 @@ const wrappers: ScreenUnitType = {
       name: "histoire",
       threshold: thresholds.wrapper.header,
       size: "quarter",
-      className: "pb-0 md:pb-0 flex items-center",
+      className: "pb-0 md:pb-0 flex items-start",
+    },
+    titleWrapper: {
+      className: "justify-center md:justify-end",
     },
     title: {
       name: "histoire",
@@ -86,15 +93,31 @@ const wrappers: ScreenUnitType = {
     theme: "light",
     wrapper: {
       name: "presentation",
-      threshold: thresholds.wrapper.header,
+      threshold: 0.5,
       size: "quarter",
-      className: "pb-0 md:pb-0 flex items-center",
+      className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
+    },
+    titleWrapper: {
+      className: "place-content-center text-center",
     },
     title: {
+      startingPos: "0",
+      endingPos: "0",
       name: "presentation",
-      text: "Présentation",
-      className: "text-main-500 dark:text-main-300",
+      text: generateLorem(5),
+      className: "text-main-500 dark:text-main-300 md:text-5xl text-4xl pt-12",
       direction: "ltr",
+    },
+    subtitle: {
+      name: "presentation",
+      startingPos: "0",
+      endingPos: "0",
+      separator: {
+        props: {},
+      },
+      text: {
+        content: generateLorem(2),
+      },
     },
   },
   presentation: {
@@ -102,7 +125,8 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       threshold: thresholds.wrapper.content,
       size: "half",
-      className: "grid grid-rows-3 sm:grid-rows-1 !px-2 sm:grid-cols-3 justify-center items-start pb-12 gap-2",
+      className:
+        "grid grid-rows-3 sm:grid-rows-1 !px-2 sm:grid-cols-3 place-items-center md:justify-center md:items-start pb-12 gap-2 w-full !pt-24 pb-24",
     },
   },
 };
@@ -189,16 +213,35 @@ const textContent: ContentType<"text"> = {
   presentationContentOne: {
     theme: "light",
     type: "text",
+
     title: {
-      content: generateLorem(3),
+      content: generateLorem(2),
+      props: {
+        class: "mb-2",
+      },
     },
     text: {
       content: generateLorem(30),
       threshold: thresholds.text,
+      props: {
+        class: "w-[30ch]",
+      },
     },
     article: {
       props: {
-        class: "md:max-w-[30ch]",
+        class: "flex flex-col justify-between items-start !w-fit h-full",
+      },
+    },
+    form: {
+      props: {
+        class: "flex flex-row",
+      },
+    },
+    button: {
+      content: `<a href=${links[3].href}>Learn more...</a>`,
+      props: {
+        className: "w-fit text-main-500 dark:text-main-300 ps-0 ms-0 text-left",
+        variant: "link",
       },
     },
   },
@@ -206,15 +249,33 @@ const textContent: ContentType<"text"> = {
     theme: "light",
     type: "text",
     title: {
-      content: generateLorem(3),
+      content: generateLorem(2),
+      props: {
+        class: "mb-2",
+      },
     },
     text: {
       content: generateLorem(30),
       threshold: thresholds.text,
+      props: {
+        class: "w-[30ch]",
+      },
     },
     article: {
       props: {
-        class: "md:max-w-[30ch]",
+        class: "flex flex-col justify-between items-start !w-fit h-full",
+      },
+    },
+    form: {
+      props: {
+        class: "flex flex-row",
+      },
+    },
+    button: {
+      content: `<a href=${links[1].href}>Learn more...</a>`,
+      props: {
+        className: "w-fit text-main-500 dark:text-main-300 ps-0 ms-0 text-left",
+        variant: "link",
       },
     },
   },
@@ -222,15 +283,33 @@ const textContent: ContentType<"text"> = {
     theme: "light",
     type: "text",
     title: {
-      content: generateLorem(3),
+      content: generateLorem(2),
+      props: {
+        class: "mb-2",
+      },
     },
     text: {
       content: generateLorem(30),
       threshold: thresholds.text,
+      props: {
+        class: "w-[30ch]",
+      },
     },
     article: {
       props: {
-        class: "md:max-w-[30ch]",
+        class: "flex flex-col justify-between items-start !w-fit h-full",
+      },
+    },
+    form: {
+      props: {
+        class: "flex flex-row",
+      },
+    },
+    button: {
+      content: `<a href=${links[2].href}>Learn more...</a>`,
+      props: {
+        className: "w-fit text-main-500 dark:text-main-300 ps-0 ms-0 text-left",
+        variant: "link",
       },
     },
   },
@@ -291,6 +370,7 @@ const textContent: ContentType<"text"> = {
       <Content {...textContent.presentationContentTwo} />
       <Content {...textContent.presentationContentThree} />
     </ScreenUnit>
+    <ScreenUnit wrapper={{ size: "full" }} theme="dark" />
+    <Footer slot="footer" />
   </Fragment>
-  <Footer slot="footer" />
 </Layout>
