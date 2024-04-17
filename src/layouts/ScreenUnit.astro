@@ -159,11 +159,10 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
   }
 </style>
 
-<section
+<div
   class:list={[
     "ps-0 pe-0 pt-12 sm:ps-6 sm:pe-6 md:ps-12 md:pe-12 md:pt-12 border-none",
     { "flex-col": subtitle },
-    themes[theme].container,
     wrapper?.className,
   ]}
   data-is="wrapper"
@@ -190,16 +189,16 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
       <>
         {subtitle.separator ? (
           <div
-            class="flex flex-row place-items-center w-full px-2"
+            class="flex flex-row place-items-center w-full"
             data-name={subtitle.name}
             data-is="title"
             data-animate="animate-fade-in"
           >
-            <Separator {...subtitle.separator.props} class="bg-main-500 dark:bg-main-300 mx-auto" />
+            <Separator {...subtitle.separator.props} class="bg-main-500 dark:bg-main-300 px-2" />
             <h4 class:list={["text-center text-main-500 dark:text-main-300", subtitle.text.className]}>
               {subtitle.text.content}
             </h4>
-            <Separator {...subtitle.separator.props} class="bg-main-500 dark:bg-main-300" />
+            <Separator {...subtitle.separator.props} class="bg-main-500 dark:bg-main-300 px-2" />
           </div>
         ) : (
           <h4
@@ -215,4 +214,4 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
     )
   }
   <slot />
-</section>
+</div>

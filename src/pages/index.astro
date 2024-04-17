@@ -12,6 +12,7 @@ import type { ContentFormat } from "@/types";
 import { generateLorem } from "@/helpers";
 import { links } from "@/components/Nav/shared/data";
 import { Presentation } from "lucide-react";
+import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
@@ -371,13 +372,15 @@ const textContent: ContentType<"text"> = {
        *
        */
     }
-    <ScreenUnit {...wrappers.fondateurHeader} />
-    <ScreenUnit {...wrappers.fondateurVijay}>
-      <Content {...imageTextContent.vijay} />
-    </ScreenUnit>
-    <ScreenUnit {...wrappers.fondateurLou}>
-      <Content {...imageTextContent.lou} />
-    </ScreenUnit>
+    <ColorTheme theme="light">
+      <ScreenUnit {...wrappers.fondateurHeader} />
+      <ScreenUnit {...wrappers.fondateurVijay}>
+        <Content {...imageTextContent.vijay} />
+      </ScreenUnit>
+      <ScreenUnit {...wrappers.fondateurLou}>
+        <Content {...imageTextContent.lou} />
+      </ScreenUnit>
+    </ColorTheme>
     {
       /**
        *
@@ -389,10 +392,12 @@ const textContent: ContentType<"text"> = {
        *
        */
     }
-    <ScreenUnit {...wrappers.histoireHeader} />
-    <ScreenUnit {...wrappers.histoire}>
-      <Content {...imageTextContent.histoire} />
-    </ScreenUnit>
+    <ColorTheme theme="dark">
+      <ScreenUnit {...wrappers.histoireHeader} />
+      <ScreenUnit {...wrappers.histoire}>
+        <Content {...imageTextContent.histoire} />
+      </ScreenUnit>
+    </ColorTheme>
     {
       /**
        *
@@ -404,13 +409,25 @@ const textContent: ContentType<"text"> = {
        *
        */
     }
-    <ScreenUnit {...wrappers.presentationHeader} />
-    <ScreenUnit {...wrappers.presentation}>
-      <Content {...textContent.presentationContentOne} />
-      <Content {...textContent.presentationContentTwo} />
-      <Content {...textContent.presentationContentThree} />
-      <Content {...textContent.presentationContentFour} />
-    </ScreenUnit>
+    <ColorTheme theme="light">
+      <ScreenUnit {...wrappers.presentationHeader} />
+      <ScreenUnit {...wrappers.presentation}>
+        <Content {...textContent.presentationContentOne} />
+        <Content {...textContent.presentationContentTwo} />
+        <Content {...textContent.presentationContentThree} />
+        <Content {...textContent.presentationContentFour} />
+      </ScreenUnit>
+    </ColorTheme>
+    {
+      /**
+       *
+       *
+       *
+       *
+       *
+       * Footer
+       */
+    }
     <ScreenUnit wrapper={{ size: "full" }} theme="dark" />
     <Footer slot="footer" />
   </Fragment>
