@@ -1,6 +1,7 @@
 ---
 import Spacer from "@/components/ui/Spacer.astro";
-import { NavDesktop, NavMobile } from "../components/Nav";
+import NavDesktop from "@/components/Nav/Desktop";
+import NavMobile from "@/components/Nav/Mobile";
 import { ModeToggle } from "../components/ui/ModeToggle";
 import Logo from "@/components/ui/Logo.astro";
 
@@ -47,8 +48,8 @@ const currentPath = Astro.url.pathname;
 >
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
   <Spacer />
-  <NavDesktop client:visible currentPath={currentPath} />
-  <ModeToggle client:visible />
+  <NavDesktop client:idle currentPath={currentPath} />
+  <ModeToggle client:idle />
 </header>
 
 <header
@@ -57,5 +58,5 @@ const currentPath = Astro.url.pathname;
 >
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-12 w-12 sm:h-16 sm:w-16" />
   <Spacer />
-  <NavMobile client:visible currentPath={currentPath} />
+  <NavMobile client:idle currentPath={currentPath} />
 </header>
