@@ -48,6 +48,7 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       threshold: thresholds.wrapper.content,
       size: "half",
+      className: "pb-12",
     },
   },
   fondateurLou: {
@@ -55,6 +56,7 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       threshold: thresholds.wrapper.content,
       size: "half",
+      className: "pb-12",
     },
   },
   histoireHeader: {
@@ -77,6 +79,7 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       threshold: thresholds.wrapper.content,
       size: "half",
+      className: "pb-12",
     },
   },
   presentationHeader: {
@@ -99,7 +102,7 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       threshold: thresholds.wrapper.content,
       size: "half",
-      className: "",
+      className: "grid grid-rows-3 sm:grid-rows-1 !px-2 sm:grid-cols-3 justify-center items-start pb-12 gap-2",
     },
   },
 };
@@ -183,16 +186,51 @@ const imageTextContent: ContentType<"image-text"> = {
 };
 
 const textContent: ContentType<"text"> = {
-  presentation: {
+  presentationContentOne: {
     theme: "light",
     type: "text",
+    title: {
+      content: generateLorem(3),
+    },
     text: {
-      content: generateLorem(60),
+      content: generateLorem(30),
       threshold: thresholds.text,
     },
     article: {
       props: {
-        class: "md:max-w-[65ch]",
+        class: "md:max-w-[30ch]",
+      },
+    },
+  },
+  presentationContentTwo: {
+    theme: "light",
+    type: "text",
+    title: {
+      content: generateLorem(3),
+    },
+    text: {
+      content: generateLorem(30),
+      threshold: thresholds.text,
+    },
+    article: {
+      props: {
+        class: "md:max-w-[30ch]",
+      },
+    },
+  },
+  presentationContentThree: {
+    theme: "light",
+    type: "text",
+    title: {
+      content: generateLorem(3),
+    },
+    text: {
+      content: generateLorem(30),
+      threshold: thresholds.text,
+    },
+    article: {
+      props: {
+        class: "md:max-w-[30ch]",
       },
     },
   },
@@ -249,7 +287,9 @@ const textContent: ContentType<"text"> = {
     }
     <ScreenUnit {...wrappers.presentationHeader} />
     <ScreenUnit {...wrappers.presentation}>
-      <Content {...textContent.presentation} />
+      <Content {...textContent.presentationContentOne} />
+      <Content {...textContent.presentationContentTwo} />
+      <Content {...textContent.presentationContentThree} />
     </ScreenUnit>
   </Fragment>
   <Footer slot="footer" />
