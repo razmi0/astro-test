@@ -2,6 +2,7 @@
 import FadeImage from "@/components/ui/FadeImage.astro";
 import type { ContentProps } from "./Content.astro";
 import ContentForm from "./ContentForm.astro";
+import colorThemes from "@/components/ui/Color/data";
 
 interface Props extends ContentProps<"image-text"> {}
 
@@ -49,15 +50,6 @@ const {
 } = Astro.props;
 
 const defaultArticleClass = "flex justify-evenly items-center text-slate-900 dark:text-slate-100 gap-16 md:gap-12";
-
-const themeMap = {
-  light: {
-    titleBorder: "border-s-main-500 dark:border-s-main-300",
-  },
-  dark: {
-    titleBorder: "border-s-main-300 dark:border-s-main-500",
-  },
-};
 ---
 
 <script>
@@ -106,12 +98,7 @@ const themeMap = {
     data-is="card"
     data-threshold={text?.threshold}
   >
-    <div
-      class:list={[
-        "flex flex-col gap-3 border-s-8 ps-5 ms-5 md:ms-0",
-        themeMap[theme].titleBorder || themeMap.light.titleBorder,
-      ]}
-    >
+    <div class:list={["flex flex-col gap-3 border-s-8 ps-5 ms-5 md:ms-0", colorThemes[theme].titleBorder]}>
       {
         title && (
           <h3 class:list={["max-w-1/2 text-2xl", title.props?.class]} {...title.props}>

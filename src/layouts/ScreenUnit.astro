@@ -2,6 +2,7 @@
 import Separator from "@/components/ui/Separator.astro";
 import type { Prettify } from "@/types";
 import type { ComponentProps } from "astro/types";
+import colorThemes from "@/components/ui/Color/data";
 
 interface Props {
   theme: "light" | "dark";
@@ -43,15 +44,6 @@ const { title, titleWrapper, subtitle, wrapper, theme } = Astro.props;
 
 // -- Theme
 // --
-
-const themes = {
-  light: {
-    container: "bg-slate-300 dark:bg-slate-800",
-  },
-  dark: {
-    container: "bg-slate-400 dark:bg-slate-900",
-  },
-};
 
 const sizes = {
   full: "100vh",
@@ -174,7 +166,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
     title && (
       <div class:list={["w-full flex items-center h-24", titleWrapper?.className]}>
         <h2
-          class:list={["opacity-0 dark:text-defs-100 text-defs-100 text-3xl sm:text-4xl", title?.className]}
+          class:list={["opacity-0 text-3xl sm:text-4xl", colorThemes[theme].title, title?.className]}
           data-is="title"
           data-name={title.name}
           data-animate="animate-slide-in"

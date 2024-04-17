@@ -1,13 +1,14 @@
 ---
-import colorTheme from "@/components/ui/Color/data";
+import colorThemes from "@/components/ui/Color/data";
+import type { Theme } from "@/types";
 
 interface Props {
-  theme: keyof typeof colorTheme;
+  theme: Theme;
 }
 
 const { theme } = Astro.props;
 ---
 
-<section class:list={[colorTheme[theme].container]}>
+<section class:list={[colorThemes[theme].container]}>
   <slot />
 </section>

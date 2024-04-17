@@ -45,7 +45,6 @@ const wrappers: ScreenUnitType = {
     title: {
       name: "fondateur",
       text: "Les fondateurs",
-      className: "text-main-500 dark:text-main-300 ",
       direction: "ltr",
     },
   },
@@ -79,8 +78,8 @@ const wrappers: ScreenUnitType = {
     title: {
       name: "histoire",
       text: "Notre histoire",
-      className: "text-main-300 dark:text-main-300",
       direction: "rtl",
+      className: "",
     },
   },
   histoire: {
@@ -94,8 +93,6 @@ const wrappers: ScreenUnitType = {
   presentationHeader: {
     theme: "light",
     wrapper: {
-      // name: "presentation",
-      threshold: 0.5,
       size: "half",
       className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
     },
@@ -107,7 +104,7 @@ const wrappers: ScreenUnitType = {
       endingPos: "0",
       name: "presentation",
       text: generateLorem(5),
-      className: "text-main-500 dark:text-main-300 sm:text-5xl",
+      className: "sm:text-5xl",
       direction: "ltr",
     },
     subtitle: {
