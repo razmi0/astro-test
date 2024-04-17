@@ -35,9 +35,8 @@ const {
 <article class:list={["w-full text-slate-900 dark:text-slate-100", article?.props?.class]} {...article?.props}>
   {
     title && (
-      <h2 class:list={[title.props?.class]} {...title.props}>
-        {" "}
-        {subtitle.content}
+      <h2 class:list={["text-2xl", title.props?.class]} {...title.props}>
+        {title.content}
       </h2>
     )
   }
