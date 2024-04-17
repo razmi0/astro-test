@@ -9,7 +9,7 @@ interface Props {
     name?: string;
     className?: string;
     threshold?: number;
-    size?: "full" | "half" | "quarter";
+    size?: "full" | "threeQuarter" | "half" | "third" | "quarter";
   };
   titleWrapper?: {
     className?: string;
@@ -55,7 +55,9 @@ const themes = {
 
 const sizes = {
   full: "100vh",
+  threeQuarter: "75vh",
   half: "50vh",
+  third: "33vh",
   quarter: "25vh",
 };
 
