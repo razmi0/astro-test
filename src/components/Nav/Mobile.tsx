@@ -3,8 +3,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "../ui/Drawer";
 import { ModeToggle } from "../ui/ModeToggle";
 import Spacer from "../ui/Spacer";
-import { content, headerItemClass, links } from "./shared/data";
 import ListElement from "./shared/ListElement";
+import { content, headerItemClass, links } from "./shared/data";
 
 const MenuIcon = () => {
   return (
@@ -63,7 +63,7 @@ const MenuIcon = () => {
  *
  *
  */
-export function NavMobile({ currentPath }: { currentPath: string }) {
+export default function NavMobile({ currentPath }: { currentPath: string }) {
   return (
     <Drawer preventScrollRestoration>
       <DrawerTrigger>

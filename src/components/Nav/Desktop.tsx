@@ -9,8 +9,8 @@ import {
 } from "@/components/ui/NavigationMenu";
 import { generateLorem } from "@/helpers";
 import { LucideSquareArrowOutUpRight } from "lucide-react";
-import { content, links, menuLinkClass } from "./shared/data";
 import ListElement from "./shared/ListElement";
+import { content, links, menuLinkClass } from "./shared/data";
 
 /**
  *
@@ -122,7 +122,7 @@ const AsideMenuLink = ({ href }: { href: string }) => (
  *
  *
  */
-export function NavDesktop({ currentPath }: { currentPath: string }) {
+export default function NavDesktop({ currentPath }: { currentPath: string }) {
   return (
     <>
       <Menu viewportClassName="right-0" className="me-4">
