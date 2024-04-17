@@ -24,6 +24,9 @@
   --color-main-500: #50ac93;
   --color-main-600: #0b9e8f;
   --color-main-900: #003329;
+
+  scroll-behavior: smooth;
+  @apply selection:bg-main-500 dark:bg-main-300;
 }
 
 *,
@@ -32,7 +35,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  scroll-behavior: smooth !important;
 }
 
 .card {
