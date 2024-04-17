@@ -11,8 +11,8 @@ import type { ContentProps } from "@/components/Content/Content.astro";
 import type { ContentFormat } from "@/types";
 import { generateLorem } from "@/helpers";
 import { links } from "@/components/Nav/shared/data";
-import { Presentation } from "lucide-react";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
+import Paralax from "@/components/ui/Paralax.astro";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };

@@ -2,9 +2,11 @@
 interface Props {}
 
 import Oak from "../assets/oak.webp";
+import ThreeTree from "../assets/three-tree.webp";
 import { Image } from "astro:assets";
 import { generateLorem } from "@/helpers";
 import { Button } from "@/components/ui/Button";
+import Parallax from "@/components/ui/Paralax.astro";
 ---
 
 <style>
@@ -63,32 +65,27 @@ import { Button } from "@/components/ui/Button";
       transform: translateY(0px);
     }
   }
-
-  .blur-line {
-    mix-blend-mode: overlay;
-    filter: blur(20px);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
-  }
 </style>
 
 <section class="max-h-screen h-screen w-full border-none">
   <Image
-    src={Oak}
+    src={ThreeTree}
     alt="Oak"
     class="w-full h-full max-h-screen aspect-[6/16] 2xs:aspect-[9/16] md:aspect-auto object-cover border-none"
   />
+  <Parallax />
   <div
-    class="z-10 bg-transparent absolute top-0 mt-[50%] md:mt-[35%] lg:mt-[30%] xl:mt-[20%] flex flex-col max-w-[35ch] sm:max-w-[50ch] md:max-w-[60ch] lg:max-w-[75ch] ps-5 sm:ps-5 md:ps-10 gap-3"
+    class="z-10 bg-transparent absolute top-0 mt-[50%] md:mt-[35%] lg:mt-[30%] xl:mt-[20%] flex flex-col w-[35ch] sm:w-[50ch] md:w-[60ch] lg:w-[75ch] ps-5 md:ps-10 gap-3"
     data-is="hero-text-wrapper"
   >
     <h1 class="font-bold animation-start animation-in-title text-[2rem] sm:text-[3rem]">
       {generateLorem(3)}
     </h1>
-    <small class="text-md animation-start animation-in-subtitle">{generateLorem(5)}</small>
+    <small class="text-md animation-start animation-in-subtitle w-full">{generateLorem(5)}</small>
     <p class="text-pretty animation-start animation-in-paragraph sm:text-[1rem] md:text-[1.1rem]">
       {generateLorem(20)}
     </p>
-    <div class="flex gap-6 animation-start-button animation-in-button">
+    <div class="flex ps-6 gap-6 animation-start-button animation-in-button">
       <a href="/activities">
         <Button variant={"outline"} className=" bg-slate-300 dark:bg-slate-800  text-defs-900 dark:text-defs-100"
           >S'inscrire</Button
