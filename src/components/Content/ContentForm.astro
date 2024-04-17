@@ -1,39 +1,43 @@
 ---
 import { Button } from "../ui/Button";
 import type { FormProps } from "@/types";
+import Spacer from "../ui/Spacer.astro";
 
 interface Props extends FormProps {}
 
-const { input, button, label, form } = Astro.props;
+const { input, button, label, form, spacer } = Astro.props;
 const formClass = form?.props?.class;
 const inputClass = input?.props?.class;
 const buttonClass = button?.props?.className;
 const labelClass = label?.props?.class;
 ---
 
-<form class:list={[formClass]} {...form?.props} data-form-lorem>
-  {
-    input && (
-      <>
-        {label && (
-          <label for={input?.props?.id} class:list={["font-bold", labelClass]} {...label.props}>
-            {label?.content}
-          </label>
-        )}
-        <input type="text" name={input?.props?.id} class:list={["w-full min-h-9", inputClass]} {...input.props} />
-      </>
-    )
-  }
-  {
-    button && (
-      <Button
-        type="button"
-        data-button-lorem
-        class:list={["btn ghost card mt-2 w-fit px-6", buttonClass]}
-        {...button.props}
-      >
-        <Fragment set:html={button?.content} />
-      </Button>
-    )
-  }
-</form>
+<Fragment>
+  {spacer && <Spacer />}
+  <form class:list={[formClass]} {...form?.props} data-form-lorem>
+    {
+      input && (
+        <>
+          {label && (
+            <label for={input?.props?.id} class:list={["font-bold", labelClass]} {...label.props}>
+              {label?.content}
+            </label>
+          )}
+          <input type="text" name={input?.props?.id} class:list={["w-full min-h-9", inputClass]} {...input.props} />
+        </>
+      )
+    }
+    {
+      button && (
+        <Button
+          type="button"
+          data-button-lorem
+          class:list={["btn ghost card mt-2 w-fit px-6", buttonClass]}
+          {...button.props}
+        >
+          <Fragment set:html={button?.content} />
+        </Button>
+      )
+    }
+  </form>
+</Fragment>
