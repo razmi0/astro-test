@@ -56,6 +56,7 @@ interface FormProps {
   button?: ReactPropsWithContent<ComponentProps<typeof Button>>;
   label?: PropsWithContent<"label">;
   form?: PropsNoContent<"form">;
+  spacer?: boolean;
 }
 
 type ContentPropsMap = {
