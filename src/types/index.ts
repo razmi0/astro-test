@@ -6,7 +6,13 @@ import type { LocalImageProps } from "astro/assets";
 import type { ComponentProps, HTMLAttributes, HTMLTag } from "astro/types";
 type IconNames = "menu";
 
-type ImageNames = `${"vijay-et-lou" | "lorem-lou" | "placeholder" | "lorem-vijay" | "oak"}.webp`;
+type ImageNames = `${
+  | "vijay-et-lou"
+  | "lorem-lou"
+  | "placeholder"
+  | "lorem-vijay"
+  | "oak"
+  | `outdoor-${"1" | "2" | "3" | "4"}`}.webp`;
 
 type PropsWithContent<T extends HTMLTag> = {
   content: string;
