@@ -6,6 +6,24 @@ import { ModeToggle } from "../components/ui/ModeToggle";
 import Logo from "@/components/ui/Logo.astro";
 
 const currentPath = Astro.url.pathname;
+
+const headerClassMobile = [
+  // BASE
+  "flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4 border-b-white bg-gradient-to-b",
+  // DARK
+  "dark:from-slate-800 dark:to-slate-900",
+  // LIGHT
+  "from-slate-400 to-slate-300",
+].join(" ");
+
+const headerClassDesktop = [
+  // BASE
+  "hidden md:flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-20 border-b-white bg-gradient-to-b",
+  // DARK
+  "dark:from-slate-800 dark:to-slate-900",
+  // LIGHT
+  "from-slate-400 to-slate-300",
+].join(" ");
 ---
 
 <script is:inline>
@@ -42,21 +60,15 @@ const currentPath = Astro.url.pathname;
   actOnMedia("md", onDesktop, onMobile);
 </script>
 
-<header
-  data-media="desktop"
-  class="hidden md:flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-20 border-b-white bg-gradient-to-b from-slate-400 to-slate-300 dark:from-slate-800 dark:to-slate-900"
->
+<header data-media="desktop" class:list={[headerClassDesktop]}>
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
   <Spacer />
   <NavDesktop client:idle currentPath={currentPath} />
   <ModeToggle client:idle />
 </header>
 
-<header
-  data-media="mobile"
-  class="flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4"
->
-  <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-12 w-12 sm:h-16 sm:w-16" />
-  <Spacer />
+<header data-media="mobile" class:list={[headerClassMobile]}>
   <NavMobile client:idle currentPath={currentPath} />
+  <Spacer />
+  <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-12 w-12 sm:h-16 sm:w-16" />
 </header>
