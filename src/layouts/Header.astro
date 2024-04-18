@@ -9,7 +9,7 @@ const currentPath = Astro.url.pathname;
 
 const headerClassMobile = [
   // BASE
-  "flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-24 me-4 border-b-white bg-gradient-to-b",
+  "flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-16 me-4 border-b-white bg-gradient-to-b",
   // DARK
   "dark:from-slate-800 dark:to-slate-900",
   // LIGHT
@@ -60,7 +60,7 @@ const headerClassDesktop = [
   actOnMedia("md", onDesktop, onMobile);
 </script>
 
-<header data-media="desktop" class:list={[headerClassDesktop]}>
+<header data-media="desktop" class:list={[headerClassDesktop]} class="">
   <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
   <Spacer />
   <NavDesktop client:idle currentPath={currentPath} />
