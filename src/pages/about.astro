@@ -3,11 +3,52 @@ import Header from "@/layouts/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import Footer from "@/layouts/Footer.astro";
 import "../styles/index.css";
-import Paralax from "@/components/ui/Paralax.astro";
+import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
+import ScreenUnit from "@/layouts/ScreenUnit.astro";
+import Content from "@/components/Content/Content.astro";
+import { wrappers, imageTextContent } from "@/shared/data";
 ---
 
 <Layout title="A propos">
   <Header slot="header" />
-  <section class="flex gap-6 flex-wrap bg-main-900 h-full" slot="main" id="main"></section>
+  <Fragment slot="main" id="main">
+    {
+      /**
+       *
+       *
+       *
+       * Fondateurs
+       *
+       *
+       *
+       */
+    }
+    <ColorTheme theme="dark" curve rotate={"180deg"}>
+      <ScreenUnit {...wrappers.fondateurHeader} />
+      <ScreenUnit {...wrappers.fondateurVijay}>
+        <Content {...imageTextContent.vijay} />
+      </ScreenUnit>
+      <ScreenUnit {...wrappers.fondateurLou}>
+        <Content {...imageTextContent.lou} />
+      </ScreenUnit>
+    </ColorTheme>
+    {
+      /**
+       *
+       *
+       *
+       * Histoire
+       *
+       *
+       *
+       */
+    }
+    <ColorTheme theme="light" curve>
+      <ScreenUnit {...wrappers.histoireHeader} />
+      <ScreenUnit {...wrappers.histoire}>
+        <Content {...imageTextContent.histoire} />
+      </ScreenUnit>
+    </ColorTheme>
+  </Fragment>
   <Footer slot="footer" />
 </Layout>
