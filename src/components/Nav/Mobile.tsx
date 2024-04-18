@@ -8,14 +8,7 @@ import { content, headerItemClass, links } from "./shared/data";
 
 const MenuIcon = () => {
   return (
-    <svg
-      viewBox="0 0 25 25"
-      xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
-      className="pointer"
-      transform="scale(-1, 1)"
-    >
+    <svg viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg" width="30" height="30" className="pointer">
       <style>{`
           .rects > .rect-1 {
             width: 25px;
@@ -37,9 +30,9 @@ const MenuIcon = () => {
           }
         `}</style>
       <g className="rects">
-        <rect y="25%" height="3" rx="1" className="rect-1" fill="#000" />
-        <rect y="50%" height="3" rx="1" className="rect-2" fill="#000" />
-        <rect y="75%" height="3" rx="1" className="rect-3" fill="#000" />
+        <rect y="25%" height="3" rx="1" className="rect-1 fill-slate-700 dark:fill-slate-300" />
+        <rect y="50%" height="3" rx="1" className="rect-2 fill-slate-800 dark:fill-slate-400" />
+        <rect y="75%" height="3" rx="1" className="rect-3 fill-slate-900 dark:fill-slate-500" />
       </g>
     </svg>
   );
