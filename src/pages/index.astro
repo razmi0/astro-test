@@ -45,22 +45,31 @@ import { textContent, wrappers, imageTextContent } from "@/shared/data";
        *
        */
     }
-    <ColorTheme theme="dark" curve rotate="180deg">
-      <ScreenUnit {...wrappers.hookHeaderOne} />
-      <ScreenUnit {...wrappers.hookOne}>
-        <div class="flex flex-row justify-evenly items-center w-full">
-          <Content {...imageTextContent.hookOne} />
-          <Content {...imageTextContent.hookOne} />
-        </div>
-      </ScreenUnit>
-      <ScreenUnit {...wrappers.hookHeaderTwo} />
-      <ScreenUnit {...wrappers.hookTwo}>
-        <div class="flex flex-row justify-evenly items-center w-full">
-          <Content {...imageTextContent.hookTwo} />
-          <Content {...imageTextContent.hookTwo} />
-        </div>
+    <ColorTheme theme="dark" curve>
+      <ScreenUnit {...wrappers.hookHeaderPrimary} />
+      <ScreenUnit {...wrappers.hookPrimary}>
+        <Content {...imageTextContent.hookPrimaryTop} />
+        <Content {...imageTextContent.hookPrimaryBot} />
       </ScreenUnit>
     </ColorTheme>
+    <ColorTheme theme="dark" curve rotate="180deg">
+      <ScreenUnit {...wrappers.hookHeaderSecondary} />
+      <ScreenUnit {...wrappers.hookSecondary}>
+        <Content {...imageTextContent.hookSecondaryTop} />
+        <Content {...imageTextContent.hookSecondaryBot} />
+      </ScreenUnit>
+    </ColorTheme>
+    {
+      /**
+       *
+       *
+       *
+       * Convince ? CTA
+       *
+       *
+       *
+       */
+    }
     {
       /**
        *
