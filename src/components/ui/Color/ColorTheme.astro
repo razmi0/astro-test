@@ -1,14 +1,29 @@
 ---
 import colorThemes from "@/components/ui/Color/data";
 import type { Theme } from "@/types";
+import { Image } from "astro:assets";
+import Curves from "@/assets/abstract-curve-line.jpg";
 
 interface Props {
   theme: Theme;
+  curve?: boolean;
+  rotate?: `${number}deg`;
 }
 
-const { theme } = Astro.props;
+const { theme, curve = false, rotate = "0deg" } = Astro.props;
 ---
 
+<style define:vars={{ rotate }}>
+  .curve {
+    transform: rotate(var(--rotate));
+  }
+</style>
+
 <section class:list={[colorThemes[theme].container]}>
+  {
+    curve && (
+      <Image src={Curves} alt="Abstract curve line" class="absolute object-cover w-full h-full opacity-20 curve" />
+    )
+  }
   <slot />
 </section>
