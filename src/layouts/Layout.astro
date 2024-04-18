@@ -1,6 +1,4 @@
 ---
-import DebugPill from "@/components/DebugPill.astro";
-
 interface Props {
   title: string;
 }
@@ -27,6 +25,5 @@ const isHome = pathname === "/";
       <slot name="main" />
     </main>
     <slot name="footer" />
-    <!-- <DebugPill /> -->
   </body>
 </html>
