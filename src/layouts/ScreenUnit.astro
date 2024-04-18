@@ -186,15 +186,15 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
             data-is="title"
             data-animate="animate-fade-in"
           >
-            <Separator {...subtitle.separator.props} class="bg-main-500 dark:bg-main-300 px-2" />
-            <h4 class:list={["text-center text-main-500 dark:text-main-300", subtitle.text.className]}>
+            <Separator {...subtitle.separator.props} class=`${colorThemes[theme].separator} px-2` />
+            <h4 class:list={["text-center", colorThemes[theme].title, subtitle.text.className]}>
               {subtitle.text.content}
             </h4>
-            <Separator {...subtitle.separator.props} class="bg-main-500 dark:bg-main-300 px-2" />
+            <Separator {...subtitle.separator.props} class=`${colorThemes[theme].separator} px-2` />
           </div>
         ) : (
           <h4
-            class:list={["text-center text-main-500 dark:text-main-300", subtitle.text.className]}
+            class:list={["text-center", colorThemes[theme].title, subtitle.text.className]}
             data-name={subtitle.name}
             data-is="title"
             data-animate="animate-fade-in"
