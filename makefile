@@ -2,7 +2,7 @@
 # WINDOWS VERSION (There's no /bin/date on Windows)
 DATE_WITH_TIME = $(shell echo %date%:%time%)
 # UNICODE TO UTF-32
-EMOJI = $(shell [char]9996)
+EMOJI = $(shell %[char]9996%)
 
 checkpoint:
 	@git add -A
