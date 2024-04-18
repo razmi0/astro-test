@@ -175,7 +175,7 @@ const wrappers: ScreenUnitType = {
       name: "hookHeaderSecondary",
       threshold: thresholds.wrapper.content,
       size: "threeQuarter",
-      className: "pb-12 !pt-0 flex flex-col gap-12 lg:flex-row justify-evenly items-center w-full",
+      className: "pb-12 !pt-0 flex flex-col gap-12 xl:flex-row justify-evenly items-center w-full",
     },
   },
 };

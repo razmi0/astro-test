@@ -25,6 +25,8 @@
   --color-main-600: #0b9e8f;
   --color-main-900: #003329;
 
+  --color-test-500: #fb923c;
+
   scroll-behavior: smooth;
   @apply selection:bg-main-500 dark:bg-main-300;
 }

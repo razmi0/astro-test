@@ -4,7 +4,7 @@ import type Background from "@/components/ui/Background";
 import type { Button } from "@/components/ui/Button";
 import type { LocalImageProps } from "astro/assets";
 import type { ComponentProps, HTMLAttributes, HTMLTag } from "astro/types";
-type IconNames = "menu";
+type IconNames = "menu" | "tree";
 
 type ImageNames = `${
   | "vijay-et-lou"
