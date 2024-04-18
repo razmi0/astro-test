@@ -14,7 +14,7 @@ type ContentType<T extends ContentFormat> = {
 
 const thresholds = {
   wrapper: {
-    header: 1,
+    header: 0.5,
     content: 0.5,
   },
   text: 1,
@@ -85,6 +85,7 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       size: "half",
       className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
+      name: "presentation",
     },
     titleWrapper: {
       className: "place-content-center text-center",
@@ -123,55 +124,58 @@ const wrappers: ScreenUnitType = {
       ].join(" "),
     },
   },
-  hookHeaderOne: {
+  hookHeaderPrimary: {
     theme: "dark",
     wrapper: {
-      name: "hookHeaderOne",
+      name: "hookHeaderPrimary",
       threshold: thresholds.wrapper.header,
-      size: "half",
+      size: "quarter",
       className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
     },
     titleWrapper: {
       className: "justify-center md:justify-end",
     },
     title: {
-      name: "hookHeaderOne",
+      name: "hookHeaderPrimary",
       text: generateLorem(5),
       direction: "rtl",
-      endingPos: "-100%",
+      className: "ps-3",
     },
   },
-  hookOne: {
+  hookPrimary: {
     theme: "dark",
     wrapper: {
+      name: "hookHeaderPrimary",
       threshold: thresholds.wrapper.content,
-      size: "half",
-      className: "pb-12 !pt-0",
+      size: "threeQuarter",
+      className: "pb-12 !pt-0 flex flex-col gap-12 xl:flex-row justify-evenly items-center w-full",
     },
   },
-  hookHeaderTwo: {
-    theme: "dark",
+  hookHeaderSecondary: {
+    theme: "light",
     wrapper: {
-      name: "hookHeaderTwo",
+      name: "hookHeaderSecondary",
       threshold: thresholds.wrapper.header,
-      size: "half",
+      size: "quarter",
       className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
     },
     titleWrapper: {
       className: "justify-center md:justify-end",
     },
     title: {
-      name: "hookHeaderTwo",
+      name: "hookHeaderSecondary",
       text: generateLorem(5),
       direction: "ltr",
+      className: "ps-3",
     },
   },
-  hookTwo: {
-    theme: "dark",
+  hookSecondary: {
+    theme: "light",
     wrapper: {
+      name: "hookHeaderSecondary",
       threshold: thresholds.wrapper.content,
-      size: "half",
-      className: "pb-12 !pt-0",
+      size: "threeQuarter",
+      className: "pb-12 !pt-0 flex flex-col gap-12 lg:flex-row justify-evenly items-center w-full",
     },
   },
 };
@@ -196,7 +200,7 @@ const textContent: ContentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-start !sm:w-fit w-full h-full md:gap-6 xl:w-fit",
+        class: "flex flex-col items-start sm:!w-fit w-full h-full md:gap-6",
       },
     },
     form: {
@@ -230,7 +234,7 @@ const textContent: ContentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-start !sm:w-fit w-full h-full md:gap-6",
+        class: "flex flex-col items-start sm:!w-fit w-full h-full md:gap-6",
       },
     },
     form: {
@@ -264,7 +268,7 @@ const textContent: ContentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-start !sm:w-fit w-full h-full md:gap-6",
+        class: "flex flex-col items-start sm:!w-fit w-full h-full md:gap-6",
       },
     },
     form: {
@@ -298,7 +302,7 @@ const textContent: ContentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-start !sm:w-fit w-full h-full md:gap-6",
+        class: "flex flex-col items-start sm:!w-fit w-full h-full md:gap-6",
       },
     },
     form: {
@@ -392,14 +396,52 @@ const imageTextContent: ContentType<"image-text"> = {
     },
     theme: "dark",
   },
-  hookOne: {
+  hookPrimaryTop: {
     theme: "dark",
     type: "image-text",
     img: {
-      name: "lorem-vijay.webp",
+      name: "outdoor-1.webp",
       props: {
-        alt: "l'image lorem de vijay",
-        class: "w-[200px]",
+        alt: "child climbing tree",
+        class: "w-[300px]",
+      },
+    },
+    title: {
+      content: generateLorem(10),
+    },
+    article: {
+      props: {
+        class: "flex-col md:flex-row",
+      },
+    },
+  },
+  hookPrimaryBot: {
+    theme: "dark",
+    type: "image-text",
+    img: {
+      name: "outdoor-2.webp",
+      props: {
+        alt: "adult climbing tree",
+        class: "w-[300px]",
+      },
+    },
+    title: {
+      content: generateLorem(10),
+    },
+    article: {
+      props: {
+        class: "flex-col md:flex-row",
+      },
+    },
+  },
+  hookSecondaryTop: {
+    theme: "light",
+    type: "image-text",
+    img: {
+      name: "outdoor-3.webp",
+      props: {
+        alt: "man on a zip line",
+        class: "w-[300px]",
       },
     },
     title: {
@@ -411,14 +453,14 @@ const imageTextContent: ContentType<"image-text"> = {
       },
     },
   },
-  hookTwo: {
-    theme: "dark",
+  hookSecondaryBot: {
+    theme: "light",
     type: "image-text",
     img: {
-      name: "lorem-lou.webp",
+      name: "outdoor-4.webp",
       props: {
-        alt: "l'image lorem de vijay",
-        class: "w-[200px]",
+        alt: "classroom in spring park",
+        class: "w-[300px]",
       },
     },
     title: {
