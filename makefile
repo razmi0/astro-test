@@ -1,5 +1,5 @@
 DATE_WITH_TIME = $(shell echo %date%:%time%)
-EMOJI = $(shell echo "⏰")
+EMOJI = $(shell echo ⏰)
 
 checkpoint:
 	@git add -A

@@ -7,7 +7,7 @@ import type { ContentFormat } from "@/types";
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
 };
-
+//
 type ContentType<T extends ContentFormat> = {
   [key: string]: ContentProps<T>;
 };
