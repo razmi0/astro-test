@@ -7,7 +7,8 @@ checkpoint:
 	@git commit -m "checkpoint : $(DATE_WITH_TIME)"
 	@git push
 	@echo "checkpoint done!"
-	@UNAME := $(shell uname)
+	
+UNAME := $(shell uname)
 
 ifeq ($(UNAME), Windows_NT)
 echo "Windows"
