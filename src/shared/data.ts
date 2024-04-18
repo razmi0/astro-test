@@ -4,6 +4,7 @@ import { generateLorem } from "@/helpers";
 import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
 import type { ContentFormat } from "@/types";
 
+//
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
 };
