@@ -35,9 +35,9 @@ export default {
           600: "#1d3822",
         },
         pur: {
-          400: "#7b8ec3",
-          500: "#ba9bc5",
-          600: "#d5d4ea",
+          400: "#d5d4ea",
+          500: "#7b8ec3",
+          600: "#ba9bc5",
         },
       },
       keyframes: {
