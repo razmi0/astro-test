@@ -1,15 +1,15 @@
-import type { ContentProps } from "@/components/Content/Content.astro";
 import { links } from "@/components/Nav/shared/data";
+import type { SegmentProps } from "@/components/Segment/Segment.astro";
 import { generateLorem } from "@/helpers";
 import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
-import type { ContentFormat } from "@/types";
+import type { SegmentFormat } from "@/types";
 
 type ScreenUnitType = {
   [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
 };
 //
-type ContentType<T extends ContentFormat> = {
-  [key: string]: ContentProps<T>;
+type SegmentType<T extends SegmentFormat> = {
+  [key: string]: SegmentProps<T>;
 };
 
 const thresholds = {
@@ -180,7 +180,7 @@ const wrappers: ScreenUnitType = {
   },
 };
 
-const textContent: ContentType<"text"> = {
+const textContent: SegmentType<"text"> = {
   presentationContentOne: {
     theme: "light",
     type: "text",
@@ -320,7 +320,7 @@ const textContent: ContentType<"text"> = {
   },
 };
 
-const imageTextContent: ContentType<"image-text"> = {
+const imageTextContent: SegmentType<"image-text"> = {
   vijay: {
     type: "image-text",
     img: {

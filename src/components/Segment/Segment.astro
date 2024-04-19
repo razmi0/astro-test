@@ -1,0 +1,23 @@
+---
+import SegmentText from "./SegmentText.astro";
+import SegmentImageText from "./SegmentImageText.astro";
+
+import type { SegmentFormat, SegmentPropsMap } from "@/types";
+
+export type SegmentProps<T extends SegmentFormat> = SegmentPropsMap[T];
+
+const SegmentComponent = (() => {
+  switch (Astro.props.type) {
+    case "image-text":
+      return SegmentImageText;
+    case "text-image":
+      return SegmentImageText;
+    case "text":
+      return SegmentText;
+    default:
+      return SegmentText;
+  }
+})();
+---
+
+<SegmentComponent {...Astro.props as SegmentProps<typeof Astro.props.type>} />

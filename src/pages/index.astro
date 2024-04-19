@@ -4,7 +4,7 @@ import Header from "@/layouts/Header.astro";
 import Footer from "@/layouts/Footer.astro";
 import ScreenUnit from "@/layouts/ScreenUnit.astro";
 import Hero from "@/components/Hero.astro";
-import Content from "@/components/Content/Content.astro";
+import Segment from "@/components/Segment/Segment.astro";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
 import { textContent, wrappers, imageTextContent } from "@/shared/data";
 ---
@@ -27,15 +27,15 @@ import { textContent, wrappers, imageTextContent } from "@/shared/data";
     <ColorTheme theme="dark" curve>
       <ScreenUnit {...wrappers.hookHeaderPrimary} />
       <ScreenUnit {...wrappers.hookPrimary}>
-        <Content {...imageTextContent.hookPrimaryTop} />
-        <Content {...imageTextContent.hookPrimaryBot} />
+        <Segment {...imageTextContent.hookPrimaryTop} />
+        <Segment {...imageTextContent.hookPrimaryBot} />
       </ScreenUnit>
     </ColorTheme>
     <ColorTheme theme="dark" curve rotate="180deg">
       <ScreenUnit {...wrappers.hookHeaderSecondary} />
       <ScreenUnit {...wrappers.hookSecondary}>
-        <Content {...imageTextContent.hookSecondaryTop} />
-        <Content {...imageTextContent.hookSecondaryBot} />
+        <Segment {...imageTextContent.hookSecondaryTop} />
+        <Segment {...imageTextContent.hookSecondaryBot} />
       </ScreenUnit>
     </ColorTheme>
     {
@@ -52,10 +52,10 @@ import { textContent, wrappers, imageTextContent } from "@/shared/data";
     <ColorTheme theme="light" curve>
       <ScreenUnit {...wrappers.presentationHeader} />
       <ScreenUnit {...wrappers.presentation}>
-        <Content {...textContent.presentationContentOne} />
-        <Content {...textContent.presentationContentTwo} />
-        <Content {...textContent.presentationContentThree} />
-        <Content {...textContent.presentationContentFour} />
+        <Segment {...textContent.presentationContentOne} />
+        <Segment {...textContent.presentationContentTwo} />
+        <Segment {...textContent.presentationContentThree} />
+        <Segment {...textContent.presentationContentFour} />
       </ScreenUnit>
     </ColorTheme>
     {

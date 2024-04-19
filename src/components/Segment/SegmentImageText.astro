@@ -1,10 +1,10 @@
 ---
 import FadeImage from "@/components/ui/FadeImage.astro";
-import type { ContentProps } from "./Content.astro";
-import ContentForm from "./ContentForm.astro";
+import type { SegmentProps } from "./Segment.astro";
+import SegmentForm from "./SegmentForm.astro";
 import colorThemes from "@/components/ui/Color/data";
 
-interface Props extends ContentProps<"image-text"> {}
+interface Props extends SegmentProps<"image-text"> {}
 
 const {
   /**
@@ -121,6 +121,6 @@ const defaultArticleClass = "flex justify-evenly items-center text-slate-900 dar
         </p>
       )
     }
-    {(input || button) && <ContentForm input={input} button={button} form={form} label={label} />}
+    {(input || button) && <SegmentForm input={input} button={button} form={form} label={label} />}
   </div>
 </article>

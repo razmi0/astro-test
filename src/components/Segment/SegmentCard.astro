@@ -1,9 +1,9 @@
 ---
 import Background from "@/components/ui/Background";
-import ContentForm from "./ContentForm.astro";
-import type { ContentProps } from "./Content.astro";
+import SegmentForm from "./SegmentForm.astro";
+import type { SegmentProps } from "./Segment.astro";
 
-interface Props extends ContentProps<"card"> {}
+interface Props extends SegmentProps<"card"> {}
 
 const {
   /**
@@ -80,5 +80,5 @@ const {
       </p>
     )
   }
-  {(input || button) && <ContentForm input={input} button={button} form={form} label={label} />}
+  {(input || button) && <SegmentForm input={input} button={button} form={form} label={label} />}
 </article>

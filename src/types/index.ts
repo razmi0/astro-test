@@ -36,9 +36,9 @@ type FadeImageProps = {
 };
 
 type HTMLHeadingTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-type ContentFormat = "card" | "text" | "image-text";
+type SegmentFormat = "card" | "text" | "image-text";
 
-interface SharedProps<T extends ContentFormat> {
+interface SharedProps<T extends SegmentFormat> {
   type: T;
   title?: PropsWithContent<HTMLHeadingTags>;
   subtitle?: PropsWithContent<"small">;
@@ -65,7 +65,7 @@ interface FormProps {
   spacer?: boolean;
 }
 
-type ContentPropsMap = {
+type SegmentPropsMap = {
   "image-text": ImageProps & SharedProps<"image-text"> & FormProps;
   card: SharedProps<"card"> & FormProps & CardProps;
   text: SharedProps<"text"> & FormProps;
@@ -76,8 +76,8 @@ type Prettify<T> = {
 };
 
 export type {
-  ContentFormat,
-  ContentPropsMap,
+  SegmentFormat,
+  SegmentPropsMap,
   FadeImageProps,
   FormProps,
   HTMLHeadingTags,

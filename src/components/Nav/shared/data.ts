@@ -7,7 +7,7 @@ export type ListElementType = {
   src?: ImageNames;
   anchor?: string;
 };
-export type ContentType = {
+export type SegmentType = {
   href: string;
   label: string;
   noContent?: boolean;

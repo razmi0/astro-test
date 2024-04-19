@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Footer from "@/layouts/Footer.astro";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
 import ScreenUnit from "@/layouts/ScreenUnit.astro";
-import Content from "@/components/Content/Content.astro";
+import Segment from "@/components/Segment/Segment.astro";
 import { wrappers, imageTextContent } from "@/shared/data";
 ---
 
@@ -25,10 +25,10 @@ import { wrappers, imageTextContent } from "@/shared/data";
     <ColorTheme theme="dark" curve rotate={"180deg"}>
       <ScreenUnit {...wrappers.fondateurHeader} />
       <ScreenUnit {...wrappers.fondateurVijay}>
-        <Content {...imageTextContent.vijay} />
+        <Segment {...imageTextContent.vijay} />
       </ScreenUnit>
       <ScreenUnit {...wrappers.fondateurLou}>
-        <Content {...imageTextContent.lou} />
+        <Segment {...imageTextContent.lou} />
       </ScreenUnit>
     </ColorTheme>
     {
@@ -45,7 +45,7 @@ import { wrappers, imageTextContent } from "@/shared/data";
     <ColorTheme theme="light" curve>
       <ScreenUnit {...wrappers.histoireHeader} />
       <ScreenUnit {...wrappers.histoire}>
-        <Content {...imageTextContent.histoire} />
+        <Segment {...imageTextContent.histoire} />
       </ScreenUnit>
     </ColorTheme>
   </Fragment>
