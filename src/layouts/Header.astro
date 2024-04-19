@@ -3,6 +3,7 @@ import Spacer from "@/components/ui/Spacer.astro";
 import NavDesktop from "@/components/Nav/Desktop";
 import NavMobile from "@/components/Nav/Mobile";
 import { ModeToggle } from "../components/ui/ModeToggle";
+
 import Logo from "@/components/ui/Logo.astro";
 
 const currentPath = Astro.url.pathname;
@@ -60,11 +61,11 @@ const headerClassDesktop = [
   actOnMedia("md", onDesktop, onMobile);
 </script>
 
-<header data-media="desktop" class:list={[headerClassDesktop]} class="">
-  <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " />
-  <Spacer />
+<header data-media="desktop" class:list={[]} class="">
+  <!-- <Logo src="/logo.webp" imgClasses="rounded-full" figureClasses="h-16 w-16 " /> -->
+  <!-- <Spacer /> -->
   <NavDesktop client:idle currentPath={currentPath} />
-  <ModeToggle client:idle />
+  <!-- <ModeToggle client:idle /> -->
 </header>
 
 <header data-media="mobile" class:list={[headerClassMobile]}>
