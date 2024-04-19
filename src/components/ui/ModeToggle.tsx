@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { Button } from "@/components/ui/Button";
 
-export function ModeToggle() {
+export default function ModeToggle() {
   const [theme, setThemeState] = React.useState<"theme-light" | "dark" | "system">("theme-light");
 
   React.useEffect(() => {

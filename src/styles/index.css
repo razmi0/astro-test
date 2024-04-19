@@ -19,6 +19,11 @@
   scroll-behavior: smooth;
 }
 
+* {
+  scrollbar-color: #2e2e2e #f0f3f2;
+  scrollbar-width: thin;
+}
+
 *,
 *::before,
 *::after {

@@ -1,48 +1,33 @@
 ---
-import Spacer from "@/components/ui/Spacer.astro";
 import NavDesktop from "@/components/Nav/Desktop";
 import NavMobile from "@/components/Nav/Mobile";
-import { ModeToggle } from "../components/ui/ModeToggle";
-
 import Logo from "@/components/ui/Logo.astro";
+import Spacer from "@/components/ui/Spacer.astro";
 
-const currentPath = Astro.url.pathname;
-
-const headerClassMobile = [
-  // BASE
-  "flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-16 me-4 border-b-white bg-gradient-to-b",
-  // DARK
-  "dark:from-slate-800 dark:to-slate-900",
-  // LIGHT
-  "from-slate-400 to-slate-300",
-].join(" ");
-
-const headerClassDesktop = [
-  // BASE
-  "hidden md:flex px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-20 border-b-white bg-gradient-to-b",
-  // DARK
-  "dark:from-slate-800 dark:to-slate-900",
-  // LIGHT
-  "from-slate-400 to-slate-300",
-].join(" ");
+// const headerClassMobile = [
+//   // BASE
+//   "flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-16 me-4 border-b-white bg-gradient-to-b",
+//   // DARK
+//   "dark:from-slate-800 dark:to-slate-900",
+//   // LIGHT
+//   "from-slate-400 to-slate-300",
+// ].join(" ");
 ---
 
 <script is:inline>
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
-  const isDark = getThemePreference() === "dark";
-  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
-  if (typeof localStorage !== "undefined") {
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
+  const f = () =>
+      "undefined" != typeof localStorage && localStorage.getItem("theme")
+        ? localStorage.getItem("theme")
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light",
+    id = "dark" === f();
+  if ((document.documentElement.classList[id ? "add" : "remove"]("dark"), "undefined" != typeof localStorage)) {
+    let e = new MutationObserver(() => {
+      let e = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", e ? "dark" : "light");
     });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    e.observe(document.documentElement, { attributes: !0, attributeFilter: ["class"] });
   }
 </script>
 
@@ -61,15 +46,14 @@ const headerClassDesktop = [
   actOnMedia("md", onDesktop, onMobile);
 </script>
 
-<header data-media="desktop" class:list={[]} class="fixed top-0 left-0 mt-10 ml-10 z-10 w-fit">
-  <!-- <Logo imgClasses="rounded-full" figureClasses="h-16 w-16 " /> -->
-  <!-- <Spacer /> -->
-  <NavDesktop client:idle currentPath={currentPath} />
-  <!-- <ModeToggle client:idle /> -->
+<header data-media="desktop" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-50 w-full"]}>
+  <NavDesktop client:idle />
+  <Spacer />
+  <Logo />
 </header>
 
-<header data-media="mobile" class:list={[headerClassMobile]}>
-  <NavMobile client:idle currentPath={currentPath} />
+<header data-media="mobile" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-50 w-full"]}>
+  <NavMobile client:idle />
   <Spacer />
-  <Logo imgClasses="rounded-full" figureClasses="h-12 w-12 sm:h-16 sm:w-16" />
+  <Logo />
 </header>

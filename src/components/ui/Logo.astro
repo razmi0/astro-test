@@ -1,16 +1,26 @@
 ---
 import { Image } from "astro:assets";
 import LogoImg from "../../assets/logo.webp";
+
 interface Props {
   imgClasses?: string;
   figureClasses?: string;
+  width?: number;
+  height?: number;
 }
 
-const { imgClasses, figureClasses } = Astro.props;
+const { imgClasses, figureClasses, width = 42, height = 42 } = Astro.props;
 ---
 
 <figure class:list={[figureClasses]}>
   <a href="/" aria-label="Home">
-    <Image src={LogoImg} format="webp" alt="Colorful logo of the company" class:list={[imgClasses]} />
+    <Image
+      src={LogoImg}
+      width={width}
+      height={height}
+      format="webp"
+      alt="Colorful logo of the company"
+      class:list={[imgClasses]}
+    />
   </a>
 </figure>
