@@ -63,3 +63,9 @@
 ### ent
 
 - lyreco : fourniture de bureau
+
+### Note rdv Lise
+
+- grandstander
+- im fell dw pica
+  quattrocento sans
