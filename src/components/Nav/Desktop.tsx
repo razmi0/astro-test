@@ -1,107 +1,11 @@
-import {
-  NavigationMenu as Menu,
-  NavigationMenuContent as MenuContent,
-  NavigationMenuItem as MenuItem,
-  NavigationMenuLink as MenuLink,
-  NavigationMenuList as MenuList,
-  NavigationMenuTrigger as MenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/NavigationMenu";
-import { generateLorem } from "@/helpers";
-import { LucideSquareArrowOutUpRight } from "lucide-react";
-import ListElement from "./shared/ListElement";
-import { content, links, menuLinkClass } from "./shared/data";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/Accordion";
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTrigger } from "../ui/Drawer";
+import { ModeToggle } from "../ui/ModeToggle";
+import Spacer from "../ui/Spacer";
+import MenuIcon from "./shared/MenuIcon";
+import { links } from "./shared/data";
 
-/**
- *
- *
- *
- *
- *
- *
- * For NavDesktop
- * @description The trigger for the NavDesktop
- *
- *
- *
- *
- *
- *
- */
-const Trigger = ({ currentPath, children, href }: { currentPath: string; children: any; href: string }) => {
-  const isPath = currentPath.replace("/", "") === href.replace("/", "");
-  return (
-    <MenuTrigger
-      className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
-        isPath ? "hover:border-gr-400" : "hover:border-white"
-      } `}
-      style={{ color: isPath ? "var(--color-gr-400)" : "inherit" }}
-    >
-      {children}
-    </MenuTrigger>
-  );
-};
-
-/**
- *
- *
- *
- *
- *
- *
- *
- * For NavDesktop
- * @description Just the trigger with no content in NavigationMenu
- *
- *
- *
- *
- *
- *
- */
-const NoContentItem = ({ label, href, currentPath }: { label: string; href: string; currentPath: string }) => {
-  const isPathClasses =
-    currentPath === href
-      ? "dark:hover:border-gr-400 dark:text-gr-400 text-gr-500 hover:border-gr-500"
-      : "hover:border-white";
-  return (
-    <MenuLink asChild>
-      <a href={href} className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${isPathClasses} `}>
-        {label}
-      </a>
-    </MenuLink>
-  );
-};
-
-/**
- *
- *
- *
- *
- *
- *
- * NAVDESKTOP
- * @description The big item in the content of a element of NavDesktop
- *
- *
- *
- *
- *
- *
- *
- *
- */
-const AsideMenuLink = ({ href }: { href: string }) => (
-  <MenuLink asChild>
-    <a href={href} className={menuLinkClass}>
-      <span className="flex flex-col justify-center items-start">
-        <LucideSquareArrowOutUpRight size={18} className="text-gr-500 dark:text-gr-400 mb-2" />
-        <h4 className="w-full text-gr-500 dark:text-gr-400">{generateLorem(3)}</h4>
-      </span>
-      <p className="text-sm">{generateLorem(20)}</p>
-    </a>
-  </MenuLink>
-);
+const lorems = ["Lorem ipsum dolor ", "consectetur", "sed do eiusmod"];
 
 /**
  *
@@ -124,70 +28,103 @@ const AsideMenuLink = ({ href }: { href: string }) => (
 export default function NavDesktop({ currentPath }: { currentPath: string }) {
   return (
     <>
-      <Menu viewportClassName="right-0" className="me-4">
-        <MenuList>
-          {/* ACCUEIL */}
-          {/* ACCUEIL */}
-          {/* ACCUEIL */}
-          {/* ACCUEIL */}
-          <NoContentItem currentPath={currentPath} href={links[0].href} label={links[0].label} />
-          {/* ACTIVITES */}
-          {/* ACTIVITES */}
-          {/* ACTIVITES */}
-          {/* ACTIVITES */}
-          <MenuItem>
-            <Trigger href={links[1].href} currentPath={currentPath}>
-              {links[1].label}
-            </Trigger>
-            <MenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
-              <AsideMenuLink href={links[1].href} />
-              <ul className="w-[615px] flex flex-col h-full items-start justify-start">
-                {content.activities.map((element) => (
-                  <ListElement key={element.title} {...element} />
-                ))}
-              </ul>
-            </MenuContent>
-          </MenuItem>
-          {/* QUI SOMMES NOUS (about)*/}
-          {/* QUI SOMMES NOUS */}
-          {/* QUI SOMMES NOUS */}
-          {/* QUI SOMMES NOUS */}
-          <MenuItem>
-            <Trigger href={links[2].href} currentPath={currentPath}>
-              {links[2].label}
-            </Trigger>
-            <MenuContent className="flex flex-row p-5 h-[320px] gap-6 max-w-[600px] card">
-              <AsideMenuLink href={links[2].href} />
-              <ul className="w-[615px]">
-                {content.about.map((element) => (
-                  <ListElement key={element.title} {...element} />
-                ))}
-              </ul>
-            </MenuContent>
-          </MenuItem>
-          {/* FAQ */}
-          {/* FAQ */}
-          {/* FAQ */}
-          {/* FAQ */}
-          <MenuItem>
-            <Trigger href={links[3].href} currentPath={currentPath}>
-              {links[3].label}
-            </Trigger>
-            <MenuContent>
-              <ul className="w-[615px] grid grid-cols-2 p-5">
-                {content.faq.map((element) => (
-                  <ListElement key={element.title} {...element} />
-                ))}
-              </ul>
-            </MenuContent>
-          </MenuItem>
-          {/* CONTACT */}
-          {/* CONTACT */}
-          {/* CONTACT */}
-          {/* CONTACT */}
-          <NoContentItem currentPath={currentPath} href={links[4].href} label={links[4].label} />
-        </MenuList>
-      </Menu>
+      <Drawer preventScrollRestoration direction="left">
+        <DrawerTrigger>
+          <MenuIcon />
+        </DrawerTrigger>
+        <DrawerContent
+          className="h-full w-1/3 max-w-[400px] bg-slate-200 dark:bg-slate-900 text-black dark:text-white rounded-none border-none p-0"
+          handlerClassName="hidden"
+        >
+          <DrawerHeader className="flex-row w-full flex items-center justify-between pt-7 px-5">
+            <Logo />
+            <DrawerClose>
+              <MenuIcon direction="left" />
+            </DrawerClose>
+          </DrawerHeader>
+          <menu className="flex flex-col w-full  items-start justify-center pt-14 px-5">
+            <SimpleItem href={links[0].href}>Accueil</SimpleItem>
+            <SimpleItem href={links[4].href}>Contact</SimpleItem>
+            <SimpleItem href={links[2].href}>Qui nous sommes</SimpleItem>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value={links[1].label} key={links[1].label} className="items-center">
+                <Trigger>Activités et tarifs</Trigger>
+                <AccordionContent asChild>
+                  <List>
+                    {lorems.map((label) => (
+                      <ListElement key={label}>{label}</ListElement>
+                    ))}
+                  </List>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value={links[3].label} key={links[3].label} className="items-center">
+                <Trigger>FAQ</Trigger>
+                <AccordionContent asChild>
+                  <List>
+                    {lorems.map((label) => (
+                      <ListElement key={label}>{label}</ListElement>
+                    ))}
+                  </List>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </menu>
+          <Spacer />
+          <Footer>
+            <ModeToggle />
+          </Footer>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 }
+
+const Logo = () => {
+  return (
+    <>
+      <figure className="w-fit h-fit">
+        <a href="/" aria-label="Home">
+          <img
+            src="logo.webp"
+            width="52"
+            height="52"
+            decoding="async"
+            loading="lazy"
+            alt="Colorful logo of the company"
+            className="rounded-sm"
+          />
+        </a>
+      </figure>
+    </>
+  );
+};
+
+const SimpleItem = ({ children, href }: { children: any; href: string }) => (
+  <li className="h-16 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 w-full px-4">
+    <a href={href} className="cursor-pointer h-full w-full flex items-center">
+      <h3 className="text-lg grandstander">{children}</h3>
+    </a>
+  </li>
+);
+
+const Trigger = ({ children }: { children: any }) => (
+  <AccordionTrigger className="justify-between hover:bg-slate-300 dark:hover:bg-slate-700 rounded-xl px-4">
+    <span className="text-lg grandstander text-left">{children}</span>
+  </AccordionTrigger>
+);
+
+const Footer = ({ children }: { children: any }) => (
+  <div className="w-full h-20 bg-slate-100 dark:bg-slate-700 flex items-center px-8">{children}</div>
+);
+
+const List = ({ children }: { children: any }) => (
+  <ul className="px-6 ms-6 w-full text-lg grandstander flex flex-col justify-evenly border-transparent border-s-4 border-s-slate-300 dark:border-s-slate-700">
+    {children}
+  </ul>
+);
+
+const ListElement = ({ children }: { children: any }) => (
+  <li className="px-4 flex items-center h-16 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 w-full">
+    {children}
+  </li>
+);

@@ -1,4 +1,3 @@
-import { NavigationMenuLink as MenuLink } from "@radix-ui/react-navigation-menu";
 import type { ListElementType } from "./data";
 
 /**
@@ -26,15 +25,7 @@ const ListElement = ({ title, description, anchor, mobile = false }: ListElement
     </li>
   );
 
-  if (!mobile && anchor) {
-    return (
-      <MenuLink asChild>
-        <a href={anchor}>
-          <Main />
-        </a>
-      </MenuLink>
-    );
-  } else if (mobile && anchor) {
+  if (mobile && anchor) {
     return (
       <a href={anchor}>
         <Main />

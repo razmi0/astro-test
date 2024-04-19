@@ -22,7 +22,7 @@ const buttonVariants = cva(base.join(" "), {
         "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
       secondary:
         "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
-      ghost: "hover:border-def-100",
+      ghost: "hover:border-def-900 dark:hover:border-def-100",
       link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
     },
     size: {
