@@ -46,13 +46,13 @@ import Spacer from "@/components/ui/Spacer.astro";
   actOnMedia("md", onDesktop, onMobile);
 </script>
 
-<header data-media="desktop" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-10 w-full"]}>
+<header data-media="desktop" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-50 w-full"]}>
   <NavDesktop client:idle />
   <Spacer />
   <Logo />
 </header>
 
-<header data-media="mobile" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-10 w-full"]}>
+<header data-media="mobile" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-50 w-full"]}>
   <NavMobile client:idle />
   <Spacer />
   <Logo />
