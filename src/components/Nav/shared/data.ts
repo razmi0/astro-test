@@ -122,4 +122,25 @@ export const headerItemClass = [
   "hover:underline focus:underline",
 ].join(" ");
 
+export const triggerClass = [
+  // -- BASE
+  // --
+  "rounded-full card w-[56px] h-[56px] flex items-center justify-center",
+  // -- HOVER
+  // --
+  "hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors",
+  // -- THEME
+  // --
+  "bg-slate-300/80 dark:bg-slate-800/80",
+  // -- PSEUDO-BASE
+  // --
+  "before:w-[inherit] before:h-[inherit] before:rounded-full before:blur-sm",
+  // -- PSEUDO-POSITION
+  // --
+  "before:mt-10 before:ml-10 z-10 before:top-0 before:left-0 before:absolute",
+  // -- PSEUDO-THEME
+  // --
+  "before:bg-slate-300/30 before:dark:bg-slate-900/30",
+].join(" ");
+
 export const lorems = ["Lorem ipsum dolor ", "consectetur", "sed do eiusmod"];
