@@ -121,3 +121,5 @@ export const headerItemClass = [
   // HOVER
   "hover:underline focus:underline",
 ].join(" ");
+
+export const lorems = ["Lorem ipsum dolor ", "consectetur", "sed do eiusmod"];
