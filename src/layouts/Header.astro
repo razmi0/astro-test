@@ -1,21 +1,17 @@
 ---
-import Spacer from "@/components/ui/Spacer.astro";
 import NavDesktop from "@/components/Nav/Desktop";
 import NavMobile from "@/components/Nav/Mobile";
-import { ModeToggle } from "../components/ui/ModeToggle";
-
 import Logo from "@/components/ui/Logo.astro";
+import Spacer from "@/components/ui/Spacer.astro";
 
-const currentPath = Astro.url.pathname;
-
-const headerClassMobile = [
-  // BASE
-  "flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-16 me-4 border-b-white bg-gradient-to-b",
-  // DARK
-  "dark:from-slate-800 dark:to-slate-900",
-  // LIGHT
-  "from-slate-400 to-slate-300",
-].join(" ");
+// const headerClassMobile = [
+//   // BASE
+//   "flex md:hidden px-3 items-center justify-center w-full fixed z-50 top-0 left-0 h-16 me-4 border-b-white bg-gradient-to-b",
+//   // DARK
+//   "dark:from-slate-800 dark:to-slate-900",
+//   // LIGHT
+//   "from-slate-400 to-slate-300",
+// ].join(" ");
 ---
 
 <script is:inline>
@@ -50,12 +46,14 @@ const headerClassMobile = [
   actOnMedia("md", onDesktop, onMobile);
 </script>
 
-<header data-media="desktop" class:list={["fixed top-0 left-0 mt-10 ml-10 z-10 w-fit"]} class="">
+<header data-media="desktop" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-10 w-full"]}>
   <NavDesktop client:idle />
+  <Spacer />
+  <Logo />
 </header>
 
-<header data-media="mobile" class:list={[headerClassMobile]}>
+<header data-media="mobile" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-10 w-full"]}>
   <NavMobile client:idle />
   <Spacer />
-  <Logo imgClasses="rounded-full" figureClasses="h-12 w-12 sm:h-16 sm:w-16" />
+  <Logo />
 </header>
