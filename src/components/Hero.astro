@@ -111,7 +111,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
   }
 
   .anchor:hover .icon-1 {
-    fill: var(--color-main-300);
+    fill: var(--color-gr-400);
   }
 
   .anchor .icon-1 {
@@ -121,7 +121,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
 
   .anchor:hover .icon-2,
   .anchor:hover .icon-3 {
-    fill: var(--color-defs-900);
+    fill: var(--color-def-900);
   }
 
   @keyframes slay-1 {
@@ -217,9 +217,9 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
     class="[text-shadow:_0_0px_2px_rgb(255_255_255_/_40%)] z-10 bg-transparent absolute top-0 mt-[35%] md:mt-[30%] lg:mt-[25%] xl:mt-[20%] flex flex-col w-[40ch] sm:w-[50ch] md:w-[60ch] lg:w-[75ch] ps-5 md:ps-10 gap-3"
     data-is="hero-text-wrapper"
   >
-    <h1 class="font-bold animation-start animation-in-title text-[3rem] sm:text-[3rem] md:text-[3rem]">
+    <h1 class="animation-start animation-in-title text-[3rem] sm:text-[3rem] md:text-[3rem]">
       {generateLorem(1)}
-      <span class="text-main-500 anchor">
+      <span class="text-gr-500 anchor">
         {generateLorem(1)}
         <div class="icon-1">
           <svg
@@ -248,7 +248,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
       data-delay="fast"
     >
       {generateLorem(5)}
-      <span class="text-main-300 [text-shadow:none]">{generateLorem(2)}</span>
+      <span class="text-gr-400 [text-shadow:none]">{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
     <p
@@ -256,7 +256,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
       data-delay="slow"
     >
       {generateLorem(5)}
-      <span class="text-main-300 [text-shadow:none]">{generateLorem(2)}</span>
+      <span class="text-gr-400 [text-shadow:none]">{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
 
@@ -264,9 +264,9 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
       <a href="/activities">
         <Button
           variant={"outline"}
-          className="ms-3 sm:ms-5 lg:ms-6 xl:ms-7 bg-main-500 dark:bg-main-500  rounded-full px-12 card"
+          className="ms-3 sm:ms-5 lg:ms-6 xl:ms-7 bg-gr-500 dark:bg-gr-500  rounded-full px-12 card"
         >
-          <span class="text-defs-900 dark:text-defs-100">S'inscrire</span>
+          <span class="text-def-900 dark:text-def-100">S'inscrire</span>
         </Button>
       </a>
     </div>

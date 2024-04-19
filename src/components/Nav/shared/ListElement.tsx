@@ -21,8 +21,8 @@ import type { ListElementType } from "./data";
 const ListElement = ({ title, description, anchor, mobile = false }: ListElementType & { mobile?: boolean }) => {
   const Main = () => (
     <li className="hover:bg-slate-200 dark:hover:bg-slate-700 py-2 transition-colors px-3 rounded-md w-full">
-      <h4 className="text-base text-main-500 dark:text-main-300">{title}</h4>
-      <p className="text-sm dark:text-defs-100 text-defs-900 text-balance">{description}</p>
+      <h4 className="text-base text-gr-500 dark:text-gr-400">{title}</h4>
+      <p className="text-sm dark:text-def-100 text-def-900 text-balance">{description}</p>
     </li>
   );
 

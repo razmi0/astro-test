@@ -33,9 +33,9 @@ const Trigger = ({ currentPath, children, href }: { currentPath: string; childre
   return (
     <MenuTrigger
       className={`bg-transparent ghost ${navigationMenuTriggerStyle()} ${
-        isPath ? "hover:border-main-300" : "hover:border-white"
+        isPath ? "hover:border-gr-400" : "hover:border-white"
       } `}
-      style={{ color: isPath ? "var(--color-main-300)" : "inherit" }}
+      style={{ color: isPath ? "var(--color-gr-400)" : "inherit" }}
     >
       {children}
     </MenuTrigger>
@@ -62,7 +62,7 @@ const Trigger = ({ currentPath, children, href }: { currentPath: string; childre
 const NoContentItem = ({ label, href, currentPath }: { label: string; href: string; currentPath: string }) => {
   const isPathClasses =
     currentPath === href
-      ? "dark:hover:border-main-300 dark:text-main-300 text-main-500 hover:border-main-500"
+      ? "dark:hover:border-gr-400 dark:text-gr-400 text-gr-500 hover:border-gr-500"
       : "hover:border-white";
   return (
     <MenuLink asChild>
@@ -95,8 +95,8 @@ const AsideMenuLink = ({ href }: { href: string }) => (
   <MenuLink asChild>
     <a href={href} className={menuLinkClass}>
       <span className="flex flex-col justify-center items-start">
-        <LucideSquareArrowOutUpRight size={18} className="text-main-500 dark:text-main-300 mb-2" />
-        <h4 className="w-full text-main-500 dark:text-main-300">{generateLorem(3)}</h4>
+        <LucideSquareArrowOutUpRight size={18} className="text-gr-500 dark:text-gr-400 mb-2" />
+        <h4 className="w-full text-gr-500 dark:text-gr-400">{generateLorem(3)}</h4>
       </span>
       <p className="text-sm">{generateLorem(20)}</p>
     </a>

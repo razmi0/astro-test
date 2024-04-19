@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const base = [
   "inline-flex items-center justify-center whitespace-nowrap rounded-md border-2 border-transparent text-sm font-medium transition-colors",
-  "focus-visible:outline-none focus-visible:border-defs-100",
+  "focus-visible:outline-none focus-visible:border-def-100",
   "disabled:pointer-events-none disabled:opacity-50",
   // "dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300",
 ];
@@ -22,7 +22,7 @@ const buttonVariants = cva(base.join(" "), {
         "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
       secondary:
         "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
-      ghost: "hover:border-defs-100",
+      ghost: "hover:border-def-100",
       link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
     },
     size: {

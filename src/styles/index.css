@@ -1,34 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-def-100: #f0f3f2;
+  --color-def-900: #2e2e2e;
 
-  --color-defs-100: #f0f3f2;
-  --color-defs-900: #2e2e2e;
+  --color-pur-400: #7b8ec3;
+  --color-pur-500: #ba9bc5;
+  --color-pur-600: #d5d4ea;
 
-  --color-main-300: #7ee2c7;
-  --color-main-400: #4db6ac;
-  --color-main-500: #50ac93;
-  --color-main-600: #0b9e8f;
-  --color-main-900: #003329;
-
-  --color-test-500: #fb923c;
+  --color-gr-400: #a2c999;
+  --color-gr-500: #397c5b;
+  --color-gr-600: #1d3822;
 
   scroll-behavior: smooth;
-  @apply selection:bg-main-500 dark:bg-main-300;
 }
 
 *,
@@ -47,17 +35,4 @@
     0px 0px 0px 1px rgba(0, 0, 0, 0.25);
   --tw-shadow-colored: inset 0px 1px 0px 0px var(--tw-shadow-color), inset 0px 0px 0px 1px var(--tw-shadow-color),
     0px 0px 0px 1px var(--tw-shadow-color);
-}
-
-.montserrat {
-  font-family: "Montserrat", sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply montserrat;
 }

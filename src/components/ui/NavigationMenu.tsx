@@ -40,7 +40,7 @@ const classes = [
   "group flex items-center justify-center w-max h-10 px-1 sm:px-1 md:px-3 lg:px-5 font-medium rounded-full transition-colors border-2 border-transparent",
   // FOCUS
   // --
-  "focus:ring-2 focus:ring-main-400 focus:outline-none ",
+  "focus:ring-2 focus:ring-gr-400 focus:outline-none ",
   // DISABLED
   // --
   "disabled:pointer-events-none disabled:opacity-50",

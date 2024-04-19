@@ -112,7 +112,7 @@ const HeaderItem = ({
   currentPath: string;
   children: any;
 }) => {
-  const isPathStyle = currentPath.replace("/", "") === href.replace("/", "") ? "text-main-500 dark:text-main-300" : "";
+  const isPathStyle = currentPath.replace("/", "") === href.replace("/", "") ? "text-gr-500 dark:text-gr-400" : "";
   return (
     <a href={href} className={[headerItemClass, isPathStyle, classNames].join(" ")}>
       <LucideSquareArrowOutUpRight size={16} className="translate-y-[0px]" />
@@ -152,13 +152,11 @@ const Item = ({
   <AccordionItem
     key={label}
     value={label}
-    className="mb-3 border-black dark:border-white hover:text-main-500 hover:dark:border-main-300 hover:dark:text-main-300 hover:border-main-500 transition-colors"
+    className="mb-3 border-black dark:border-white hover:text-gr-500 hover:dark:border-gr-400 hover:dark:text-gr-400 hover:border-gr-500 transition-colors"
   >
     <AccordionTrigger className="hover:no-underline no-underline ">
       <span
-        className={`${
-          currentPath.replace("/", "") === href.replace("/", "") ? "text-main-500 dark:text-main-300" : ""
-        }`}
+        className={`${currentPath.replace("/", "") === href.replace("/", "") ? "text-gr-500 dark:text-gr-400" : ""}`}
       >
         {label}
       </span>

@@ -211,7 +211,7 @@ const textContent: ContentType<"text"> = {
     button: {
       content: `<a href=${links[3].href}>Learn more...</a>`,
       props: {
-        className: "w-fit text-main-500 dark:text-main-300 ps-0 ms-0 text-left",
+        className: "w-fit text-gr-500 dark:text-gr-400 ps-0 ms-0 text-left",
         variant: "link",
       },
     },
@@ -245,7 +245,7 @@ const textContent: ContentType<"text"> = {
     button: {
       content: `<a href=${links[1].href}>Learn more...</a>`,
       props: {
-        className: "w-fit text-main-500 dark:text-main-300 ps-0 ms-0 text-left",
+        className: "w-fit text-gr-500 dark:text-gr-400 ps-0 ms-0 text-left",
         variant: "link",
       },
     },
@@ -279,7 +279,7 @@ const textContent: ContentType<"text"> = {
     button: {
       content: `<a href=${links[2].href}>Learn more...</a>`,
       props: {
-        className: "w-fit text-main-500 dark:text-main-300 ps-0 ms-0 text-left",
+        className: "w-fit text-gr-500 dark:text-gr-400 ps-0 ms-0 text-left",
         variant: "link",
       },
     },
@@ -313,7 +313,7 @@ const textContent: ContentType<"text"> = {
     button: {
       content: `<a href=${links[1].href}>Learn more...</a>`,
       props: {
-        className: "w-fit text-main-500 dark:text-main-300 ps-0 ms-0 text-left",
+        className: "w-fit text-gr-500 dark:text-gr-400 ps-0 ms-0 text-left",
         variant: "link",
       },
     },
