@@ -3,6 +3,11 @@
 //   NavigationMenuTrigger as MenuTrigger,
 //   navigationMenuTriggerStyle,
 // } from "@/components/ui/NavigationMenu";
+import { LucideSquareArrowOutUpRight } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/Accordion";
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTrigger } from "../ui/Drawer";
+import MenuIcon from "./shared/MenuIcon";
+import { headerItemClass, links } from "./shared/data";
 
 /**
  *
@@ -95,6 +100,26 @@
 //   </MenuLink>
 // );
 
+const Logo = () => {
+  return (
+    <>
+      <figure className="w-fit h-fit">
+        <a href="/" aria-label="Home">
+          <img
+            src="logo.webp"
+            width="52"
+            height="52"
+            decoding="async"
+            loading="lazy"
+            alt="Colorful logo of the company"
+            className="rounded-sm"
+          />
+        </a>
+      </figure>
+    </>
+  );
+};
+
 /**
  *
  *
@@ -114,8 +139,151 @@
  *
  */
 export default function NavDesktop({ currentPath }: { currentPath: string }) {
-  return <></>;
+  return (
+    <>
+      <Drawer preventScrollRestoration direction="left">
+        <DrawerTrigger>
+          <MenuIcon />
+        </DrawerTrigger>
+        <DrawerContent
+          className="h-full w-1/3 max-w-[400px] bg-slate-200 dark:bg-slate-900 text-black dark:text-white rounded-none border-none p-0"
+          handlerClassName="hidden"
+        >
+          <DrawerHeader className="flex-row w-full flex items-center justify-between pt-7 px-5">
+            <Logo />
+            <DrawerClose>
+              <MenuIcon direction="left" />
+            </DrawerClose>
+          </DrawerHeader>
+          <menu className="flex-col w-full flex items-start justify-center pt-14 px-5">
+            <li className=" h-16 rounded-xl hover:bg-slate-300 w-full px-4">
+              <a href={links[0].href} className="cursor-pointer h-full w-full flex items-center">
+                <h3 className="text-lg grandstander">Accueil</h3>
+              </a>
+            </li>
+            <li className=" h-16 rounded-xl hover:bg-slate-300 w-full px-4">
+              <a href={links[4].href} className="cursor-pointer h-full w-full flex items-center">
+                <h3 className="text-lg grandstander">Contact</h3>
+              </a>
+            </li>
+
+            <li className=" h-16 rounded-xl hover:bg-slate-300 w-full px-4">
+              <a href={links[2].href} className="cursor-pointer h-full w-full flex items-center">
+                <h3 className="text-lg grandstander">Qui sommes-nous</h3>
+              </a>
+            </li>
+            <Accordion type="single" collapsible asChild>
+              <AccordionItem value={links[1].label} asChild>
+                <li className="h-16 flex items-center rounded-xl hover:bg-slate-300 w-full px-4 [&>*]:w-full">
+                  <AccordionTrigger className="justify-between">
+                    <div className="text-lg grandstander w-full text-left">Activités et tarifs</div>
+                  </AccordionTrigger>
+                </li>
+              </AccordionItem>
+            </Accordion>
+            <li className=" h-16 flex items-center rounded-xl hover:bg-slate-300 w-full px-4">
+              <h3 className="text-lg grandstander">FAQ</h3>
+            </li>
+          </menu>
+
+          {/* 
+
+          export const links = [
+  {
+    href: "/",
+    label: "Accueil",
+    noContent: true,
+  },
+  {
+    href: "/activities",
+    label: "Nos activités et tarifs",
+  },
+  {
+    href: "/about",
+    label: "Qui sommes-nous",
+  },
+  {
+    href: "/faq",
+    label: "FAQ",
+  },
+  { href: "/contact", label: "Contact", noContent: true },
+]; */}
+
+          {/* <Accordion type="single" collapsible className="px-2 justify-center">
+            <Item currentPath={currentPath} href={links[1].href} label={links[1].label}>
+              <ul className="w-full flex flex-col h-full items-start justify-start">
+                {content.activities.map((element) => (
+                  <ListElement key={element.title} {...element} mobile />
+                ))}
+              </ul>
+            </Item>
+            <Item currentPath={currentPath} href={links[2].href} label={links[2].label}>
+              <ul className="w-full">
+                {content.about.map((element) => (
+                  <ListElement key={element.title} {...element} mobile />
+                ))}
+              </ul>
+            </Item>
+            <Item currentPath={currentPath} href={links[3].href} label={links[3].label}>
+              <ul className="w-full grid grid-cols-2">
+                {content.faq.map((element) => (
+                  <ListElement key={element.title} {...element} mobile />
+                ))}
+              </ul>
+            </Item>
+          </Accordion> */}
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
 }
+
+const HeaderItem = ({
+  href,
+  currentPath,
+  children,
+  classNames,
+}: {
+  classNames?: string;
+  href: string;
+  currentPath: string;
+  children: any;
+}) => {
+  const isPathStyle = currentPath.replace("/", "") === href.replace("/", "") ? "text-gr-500 dark:text-gr-400" : "";
+  return (
+    <a href={href} className={[headerItemClass, isPathStyle, classNames].join(" ")}>
+      <LucideSquareArrowOutUpRight size={16} className="translate-y-[0px]" />
+      {children}
+    </a>
+  );
+};
+
+const Item = ({
+  currentPath,
+  children,
+  href,
+  label,
+}: {
+  currentPath: string;
+  children?: any;
+  href: string;
+  label: string;
+}) => (
+  <AccordionItem
+    key={label}
+    value={label}
+    className="mb-3 border-black dark:border-white hover:text-gr-500 hover:dark:border-gr-400 hover:dark:text-gr-400 hover:border-gr-500 transition-colors"
+  >
+    <AccordionTrigger className="hover:no-underline no-underline ">
+      <span
+        className={`${currentPath.replace("/", "") === href.replace("/", "") ? "text-gr-500 dark:text-gr-400" : ""}`}
+      >
+        {label}
+      </span>
+    </AccordionTrigger>
+    {children && <AccordionContent>{children}</AccordionContent>}
+  </AccordionItem>
+);
 
 // {/* <Menu viewportClassName="right-0" className="me-4">
 // <MenuList>

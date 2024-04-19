@@ -4,39 +4,8 @@ import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "../ui/Drawer
 import { ModeToggle } from "../ui/ModeToggle";
 import Spacer from "../ui/Spacer";
 import ListElement from "./shared/ListElement";
+import MenuIcon from "./shared/MenuIcon";
 import { content, headerItemClass, links } from "./shared/data";
-
-const MenuIcon = () => {
-  return (
-    <svg viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg" width="30" height="30" className="pointer">
-      <style>{`
-          .rects > .rect-1 {
-            width: 25px;
-            transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
-          }
-          .rects > .rect-2 {
-            width: 15px;
-            transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
-          }
-          .rects > .rect-3 {
-            width: 10px;
-            transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
-          }
-          svg:hover > .rects > .rect-1 {
-            width: 10px;
-          }
-          svg:hover > .rects > .rect-3 {
-            width: 25px;
-          }
-        `}</style>
-      <g className="rects">
-        <rect y="25%" height="3" rx="1" className="rect-1 fill-slate-700 dark:fill-slate-300" />
-        <rect y="50%" height="3" rx="1" className="rect-2 fill-slate-800 dark:fill-slate-400" />
-        <rect y="75%" height="3" rx="1" className="rect-3 fill-slate-900 dark:fill-slate-500" />
-      </g>
-    </svg>
-  );
-};
 
 /**
  *
@@ -152,7 +121,7 @@ const Item = ({
   <AccordionItem
     key={label}
     value={label}
-    className="mb-3 border-black dark:border-white hover:text-gr-500 hover:dark:border-gr-400 hover:dark:text-gr-400 hover:border-gr-500 transition-colors"
+    className="mb-3 border-none hover:text-gr-500 hover:dark:border-gr-400 hover:dark:text-gr-400 hover:border-gr-500 transition-colors"
   >
     <AccordionTrigger className="hover:no-underline no-underline ">
       <span

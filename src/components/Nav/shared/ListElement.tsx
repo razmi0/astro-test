@@ -1,4 +1,3 @@
-// import { NavigationMenuLink as MenuLink } from "@radix-ui/react-navigation-menu";
 import type { ListElementType } from "./data";
 
 /**
