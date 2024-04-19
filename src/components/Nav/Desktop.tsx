@@ -25,7 +25,7 @@ const lorems = ["Lorem ipsum dolor ", "consectetur", "sed do eiusmod"];
  *
  *
  */
-export default function NavDesktop({ currentPath }: { currentPath: string }) {
+export default function NavDesktop() {
   return (
     <>
       <Drawer preventScrollRestoration direction="left">
