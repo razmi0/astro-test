@@ -3,7 +3,12 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const Accordion = AccordionPrimitive.Root;
+const Accordion = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <AccordionPrimitive.Root ref={ref} className={cn("w-full", className)} {...props} />
+));
 
 const ChevronDown = ({ className, ...props }: { className?: string }) => (
   <svg viewBox="0 0 512 512" fill="currentcolor" className={className} {...props}>
