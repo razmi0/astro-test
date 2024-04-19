@@ -1,5 +1,4 @@
 ---
-import menu from "./menu.svg?raw";
 import tree from "./tree.svg?raw";
 import type { IconNames } from "../../types/index";
 import type { HTMLAttributes } from "astro/types";
@@ -13,7 +12,6 @@ interface Props {
 const { name, className, props } = Astro.props;
 
 const icons: Record<IconNames, string> = {
-  menu: menu,
   tree: tree,
 };
 
