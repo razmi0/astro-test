@@ -10,9 +10,9 @@ const SegmentComponent = (() => {
   switch (Astro.props.type) {
     case "image-text":
       return SegmentImageText;
-    case "text-image":
-      return SegmentImageText;
     case "text":
+      return SegmentText;
+    case "card":
       return SegmentText;
     default:
       return SegmentText;

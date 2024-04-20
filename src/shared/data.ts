@@ -119,9 +119,9 @@ const wrappers: ScreenUnitType = {
       size: "half",
       className: [
         // BASE
-        "place-items-center md:justify-center md:items-start pb-12 gap-10 sm:gap-2 w-full !px-2 !pt-0 xl:justify-center xl:items-center",
+        "place-items-center md:justify-center md:items-start pb-12 gap-10 sm:gap-2 w-full !px-2 !pt-0",
         // GRID
-        "grid grid-rows-4 grid-cols-1 md:grid-rows-2 md:grid-cols-2 xl:grid-rows-1 xl:grid-cols-4",
+        "grid grid-rows-4 grid-cols-1 md:grid-rows-2 md:grid-cols-2 2xl:grid-rows-1 2xl:grid-cols-4",
       ].join(" "),
     },
   },
@@ -185,15 +185,24 @@ const textContent: SegmentType<"text"> = {
   presentationContentOne: {
     theme: "dark",
     type: "text",
-
+    card: true,
     title: {
       content: generateLorem(1),
       props: {
-        class: `mb-2 ${colorThemes["dark"].title}`,
+        class: `${colorThemes["dark"].title}`,
+      },
+      icon: "tree-1.png",
+      iconProps: {
+        class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[8px] -translate-x-[7px]",
+        alt: "tree icon representing feature number 1",
+      },
+      wrapperIconProps: {
+        class: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
       },
     },
+
     text: {
-      content: generateLorem(30),
+      content: generateLorem(15),
       threshold: thresholds.text,
       props: {
         class: "md:w-[30ch]",
@@ -201,18 +210,18 @@ const textContent: SegmentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-start sm:!w-fit w-full h-full md:gap-6",
+        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-3 py-5 mb-6",
       },
     },
     form: {
       props: {
-        class: "flex flex-col",
+        class: "flex flex-row items-center justify-center w-full",
       },
     },
     button: {
       content: `<a href=${links[3].href}>Learn more...</a>`,
       props: {
-        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left`,
+        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
         variant: "link",
       },
     },
@@ -220,14 +229,23 @@ const textContent: SegmentType<"text"> = {
   presentationContentTwo: {
     theme: "dark",
     type: "text",
+    card: true,
     title: {
       content: generateLorem(1),
       props: {
-        class: `mb-2 ${colorThemes["dark"].title}`,
+        class: `${colorThemes["dark"].title}`,
+      },
+      icon: "tree-2.png",
+      iconProps: {
+        class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[5px] -translate-x-[8px]",
+        alt: "tree icon representing feature number 1",
+      },
+      wrapperIconProps: {
+        class: "overflow-hidden rounded-full max-w-[82px] max-h-[82px] shadow-2xl shadow-black",
       },
     },
     text: {
-      content: generateLorem(30),
+      content: generateLorem(15),
       threshold: thresholds.text,
       props: {
         class: "md:w-[30ch]",
@@ -235,18 +253,18 @@ const textContent: SegmentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-start sm:!w-fit w-full h-full md:gap-6",
+        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6",
       },
     },
     form: {
       props: {
-        class: "flex flex-col",
+        class: "flex flex-row items-center justify-center w-full",
       },
     },
     button: {
       content: `<a href=${links[1].href}>Learn more...</a>`,
       props: {
-        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left`,
+        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
         variant: "link",
       },
     },
@@ -254,14 +272,23 @@ const textContent: SegmentType<"text"> = {
   presentationContentThree: {
     theme: "dark",
     type: "text",
+    card: true,
     title: {
       content: generateLorem(1),
       props: {
-        class: `mb-2 ${colorThemes["dark"].title}`,
+        class: `${colorThemes["dark"].title}`,
+      },
+      icon: "tree-3.png",
+      iconProps: {
+        class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[7px] -translate-x-[8.5px]",
+        alt: "tree icon representing feature number 1",
+      },
+      wrapperIconProps: {
+        class: "overflow-hidden rounded-full max-w-[82px] max-h-[82px] shadow-2xl shadow-black",
       },
     },
     text: {
-      content: generateLorem(30),
+      content: generateLorem(15),
       threshold: thresholds.text,
       props: {
         class: "md:w-[30ch]",
@@ -269,18 +296,18 @@ const textContent: SegmentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-start sm:!w-fit w-full h-full md:gap-6",
+        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6 ",
       },
     },
     form: {
       props: {
-        class: "flex flex-col",
+        class: "flex flex-row items-center justify-center w-full",
       },
     },
     button: {
       content: `<a href=${links[2].href}>Learn more...</a>`,
       props: {
-        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left`,
+        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
         variant: "link",
       },
     },
@@ -288,14 +315,23 @@ const textContent: SegmentType<"text"> = {
   presentationContentFour: {
     theme: "dark",
     type: "text",
+    card: true,
     title: {
       content: generateLorem(1),
       props: {
-        class: `mb-2 ${colorThemes["dark"].title}`,
+        class: `${colorThemes["dark"].title}`,
+      },
+      icon: "tree-4.png",
+      iconProps: {
+        class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[6px] -translate-x-[7px]",
+        alt: "tree icon representing feature number 1",
+      },
+      wrapperIconProps: {
+        class: "max-w-[82px] max-h-[82px]",
       },
     },
     text: {
-      content: generateLorem(30),
+      content: generateLorem(15),
       threshold: thresholds.text,
       props: {
         class: "md:w-[30ch]",
@@ -303,18 +339,18 @@ const textContent: SegmentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-start sm:!w-fit w-full h-full md:gap-6",
+        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6 ",
       },
     },
     form: {
       props: {
-        class: "flex flex-col",
+        class: "flex flex-row items-center justify-center w-full",
       },
     },
     button: {
       content: `<a  href=${links[1].href}>Learn more...</a>`,
       props: {
-        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left`,
+        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
         variant: "link",
       },
     },

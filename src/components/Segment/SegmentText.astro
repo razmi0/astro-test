@@ -1,6 +1,9 @@
 ---
+import { Image } from "astro:assets";
+import type { SegmentProps } from "./Segment.astro";
 import SegmentForm from "./SegmentForm.astro";
 
+interface Props extends SegmentProps<"text"> {}
 const {
   /**
    *
@@ -29,7 +32,39 @@ const {
   text,
   theme = "light",
   article,
+  card,
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   * TEXT PROPS
+   */
 } = Astro.props;
+
+let imgPath = "";
+let images: Record<
+  string,
+  () => Promise<{
+    default: ImageMetadata;
+  }>
+> = {};
+
+if (title?.icon) {
+  imgPath = `/src/assets/flat-trees/${title?.icon}`;
+  // import all images in the assets folder as a glob
+  images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/flat-trees/*.*");
+  if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "/src/assets/flat-trees/*.*"`);
+}
+
+const cardSize = "w-[350px] h-[350px] min-w-[350px] min-w-[350px] max-w-[350px] max-h-[350px]";
+
+const cardClass = card
+  ? "backdrop-filter backdrop-blur-sm bg-gradient-to-b from-slate-300/90 to-slate-400/90 dark:from-slate-800/90 dark:to-slate-900/90 shadow-sm rounded-lg"
+  : "";
+const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 ---
 
 <script>
@@ -52,15 +87,42 @@ const {
   });
 </script>
 
-<style>
+<style define:vars={{ bezier }}>
   [data-is="card"] {
     opacity: 0;
     transform: translateY(30px);
     filter: blur(2px);
+    transition: all 0.5s var(--bezier);
+  }
+
+  article[data-is="card"]:hover {
+    @apply shadow-md shadow-def-900/50;
+    transform: translateY(-2px) scale(1.01);
+    transition: all 0.5s var(--bezier);
+  }
+
+  article[data-is="card"]:hover [data-is="header-card-icon"] {
+    animation: float 2s infinite var(--bezier);
+  }
+
+  [data-is="header-card-icon"] {
+    transition: all 0.5s var(--bezier);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+    100% {
+      transform: translateY(0);
+    }
   }
 
   [data-is="card"].animate-fade-in-card {
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.5s var(--bezier);
     animation-fill-mode: forwards;
   }
   @keyframes fadeIn {
@@ -73,16 +135,36 @@ const {
 </style>
 
 <article
-  class:list={["w-full text-slate-900 dark:text-slate-100", article?.props?.class]}
+  class:list={["w-full text-slate-900 dark:text-slate-100 gap-3", cardClass, cardSize, article?.props?.class]}
   {...article?.props}
   data-is="card"
   data-threshold={text?.threshold}
 >
   {
-    title && (
+    title && !title?.icon && (
       <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
         {title.content}
       </h2>
+    )
+  }
+  {
+    title && title?.icon && (
+      <div class="flex flex-col w-full justify-center items-center gap-6">
+        <div
+          data-is="header-card-icon"
+          class:list={[
+            "shadow-2xl shadow-black dark:shadow-white/50 overflow-hidden rounded-full",
+            title.wrapperIconProps?.class,
+          ]}
+          {...title.wrapperIconProps}
+          class="shadow-2xl"
+        >
+          <Image src={images[imgPath]()} alt="" {...(title?.iconProps as any)} />
+        </div>
+        <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
+          {title.content}
+        </h2>
+      </div>
     )
   }
   {
@@ -95,7 +177,7 @@ const {
   {
     text && (
       <p
-        class:list={["text-balance", text.props?.class]}
+        class:list={["text-balance text-center", text.props?.class]}
         {...text.props}
         data-is="card"
         data-threshold={text?.threshold}
