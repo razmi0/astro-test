@@ -22,6 +22,30 @@
   scrollbar-width: thin;
 }
 
+.text-pur-400 {
+  color: var(--color-pur-400);
+}
+
+.text-pur-500 {
+  color: var(--color-pur-500);
+}
+
+.text-pur-600 {
+  color: var(--color-pur-600);
+}
+
+.text-gr-400 {
+  color: var(--color-gr-400);
+}
+
+.text-gr-500 {
+  color: var(--color-gr-500);
+}
+
+.text-gr-600 {
+  color: var(--color-gr-600);
+}
+
 *,
 *::before,
 *::after {
