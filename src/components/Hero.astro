@@ -203,7 +203,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
   }
 </style>
 
-<section class="max-h-screen h-screen w-full border-none">
+<section class="max-h-screen h-screen w-full border-none flex">
   <Image
     src={ThreeTree}
     alt="Oak"
@@ -256,22 +256,15 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
       <span class="text-gr-500 [text-shadow:none]">{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
-
     <div class="flex gap-6 animation-start-button animation-in-button w-fit">
       <a href="/activities">
-        <Button
-          variant={"outline"}
-          className="ms-3 sm:ms-5 lg:ms-6 xl:ms-7 bg-gr-500 dark:bg-gr-500  rounded-full px-12 card"
-        >
+        <Button variant={"ghost"} className="bg-gr-500 dark:bg-gr-500 rounded-full px-12 card">
           <span class="text-def-900 dark:text-def-100 font-bold">S'inscrire</span>
         </Button>
       </a>
       <a href="/about">
-        <Button
-          variant={"outline"}
-          className="ms-3 sm:ms-5 lg:ms-6 xl:ms-7 bg-gr-500 dark:bg-gr-500  rounded-full px-12 card"
-        >
-          <span class="text-def-900 dark:text-def-100 font-bold">Découvrir</span>
+        <Button variant={"ghost"} className="rounded-full px-12 card">
+          <span class="text-def-900 font-bold">Découvrir</span>
         </Button>
       </a>
     </div>
