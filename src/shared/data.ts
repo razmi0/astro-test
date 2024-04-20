@@ -1,5 +1,6 @@
 import { links } from "@/components/Nav/shared/data";
 import type { SegmentProps } from "@/components/Segment/Segment.astro";
+import colorThemes from "@/components/ui/Color/data";
 import { generateLorem } from "@/helpers";
 import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
 import type { SegmentFormat } from "@/types";
@@ -81,7 +82,7 @@ const wrappers: ScreenUnitType = {
     },
   },
   presentationHeader: {
-    theme: "light",
+    theme: "dark",
     wrapper: {
       size: "half",
       className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
@@ -120,7 +121,7 @@ const wrappers: ScreenUnitType = {
         // BASE
         "place-items-center md:justify-center md:items-start pb-12 gap-10 sm:gap-2 w-full !px-2 !pt-0 xl:justify-center xl:items-center",
         // GRID
-        "grid grid-rows-4 grid-cols-1 md:grid-rows-2 md:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4",
+        "grid grid-rows-4 grid-cols-1 md:grid-rows-2 md:grid-cols-2 xl:grid-rows-1 xl:grid-cols-4",
       ].join(" "),
     },
   },
@@ -182,13 +183,13 @@ const wrappers: ScreenUnitType = {
 
 const textContent: SegmentType<"text"> = {
   presentationContentOne: {
-    theme: "light",
+    theme: "dark",
     type: "text",
 
     title: {
       content: generateLorem(1),
       props: {
-        class: "mb-2",
+        class: `mb-2 ${colorThemes["dark"].title}`,
       },
     },
     text: {
@@ -211,18 +212,18 @@ const textContent: SegmentType<"text"> = {
     button: {
       content: `<a href=${links[3].href}>Learn more...</a>`,
       props: {
-        className: "w-fit text-gr-500 dark:text-gr-400 ps-0 ms-0 text-left",
+        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left`,
         variant: "link",
       },
     },
   },
   presentationContentTwo: {
-    theme: "light",
+    theme: "dark",
     type: "text",
     title: {
       content: generateLorem(1),
       props: {
-        class: "mb-2",
+        class: `mb-2 ${colorThemes["dark"].title}`,
       },
     },
     text: {
@@ -245,18 +246,18 @@ const textContent: SegmentType<"text"> = {
     button: {
       content: `<a href=${links[1].href}>Learn more...</a>`,
       props: {
-        className: "w-fit text-gr-500 dark:text-gr-400 ps-0 ms-0 text-left",
+        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left`,
         variant: "link",
       },
     },
   },
   presentationContentThree: {
-    theme: "light",
+    theme: "dark",
     type: "text",
     title: {
       content: generateLorem(1),
       props: {
-        class: "mb-2",
+        class: `mb-2 ${colorThemes["dark"].title}`,
       },
     },
     text: {
@@ -279,18 +280,18 @@ const textContent: SegmentType<"text"> = {
     button: {
       content: `<a href=${links[2].href}>Learn more...</a>`,
       props: {
-        className: "w-fit text-gr-500 dark:text-gr-400 ps-0 ms-0 text-left",
+        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left`,
         variant: "link",
       },
     },
   },
   presentationContentFour: {
-    theme: "light",
+    theme: "dark",
     type: "text",
     title: {
       content: generateLorem(1),
       props: {
-        class: "mb-2",
+        class: `mb-2 ${colorThemes["dark"].title}`,
       },
     },
     text: {
@@ -311,9 +312,9 @@ const textContent: SegmentType<"text"> = {
       },
     },
     button: {
-      content: `<a href=${links[1].href}>Learn more...</a>`,
+      content: `<a  href=${links[1].href}>Learn more...</a>`,
       props: {
-        className: "w-fit text-gr-500 dark:text-gr-400 ps-0 ms-0 text-left",
+        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left`,
         variant: "link",
       },
     },
@@ -322,6 +323,7 @@ const textContent: SegmentType<"text"> = {
 
 const imageTextContent: SegmentType<"image-text"> = {
   vijay: {
+    theme: "light",
     type: "image-text",
     img: {
       name: "lorem-vijay.webp",
@@ -344,7 +346,6 @@ const imageTextContent: SegmentType<"image-text"> = {
     subtitle: {
       content: "Cordiste exégète et collectioneur de cordes",
     },
-    theme: "light",
   },
   lou: {
     type: "image-text",
