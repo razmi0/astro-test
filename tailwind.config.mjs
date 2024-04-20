@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
+import colorThemes from "./src/components/ui/Color/data.ts";
 
 export default {
   darkMode: ["class"],
@@ -68,6 +69,7 @@ export default {
         });
       });
     },
+
     // Build exception on native tw colors
     // ({ addBase, theme }) => {
     //   function extractColorVars(colorObj, colorGroup = "") {
