@@ -15,8 +15,6 @@
   --color-gr-400: #a2c999;
   --color-gr-500: #397c5b;
   --color-gr-600: #1d3822;
-
-  scroll-behavior: smooth;
 }
 
 * {
@@ -27,6 +25,7 @@
 *,
 *::before,
 *::after {
+  scroll-behavior: smooth;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
