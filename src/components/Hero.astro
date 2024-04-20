@@ -4,14 +4,18 @@ import { Image } from "astro:assets";
 import { generateLorem } from "@/helpers";
 import { Button } from "@/components/ui/Button";
 import Parallax from "@/components/ui/Paralax.astro";
+import colorThemes from "@/components/ui/Color/data";
 
 const slowDelay = "0.8s";
 const mediumDelay = "1.2s";
 const fastDelay = "1.7s";
 const bezier = "cubic-bezier(.25,.75,.5,1.25)";
+
+const themedColor = colorThemes.default("title");
+const themedColorCssVar = colorThemes.default("cssVar");
 ---
 
-<style define:vars={{ slowDelay, mediumDelay, fastDelay, bezier }}>
+<style define:vars={{ slowDelay, mediumDelay, fastDelay, bezier, themedColorCssVar }}>
   div[data-is="hero-text-wrapper"] {
     --speedRatio: 0.1;
     --title-delay: calc(0.2s * var(--speedRatio));
@@ -107,18 +111,14 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
     fill: white;
   }
 
-  .anchor:hover .icon-1 {
-    fill: var(--color-gr-500);
-  }
-
   .anchor .icon-1 {
     animation: slay-1 3s cubic-bezier(0.52, 0, 0.58, 1) infinite;
     transform: rotate(10deg);
   }
-
+  .anchor:hover .icon-1,
   .anchor:hover .icon-2,
   .anchor:hover .icon-3 {
-    fill: var(--color-def-900);
+    fill: var(--themedColorCssVar);
   }
 
   @keyframes slay-1 {
@@ -203,7 +203,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
   }
 </style>
 
-<section class="max-h-screen h-screen w-full border-none flex">
+<section class="max-h-screen h-screen w-full border-none">
   <Image
     src={ThreeTree}
     alt="Oak"
@@ -216,7 +216,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
   >
     <h1 class="animation-start animation-in-title text-[3rem] text-black/95">
       {generateLorem(1)}
-      <span class="text-gr-500 anchor">
+      <span class:list={[`${themedColor} anchor`]}>
         {generateLorem(1)}
         <div class="icon-1">
           <svg
@@ -245,7 +245,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
       data-delay="fast"
     >
       {generateLorem(5)}
-      <span class="text-gr-500 [text-shadow:none]">{generateLorem(2)}</span>
+      <span class={`${themedColor} [text-shadow:none] bg-black/80`}>{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
     <p
@@ -253,18 +253,18 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
       data-delay="slow"
     >
       {generateLorem(5)}
-      <span class="text-gr-500 [text-shadow:none]">{generateLorem(2)}</span>
+      <span class={`${themedColor} [text-shadow:none] bg-black/80`}>{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
     <div class="flex gap-6 animation-start-button animation-in-button w-fit">
       <a href="/activities">
-        <Button variant={"ghost"} className="bg-gr-500 dark:bg-gr-500 rounded-full px-12 card">
+        <Button variant={"outline"} className="bg-pur-500 dark:bg-pur-500 rounded-full px-8 card">
           <span class="text-def-900 dark:text-def-100 font-bold">S'inscrire</span>
         </Button>
       </a>
       <a href="/about">
-        <Button variant={"ghost"} className="rounded-full px-12 card">
-          <span class="text-def-900 font-bold">Découvrir</span>
+        <Button variant={"ghost"} className="rounded-full px-8 card">
+          <span class="text-def-900 font-bold">Découvrir...</span>
         </Button>
       </a>
     </div>
