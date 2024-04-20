@@ -11,7 +11,8 @@ const mediumDelay = "1.2s";
 const fastDelay = "1.7s";
 const bezier = "cubic-bezier(.25,.75,.5,1.25)";
 
-const themedColor = colorThemes.default("title");
+const themedColorTitle = colorThemes.default("title");
+const themedColorBtn = colorThemes.default("button");
 const themedColorCssVar = colorThemes.default("cssVar");
 ---
 
@@ -216,7 +217,7 @@ const themedColorCssVar = colorThemes.default("cssVar");
   >
     <h1 class="animation-start animation-in-title text-[3rem] text-black/95">
       {generateLorem(1)}
-      <span class:list={[`${themedColor} anchor`]}>
+      <span class:list={[`${themedColorTitle} anchor`]}>
         {generateLorem(1)}
         <div class="icon-1">
           <svg
@@ -245,7 +246,7 @@ const themedColorCssVar = colorThemes.default("cssVar");
       data-delay="fast"
     >
       {generateLorem(5)}
-      <span class={`${themedColor} [text-shadow:none] bg-black/80`}>{generateLorem(2)}</span>
+      <span class={`${themedColorTitle} [text-shadow:none] bg-black/80`}>{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
     <p
@@ -253,17 +254,17 @@ const themedColorCssVar = colorThemes.default("cssVar");
       data-delay="slow"
     >
       {generateLorem(5)}
-      <span class={`${themedColor} [text-shadow:none] bg-black/80`}>{generateLorem(2)}</span>
+      <span class={`${themedColorTitle} [text-shadow:none] bg-black/80`}>{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
     <div class="flex gap-6 animation-start-button animation-in-button w-fit">
       <a href="/activities">
-        <Button variant={"outline"} className="bg-pur-500 dark:bg-pur-500 rounded-full px-8 card">
-          <span class="text-def-900 dark:text-def-100 font-bold">S'inscrire</span>
+        <Button variant={"outline"} className={`${themedColorBtn} rounded-full px-8 card text-md`}>
+          <span class="text-def-900 font-bold">S'inscrire</span>
         </Button>
       </a>
       <a href="/about">
-        <Button variant={"ghost"} className="rounded-full px-8 card">
+        <Button variant={"ghost"} className="rounded-full px-8 card text-md">
           <span class="text-def-900 font-bold">Découvrir...</span>
         </Button>
       </a>
