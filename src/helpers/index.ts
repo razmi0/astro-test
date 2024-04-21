@@ -67,6 +67,22 @@ const mediaQueries = {
   xl: "(min-width: 1280px)",
 };
 
+type AnimationTimeLine = [() => void, number];
+/**
+ *
+ *
+ *
+ * Executes a series of animations in a timeline with respectives delays
+ * [animationFunction, delay]
+ *
+ */
+const timeline = (data: AnimationTimeLine[]) => {
+  data.map(([animation, delay]) => {
+    if (delay === 0) animation();
+    setTimeout(() => animation(), delay);
+  });
+};
+
 type Breakpoints = keyof typeof mediaQueries;
 const actOnMedia = (breakpoint: Breakpoints, matchCb?: () => void, unMatchCb?: () => void) => {
   if (!mediaQueries || !(breakpoint in mediaQueries)) {
@@ -88,4 +104,4 @@ const actOnMedia = (breakpoint: Breakpoints, matchCb?: () => void, unMatchCb?: (
   return () => media.removeEventListener("change", handler);
 };
 
-export { actOnMedia, generateLorem, handleIntersection, setupIntersectionObserver };
+export { actOnMedia, generateLorem, handleIntersection, setupIntersectionObserver, timeline };
