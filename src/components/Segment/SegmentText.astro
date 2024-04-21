@@ -94,13 +94,6 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
     filter: blur(2px);
     transition: all 0.5s var(--bezier);
   }
-
-  article[data-is="card"]:hover {
-    @apply shadow-md shadow-def-900/50;
-    transform: translateY(-2px) scale(1.01);
-    transition: all 0.5s var(--bezier);
-  }
-
   article[data-is="card"]:hover [data-is="header-card-icon"] {
     animation: float 2s infinite var(--bezier);
   }
