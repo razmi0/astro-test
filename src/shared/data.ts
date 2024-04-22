@@ -1,4 +1,3 @@
-import { links } from "@/components/Nav/shared/data";
 import type { SegmentProps } from "@/components/Segment/Segment.astro";
 import colorThemes from "@/components/ui/Color/data";
 import { generateLorem } from "@/helpers";
@@ -139,7 +138,7 @@ const wrappers: ScreenUnitType = {
   presentationHeader: {
     theme: "dark",
     wrapper: {
-      size: "half",
+      size: "third",
       className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
       name: "presentation",
     },
@@ -174,7 +173,7 @@ const wrappers: ScreenUnitType = {
       size: "half",
       className: [
         // BASE
-        "place-items-center md:justify-center md:items-start pb-12 w-full !px-2 !pt-0",
+        "place-items-center  pb-12 w-full !px-2 !pt-0",
         // GRID
         "screen-unit-grid screen-unit-rank",
       ].join(" "),
@@ -202,13 +201,6 @@ const textContent: SegmentType<"text"> = {
       },
     },
 
-    text: {
-      content: generateLorem(15),
-      threshold: thresholds.text,
-      props: {
-        class: "md:w-[30ch]",
-      },
-    },
     article: {
       props: {
         class: ["flex flex-col items-center justify-center sm:!w-fit w-full px-3 py-5 mb-6 "].join(" "),
@@ -222,7 +214,7 @@ const textContent: SegmentType<"text"> = {
     button: {
       content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
       props: {
-        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
+        className: `${colorThemes["dark"].buttonText} font-bold m-0 p-0 `,
         variant: "link",
       },
     },
@@ -245,13 +237,7 @@ const textContent: SegmentType<"text"> = {
         class: "overflow-hidden rounded-full max-w-[82px] max-h-[82px] shadow-2xl shadow-black",
       },
     },
-    text: {
-      content: generateLorem(15),
-      threshold: thresholds.text,
-      props: {
-        class: "md:w-[30ch]",
-      },
-    },
+
     article: {
       props: {
         class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6",
@@ -263,10 +249,11 @@ const textContent: SegmentType<"text"> = {
       },
     },
     button: {
-      content: `<a href=${links[1].href}>Learn more...</a>`,
+      content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
       props: {
-        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
+        className: `${colorThemes["dark"].buttonText} font-bold`,
         variant: "link",
+        size: "none",
       },
     },
   },
@@ -288,13 +275,7 @@ const textContent: SegmentType<"text"> = {
         class: "overflow-hidden rounded-full max-w-[82px] max-h-[82px] shadow-2xl shadow-black",
       },
     },
-    text: {
-      content: generateLorem(15),
-      threshold: thresholds.text,
-      props: {
-        class: "md:w-[30ch]",
-      },
-    },
+
     article: {
       props: {
         class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6 ",
@@ -306,9 +287,9 @@ const textContent: SegmentType<"text"> = {
       },
     },
     button: {
-      content: `<a href=${links[2].href}>Learn more...</a>`,
+      content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
       props: {
-        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
+        className: `${colorThemes["dark"].buttonText} font-bold font-bold m-0 p-0`,
         variant: "link",
       },
     },
@@ -331,16 +312,10 @@ const textContent: SegmentType<"text"> = {
         class: "max-w-[82px] max-h-[82px]",
       },
     },
-    text: {
-      content: generateLorem(15),
-      threshold: thresholds.text,
-      props: {
-        class: "md:w-[30ch]",
-      },
-    },
+
     article: {
       props: {
-        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6 ",
+        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6",
       },
     },
     form: {
@@ -349,9 +324,9 @@ const textContent: SegmentType<"text"> = {
       },
     },
     button: {
-      content: `<a  href=${links[1].href}>Learn more...</a>`,
+      content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
       props: {
-        className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
+        className: `${colorThemes["dark"].buttonText} font-bold font-bold m-0 p-0`,
         variant: "link",
       },
     },

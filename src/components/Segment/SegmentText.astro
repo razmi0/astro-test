@@ -2,6 +2,11 @@
 import { Image } from "astro:assets";
 import type { SegmentProps } from "./Segment.astro";
 import SegmentForm from "./SegmentForm.astro";
+import { generateLorem } from "@/helpers";
+import { Button } from "../ui/Button";
+import colorThemes from "../ui/Color/data";
+import Spacer from "../ui/Spacer.astro";
+("@/components/ui/Color/data");
 
 interface Props extends SegmentProps<"text"> {}
 const {
@@ -59,10 +64,12 @@ if (title?.icon) {
   if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "/src/assets/flat-trees/*.*"`);
 }
 
-const cardSize = "w-[350px] h-[350px] min-w-[350px] min-w-[350px] max-w-[350px] max-h-[350px]";
+const cardSize = "w-[240px] h-[240px] min-w-[240px] min-w-[240px] max-w-[240px] max-h-[240px]";
+
+const cardColoring = "bg-gradient-to-b from-slate-300 to-slate-400 dark:from-slate-800 dark:to-slate-900";
 
 const cardClass = card
-  ? "backdrop-filter backdrop-blur-sm bg-gradient-to-b from-slate-300/90 to-slate-400/90 dark:from-slate-800/90 dark:to-slate-900/90 shadow-sm rounded-lg"
+  ? "backdrop-filter backdrop-blur-sm bg-gradient-to-b from-slate-300/90 to-slate-400/90 dark:from-slate-800/90 dark:to-slate-900/90 shadow-sm rounded-full py-5"
   : "";
 const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 
@@ -94,12 +101,62 @@ const duration = "0.5s";
     filter: blur(2px);
     transition: all var(--duration) var(--bezier);
   }
-  article[data-is="card"]:hover [data-is="header-card-icon"] {
+
+  [data-is="card"].animate-fade-in-card {
+    animation: fadeIn var(--duration) var(--bezier);
+    animation-fill-mode: forwards;
+  }
+
+  [data-focus]:where(:focus-within) [data-is="header-card-icon"] {
     animation: float 2s infinite var(--bezier);
   }
 
-  [data-is="header-card-icon"] {
-    transition: all var(--duration) var(--bezier);
+  /** 
+  focused element */
+
+  @media (min-width: 640px) {
+    [data-focus] {
+      transition: all 0.3s var(--bezier);
+    }
+
+    [data-focus]:focus-within {
+      --translationX: calc(-100% * var(--rankX));
+      --translationY: calc(-100% * var(--rankY));
+      transform: translate(var(--translationX), var(--translationY));
+      transition: transform 0.3s var(--bezier);
+      @media (min-width: 1024px) {
+        margin-left: 200%;
+      }
+    }
+
+    /**
+  targeting all next siblings */
+    [data-focus]:focus-within ~ [data-focus],
+  /**
+  targeting all previous siblings */
+  [data-focus]:has(~ [data-focus]:focus-within) {
+      opacity: 0.7;
+      transform: scale(0.8);
+      filter: blur(2px);
+      z-index: 0;
+
+      & > article {
+        pointer-events: none;
+      }
+    }
+
+    [data-focus]:focus-within > .reveal-card-content {
+      display: flex;
+      animation: revealX 0.2s var(--bezier);
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @keyframes revealX {
+    to {
+      opacity: 1;
+      transform: translateX(90%);
+    }
   }
 
   @keyframes float {
@@ -113,12 +170,6 @@ const duration = "0.5s";
       transform: translateY(0);
     }
   }
-
-  [data-is="card"].animate-fade-in-card {
-    animation: fadeIn var(--duration) var(--bezier);
-    animation-fill-mode: forwards;
-  }
-
   @keyframes fadeIn {
     to {
       opacity: 1;
@@ -126,47 +177,14 @@ const duration = "0.5s";
       filter: blur(0);
     }
   }
-
-  /** 
-  focused element */
-
-  [data-focus] {
-    transition: transform 0.3s var(--bezier);
-  }
-
-  /* [data-focus]::after {
-    content: var(--rank);
-  } */
-
-  [data-focus]:focus-within {
-    --translationX: calc(-100% * var(--rankX));
-    --translationY: calc(-100% * var(--rankY));
-    transform: translate(var(--translationX), var(--translationY));
-    transition: transform 0.3s var(--bezier);
-  }
-
-  /**
-  targeting all next siblings */
-  [data-focus]:focus-within ~ [data-focus],
-  /**
-  targeting all previous siblings */
-  [data-focus]:has(~ [data-focus]:focus-within) {
-    animation: fadeOut 0.2s var(--bezier);
-    animation-fill-mode: forwards;
-    pointer-events: none;
-  }
-
-  @keyframes fadeOut {
-    to {
-      opacity: 0;
-      transform: scale(0.8);
-      filter: blur(10px);
-    }
-  }
 </style>
-<div data-focus tabindex="-1" class="w-full h-full flex items-center justify-center">
+<div
+  data-focus
+  tabindex="-1"
+  class="w-full h-fit flex items-center justify-center cursor-pointer z-40 transform-gpu select-none"
+>
   <article
-    class:list={["text-slate-900 dark:text-slate-100 gap-3", cardClass, cardSize, article?.props?.class]}
+    class:list={["text-slate-900 dark:text-slate-100", cardClass, cardSize, article?.props?.class]}
     {...article?.props}
     data-is="card"
     data-threshold={text?.threshold}
@@ -180,7 +198,7 @@ const duration = "0.5s";
     }
     {
       title && title?.icon && (
-        <div class="flex flex-col w-full justify-center items-center gap-6">
+        <div class="flex flex-col w-full justify-center items-center gap-2">
           <div
             data-is="header-card-icon"
             class:list={[
@@ -219,4 +237,13 @@ const duration = "0.5s";
     }
     {(input || button) && <SegmentForm input={input} button={button} form={form} label={label} />}
   </article>
+  <div
+    class={`hidden z-50 absolute reveal-card-content md:min-w-[400px] flex-col items-center justify-center gap-2 ${colorThemes[`${theme}`].title} ring-1 ring-stone-900/5 rounded-lg ${cardColoring} border-s-8 ${colorThemes[theme].titleBorder} p-6`}
+  >
+    <h3 class="text-2xl">Title here</h3>
+    <p class="text-def-900 dark:text-def-100 text-balance text-left ps-2 text-[0.9rem] sm:text-[1rem]">
+      {generateLorem(15)}
+    </p>
+    <Button className="font-bold text-md w-full" variant={"outline"}>S'inscrire</Button>
+  </div>
 </div>

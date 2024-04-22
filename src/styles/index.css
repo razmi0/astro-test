@@ -32,19 +32,19 @@
 }
 
 .screen-unit-grid {
-  @apply grid grid-rows-4 grid-cols-1 md:grid-rows-2 md:grid-cols-2 2xl:grid-rows-1 2xl:grid-cols-4;
+  @apply grid grid-rows-4 grid-cols-1 sm:grid-rows-2 sm:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4;
 }
 
 .screen-unit-rank > :nth-child(1) {
   --rankX: 0;
   --rankY: 0;
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     & {
       --rankX: 0;
       --rankY: 0;
     }
   }
-  @media (min-width: 1536px) {
+  @media (min-width: 1024px) {
     & {
       --rankX: 0;
       --rankY: 0;
@@ -55,13 +55,13 @@
 .screen-unit-rank > :nth-child(2) {
   --rankX: 0;
   --rankY: 1;
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     & {
       --rankX: 1;
       --rankY: 0;
     }
   }
-  @media (min-width: 1536px) {
+  @media (min-width: 1024px) {
     & {
       --rankX: 1;
       --rankY: 0;
@@ -72,13 +72,13 @@
 .screen-unit-rank > :nth-child(3) {
   --rankX: 0;
   --rankY: 1;
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     & {
       --rankX: 0;
       --rankY: 0;
     }
   }
-  @media (min-width: 1536px) {
+  @media (min-width: 1024px) {
     & {
       --rankX: 2;
       --rankY: 0;
@@ -89,13 +89,13 @@
 .screen-unit-rank > :nth-child(4) {
   --rankX: 0;
   --rankY: 1;
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     & {
       --rankX: 1;
       --rankY: 0;
     }
   }
-  @media (min-width: 1536px) {
+  @media (min-width: 1024px) {
     & {
       --rankX: 3;
       --rankY: 0;
