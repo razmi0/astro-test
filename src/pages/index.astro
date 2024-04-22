@@ -18,6 +18,26 @@ import { textContent, wrappers, imageTextContent } from "@/shared/data";
        *
        *
        *
+       * Presentation
+       *
+       *
+       *
+       */
+    }
+    <ColorTheme theme="light" curve>
+      <ScreenUnit {...wrappers.presentationHeader} />
+      <ScreenUnit {...wrappers.presentation}>
+        <Segment {...textContent.presentationContentOne} />
+        <Segment {...textContent.presentationContentTwo} />
+        <Segment {...textContent.presentationContentThree} />
+        <Segment {...textContent.presentationContentFour} />
+      </ScreenUnit>
+    </ColorTheme>
+    {
+      /**
+       *
+       *
+       *
        * Hook
        *
        *
@@ -38,26 +58,7 @@ import { textContent, wrappers, imageTextContent } from "@/shared/data";
         <Segment {...imageTextContent.hookSecondaryBot} />
       </ScreenUnit>
     </ColorTheme>
-    {
-      /**
-       *
-       *
-       *
-       * Presentation
-       *
-       *
-       *
-       */
-    }
-    <ColorTheme theme="light" curve>
-      <ScreenUnit {...wrappers.presentationHeader} />
-      <ScreenUnit {...wrappers.presentation}>
-        <Segment {...textContent.presentationContentOne} />
-        <Segment {...textContent.presentationContentTwo} />
-        <Segment {...textContent.presentationContentThree} />
-        <Segment {...textContent.presentationContentFour} />
-      </ScreenUnit>
-    </ColorTheme>
+
     {
       /**
        *
