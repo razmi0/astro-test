@@ -31,6 +31,7 @@ const buttonVariants = cva(base.join(" "), {
       sm: "h-9 rounded-md px-3",
       lg: "h-11 rounded-md px-8",
       icon: "h-10 w-10",
+      none: "h-fit p-0 w-fit m-0",
     },
   },
   defaultVariants: {
