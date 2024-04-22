@@ -203,7 +203,7 @@ const textContent: SegmentType<"text"> = {
 
     article: {
       props: {
-        class: ["flex flex-col items-center justify-center sm:!w-fit w-full px-3 py-5 mb-6 "].join(" "),
+        class: ["flex flex-col items-center justify-center px-3 py-5 mb-6 "].join(" "),
       },
     },
     form: {
@@ -240,7 +240,7 @@ const textContent: SegmentType<"text"> = {
 
     article: {
       props: {
-        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6",
+        class: "flex flex-col items-center justify-center px-1 py-3 mb-6",
       },
     },
     form: {
@@ -278,7 +278,7 @@ const textContent: SegmentType<"text"> = {
 
     article: {
       props: {
-        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6 ",
+        class: "flex flex-col items-center justify-center px-1 py-3 mb-6 ",
       },
     },
     form: {
@@ -315,7 +315,7 @@ const textContent: SegmentType<"text"> = {
 
     article: {
       props: {
-        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-1 py-3 mb-6",
+        class: "flex flex-col items-center justify-center px-1 py-3 mb-6",
       },
     },
     form: {
