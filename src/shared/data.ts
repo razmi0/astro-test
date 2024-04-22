@@ -81,50 +81,7 @@ const wrappers: ScreenUnitType = {
       className: "pb-12 !pt-0",
     },
   },
-  presentationHeader: {
-    theme: "dark",
-    wrapper: {
-      size: "half",
-      className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
-      name: "presentation",
-    },
-    titleWrapper: {
-      className: "place-content-center text-center",
-    },
-    title: {
-      startingPos: "0",
-      endingPos: "0",
-      name: "presentation",
-      text: generateLorem(5),
-      className: "sm:text-5xl",
-      direction: "ltr",
-    },
-    subtitle: {
-      name: "presentation",
-      startingPos: "0",
-      endingPos: "0",
-      separator: {
-        props: {},
-      },
-      text: {
-        content: generateLorem(4),
-      },
-    },
-  },
-  presentation: {
-    theme: "light",
-    wrapper: {
-      name: "presentation",
-      threshold: thresholds.wrapper.content,
-      size: "half",
-      className: [
-        // BASE
-        "place-items-center md:justify-center md:items-start pb-12 gap-10 sm:gap-2 w-full !px-2 !pt-0",
-        // GRID
-        "grid grid-rows-4 grid-cols-1 md:grid-rows-2 md:grid-cols-2 2xl:grid-rows-1 2xl:grid-cols-4",
-      ].join(" "),
-    },
-  },
+
   hookHeaderPrimary: {
     theme: "dark",
     wrapper: {
@@ -179,6 +136,50 @@ const wrappers: ScreenUnitType = {
       className: "pb-12 !pt-0 flex flex-col gap-12 xl:flex-row justify-evenly items-center w-full",
     },
   },
+  presentationHeader: {
+    theme: "dark",
+    wrapper: {
+      size: "half",
+      className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
+      name: "presentation",
+    },
+    titleWrapper: {
+      className: "place-content-center text-center",
+    },
+    title: {
+      startingPos: "0",
+      endingPos: "0",
+      name: "presentation",
+      text: generateLorem(5),
+      className: "sm:text-5xl",
+      direction: "ltr",
+    },
+    subtitle: {
+      name: "presentation",
+      startingPos: "0",
+      endingPos: "0",
+      separator: {
+        props: {},
+      },
+      text: {
+        content: generateLorem(4),
+      },
+    },
+  },
+  presentation: {
+    theme: "light",
+    wrapper: {
+      name: "presentation",
+      threshold: thresholds.wrapper.content,
+      size: "half",
+      className: [
+        // BASE
+        "place-items-center md:justify-center md:items-start pb-12 w-full !px-2 !pt-0",
+        // GRID
+        "screen-unit-grid screen-unit-rank",
+      ].join(" "),
+    },
+  },
 };
 
 const textContent: SegmentType<"text"> = {
@@ -210,7 +211,7 @@ const textContent: SegmentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-center justify-center sm:!w-fit w-full px-3 py-5 mb-6",
+        class: ["flex flex-col items-center justify-center sm:!w-fit w-full px-3 py-5 mb-6 "].join(" "),
       },
     },
     form: {
@@ -219,7 +220,7 @@ const textContent: SegmentType<"text"> = {
       },
     },
     button: {
-      content: `<a href=${links[3].href}>Learn more...</a>`,
+      content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
       props: {
         className: `w-fit ${colorThemes["dark"].buttonText} ps-0 ms-0 text-left [&>a]:font-bold`,
         variant: "link",

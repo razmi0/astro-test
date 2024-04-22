@@ -93,6 +93,98 @@
   background-color: var(--color-gr-600);
 }
 
+/**
+ * 4 rows 1 col
+  * nth(1) rankX : 0; rankY : 0;
+  * nth(2) rankX : 0; rankY : 1;
+  * nth(3) rankX : 0; rankY : 1;
+  * nth(4) rankX : 0; rankY : 1;
+
+ * 4 rows 2 cols 'md': '768px' => (min-width: 768px)
+  * nth(1) rankX : 0; rankY : 0;
+  * nth(2) rankX : 1; rankY : 0;
+  * nth(3) rankX : 0; rankY : 0;
+  * nth(4) rankX : 1; rankY : 0;
+
+  * 1 row 4 cols '2xl' : '1536px' => (min-width: 1536px)
+  * nth(1) rankX : 0; rankY : 0;
+  * nth(2) rankX : 1; rankY : 0;
+  * nth(3) rankX : 2; rankY : 0;
+  * nth(4) rankX : 3; rankY : 0;
+*/
+
+.screen-unit-grid {
+  @apply grid grid-rows-4 grid-cols-1 md:grid-rows-2 md:grid-cols-2 2xl:grid-rows-1 2xl:grid-cols-4;
+}
+
+.screen-unit-rank > :nth-child(1) {
+  --rankX: 0;
+  --rankY: 0;
+  @media (min-width: 768px) {
+    & {
+      --rankX: 0;
+      --rankY: 0;
+    }
+  }
+  @media (min-width: 1536px) {
+    & {
+      --rankX: 0;
+      --rankY: 0;
+    }
+  }
+}
+
+.screen-unit-rank > :nth-child(2) {
+  --rankX: 0;
+  --rankY: 1;
+  @media (min-width: 768px) {
+    & {
+      --rankX: 1;
+      --rankY: 0;
+    }
+  }
+  @media (min-width: 1536px) {
+    & {
+      --rankX: 1;
+      --rankY: 0;
+    }
+  }
+}
+
+.screen-unit-rank > :nth-child(3) {
+  --rankX: 0;
+  --rankY: 1;
+  @media (min-width: 768px) {
+    & {
+      --rankX: 0;
+      --rankY: 0;
+    }
+  }
+  @media (min-width: 1536px) {
+    & {
+      --rankX: 2;
+      --rankY: 0;
+    }
+  }
+}
+
+.screen-unit-rank > :nth-child(4) {
+  --rankX: 0;
+  --rankY: 1;
+  @media (min-width: 768px) {
+    & {
+      --rankX: 1;
+      --rankY: 0;
+    }
+  }
+  @media (min-width: 1536px) {
+    & {
+      --rankX: 3;
+      --rankY: 0;
+    }
+  }
+}
+
 *,
 *::before,
 *::after {

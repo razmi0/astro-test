@@ -65,15 +65,15 @@ const cardClass = card
   ? "backdrop-filter backdrop-blur-sm bg-gradient-to-b from-slate-300/90 to-slate-400/90 dark:from-slate-800/90 dark:to-slate-900/90 shadow-sm rounded-lg"
   : "";
 const bezier = "cubic-bezier(.25,.75,.5,1.05)";
+
+const duration = "0.5s";
 ---
 
 <script>
   import { setupIntersectionObserver } from "@/helpers";
   // --
   const elements = Array.from(document.querySelectorAll("[data-is='card']")) as HTMLElement[];
-  const onIntersect = (element: HTMLElement) => {
-    element.classList.add("animate-fade-in-card");
-  };
+  const onIntersect = (element: HTMLElement) => element.classList.add("animate-fade-in-card");
 
   elements.map((element) => {
     setupIntersectionObserver({
@@ -87,19 +87,19 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
   });
 </script>
 
-<style define:vars={{ bezier }}>
+<style define:vars={{ bezier, duration }}>
   [data-is="card"] {
     opacity: 0;
-    transform: translateY(30px);
+    transform: scale(0.8);
     filter: blur(2px);
-    transition: all 0.5s var(--bezier);
+    transition: all var(--duration) var(--bezier);
   }
   article[data-is="card"]:hover [data-is="header-card-icon"] {
     animation: float 2s infinite var(--bezier);
   }
 
   [data-is="header-card-icon"] {
-    transition: all 0.5s var(--bezier);
+    transition: all var(--duration) var(--bezier);
   }
 
   @keyframes float {
@@ -115,69 +115,108 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
   }
 
   [data-is="card"].animate-fade-in-card {
-    animation: fadeIn 0.5s var(--bezier);
+    animation: fadeIn var(--duration) var(--bezier);
     animation-fill-mode: forwards;
   }
+
   @keyframes fadeIn {
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
       filter: blur(0);
     }
   }
-</style>
 
-<article
-  class:list={["w-full text-slate-900 dark:text-slate-100 gap-3", cardClass, cardSize, article?.props?.class]}
-  {...article?.props}
-  data-is="card"
-  data-threshold={text?.threshold}
->
-  {
-    title && !title?.icon && (
-      <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
-        {title.content}
-      </h2>
-    )
+  /** 
+  focused element */
+
+  [data-focus] {
+    transition: transform 0.3s var(--bezier);
   }
-  {
-    title && title?.icon && (
-      <div class="flex flex-col w-full justify-center items-center gap-6">
-        <div
-          data-is="header-card-icon"
-          class:list={[
-            "shadow-2xl shadow-black dark:shadow-white/50 overflow-hidden rounded-full",
-            title.wrapperIconProps?.class,
-          ]}
-          {...title.wrapperIconProps}
-          class="shadow-2xl"
-        >
-          <Image src={images[imgPath]()} alt="" {...(title?.iconProps as any)} />
-        </div>
+
+  /* [data-focus]::after {
+    content: var(--rank);
+  } */
+
+  [data-focus]:focus-within {
+    --translationX: calc(-100% * var(--rankX));
+    --translationY: calc(-100% * var(--rankY));
+    transform: translate(var(--translationX), var(--translationY));
+    transition: transform 0.3s var(--bezier);
+  }
+
+  /**
+  targeting all next siblings */
+  [data-focus]:focus-within ~ [data-focus],
+  /**
+  targeting all previous siblings */
+  [data-focus]:has(~ [data-focus]:focus-within) {
+    animation: fadeOut 0.2s var(--bezier);
+    animation-fill-mode: forwards;
+    pointer-events: none;
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      transform: scale(0.8);
+      filter: blur(10px);
+    }
+  }
+</style>
+<div data-focus tabindex="-1" class="w-full h-full flex items-center justify-center">
+  <article
+    class:list={["text-slate-900 dark:text-slate-100 gap-3", cardClass, cardSize, article?.props?.class]}
+    {...article?.props}
+    data-is="card"
+    data-threshold={text?.threshold}
+  >
+    {
+      title && !title?.icon && (
         <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
           {title.content}
         </h2>
-      </div>
-    )
-  }
-  {
-    subtitle && (
-      <small class:list={[subtitle.props?.class]} {...subtitle.props}>
-        {subtitle.content}
-      </small>
-    )
-  }
-  {
-    text && (
-      <p
-        class:list={["text-balance text-center", text.props?.class]}
-        {...text.props}
-        data-is="card"
-        data-threshold={text?.threshold}
-      >
-        {text.content}
-      </p>
-    )
-  }
-  {(input || button) && <SegmentForm input={input} button={button} form={form} label={label} />}
-</article>
+      )
+    }
+    {
+      title && title?.icon && (
+        <div class="flex flex-col w-full justify-center items-center gap-6">
+          <div
+            data-is="header-card-icon"
+            class:list={[
+              "shadow-2xl shadow-black dark:shadow-white/50 overflow-hidden rounded-full",
+              title.wrapperIconProps?.class,
+            ]}
+            {...title.wrapperIconProps}
+            class="shadow-2xl"
+          >
+            <Image src={images[imgPath]()} alt="" {...(title?.iconProps as any)} />
+          </div>
+          <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
+            {title.content}
+          </h2>
+        </div>
+      )
+    }
+    {
+      subtitle && (
+        <small class:list={[subtitle.props?.class]} {...subtitle.props}>
+          {subtitle.content}
+        </small>
+      )
+    }
+    {
+      text && (
+        <p
+          class:list={["text-balance text-center", text.props?.class]}
+          {...text.props}
+          data-is="card"
+          data-threshold={text?.threshold}
+        >
+          {text.content}
+        </p>
+      )
+    }
+    {(input || button) && <SegmentForm input={input} button={button} form={form} label={label} />}
+  </article>
+</div>
