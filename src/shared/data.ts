@@ -312,7 +312,6 @@ const textContent: SegmentType<"text"> = {
         class: "max-w-[82px] max-h-[82px]",
       },
     },
-
     article: {
       props: {
         class: "flex flex-col items-center justify-center px-1 py-3 mb-6",

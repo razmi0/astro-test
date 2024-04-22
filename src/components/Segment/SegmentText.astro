@@ -64,7 +64,7 @@ if (title?.icon) {
   if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "/src/assets/flat-trees/*.*"`);
 }
 
-const cardSize = "w-[240px] h-[240px] min-w-[240px] min-w-[240px] max-w-[240px] max-h-[240px]";
+// const cardSize = "w-[240px] h-[240px] min-w-[240px] min-w-[240px] max-w-[240px] max-h-[240px]";
 
 const cardColoring = "bg-gradient-to-b from-slate-300 to-slate-400 dark:from-slate-800 dark:to-slate-900";
 
@@ -184,7 +184,7 @@ const duration = "0.5s";
   class="w-full h-fit flex items-center justify-center cursor-pointer z-40 transform-gpu select-none"
 >
   <article
-    class:list={["text-slate-900 dark:text-slate-100", cardClass, cardSize, article?.props?.class]}
+    class:list={["text-slate-900 dark:text-slate-100 w-full h-full max-w-[300px]", cardClass, article?.props?.class]}
     {...article?.props}
     data-is="card"
     data-threshold={text?.threshold}
