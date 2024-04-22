@@ -41,13 +41,13 @@
   @media (min-width: 640px) {
     & {
       --rankX: 0;
-      --rankY: 0;
+      --rankY: -1;
     }
   }
   @media (min-width: 1024px) {
     & {
       --rankX: 0;
-      --rankY: 0;
+      --rankY: 1;
     }
   }
 }
@@ -58,13 +58,13 @@
   @media (min-width: 640px) {
     & {
       --rankX: 1;
-      --rankY: 0;
+      --rankY: -1;
     }
   }
   @media (min-width: 1024px) {
     & {
       --rankX: 1;
-      --rankY: 0;
+      --rankY: 1;
     }
   }
 }
@@ -75,13 +75,13 @@
   @media (min-width: 640px) {
     & {
       --rankX: 0;
-      --rankY: 0;
+      --rankY: 1;
     }
   }
   @media (min-width: 1024px) {
     & {
       --rankX: 2;
-      --rankY: 0;
+      --rankY: 1;
     }
   }
 }
@@ -92,14 +92,25 @@
   @media (min-width: 640px) {
     & {
       --rankX: 1;
-      --rankY: 0;
+      --rankY: 1;
     }
   }
   @media (min-width: 1024px) {
     & {
       --rankX: 3;
-      --rankY: 0;
+      --rankY: 1;
     }
+  }
+}
+
+.container-reveal {
+  container-name: reveal;
+  container-type: inline-size;
+}
+
+@container reveal (min-width: 400px) {
+  .container-reveal > img {
+    display: block;
   }
 }
 

@@ -170,7 +170,7 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       name: "presentation",
       threshold: thresholds.wrapper.content,
-      size: "half",
+      size: "threeQuarter",
       className: [
         // BASE
         "place-items-center  pb-12 w-full !px-2 !pt-0",

@@ -64,12 +64,8 @@ if (title?.icon) {
   if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "/src/assets/flat-trees/*.*"`);
 }
 
-// const cardSize = "w-[240px] h-[240px] min-w-[240px] min-w-[240px] max-w-[240px] max-h-[240px]";
-
-const cardColoring = "bg-gradient-to-b from-slate-300 to-slate-400 dark:from-slate-800 dark:to-slate-900";
-
 const cardClass = card
-  ? "backdrop-filter backdrop-blur-sm bg-gradient-to-b from-slate-300/90 to-slate-400/90 dark:from-slate-800/90 dark:to-slate-900/90 shadow-sm rounded-full py-5"
+  ? "backdrop-filter backdrop-blur-sm bg-gradient-to-b from-slate-300/90 to-slate-400/90 hover:ring-2 hover:ring-stone-900/50 transition-all dark:from-slate-800/90 dark:to-slate-900/90 shadow-sm rounded-full py-5"
   : "";
 const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 
@@ -95,13 +91,6 @@ const duration = "0.5s";
 </script>
 
 <style define:vars={{ bezier, duration }}>
-  [data-is="card"] {
-    opacity: 0;
-    transform: scale(0.8);
-    filter: blur(2px);
-    transition: all var(--duration) var(--bezier);
-  }
-
   [data-is="card"].animate-fade-in-card {
     animation: fadeIn var(--duration) var(--bezier);
     animation-fill-mode: forwards;
@@ -114,48 +103,63 @@ const duration = "0.5s";
   /** 
   focused element */
 
-  @media (min-width: 640px) {
-    [data-focus] {
-      transition: all 0.3s var(--bezier);
-    }
+  /* @media (min-width: 640px) { */
+  [data-focus] {
+    transition: all 0.3s var(--bezier);
+  }
 
-    [data-focus]:focus-within {
-      --translationX: calc(-100% * var(--rankX));
-      --translationY: calc(-100% * var(--rankY));
-      transform: translate(var(--translationX), var(--translationY));
-      transition: transform 0.3s var(--bezier);
-      @media (min-width: 1024px) {
-        margin-left: 200%;
-      }
+  [data-focus]:focus-within {
+    --translationX: calc(-100% * var(--rankX));
+    --translationY: calc(-90% * var(--rankY));
+    transform: translate(var(--translationX), var(--translationY));
+    transition: transform 0.3s var(--bezier);
+    @media (min-width: 1024px) {
+      margin-left: 40cqw;
     }
+  }
 
-    /**
+  /**
   targeting all next siblings */
-    [data-focus]:focus-within ~ [data-focus],
+  [data-focus]:focus-within ~ [data-focus],
   /**
   targeting all previous siblings */
   [data-focus]:has(~ [data-focus]:focus-within) {
-      opacity: 0.7;
-      transform: scale(0.8);
-      filter: blur(2px);
-      z-index: 0;
+    opacity: 0.7;
+    transform: scale(0.8);
+    filter: blur(2px);
+    z-index: 0;
 
-      & > article {
-        pointer-events: none;
-      }
-    }
-
-    [data-focus]:focus-within > .reveal-card-content {
-      display: flex;
-      animation: revealX 0.2s var(--bezier);
-      animation-fill-mode: forwards;
+    & > article {
+      pointer-events: none;
     }
   }
+
+  [data-focus]:focus-within > .reveal-card-content {
+    display: flex;
+    animation: revealY 0.2s var(--bezier);
+    animation-fill-mode: forwards;
+    margin-top: 30px;
+  }
+  @media (min-width: 640px) {
+    [data-focus]:focus-within > .reveal-card-content {
+      animation: revealX 0.2s var(--bezier);
+      animation-fill-mode: forwards;
+      margin-top: 0;
+    }
+  }
+  /* } */
 
   @keyframes revealX {
     to {
       opacity: 1;
       transform: translateX(90%);
+    }
+  }
+
+  @keyframes revealY {
+    to {
+      opacity: 1;
+      transform: translateY(90%);
     }
   }
 
@@ -238,12 +242,19 @@ const duration = "0.5s";
     {(input || button) && <SegmentForm input={input} button={button} form={form} label={label} />}
   </article>
   <div
-    class={`hidden z-50 absolute reveal-card-content md:min-w-[400px] flex-col items-center justify-center gap-2 ${colorThemes[`${theme}`].title} ring-1 ring-stone-900/5 rounded-lg ${cardColoring} border-s-8 ${colorThemes[theme].titleBorder} p-6`}
+    class={`container-reveal h-full hidden w-full z-50 absolute reveal-card-content md:min-w-[400px] lg:min-w-[500px] gap-4 ${colorThemes[`${theme}`].title} ring-1 ring-stone-900/5 rounded-lg bg-gradient-to-b from-slate-300 to-slate-400 dark:from-slate-800 dark:to-slate-900 border-s-8 ${colorThemes[theme].titleBorder} p-6`}
   >
-    <h3 class="text-2xl">Title here</h3>
-    <p class="text-def-900 dark:text-def-100 text-balance text-left ps-2 text-[0.9rem] sm:text-[1rem]">
-      {generateLorem(15)}
-    </p>
-    <Button className="font-bold text-md w-full" variant={"outline"}>S'inscrire</Button>
+    <img
+      src="https://picsum.photos/200/300"
+      alt="tree"
+      class="w-52 h-full max-h-[250px] aspect-[9/16] object-cover hidden rounded-lg shadow-lg"
+    />
+    <div class="flex flex-col items-center justify-evenly gap-3 h-full">
+      <h3 class="text-2xl">Title here</h3>
+      <p class="text-def-900 dark:text-def-100 text-balance text-center ps-2 text-[0.9rem] sm:text-[1rem]">
+        {generateLorem(15)}
+      </p>
+      <Button className="font-bold text-md w-full" variant={"outline"}>S'inscrire</Button>
+    </div>
   </div>
 </div>
