@@ -32,7 +32,7 @@
 }
 
 .screen-unit-grid {
-  @apply grid grid-rows-4 grid-cols-1;
+  @apply grid grid-rows-2 grid-cols-3 w-full;
 }
 
 .screen-unit-rank > :nth-child(1) {
@@ -56,7 +56,7 @@
 .screen-unit-rank > :nth-child(2) {
   --rankX: 0;
   --rankY: 1;
-  margin-left: 20%;
+
   @media (min-width: 640px) {
     & {
       --rankX: 1;
@@ -76,7 +76,7 @@
 
   --rankX: 0;
   --rankY: 1;
-  margin-left: 40%;
+
   @media (min-width: 640px) {
     & {
       --rankX: 0;
@@ -94,7 +94,7 @@
 .screen-unit-rank > :nth-child(4) {
   --rankX: 0;
   --rankY: 1;
-  margin-left: 60%;
+
   @media (min-width: 640px) {
     & {
       --rankX: 1;
@@ -106,17 +106,6 @@
       --rankX: 0;
       --rankY: 0;
     }
-  }
-}
-
-.container-reveal {
-  container-name: reveal;
-  container-type: inline-size;
-}
-
-@container reveal (min-width: 400px) {
-  .container-reveal > img {
-    display: block;
   }
 }
 

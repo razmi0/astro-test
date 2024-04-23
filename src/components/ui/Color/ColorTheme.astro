@@ -2,27 +2,41 @@
 import colorThemes from "@/components/ui/Color/data";
 import type { Theme } from "@/types";
 import { Image } from "astro:assets";
-import Curves from "@/assets/abstract-curve-line.jpg";
+import Curves from "@/assets/tiles/curve.jpg";
+import { selectImage } from "@/helpers";
 
 interface Props {
   theme: Theme;
-  curve?: boolean;
+  bgName?: "curve" | `tiles-${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15}` | "none";
   rotate?: `${number}deg`;
+  folder?: "hero" | "tiles";
+  extension?: "png" | "jpg" | "webp";
 }
 
-const { theme, curve = false, rotate = "0deg" } = Astro.props;
+const { theme, bgName, rotate = "0deg", extension, folder } = Astro.props;
+
+const image = selectImage({
+  bgName,
+  folder,
+  extension,
+  fallback: Curves,
+});
 ---
 
 <style define:vars={{ rotate }}>
-  .curve {
+  .bg-img {
     transform: rotate(var(--rotate));
   }
 </style>
 
 <section class:list={[colorThemes[theme].container]}>
   {
-    curve && (
-      <Image src={Curves} alt="Abstract curve line" class="absolute object-none w-full h-full opacity-10 curve" />
+    bgName !== "none" && (
+      <Image
+        src={image()}
+        alt="abstract background image"
+        class="absolute right-0 object-cover  h-full opacity-20 bg-img pt-0 rounded-lg"
+      />
     )
   }
   <slot />

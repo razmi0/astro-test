@@ -12,7 +12,7 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
 
 <Layout title="Accueil">
   <Header slot="header" />
-  <Hero slot="hero" />
+  <Hero slot="hero" folder="hero" bgName="hero-16" extension="png" />
   <Fragment slot="main" id="main">
     {
       /**
@@ -26,14 +26,16 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
        */
     }
 
-    <ColorTheme theme="light" curve>
-      <ScreenUnit {...wrappers.presentationHeaderTitle} />
-      <SegmentText {...presentation.subText} />
+    <ColorTheme theme="light">
+      <!-- <ScreenUnit {...wrappers.presentationHeaderTitle} /> -->
+      <!-- <SegmentText {...presentation.subText} /> -->
       <ScreenUnit {...wrappers.presentation}>
         <Segment {...presentation[1]} />
         <Segment {...presentation[2]} />
         <Segment {...presentation[3]} />
         <Segment {...presentation[4]} />
+        <Segment {...presentation[5]} />
+        <Segment {...presentation[6]} />
       </ScreenUnit>
     </ColorTheme>
     {
@@ -47,18 +49,16 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
        *
        */
     }
-    <ColorTheme theme="dark" curve>
+    <ColorTheme theme="dark">
       <ScreenUnit {...wrappers.hookHeaderPrimary} />
       <ScreenUnit {...wrappers.hookPrimary}>
-        <Segment {...imageTextContent.hookPrimaryTop} />
-        <Segment {...imageTextContent.hookPrimaryBot} />
+        <Segment {...imageTextContent.hookPrimary} />
       </ScreenUnit>
     </ColorTheme>
-    <ColorTheme theme="dark" curve rotate="180deg">
+    <ColorTheme theme="dark">
       <ScreenUnit {...wrappers.hookHeaderSecondary} />
       <ScreenUnit {...wrappers.hookSecondary}>
-        <Segment {...imageTextContent.hookSecondaryTop} />
-        <Segment {...imageTextContent.hookSecondaryBot} />
+        <Segment {...imageTextContent.hookSecondary} />
       </ScreenUnit>
     </ColorTheme>
 

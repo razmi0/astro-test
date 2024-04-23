@@ -1,10 +1,18 @@
 ---
-import ThreeTree from "../assets/three-tree.webp";
+import ThreeTree from "../assets/hero/three-tree.webp";
 import { Image } from "astro:assets";
 import { generateLorem } from "@/helpers";
 import { Button } from "@/components/ui/Button";
-import Parallax from "@/components/ui/Paralax.astro";
 import colorThemes from "@/components/ui/Color/data";
+import { selectImage } from "@/helpers";
+
+interface Props {
+  bgName?: "three-tree" | "oak" | `hero-${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16}`;
+  folder?: "hero" | "tiles";
+  extension?: "png" | "jpg" | "webp";
+}
+
+const { bgName, extension, folder } = Astro.props;
 
 const slowDelay = "0.8s";
 const mediumDelay = "1.2s";
@@ -14,6 +22,13 @@ const bezier = "cubic-bezier(.25,.75,.5,1.25)";
 const themedColorTitle = colorThemes.default("title");
 const themedColorBtn = colorThemes.default("button");
 const themedColorCssVar = colorThemes.default("cssVar");
+
+const image = selectImage({
+  bgName,
+  folder,
+  extension,
+  fallback: ThreeTree,
+});
 ---
 
 <style define:vars={{ slowDelay, mediumDelay, fastDelay, bezier, themedColorCssVar }}>
@@ -206,13 +221,13 @@ const themedColorCssVar = colorThemes.default("cssVar");
 
 <section class="max-h-screen h-screen w-full border-none">
   <Image
-    src={ThreeTree}
+    src={image()}
     alt="Oak"
-    class="w-full h-full max-h-screen aspect-[6/16] 2xs:aspect-[9/16] md:aspect-auto object-cover border-none"
+    class="absolute w-full right-0 h-full max-h-screen aspect-[6/16] 2xs:aspect-[9/16] md:aspect-auto object-cover border-none"
   />
-  <Parallax />
+  <!-- <Parallax /> -->
   <div
-    class="[text-shadow:_0_0px_2px_rgb(255_255_255_/_40%)] z-10 bg-transparent absolute top-0 mt-[50%] sm:mt-[40%] md:mt-[35%] lg:mt-[30%] xl:mt-[25%] 2xl:mt-[15%] flex flex-col w-[40ch] sm:w-[50ch] md:w-[60ch] lg:w-[75ch] ps-5 md:ps-10 gap-2"
+    class="z-10 bg-transparent absolute top-0 mt-[50%] sm:mt-[40%] md:mt-[35%] lg:mt-[30%] xl:mt-[25%] 2xl:mt-[15%] flex flex-col w-[40ch] sm:w-[50ch] md:w-[60ch] lg:w-[75ch] ps-5 md:ps-10 gap-2"
     data-is="hero-text-wrapper"
   >
     <h1 class="animation-start animation-in-title text-[3rem] text-black/95">

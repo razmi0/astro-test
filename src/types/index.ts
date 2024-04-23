@@ -24,7 +24,12 @@ type ImageNames =
    *
    *
    */
-  | `${"vijay-et-lou" | `lorem-${"lou" | "vijay"}` | "placeholder" | "oak" | `outdoor-${"1" | "2" | "3" | "4"}`}.webp`
+  | `${
+      | "vijay-et-lou"
+      | `lorem-${"lou" | "vijay"}`
+      | "placeholder"
+      | "oak"
+      | `outdoor-${"1" | "2" | "3" | "4" | "10" | "11"}`}.${"webp" | "png"}`
   /**
    *
    *

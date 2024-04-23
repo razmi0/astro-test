@@ -104,4 +104,42 @@ const actOnMedia = (breakpoint: Breakpoints, matchCb?: () => void, unMatchCb?: (
   return () => media.removeEventListener("change", handler);
 };
 
-export { actOnMedia, generateLorem, handleIntersection, setupIntersectionObserver, timeline };
+const selectImage = ({
+  bgName,
+  folder,
+  extension,
+  fallback,
+}: {
+  bgName?: string;
+  folder?: "hero" | "tiles";
+  extension?: "png" | "jpg" | "webp";
+  fallback: ImageMetadata;
+}) => {
+  if (!bgName || !extension) return () => fallback;
+
+  let images;
+  const imgPath = folder ? `/src/assets/${folder}/${bgName}.${extension}` : `/src/assets/${bgName}.${extension}`,
+    wildGlob = folder ? `/src/assets/${folder}/${bgName}.${extension}` : `/src/assets/${bgName}.${extension}`;
+
+  switch (folder) {
+    case "hero":
+      images = import.meta.glob<{ default: ImageMetadata }>(`/src/assets/hero/*.*`);
+      break;
+
+    case "tiles":
+      images = import.meta.glob<{ default: ImageMetadata }>(`/src/assets/tiles/*.*`);
+      break;
+
+    default:
+      images = import.meta.glob<{ default: ImageMetadata }>(`/src/assets/*.*`);
+      break;
+  }
+
+  if (!images[imgPath]) {
+    console.warn(`"${imgPath}" does not exist in glob: "${wildGlob}"`);
+    return () => fallback;
+  }
+  return images[imgPath];
+};
+
+export { actOnMedia, generateLorem, handleIntersection, setupIntersectionObserver, timeline, selectImage };

@@ -165,10 +165,10 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       name: "presentation",
       threshold: thresholds.wrapper.content,
-      size: "half",
+      size: "full",
       className: [
         // BASE
-        "place-items-center pb-12 !px-2 !w-fit min-w-[400px] h-fit ms-[10%] gap-1", // !mt-44
+        "place-items-center pb-12 !px-2 w-full min-w-[400px] h-fit gap-1", // !mt-44
         // GRID
         "screen-unit-grid screen-unit-rank",
       ].join(" "),
@@ -177,17 +177,17 @@ const wrappers: ScreenUnitType = {
 };
 
 const presentationProps = {
-  focusWrapperClass: "min-w-[200px] max-w-[350px] h-[220px] h-full group/focus",
-  article:
-    "hover:w-full group-focus-within/focus:w-full min-w-[220px] flex flex-col items-center justify-center px-3 py-5 hover:pe-36 hover:ps-6 group-focus-within/focus:pe-44 group",
+  article: "max-w-[400px] max-h-[300px] flex flex-col items-center justify-evenly px-3 py-5",
   wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
   form: "flex flex-row items-center justify-center w-full",
+  text: {
+    content: generateLorem(15),
+  },
   buttonProps: {
     props: {
-      className: `hidden group-hover:flex group-focus-within/focus:flex pointer-events-none ${colorThemes["dark"].buttonText} rounded-none border-none rounded-tl-full rounded-bl-full
-      font-bold text-md h-fit absolute right-0 top-1/2 -translate-y-1/2 py-6 pe-5 ps-5 !border-2 !dark:border-slate-800/50 !border-slate-300/50 !border-r-transparent items-center gap-2 `,
+      className: `${colorThemes["dark"].buttonText} font-bold text-md items-center gap-2 w-full`,
       variant: "outline",
-      size: "none",
+      size: "default",
     },
     content: "Voir",
     arrowIcon: true,
@@ -235,7 +235,7 @@ const presentation: SegmentType<"text"> = {
       },
     },
 
-    focusWrapperClass: presentationProps.focusWrapperClass,
+    text: presentationProps.text,
 
     article: {
       props: {
@@ -266,7 +266,8 @@ const presentation: SegmentType<"text"> = {
       },
     },
 
-    focusWrapperClass: presentationProps.focusWrapperClass,
+    text: presentationProps.text,
+
     article: {
       props: {
         class: presentationProps.article,
@@ -296,7 +297,8 @@ const presentation: SegmentType<"text"> = {
       },
     },
 
-    focusWrapperClass: presentationProps.focusWrapperClass,
+    text: presentationProps.text,
+
     article: {
       props: {
         class: presentationProps.article,
@@ -326,7 +328,73 @@ const presentation: SegmentType<"text"> = {
         class: presentationProps.wrapperIcon,
       },
     },
-    focusWrapperClass: presentationProps.focusWrapperClass,
+
+    text: presentationProps.text,
+
+    article: {
+      props: {
+        class: presentationProps.article,
+      },
+    },
+
+    form: {
+      props: {
+        class: presentationProps.form,
+      },
+    },
+    button: { ...presentationProps.buttonProps },
+  },
+  5: {
+    theme: "dark",
+    type: "text",
+    card: true,
+    title: {
+      content: "Déconnexion",
+      props: { class: `${colorThemes["dark"].title}` },
+      icon: "tree-4.png",
+      iconProps: {
+        class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[6px] -translate-x-[7px]",
+        alt: "tree icon representing feature number 1",
+      },
+      wrapperIconProps: {
+        class: presentationProps.wrapperIcon,
+      },
+    },
+
+    text: presentationProps.text,
+
+    article: {
+      props: {
+        class: presentationProps.article,
+      },
+    },
+
+    form: {
+      props: {
+        class: presentationProps.form,
+      },
+    },
+    button: { ...presentationProps.buttonProps },
+  },
+  6: {
+    theme: "dark",
+    type: "text",
+    card: true,
+    title: {
+      content: "Partage",
+      props: { class: `${colorThemes["dark"].title}` },
+      icon: "tree-4.png",
+      iconProps: {
+        class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[6px] -translate-x-[7px]",
+        alt: "tree icon representing feature number 1",
+      },
+      wrapperIconProps: {
+        class: presentationProps.wrapperIcon,
+      },
+    },
+
+    text: presentationProps.text,
+
     article: {
       props: {
         class: presentationProps.article,
@@ -418,33 +486,15 @@ const imageTextContent: SegmentType<"image-text"> = {
     },
     theme: "dark",
   },
-  hookPrimaryTop: {
+
+  hookPrimary: {
     theme: "dark",
     type: "image-text",
     img: {
-      name: "outdoor-1.webp",
-      props: {
-        alt: "child climbing tree",
-        class: "w-[300px]",
-      },
-    },
-    title: {
-      content: generateLorem(10),
-    },
-    article: {
-      props: {
-        class: "flex-col md:flex-row",
-      },
-    },
-  },
-  hookPrimaryBot: {
-    theme: "dark",
-    type: "image-text",
-    img: {
-      name: "outdoor-2.webp",
+      name: "outdoor-10.png",
       props: {
         alt: "adult climbing tree",
-        class: "w-[300px]",
+        class: "w-[500px]",
       },
     },
     title: {
@@ -456,33 +506,15 @@ const imageTextContent: SegmentType<"image-text"> = {
       },
     },
   },
-  hookSecondaryTop: {
+
+  hookSecondary: {
     theme: "light",
     type: "image-text",
     img: {
-      name: "outdoor-3.webp",
-      props: {
-        alt: "man on a zip line",
-        class: "w-[300px]",
-      },
-    },
-    title: {
-      content: generateLorem(10),
-    },
-    article: {
-      props: {
-        class: "flex-col md:flex-row-reverse",
-      },
-    },
-  },
-  hookSecondaryBot: {
-    theme: "light",
-    type: "image-text",
-    img: {
-      name: "outdoor-4.webp",
+      name: "outdoor-11.png",
       props: {
         alt: "classroom in spring park",
-        class: "w-[300px]",
+        class: "w-[500px]",
       },
     },
     title: {
