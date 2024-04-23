@@ -28,9 +28,7 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
 
     <ColorTheme theme="light" curve>
       <ScreenUnit {...wrappers.presentationHeaderTitle} />
-      <ScreenUnit {...wrappers.presentationHeaderSubText}>
-        <SegmentText {...presentation.subText} />
-      </ScreenUnit>
+      <SegmentText {...presentation.subText} />
       <ScreenUnit {...wrappers.presentation}>
         <Segment {...presentation[1]} />
         <Segment {...presentation[2]} />

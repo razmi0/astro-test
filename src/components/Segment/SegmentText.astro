@@ -66,7 +66,7 @@ const duration = "0.5s";
 <script>
   import { setupIntersectionObserver } from "@/helpers";
   // --
-  const elements = Array.from(document.querySelectorAll("[data-is='card']")) as HTMLElement[];
+  const elements = Array.from(document.querySelectorAll("[data-is='article-text']")) as HTMLElement[];
   const onIntersect = (element: HTMLElement) => element.classList.add("animate-fade-in-card");
 
   elements.map((element) => {
@@ -82,9 +82,22 @@ const duration = "0.5s";
 </script>
 
 <style define:vars={{ bezier, duration }}>
-  [data-is="card"].animate-fade-in-card {
+  article[data-is="article-text"].animate-fade-in-card {
     animation: fadeIn var(--duration) var(--bezier);
     animation-fill-mode: forwards;
+  }
+
+  article[data-is="article-text"].animate-fade-in-card {
+    animation: textScroll var(--duration) var(--bezier);
+    animation-timeline: scroll(y);
+  }
+
+  @keyframes textScroll {
+    to {
+      transform: scale(0.8);
+      filter: blur(10px);
+      opacity: 0;
+    }
   }
 
   @keyframes fadeIn {
@@ -98,8 +111,8 @@ const duration = "0.5s";
 
 <article
   class:list={["text-slate-900 dark:text-slate-100 w-full h-full", article?.props?.class]}
+  data-is="article-text"
   {...article?.props}
-  data-is="card"
   data-threshold={text?.threshold}
 >
   {

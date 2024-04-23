@@ -84,7 +84,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
   type GroupedByName<T> = [ElementNamedType<T, HTMLElement>, ElementNamedType<T, HTMLElement>[]];
 
   // --
-  const wrappers = Array.from(document.querySelectorAll("[data-is='wrapper'][data-name]")) as HTMLElement[];
+  const wrappers = Array.from(document.querySelectorAll("[data-is='screen-unit-wrapper'][data-name]")) as HTMLElement[];
   const titles = Array.from(document.querySelectorAll("[data-is='title'][data-name]")) as HTMLElement[];
 
   const groupedObservers: GroupedByName<string>[] = wrappers.reduce((acc: GroupedByName<string>[], cur) => {
@@ -158,7 +158,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
     { "flex-col": subtitle },
     wrapper?.className,
   ]}
-  data-is="wrapper"
+  data-is="screen-unit-wrapper"
   data-threshold={wrapper.threshold || 0.4}
   data-name={wrapper.name}
   style={{ minHeight: sizes[wrapper.size || "full"] }}

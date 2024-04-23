@@ -165,10 +165,10 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       name: "presentation",
       threshold: thresholds.wrapper.content,
-      size: "full",
+      size: "half",
       className: [
         // BASE
-        "place-items-center  pb-12 w-full !px-2 !pt-0",
+        "place-items-center pb-12 !px-2 !w-fit min-w-[400px] h-fit ms-[10%] gap-1", // !mt-44
         // GRID
         "screen-unit-grid screen-unit-rank",
       ].join(" "),
@@ -176,12 +176,23 @@ const wrappers: ScreenUnitType = {
   },
 };
 
+const presentationProps = {
+  article: "flex flex-col items-center justify-center px-3 py-5",
+  form: "flex flex-row items-center justify-center w-full",
+  wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
+  buttonProps: {
+    className: `${colorThemes["dark"].buttonText} font-bold m-0 p-0`,
+    variant: "link",
+    size: "none",
+  } as const,
+};
+
 const presentation: SegmentType<"text"> = {
   subText: {
     type: "text",
     article: {
       props: {
-        class: `absolute right-28 w-[400px] h-[200px] border-e-8 ${colorThemes["light"].titleBorder} rounded-lg`,
+        class: `absolute right-28 max-w-[400px] max-h-[200px] border-e-8 ${colorThemes["light"].titleBorder} rounded-lg`,
       },
     },
     title: {
@@ -202,9 +213,7 @@ const presentation: SegmentType<"text"> = {
     card: true,
     title: {
       content: generateLorem(1),
-      props: {
-        class: `${colorThemes["dark"].title}`,
-      },
+      props: { class: `${colorThemes["dark"].title}` },
       icon: "tree-1.png",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[8px] -translate-x-[7px]",
@@ -217,20 +226,17 @@ const presentation: SegmentType<"text"> = {
 
     article: {
       props: {
-        class: ["flex flex-col items-center justify-center px-3 py-5"].join(" "),
+        class: presentationProps.article,
       },
     },
     form: {
       props: {
-        class: "flex flex-row items-center justify-center w-full",
+        class: presentationProps.form,
       },
     },
     button: {
       content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
-      props: {
-        className: `${colorThemes["dark"].buttonText} font-bold m-0 p-0 `,
-        variant: "link",
-      },
+      props: { ...presentationProps.buttonProps },
     },
   },
   2: {
@@ -239,36 +245,30 @@ const presentation: SegmentType<"text"> = {
     card: true,
     title: {
       content: generateLorem(1),
-      props: {
-        class: `${colorThemes["dark"].title}`,
-      },
+      props: { class: `${colorThemes["dark"].title}` },
       icon: "tree-2.png",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[5px] -translate-x-[8px]",
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: "overflow-hidden rounded-full max-w-[82px] max-h-[82px] shadow-2xl shadow-black",
+        class: presentationProps.wrapperIcon,
       },
     },
 
     article: {
       props: {
-        class: "flex flex-col items-center justify-center px-3 py-5",
+        class: presentationProps.article,
       },
     },
     form: {
       props: {
-        class: "flex flex-row items-center justify-center w-full",
+        class: presentationProps.form,
       },
     },
     button: {
       content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
-      props: {
-        className: `${colorThemes["dark"].buttonText} font-bold`,
-        variant: "link",
-        size: "none",
-      },
+      props: { ...presentationProps.buttonProps },
     },
   },
   3: {
@@ -277,35 +277,30 @@ const presentation: SegmentType<"text"> = {
     card: true,
     title: {
       content: generateLorem(1),
-      props: {
-        class: `${colorThemes["dark"].title}`,
-      },
+      props: { class: `${colorThemes["dark"].title}` },
       icon: "tree-3.png",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[7px] -translate-x-[8.5px]",
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: "overflow-hidden rounded-full max-w-[82px] max-h-[82px] shadow-2xl shadow-black",
+        class: presentationProps.wrapperIcon,
       },
     },
 
     article: {
       props: {
-        class: "flex flex-col items-center justify-center px-3 py-5",
+        class: presentationProps.article,
       },
     },
     form: {
       props: {
-        class: "flex flex-row items-center justify-center w-full",
+        class: presentationProps.form,
       },
     },
     button: {
       content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
-      props: {
-        className: `${colorThemes["dark"].buttonText} font-bold font-bold m-0 p-0`,
-        variant: "link",
-      },
+      props: { ...presentationProps.buttonProps },
     },
   },
   4: {
@@ -314,34 +309,29 @@ const presentation: SegmentType<"text"> = {
     card: true,
     title: {
       content: generateLorem(1),
-      props: {
-        class: `${colorThemes["dark"].title}`,
-      },
+      props: { class: `${colorThemes["dark"].title}` },
       icon: "tree-4.png",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[6px] -translate-x-[7px]",
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: "max-w-[82px] max-h-[82px]",
+        class: presentationProps.wrapperIcon,
       },
     },
     article: {
       props: {
-        class: "flex flex-col items-center justify-center px-3 py-5",
+        class: presentationProps.article,
       },
     },
     form: {
       props: {
-        class: "flex flex-row items-center justify-center w-full",
+        class: presentationProps.form,
       },
     },
     button: {
       content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
-      props: {
-        className: `${colorThemes["dark"].buttonText} font-bold font-bold m-0 p-0`,
-        variant: "link",
-      },
+      props: { ...presentationProps.buttonProps },
     },
   },
 };

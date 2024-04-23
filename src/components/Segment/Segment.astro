@@ -17,8 +17,6 @@ const SegmentComponent = (() => {
   }
   return SegmentText;
 })();
-
-console.log(SegmentComponent);
 ---
 
 <SegmentComponent {...Astro.props as SegmentProps<typeof Astro.props.type>} />

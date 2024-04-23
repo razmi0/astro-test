@@ -103,7 +103,6 @@ const duration = "0.5s";
   /** 
   focused element */
 
-  /* @media (min-width: 640px) { */
   [data-focus] {
     transition: all 0.3s var(--bezier);
   }
@@ -113,9 +112,6 @@ const duration = "0.5s";
     --translationY: calc(-90% * var(--rankY));
     transform: translate(var(--translationX), var(--translationY));
     transition: transform 0.3s var(--bezier);
-    @media (min-width: 1024px) {
-      margin-left: 40cqw;
-    }
   }
 
   /**
