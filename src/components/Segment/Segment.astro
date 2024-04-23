@@ -1,6 +1,7 @@
 ---
 import SegmentText from "./SegmentText.astro";
 import SegmentImageText from "./SegmentImageText.astro";
+import SegmentCards from "./SegmentCards.astro";
 
 import type { SegmentFormat, SegmentPropsMap } from "@/types";
 
@@ -10,10 +11,10 @@ const SegmentComponent = (() => {
   switch (Astro.props.type) {
     case "image-text":
       return SegmentImageText;
-    case "text":
+    case "text" && !Astro.props.card:
       return SegmentText;
-    case "card":
-      return SegmentText;
+    case "text" && Astro.props.card:
+      return SegmentCards;
     default:
       return SegmentText;
   }

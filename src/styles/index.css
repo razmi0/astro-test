@@ -35,7 +35,7 @@
   @apply grid grid-rows-4 grid-cols-1 sm:grid-rows-2 sm:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4 gap-10;
   --margin-bot: 80%;
   --margin-top: 80%;
-  --overlap-cards-margin-right: 80%;
+  --overlap-cards-margin-right: 25vw;
 }
 
 .screen-unit-rank > :nth-child(1) {
