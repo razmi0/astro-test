@@ -12,7 +12,7 @@ interface Props {
 const { imgClasses, figureClasses, width = 42, height = 42 } = Astro.props;
 ---
 
-<figure class:list={[figureClasses]}>
+<figure class:list={[figureClasses, "h-fit"]}>
   <a href="/" aria-label="Home">
     <Image
       src={LogoImg}
