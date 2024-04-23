@@ -1,8 +1,10 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 interface Props {
   size?: number;
   color?: string;
   direction?: "up" | "down" | "left" | "right";
+  props?: Omit<HTMLAttributes<"svg">, "width" | "height" | "color" | "direction">;
 }
 
 const { color = "currentcolor", size = 24, direction = "up" } = Astro.props;
