@@ -2,6 +2,7 @@
 import { Button } from "../ui/Button";
 import type { FormProps } from "@/types";
 import Spacer from "../ui/Spacer.astro";
+import Arrow from "../icons/Arrow.astro";
 
 interface Props extends FormProps {}
 
@@ -19,7 +20,7 @@ const labelClass = label?.props?.class;
       input && (
         <>
           {label && (
-            <label for={input?.props?.id} class:list={["quattrocento-sans-bold", labelClass]} {...label.props}>
+            <label for={input?.props?.id} class:list={["quattrocento-sans-bold", labelClass]} {...label.props} class="">
               {label?.content}
             </label>
           )}
@@ -31,6 +32,7 @@ const labelClass = label?.props?.class;
       button && (
         <Button type="button" class:list={["btn ghost card mt-2 w-fit px-6", buttonClass]} {...button.props}>
           <Fragment set:html={button?.content} />
+          {button.arrowIcon && <Arrow {...button?.arrowProps} />}
         </Button>
       )
     }

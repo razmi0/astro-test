@@ -149,7 +149,7 @@ const wrappers: ScreenUnitType = {
       startingPos: "0",
       endingPos: "0",
       name: "presentation",
-      text: generateLorem(5),
+      text: "Découvrez des activitées uniques et enrichissantes",
       className: "sm:text-5xl",
       direction: "ltr",
     },
@@ -177,29 +177,38 @@ const wrappers: ScreenUnitType = {
 };
 
 const presentationProps = {
-  article: "flex flex-col items-center justify-center px-3 py-5",
+  focusWrapperClass: "min-w-[200px] max-w-[350px] h-[220px] h-full group/focus",
+  article:
+    "hover:w-full group-focus-within/focus:w-full min-w-[220px] flex flex-col items-center justify-center px-3 py-5 hover:pe-36 hover:ps-6 group-focus-within/focus:pe-44 group",
   wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
-
   form: "flex flex-row items-center justify-center w-full",
   buttonProps: {
-    className: `${colorThemes["dark"].buttonText} font-bold m-0 p-0`,
-    variant: "link",
-    size: "none",
-    "data-is": "card-article-button",
+    props: {
+      className: `hidden group-hover:flex group-focus-within/focus:flex pointer-events-none ${colorThemes["dark"].buttonText} rounded-none border-none rounded-tl-full rounded-bl-full
+      font-bold text-md h-fit absolute right-0 top-1/2 -translate-y-1/2 py-6 pe-5 ps-5 !border-2 !dark:border-slate-800/50 !border-slate-300/50 !border-r-transparent items-center gap-2 `,
+      variant: "outline",
+      size: "none",
+    },
+    content: "Voir",
+    arrowIcon: true,
+    arrowProps: {
+      direction: "right",
+    },
   } as const,
 };
 
 const presentation: SegmentType<"text"> = {
   subText: {
+    theme: "dark",
     type: "text",
     article: {
       props: {
-        class: `absolute right-28 max-w-[400px] max-h-[200px] border-e-8 ${colorThemes["light"].titleBorder} rounded-lg`,
+        class: `absolute right-28 max-w-[400px] max-h-[200px] border-e-8 ${colorThemes["dark"].titleBorder} rounded-lg`,
       },
     },
     title: {
       content: "Des expériences exceptionelles",
-      props: { class: "text-center text-pur-600 dark:text-pur-400" },
+      props: { class: `text-center ${colorThemes["dark"].title}` },
     },
     text: {
       props: {
@@ -214,7 +223,7 @@ const presentation: SegmentType<"text"> = {
     type: "text",
     card: true,
     title: {
-      content: generateLorem(1),
+      content: "Exploration",
       props: { class: `${colorThemes["dark"].title}` },
       icon: "tree-1.png",
       iconProps: {
@@ -226,6 +235,8 @@ const presentation: SegmentType<"text"> = {
       },
     },
 
+    focusWrapperClass: presentationProps.focusWrapperClass,
+
     article: {
       props: {
         class: presentationProps.article,
@@ -236,17 +247,14 @@ const presentation: SegmentType<"text"> = {
         class: presentationProps.form,
       },
     },
-    button: {
-      content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
-      props: { ...presentationProps.buttonProps },
-    },
+    button: { ...presentationProps.buttonProps },
   },
   2: {
     theme: "dark",
     type: "text",
     card: true,
     title: {
-      content: generateLorem(1),
+      content: "Grimpe",
       props: { class: `${colorThemes["dark"].title}` },
       icon: "tree-2.png",
       iconProps: {
@@ -258,6 +266,7 @@ const presentation: SegmentType<"text"> = {
       },
     },
 
+    focusWrapperClass: presentationProps.focusWrapperClass,
     article: {
       props: {
         class: presentationProps.article,
@@ -268,17 +277,14 @@ const presentation: SegmentType<"text"> = {
         class: presentationProps.form,
       },
     },
-    button: {
-      content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
-      props: { ...presentationProps.buttonProps },
-    },
+    button: { ...presentationProps.buttonProps },
   },
   3: {
     theme: "dark",
     type: "text",
     card: true,
     title: {
-      content: generateLorem(1),
+      content: "Séjour",
       props: { class: `${colorThemes["dark"].title}` },
       icon: "tree-3.png",
       iconProps: {
@@ -290,6 +296,7 @@ const presentation: SegmentType<"text"> = {
       },
     },
 
+    focusWrapperClass: presentationProps.focusWrapperClass,
     article: {
       props: {
         class: presentationProps.article,
@@ -301,17 +308,14 @@ const presentation: SegmentType<"text"> = {
         class: presentationProps.form,
       },
     },
-    button: {
-      content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
-      props: { ...presentationProps.buttonProps },
-    },
+    button: { ...presentationProps.buttonProps },
   },
   4: {
     theme: "dark",
     type: "text",
     card: true,
     title: {
-      content: generateLorem(1),
+      content: "Aventure",
       props: { class: `${colorThemes["dark"].title}` },
       icon: "tree-4.png",
       iconProps: {
@@ -322,6 +326,7 @@ const presentation: SegmentType<"text"> = {
         class: presentationProps.wrapperIcon,
       },
     },
+    focusWrapperClass: presentationProps.focusWrapperClass,
     article: {
       props: {
         class: presentationProps.article,
@@ -333,10 +338,7 @@ const presentation: SegmentType<"text"> = {
         class: presentationProps.form,
       },
     },
-    button: {
-      content: `Learn more...`, // <a href=${links[3].href}>Learn more...</a>
-      props: { ...presentationProps.buttonProps },
-    },
+    button: { ...presentationProps.buttonProps },
   },
 };
 
