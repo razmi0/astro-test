@@ -65,7 +65,7 @@ if (title?.icon) {
 }
 
 const cardClass = card
-  ? "backdrop-filter backdrop-blur-sm bg-gradient-to-b from-slate-300/90 to-slate-400/90 hover:ring-2 hover:ring-stone-900/50 transition-all dark:from-slate-800/90 dark:to-slate-900/90 shadow-sm rounded-full py-5"
+  ? "backdrop-filter backdrop-blur-sm bg-gradient-to-b from-slate-300/90 to-slate-400/90 hover:ring-2 hover:ring-stone-900/50 transition-all dark:from-slate-800/90 dark:to-slate-900/90 shadow-sm rounded-lg py-5"
   : "";
 const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 
@@ -185,10 +185,10 @@ const duration = "0.5s";
 <div
   data-focus
   tabindex="-1"
-  class="w-full h-fit flex items-center justify-center cursor-pointer z-40 transform-gpu select-none"
+  class="w-full max-w-[350px] max-h-[300px] h-full flex items-center justify-center cursor-pointer z-40 transform-gpu select-none"
 >
   <article
-    class:list={["text-slate-900 dark:text-slate-100 w-full h-full max-w-[300px]", cardClass, article?.props?.class]}
+    class:list={["text-slate-900 dark:text-slate-100 w-full h-full", cardClass, article?.props?.class]}
     {...article?.props}
     data-is="card"
     data-threshold={text?.threshold}

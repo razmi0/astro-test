@@ -170,7 +170,7 @@ const wrappers: ScreenUnitType = {
     wrapper: {
       name: "presentation",
       threshold: thresholds.wrapper.content,
-      size: "threeQuarter",
+      size: "full",
       className: [
         // BASE
         "place-items-center  pb-12 w-full !px-2 !pt-0",
@@ -203,7 +203,7 @@ const textContent: SegmentType<"text"> = {
 
     article: {
       props: {
-        class: ["flex flex-col items-center justify-center px-3 py-5 mb-6 "].join(" "),
+        class: ["flex flex-col items-center justify-center px-3 py-5"].join(" "),
       },
     },
     form: {
@@ -240,7 +240,7 @@ const textContent: SegmentType<"text"> = {
 
     article: {
       props: {
-        class: "flex flex-col items-center justify-center px-1 py-3 mb-6",
+        class: "flex flex-col items-center justify-center px-3 py-5",
       },
     },
     form: {
@@ -278,7 +278,7 @@ const textContent: SegmentType<"text"> = {
 
     article: {
       props: {
-        class: "flex flex-col items-center justify-center px-1 py-3 mb-6 ",
+        class: "flex flex-col items-center justify-center px-3 py-5",
       },
     },
     form: {
@@ -314,7 +314,7 @@ const textContent: SegmentType<"text"> = {
     },
     article: {
       props: {
-        class: "flex flex-col items-center justify-center px-1 py-3 mb-6",
+        class: "flex flex-col items-center justify-center px-3 py-5",
       },
     },
     form: {
