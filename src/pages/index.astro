@@ -7,6 +7,7 @@ import Hero from "@/components/Hero.astro";
 import Segment from "@/components/Segment/Segment.astro";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
 import { textContent, wrappers, imageTextContent } from "@/shared/data";
+import SegmentText from "@/components/Segment/SegmentText.astro";
 ---
 
 <Layout title="Accueil">
@@ -24,9 +25,23 @@ import { textContent, wrappers, imageTextContent } from "@/shared/data";
        *
        */
     }
+
     <ColorTheme theme="light" curve>
       <ScreenUnit {...wrappers.presentationHeader} />
       <ScreenUnit {...wrappers.presentation}>
+        <!-- <SegmentText
+          type="text"
+          article={{
+            props: {
+              class: "absolute right-0",
+            },
+          }}
+          title={{ content: "Des expériences exceptionelles" }}
+          text={{
+            content:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste doloremque, assumenda rerum facilis, illum sunt saepe autem neque vel optio velit fugit quos asperiores quae quisquam laudantium beatae et!",
+          }}
+        /> -->
         <Segment {...textContent.presentationContentOne} />
         <Segment {...textContent.presentationContentTwo} />
         <Segment {...textContent.presentationContentThree} />

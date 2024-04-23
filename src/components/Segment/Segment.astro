@@ -8,17 +8,17 @@ import type { SegmentFormat, SegmentPropsMap } from "@/types";
 export type SegmentProps<T extends SegmentFormat> = SegmentPropsMap[T];
 
 const SegmentComponent = (() => {
-  switch (Astro.props.type) {
-    case "image-text":
-      return SegmentImageText;
-    case "text" && !Astro.props.card:
-      return SegmentText;
-    case "text" && Astro.props.card:
-      return SegmentCards;
-    default:
-      return SegmentText;
+  if (Astro.props.card) {
+    return SegmentCards;
+  } else if (Astro.props.type === "text") {
+    return SegmentText;
+  } else if (Astro.props.type === "image-text") {
+    return SegmentImageText;
   }
+  return SegmentText;
 })();
+
+console.log(SegmentComponent);
 ---
 
 <SegmentComponent {...Astro.props as SegmentProps<typeof Astro.props.type>} />
