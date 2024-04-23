@@ -6,7 +6,7 @@ import ScreenUnit from "@/layouts/ScreenUnit.astro";
 import Hero from "@/components/Hero.astro";
 import Segment from "@/components/Segment/Segment.astro";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
-import { textContent, wrappers, imageTextContent } from "@/shared/data";
+import { presentation, wrappers, imageTextContent } from "@/shared/data";
 import SegmentText from "@/components/Segment/SegmentText.astro";
 ---
 
@@ -27,25 +27,15 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
     }
 
     <ColorTheme theme="light" curve>
-      <ScreenUnit {...wrappers.presentationHeader} />
+      <ScreenUnit {...wrappers.presentationHeaderTitle} />
+      <ScreenUnit {...wrappers.presentationHeaderSubText}>
+        <SegmentText {...presentation.subText} />
+      </ScreenUnit>
       <ScreenUnit {...wrappers.presentation}>
-        <!-- <SegmentText
-          type="text"
-          article={{
-            props: {
-              class: "absolute right-0",
-            },
-          }}
-          title={{ content: "Des expériences exceptionelles" }}
-          text={{
-            content:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste doloremque, assumenda rerum facilis, illum sunt saepe autem neque vel optio velit fugit quos asperiores quae quisquam laudantium beatae et!",
-          }}
-        /> -->
-        <Segment {...textContent.presentationContentOne} />
-        <Segment {...textContent.presentationContentTwo} />
-        <Segment {...textContent.presentationContentThree} />
-        <Segment {...textContent.presentationContentFour} />
+        <Segment {...presentation[1]} />
+        <Segment {...presentation[2]} />
+        <Segment {...presentation[3]} />
+        <Segment {...presentation[4]} />
       </ScreenUnit>
     </ColorTheme>
     {

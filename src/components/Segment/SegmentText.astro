@@ -2,11 +2,6 @@
 import { Image } from "astro:assets";
 import type { SegmentProps } from "./Segment.astro";
 import SegmentForm from "./SegmentForm.astro";
-import { generateLorem } from "@/helpers";
-import { Button } from "../ui/Button";
-import colorThemes from "../ui/Color/data";
-import Spacer from "../ui/Spacer.astro";
-("@/components/ui/Color/data");
 
 interface Props extends SegmentProps<"text"> {}
 const {
@@ -92,84 +87,6 @@ const duration = "0.5s";
     animation-fill-mode: forwards;
   }
 
-  [data-focus]:where(:focus-within) [data-is="header-card-icon"] {
-    animation: float 2s infinite var(--bezier);
-  }
-
-  /** 
-  focused element */
-
-  /* @media (min-width: 640px) { */
-  [data-focus] {
-    transition: all 0.3s var(--bezier);
-  }
-
-  [data-focus]:focus-within {
-    --translationX: calc(-100% * var(--rankX));
-    --translationY: calc(-90% * var(--rankY));
-    transform: translate(var(--translationX), var(--translationY));
-    transition: transform 0.3s var(--bezier);
-    @media (min-width: 1024px) {
-      margin-left: 40cqw;
-    }
-  }
-
-  /**
-  targeting all next siblings */
-  [data-focus]:focus-within ~ [data-focus],
-  /**
-  targeting all previous siblings */
-  [data-focus]:has(~ [data-focus]:focus-within) {
-    opacity: 0.7;
-    transform: scale(0.8);
-    filter: blur(2px);
-    z-index: 0;
-
-    & > article {
-      pointer-events: none;
-    }
-  }
-
-  [data-focus]:focus-within > .reveal-card-content {
-    display: flex;
-    animation: revealY 0.2s var(--bezier);
-    animation-fill-mode: forwards;
-    margin-top: 30px;
-  }
-  @media (min-width: 640px) {
-    [data-focus]:focus-within > .reveal-card-content {
-      animation: revealX 0.2s var(--bezier);
-      animation-fill-mode: forwards;
-      margin-top: 0;
-    }
-  }
-  /* } */
-
-  @keyframes revealX {
-    to {
-      opacity: 1;
-      transform: translateX(90%);
-    }
-  }
-
-  @keyframes revealY {
-    to {
-      opacity: 1;
-      transform: translateY(90%);
-    }
-  }
-
-  @keyframes float {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-4px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
   @keyframes fadeIn {
     to {
       opacity: 1;
@@ -178,78 +95,57 @@ const duration = "0.5s";
     }
   }
 </style>
-<div
-  data-focus
-  tabindex="-1"
-  class="w-full max-w-[250px] max-h-[200px] h-full flex items-center justify-center cursor-pointer z-40 transform-gpu select-none"
+
+<article
+  class:list={["text-slate-900 dark:text-slate-100 w-full h-full", article?.props?.class]}
+  {...article?.props}
+  data-is="card"
+  data-threshold={text?.threshold}
 >
-  <article
-    class:list={["text-slate-900 dark:text-slate-100 w-full h-full", article?.props?.class]}
-    {...article?.props}
-    data-is="card"
-    data-threshold={text?.threshold}
-  >
-    {
-      title && !title?.icon && (
+  {
+    title && !title?.icon && (
+      <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
+        {title.content}
+      </h2>
+    )
+  }
+  {
+    title && title?.icon && (
+      <div class="flex flex-col w-full justify-center items-center gap-2">
+        <div
+          data-is="header-card-icon"
+          class:list={[
+            "shadow-2xl shadow-black dark:shadow-white/50 overflow-hidden rounded-full",
+            title.wrapperIconProps?.class,
+          ]}
+          {...title.wrapperIconProps}
+        >
+          <Image src={images[imgPath]()} alt="" {...(title?.iconProps as any)} />
+        </div>
         <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
           {title.content}
         </h2>
-      )
-    }
-    {
-      title && title?.icon && (
-        <div class="flex flex-col w-full justify-center items-center gap-2">
-          <div
-            data-is="header-card-icon"
-            class:list={[
-              "shadow-2xl shadow-black dark:shadow-white/50 overflow-hidden rounded-full",
-              title.wrapperIconProps?.class,
-            ]}
-            {...title.wrapperIconProps}
-          >
-            <Image src={images[imgPath]()} alt="" {...(title?.iconProps as any)} />
-          </div>
-          <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
-            {title.content}
-          </h2>
-        </div>
-      )
-    }
-    {
-      subtitle && (
-        <small class:list={[subtitle.props?.class]} {...subtitle.props}>
-          {subtitle.content}
-        </small>
-      )
-    }
-    {
-      text && (
-        <p
-          class:list={["text-balance text-center", text.props?.class]}
-          {...text.props}
-          data-is="card"
-          data-threshold={text?.threshold}
-        >
-          {text.content}
-        </p>
-      )
-    }
-    {(input || button) && <SegmentForm input={input} button={button} form={form} label={label} />}
-  </article>
-  <div
-    class={`container-reveal h-full hidden w-full z-50 absolute reveal-card-content md:min-w-[400px] lg:min-w-[500px] gap-4 ${colorThemes[`${theme}`].title} ring-1 ring-stone-900/5 rounded-lg bg-gradient-to-b from-slate-300 to-slate-400 dark:from-slate-800 dark:to-slate-900 border-s-8 ${colorThemes[theme].titleBorder} p-6`}
-  >
-    <img
-      src="https://picsum.photos/200/300"
-      alt="tree"
-      class="w-52 h-full max-h-[250px] aspect-[9/16] object-cover hidden rounded-lg shadow-lg"
-    />
-    <div class="flex flex-col items-center justify-evenly gap-3 h-full">
-      <h3 class="text-2xl">Title here</h3>
-      <p class="text-def-900 dark:text-def-100 text-balance text-center ps-2 text-[0.9rem] sm:text-[1rem]">
-        {generateLorem(15)}
+      </div>
+    )
+  }
+  {
+    subtitle && (
+      <small class:list={[subtitle.props?.class]} {...subtitle.props}>
+        {subtitle.content}
+      </small>
+    )
+  }
+  {
+    text && (
+      <p
+        class:list={["text-balance text-center", text.props?.class]}
+        {...text.props}
+        data-is="card"
+        data-threshold={text?.threshold}
+      >
+        {text.content}
       </p>
-      <Button className="font-bold text-md w-full" variant={"outline"}>S'inscrire</Button>
-    </div>
-  </div>
-</div>
+    )
+  }
+  {(input || button) && <SegmentForm input={input} button={button} form={form} label={label} />}
+</article>

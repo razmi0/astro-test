@@ -10,7 +10,7 @@ interface Props {
     name?: string;
     className?: string;
     threshold?: number;
-    size?: "full" | "threeQuarter" | "half" | "third" | "quarter";
+    size?: "full" | "threeQuarter" | "half" | "third" | "quarter" | "none";
   };
   titleWrapper?: {
     className?: string;
@@ -51,6 +51,7 @@ const sizes = {
   half: "50vh",
   third: "33vh",
   quarter: "25vh",
+  none: "auto",
 };
 
 // -- Animation

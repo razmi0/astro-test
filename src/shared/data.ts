@@ -135,7 +135,7 @@ const wrappers: ScreenUnitType = {
       className: "pb-12 !pt-0 flex flex-col gap-12 xl:flex-row justify-evenly items-center w-full",
     },
   },
-  presentationHeader: {
+  presentationHeaderTitle: {
     theme: "dark",
     wrapper: {
       size: "third",
@@ -153,16 +153,11 @@ const wrappers: ScreenUnitType = {
       className: "sm:text-5xl",
       direction: "ltr",
     },
-    subtitle: {
-      name: "presentation",
-      startingPos: "0",
-      endingPos: "0",
-      separator: {
-        props: {},
-      },
-      text: {
-        content: generateLorem(4),
-      },
+  },
+  presentationHeaderSubText: {
+    theme: "dark",
+    wrapper: {
+      size: "none",
     },
   },
   presentation: {
@@ -181,8 +176,27 @@ const wrappers: ScreenUnitType = {
   },
 };
 
-const textContent: SegmentType<"text"> = {
-  presentationContentOne: {
+const presentation: SegmentType<"text"> = {
+  subText: {
+    type: "text",
+    article: {
+      props: {
+        class: `absolute right-28 w-[400px] h-[200px] border-e-8 ${colorThemes["light"].titleBorder} rounded-lg`,
+      },
+    },
+    title: {
+      content: "Des expériences exceptionelles",
+      props: { class: "text-center text-pur-600 dark:text-pur-400" },
+    },
+    text: {
+      props: {
+        class: "text-left mt-5",
+      },
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste doloremque, assumenda rerum facilis, illum sunt saepe autem neque vel optio velit fugit quos asperiores quae quisquam laudantium beatae et!",
+    },
+  },
+  1: {
     theme: "dark",
     type: "text",
     card: true,
@@ -219,7 +233,7 @@ const textContent: SegmentType<"text"> = {
       },
     },
   },
-  presentationContentTwo: {
+  2: {
     theme: "dark",
     type: "text",
     card: true,
@@ -257,7 +271,7 @@ const textContent: SegmentType<"text"> = {
       },
     },
   },
-  presentationContentThree: {
+  3: {
     theme: "dark",
     type: "text",
     card: true,
@@ -294,7 +308,7 @@ const textContent: SegmentType<"text"> = {
       },
     },
   },
-  presentationContentFour: {
+  4: {
     theme: "dark",
     type: "text",
     card: true,
@@ -485,4 +499,4 @@ const imageTextContent: SegmentType<"image-text"> = {
     },
   },
 };
-export { imageTextContent, textContent, thresholds, wrappers };
+export { imageTextContent, presentation, thresholds, wrappers };
