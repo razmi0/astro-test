@@ -178,12 +178,14 @@ const wrappers: ScreenUnitType = {
 
 const presentationProps = {
   article: "flex flex-col items-center justify-center px-3 py-5",
-  form: "flex flex-row items-center justify-center w-full",
   wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
+
+  form: "flex flex-row items-center justify-center w-full",
   buttonProps: {
     className: `${colorThemes["dark"].buttonText} font-bold m-0 p-0`,
     variant: "link",
     size: "none",
+    "data-is": "card-article-button",
   } as const,
 };
 
@@ -293,6 +295,7 @@ const presentation: SegmentType<"text"> = {
         class: presentationProps.article,
       },
     },
+
     form: {
       props: {
         class: presentationProps.form,
@@ -324,6 +327,7 @@ const presentation: SegmentType<"text"> = {
         class: presentationProps.article,
       },
     },
+
     form: {
       props: {
         class: presentationProps.form,

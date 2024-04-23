@@ -66,7 +66,7 @@ const duration = "0.5s";
 <script>
   import { setupIntersectionObserver } from "@/helpers";
   // --
-  const elements = Array.from(document.querySelectorAll("[data-is='article-text']")) as HTMLElement[];
+  const elements = Array.from(document.querySelectorAll("[data-is='text-article-wrapper']")) as HTMLElement[];
   const onIntersect = (element: HTMLElement) => element.classList.add("animate-fade-in-card");
 
   elements.map((element) => {
@@ -82,21 +82,21 @@ const duration = "0.5s";
 </script>
 
 <style define:vars={{ bezier, duration }}>
-  article[data-is="article-text"].animate-fade-in-card {
+  /* article[data-is="article-text"].animate-fade-in-card {
     animation: fadeIn var(--duration) var(--bezier);
     animation-fill-mode: forwards;
-  }
+  } */
 
-  article[data-is="article-text"].animate-fade-in-card {
-    animation: textScroll var(--duration) var(--bezier);
+  article[data-is="text-article-wrapper"].animate-fade-in-card {
+    transform: scale(1.1) translateY(-20vh);
+    animation: textScroll;
+    animation-timing-function: var(--bezier);
     animation-timeline: scroll(y);
   }
 
   @keyframes textScroll {
     to {
-      transform: scale(0.8);
-      filter: blur(10px);
-      opacity: 0;
+      transform: scale(0.9) translateY(60vh);
     }
   }
 
@@ -111,7 +111,7 @@ const duration = "0.5s";
 
 <article
   class:list={["text-slate-900 dark:text-slate-100 w-full h-full", article?.props?.class]}
-  data-is="article-text"
+  data-is="text-article-wrapper"
   {...article?.props}
   data-threshold={text?.threshold}
 >
@@ -153,7 +153,7 @@ const duration = "0.5s";
       <p
         class:list={["text-balance text-center", text.props?.class]}
         {...text.props}
-        data-is="card"
+        data-is="text-article-text"
         data-threshold={text?.threshold}
       >
         {text.content}

@@ -29,12 +29,7 @@ const labelClass = label?.props?.class;
     }
     {
       button && (
-        <Button
-          type="button"
-          data-button-lorem
-          class:list={["btn ghost card mt-2 w-fit px-6", buttonClass]}
-          {...button.props}
-        >
+        <Button type="button" class:list={["btn ghost card mt-2 w-fit px-6", buttonClass]} {...button.props}>
           <Fragment set:html={button?.content} />
         </Button>
       )

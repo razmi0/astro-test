@@ -75,7 +75,7 @@ const duration = "0.5s";
 <script>
   import { setupIntersectionObserver } from "@/helpers";
   // --
-  const elements = Array.from(document.querySelectorAll("[data-is='card']")) as HTMLElement[];
+  const elements = Array.from(document.querySelectorAll("[data-is='card-article-wrapper']")) as HTMLElement[];
   const onIntersect = (element: HTMLElement) => element.classList.add("animate-fade-in-card");
 
   elements.map((element) => {
@@ -91,13 +91,24 @@ const duration = "0.5s";
 </script>
 
 <style define:vars={{ bezier, duration }}>
-  [data-is="card"].animate-fade-in-card {
+  [data-is="card-article-wrapper"].animate-fade-in-card {
     animation: fadeIn var(--duration) var(--bezier);
     animation-fill-mode: forwards;
   }
 
   [data-focus]:where(:focus-within) [data-is="header-card-icon"] {
     animation: float 2s infinite var(--bezier);
+  }
+
+  article[data-is="card-article-wrapper"]:hover {
+    padding-right: 50%;
+  }
+
+  article[data-is="card-article-wrapper"]:hover [data-is="card-article-button"] {
+    position: absolute;
+    display: block;
+    right: 0;
+    max-width: 10ch;
   }
 
   /** 
@@ -184,9 +195,9 @@ const duration = "0.5s";
   class="w-full max-w-[250px] max-h-[200px] h-full flex items-center justify-center cursor-pointer z-40 transform-gpu select-none"
 >
   <article
-    class:list={["text-slate-900 dark:text-slate-100 w-full h-full", cardClass, article?.props?.class]}
+    class:list={["text-slate-900 dark:text-slate-100 w-full h-full relative", cardClass, article?.props?.class]}
     {...article?.props}
-    data-is="card"
+    data-is="card-article-wrapper"
     data-threshold={text?.threshold}
   >
     {
@@ -227,7 +238,7 @@ const duration = "0.5s";
         <p
           class:list={["text-balance text-center", text.props?.class]}
           {...text.props}
-          data-is="card"
+          data-is="card-article-text"
           data-threshold={text?.threshold}
         >
           {text.content}
