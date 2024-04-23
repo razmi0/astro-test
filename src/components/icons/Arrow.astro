@@ -1,19 +1,20 @@
 ---
-import type { HTMLAttributes } from "astro/types";
 interface Props {
   size?: number;
   color?: string;
   direction?: "up" | "down" | "left" | "right";
-  props?: Omit<HTMLAttributes<"svg">, "width" | "height" | "color" | "direction">;
+  class?: string;
 }
+
+export type ArrowProps = Props;
 
 const { color = "currentcolor", size = 24, direction = "up" } = Astro.props;
 
 const directions = {
-  up: 0,
-  down: 180,
-  left: 90,
-  right: 270,
+  up: 90,
+  down: 270,
+  left: 0,
+  right: 180,
 };
 ---
 
@@ -23,6 +24,7 @@ const directions = {
   viewBox="0 0 24 24"
   fill="none"
   transform={`rotate(${directions[direction]})`}
+  class={Astro.props.class}
   ><g>
     <path
       d="M13 8 9 12M9 12 13 16M9 12H21M19.4845 7C17.8699 4.588 15.1204 3 12 3 7.0294 3 3 7.0294 3 12 3 16.9706 7.0294 21 12 21 15.1204 21 17.8699 19.412 19.4845 17"

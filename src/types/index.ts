@@ -1,3 +1,4 @@
+import type { ArrowProps } from "@/components/icons/Arrow.astro";
 import type { Button } from "@/components/ui/Button";
 import type { LocalImageProps } from "astro/assets";
 import type { ComponentProps, HTMLAttributes, HTMLTag } from "astro/types";
@@ -241,7 +242,10 @@ interface ImageProps {
 
 interface FormProps {
   input?: PropsNoContent<"input">;
-  button?: ReactPropsWithContent<ComponentProps<typeof Button>>;
+  button?: ReactPropsWithContent<ComponentProps<typeof Button>> & {
+    arrowIcon?: boolean;
+    arrowProps?: ArrowProps;
+  };
   label?: PropsWithContent<"label">;
   form?: PropsNoContent<"form">;
   spacer?: boolean;
