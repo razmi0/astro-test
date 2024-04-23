@@ -214,7 +214,8 @@ interface SharedProps<T extends SegmentFormat> {
   /**
    * type card only available in text segment
    */
-  card?: T extends "text" | "card" ? boolean : never;
+  card?: T extends "text" ? boolean : never;
+  focusWrapperClass?: (this["card"] extends true ? string : never) | string;
 }
 /**
  *
