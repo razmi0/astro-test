@@ -9,6 +9,7 @@ export default [
   {
     rules: {
       // override/add rules settings here, such as:
+      "no-unused-vars": ["warn"],
       // "astro/no-set-html-directive": "error"
     },
   },
