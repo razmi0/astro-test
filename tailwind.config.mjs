@@ -40,9 +40,6 @@ export default {
           500: "#7b8ec3",
           600: "#ba9bc5",
         },
-        hero: {
-          500: "#fbfefb",
-        },
       },
       keyframes: {
         "accordion-down": {
