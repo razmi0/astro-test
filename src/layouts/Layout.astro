@@ -17,7 +17,7 @@ const isHome = pathname === "/";
     <CommonHead />
     <title>{Astro.props.title}</title>
   </head>
-  <body class="flex flex-col overflow-x-hidden bg-slate-300 dark:bg-slate-800" transition:animate="fade">
+  <body class="flex flex-col overflow-x-hidden bg-white dark:bg-slate-800" transition:animate="fade">
     <slot name="header" />
     <slot name="hero" />
     <main class="" class:list={["grow h-full", { "mt-24": !isHome }]}>
