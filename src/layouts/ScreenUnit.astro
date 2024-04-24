@@ -11,6 +11,7 @@ interface Props {
     className?: string;
     threshold?: number;
     size?: "fullQuarter" | "full" | "threeQuarter" | "half" | "third" | "quarter" | "none";
+    id?: string;
   };
   titleWrapper?: {
     className?: string;
@@ -163,6 +164,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
   data-threshold={wrapper.threshold || 0.4}
   data-name={wrapper.name}
   style={{ minHeight: sizes[wrapper.size || "full"] }}
+  id={wrapper.id || ""}
 >
   {
     title && (
