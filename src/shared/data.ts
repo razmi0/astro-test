@@ -181,7 +181,10 @@ const cardsProps = {
   wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
   form: "flex flex-row items-center justify-center w-full",
   text: {
-    content: generateLorem(15),
+    content: generateLorem(10),
+    props: {
+      class: "hidden md:block",
+    },
   },
   buttonProps: {
     props: {
