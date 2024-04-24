@@ -10,7 +10,7 @@ interface Props {
     name?: string;
     className?: string;
     threshold?: number;
-    size?: "full" | "threeQuarter" | "half" | "third" | "quarter" | "none";
+    size?: "fullQuarter" | "full" | "threeQuarter" | "half" | "third" | "quarter" | "none";
   };
   titleWrapper?: {
     className?: string;
@@ -46,6 +46,7 @@ const { title, titleWrapper, subtitle, wrapper, theme } = Astro.props;
 // --
 
 const sizes = {
+  fullQuarter: "125vh",
   full: "100vh",
   threeQuarter: "75vh",
   half: "50vh",
