@@ -19,9 +19,9 @@ const mediumDelay = "1.2s";
 const fastDelay = "1.7s";
 const bezier = "cubic-bezier(.25,.75,.5,1.25)";
 
-const themedColorTitle = colorThemes.default("title");
-const themedColorBtn = colorThemes.default("button");
-const themedColorCssVar = colorThemes.default("cssVar");
+const themedColorHightlight = colorThemes.default("heroHighlight");
+const themedColorBtn = colorThemes.default("heroButton");
+const themedColorCssVar = colorThemes.default("heroCssVar");
 
 const image = selectImage({
   bgName,
@@ -148,20 +148,20 @@ const image = selectImage({
   }
 </style>
 
-<section class="max-h-screen h-screen w-full border-none">
-  <Image
-    src={image()}
-    alt="Oak"
-    class="absolute w-full right-0 h-full max-h-screen aspect-[6/16] 2xs:aspect-[9/16] md:aspect-auto object-contain border-none"
-  />
+<Image
+  src={image()}
+  alt="Oak"
+  class="absolute right-0 h-full aspect-[6/16] 2xs:aspect-[9/16] md:aspect-auto object-cover md:object-none border-none"
+/>
+<div class="min-w-full h-screen flex items-center justify-start">
   <div
-    class="z-10 bg-transparent absolute top-0 mt-[50%] sm:mt-[40%] md:mt-[35%] lg:mt-[30%] xl:mt-[25%] 2xl:mt-[15%] flex flex-col w-[40ch] sm:w-[50ch] md:w-[60ch] lg:w-[75ch] ps-5 md:ps-10 gap-2"
+    class="z-10 bg-transparent flex flex-col w-[30ch] sm:w-[40ch] md:w-[50ch] lg:w-[55ch] ps-5 md:ps-10 gap-2"
     data-is="hero-text-wrapper"
   >
-    <h1 class="animation-start animation-in-title text-[3rem] text-black/95">
-      {generateLorem(1)}
-      <span class:list={[`${themedColorTitle} anchor`]}>
-        {generateLorem(1)}
+    <h1 class="animation-start animation-in-title text-[5rem] text-black/95 whitespace-nowrap">
+      A
+      <span class:list={[`${themedColorHightlight} anchor`]}>
+        l'abord
         <div class="icon-1">
           <svg
             viewBox="0 0 26.3 65.33"
@@ -174,15 +174,16 @@ const image = selectImage({
           </svg>
         </div>
       </span>
-      {generateLorem(1)}
+      Arbre
     </h1>
 
+    <!-- text-black/90 -->
     <p
-      class="text-pretty font-bold animation-start animation-in-paragraph text-[1.2rem] md:text-[1.3rem] text-black/90"
+      class="text-pretty font-bold animation-start animation-in-paragraph text-[1.2rem] md:text-[1.3rem]"
       data-delay="fast"
     >
       {generateLorem(5)}
-      <span class={`${themedColorTitle} [text-shadow:none]`}>{generateLorem(2)}</span>
+      <span class={`${themedColorHightlight} `}>{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
     <p
@@ -190,7 +191,7 @@ const image = selectImage({
       data-delay="slow"
     >
       {generateLorem(5)}
-      <span class={`${themedColorTitle} [text-shadow:none]`}>{generateLorem(2)}</span>
+      <span class={`${themedColorHightlight}`}>{generateLorem(2)}</span>
       {generateLorem(5)}
     </p>
     <div class="flex gap-6 animation-start-button animation-in-button w-fit">
@@ -206,4 +207,4 @@ const image = selectImage({
       </a>
     </div>
   </div>
-</section>
+</div>

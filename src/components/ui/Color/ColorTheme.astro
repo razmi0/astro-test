@@ -11,9 +11,10 @@ interface Props {
   rotate?: `${number}deg`;
   folder?: "hero" | "tiles";
   extension?: "png" | "jpg" | "webp";
+  afterHero?: boolean;
 }
 
-const { theme, bgName, rotate = "0deg", extension, folder } = Astro.props;
+const { theme, bgName, rotate = "0deg", extension, folder, afterHero } = Astro.props;
 
 const image = selectImage({
   bgName,
@@ -21,6 +22,8 @@ const image = selectImage({
   extension,
   fallback: Curves,
 });
+
+const bgColor = afterHero ? colorThemes[theme].containerAfterHero : colorThemes[theme].container;
 ---
 
 <style define:vars={{ rotate }}>
@@ -29,7 +32,7 @@ const image = selectImage({
   }
 </style>
 
-<section class:list={[colorThemes[theme].container]}>
+<section class:list={[bgColor]}>
   {
     bgName !== "none" && (
       <Image
