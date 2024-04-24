@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/layouts/Header.astro";
 import Footer from "@/layouts/Footer.astro";
 import ScreenUnit from "@/layouts/ScreenUnit.astro";
-import Hero from "@/components/Hero.astro";
+import Hero from "@/components/ui/Hero/Hero.astro";
 import Segment from "@/components/Segment/Segment.astro";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
 import { features, wrappers, imageTextContent } from "@/shared/data";
@@ -12,7 +12,7 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
 
 <Layout title="Accueil">
   <Header slot="header" />
-  <Hero slot="hero" folder="hero" bgName="hero-20" extension="png" />
+  <Hero slot="hero" hrefs={["#features", "/activities"]} />
   <Fragment slot="main" id="main">
     {
       /**
@@ -29,7 +29,7 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
     <ColorTheme theme="light" afterHero bgName="none">
       <!-- <ScreenUnit {...wrappers.cardsHeaderTitle} /> -->
       <!-- <SegmentText {...cards.subText} /> -->
-      <ScreenUnit {...wrappers.cards}>
+      <ScreenUnit {...wrappers.features}>
         {features.map((feature: any, i: number) => <Segment key={i} {...feature} />)}
       </ScreenUnit>
     </ColorTheme>
