@@ -32,7 +32,7 @@
 }
 
 .screen-unit-grid {
-  @apply grid grid-cols-2 grid-rows-3 md:grid-rows-2 md:grid-cols-3 w-full;
+  @apply grid grid-cols-2 gap-10 md:gap-3 grid-rows-3 md:grid-rows-2 md:grid-cols-3 w-full;
 }
 
 .screen-unit-rank > :nth-child(1) {
