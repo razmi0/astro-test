@@ -135,12 +135,12 @@ const wrappers: ScreenUnitType = {
       className: "pb-12 !pt-0 flex flex-col gap-12 xl:flex-row justify-evenly items-center w-full",
     },
   },
-  cardsHeaderTitle: {
+  featuresHeaderTitle: {
     theme: "dark",
     wrapper: {
       size: "third",
       className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
-      name: "cards",
+      name: "features",
     },
     titleWrapper: {
       className: "place-content-center text-center",
@@ -154,16 +154,17 @@ const wrappers: ScreenUnitType = {
       direction: "ltr",
     },
   },
-  cardsHeaderSubText: {
+  featuresHeaderSubText: {
     theme: "dark",
     wrapper: {
       size: "none",
     },
   },
-  cards: {
+  features: {
     theme: "light",
     wrapper: {
-      name: "cards",
+      id: "features",
+      name: "features",
       threshold: thresholds.wrapper.content,
       size: "full",
       className: [
@@ -178,17 +179,21 @@ const wrappers: ScreenUnitType = {
 
 const cardsProps = {
   article: "max-w-[400px] max-h-[300px] flex flex-col items-center justify-evenly px-3 py-5",
-  wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
+  wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-sm shadow-black",
   form: "flex flex-row items-center justify-center w-full",
   text: {
-    content: generateLorem(10),
+    content: generateLorem(5),
     props: {
-      class: "hidden md:block",
+      class: "hidden md:block text-black/90 dark:text-white/90 font-bold ",
     },
   },
   buttonProps: {
     props: {
-      className: `${colorThemes["dark"].buttonText} font-bold text-md items-center gap-2 w-full`,
+      className: `${colorThemes["dark"].buttonText} 
+      group/btn hover:pe-8 transition-all duration-200
+      font-bold text-lg w-fit items-center gap-2 
+      bg-slate-200  border border-slate-400 ring-1 ring-slate-300/80 
+      dark:ring-slate-700/80 dark:bg-slate-600`,
       variant: "outline",
       size: "default",
     },
@@ -196,6 +201,8 @@ const cardsProps = {
     arrowIcon: true,
     arrowProps: {
       direction: "right",
+      class:
+        "absolute opacity-0 group-hover/btn:opacity-80 group-hover/btn:inline-block group-hover/btn:translate-x-[30px] transition-all duration-200",
     },
   } as const,
 };
@@ -235,7 +242,7 @@ const features: SegmentProps<"text">[] = [
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
+        class: cardsProps.wrapperIcon,
       },
     },
 
