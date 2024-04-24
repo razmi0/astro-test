@@ -135,12 +135,12 @@ const wrappers: ScreenUnitType = {
       className: "pb-12 !pt-0 flex flex-col gap-12 xl:flex-row justify-evenly items-center w-full",
     },
   },
-  presentationHeaderTitle: {
+  cardsHeaderTitle: {
     theme: "dark",
     wrapper: {
       size: "third",
       className: "pb-0 md:pb-0 flex items-center justify-center gap-12",
-      name: "presentation",
+      name: "cards",
     },
     titleWrapper: {
       className: "place-content-center text-center",
@@ -148,22 +148,22 @@ const wrappers: ScreenUnitType = {
     title: {
       startingPos: "0",
       endingPos: "0",
-      name: "presentation",
+      name: "Presentation",
       text: "Découvrez des activitées uniques et enrichissantes",
       className: "sm:text-5xl",
       direction: "ltr",
     },
   },
-  presentationHeaderSubText: {
+  cardsHeaderSubText: {
     theme: "dark",
     wrapper: {
       size: "none",
     },
   },
-  presentation: {
+  cards: {
     theme: "light",
     wrapper: {
-      name: "presentation",
+      name: "cards",
       threshold: thresholds.wrapper.content,
       size: "full",
       className: [
@@ -176,7 +176,7 @@ const wrappers: ScreenUnitType = {
   },
 };
 
-const presentationProps = {
+const cardsProps = {
   article: "max-w-[400px] max-h-[300px] flex flex-col items-center justify-evenly px-3 py-5",
   wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-2xl shadow-black",
   form: "flex flex-row items-center justify-center w-full",
@@ -197,28 +197,29 @@ const presentationProps = {
   } as const,
 };
 
-const presentation: SegmentType<"text"> = {
-  subText: {
-    theme: "dark",
-    type: "text",
-    article: {
-      props: {
-        class: `absolute right-28 max-w-[400px] max-h-[200px] border-e-8 ${colorThemes["dark"].titleBorder} rounded-lg`,
-      },
-    },
-    title: {
-      content: "Des expériences exceptionelles",
-      props: { class: `text-center ${colorThemes["dark"].title}` },
-    },
-    text: {
-      props: {
-        class: "text-left mt-5",
-      },
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste doloremque, assumenda rerum facilis, illum sunt saepe autem neque vel optio velit fugit quos asperiores quae quisquam laudantium beatae et!",
+const subText = {
+  theme: "dark",
+  type: "text",
+  article: {
+    props: {
+      class: `absolute right-28 max-w-[400px] max-h-[200px] border-e-8 ${colorThemes["dark"].titleBorder} rounded-lg`,
     },
   },
-  1: {
+  title: {
+    content: "Des expériences exceptionelles",
+    props: { class: `text-center ${colorThemes["dark"].title}` },
+  },
+  text: {
+    props: {
+      class: "text-left mt-5",
+    },
+    content:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste doloremque, assumenda rerum facilis, illum sunt saepe autem neque vel optio velit fugit quos asperiores quae quisquam laudantium beatae et!",
+  },
+};
+
+const features: SegmentProps<"text">[] = [
+  {
     theme: "dark",
     type: "text",
     card: true,
@@ -235,21 +236,21 @@ const presentation: SegmentType<"text"> = {
       },
     },
 
-    text: presentationProps.text,
+    text: cardsProps.text,
 
     article: {
       props: {
-        class: presentationProps.article,
+        class: cardsProps.article,
       },
     },
     form: {
       props: {
-        class: presentationProps.form,
+        class: cardsProps.form,
       },
     },
-    button: { ...presentationProps.buttonProps },
+    button: { ...cardsProps.buttonProps },
   },
-  2: {
+  {
     theme: "dark",
     type: "text",
     card: true,
@@ -262,25 +263,25 @@ const presentation: SegmentType<"text"> = {
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: presentationProps.wrapperIcon,
+        class: cardsProps.wrapperIcon,
       },
     },
 
-    text: presentationProps.text,
+    text: cardsProps.text,
 
     article: {
       props: {
-        class: presentationProps.article,
+        class: cardsProps.article,
       },
     },
     form: {
       props: {
-        class: presentationProps.form,
+        class: cardsProps.form,
       },
     },
-    button: { ...presentationProps.buttonProps },
+    button: { ...cardsProps.buttonProps },
   },
-  3: {
+  {
     theme: "dark",
     type: "text",
     card: true,
@@ -293,26 +294,26 @@ const presentation: SegmentType<"text"> = {
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: presentationProps.wrapperIcon,
+        class: cardsProps.wrapperIcon,
       },
     },
 
-    text: presentationProps.text,
+    text: cardsProps.text,
 
     article: {
       props: {
-        class: presentationProps.article,
+        class: cardsProps.article,
       },
     },
 
     form: {
       props: {
-        class: presentationProps.form,
+        class: cardsProps.form,
       },
     },
-    button: { ...presentationProps.buttonProps },
+    button: { ...cardsProps.buttonProps },
   },
-  4: {
+  {
     theme: "dark",
     type: "text",
     card: true,
@@ -325,26 +326,26 @@ const presentation: SegmentType<"text"> = {
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: presentationProps.wrapperIcon,
+        class: cardsProps.wrapperIcon,
       },
     },
 
-    text: presentationProps.text,
+    text: cardsProps.text,
 
     article: {
       props: {
-        class: presentationProps.article,
+        class: cardsProps.article,
       },
     },
 
     form: {
       props: {
-        class: presentationProps.form,
+        class: cardsProps.form,
       },
     },
-    button: { ...presentationProps.buttonProps },
+    button: { ...cardsProps.buttonProps },
   },
-  5: {
+  {
     theme: "dark",
     type: "text",
     card: true,
@@ -357,26 +358,26 @@ const presentation: SegmentType<"text"> = {
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: presentationProps.wrapperIcon,
+        class: cardsProps.wrapperIcon,
       },
     },
 
-    text: presentationProps.text,
+    text: cardsProps.text,
 
     article: {
       props: {
-        class: presentationProps.article,
+        class: cardsProps.article,
       },
     },
 
     form: {
       props: {
-        class: presentationProps.form,
+        class: cardsProps.form,
       },
     },
-    button: { ...presentationProps.buttonProps },
+    button: { ...cardsProps.buttonProps },
   },
-  6: {
+  {
     theme: "dark",
     type: "text",
     card: true,
@@ -389,26 +390,26 @@ const presentation: SegmentType<"text"> = {
         alt: "tree icon representing feature number 1",
       },
       wrapperIconProps: {
-        class: presentationProps.wrapperIcon,
+        class: cardsProps.wrapperIcon,
       },
     },
 
-    text: presentationProps.text,
+    text: cardsProps.text,
 
     article: {
       props: {
-        class: presentationProps.article,
+        class: cardsProps.article,
       },
     },
 
     form: {
       props: {
-        class: presentationProps.form,
+        class: cardsProps.form,
       },
     },
-    button: { ...presentationProps.buttonProps },
+    button: { ...cardsProps.buttonProps },
   },
-};
+];
 
 const imageTextContent: SegmentType<"image-text"> = {
   vijay: {
@@ -527,4 +528,4 @@ const imageTextContent: SegmentType<"image-text"> = {
     },
   },
 };
-export { imageTextContent, presentation, thresholds, wrappers };
+export { features, imageTextContent, subText, thresholds, wrappers };

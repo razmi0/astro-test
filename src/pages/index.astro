@@ -6,7 +6,7 @@ import ScreenUnit from "@/layouts/ScreenUnit.astro";
 import Hero from "@/components/Hero.astro";
 import Segment from "@/components/Segment/Segment.astro";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
-import { presentation, wrappers, imageTextContent } from "@/shared/data";
+import { features, wrappers, imageTextContent } from "@/shared/data";
 import SegmentText from "@/components/Segment/SegmentText.astro";
 ---
 
@@ -19,7 +19,7 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
        *
        *
        *
-       * Presentation
+       * Cards Features
        *
        *
        *
@@ -27,15 +27,10 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
     }
 
     <ColorTheme theme="light">
-      <!-- <ScreenUnit {...wrappers.presentationHeaderTitle} /> -->
-      <!-- <SegmentText {...presentation.subText} /> -->
-      <ScreenUnit {...wrappers.presentation}>
-        <Segment {...presentation[1]} />
-        <Segment {...presentation[2]} />
-        <Segment {...presentation[3]} />
-        <Segment {...presentation[4]} />
-        <Segment {...presentation[5]} />
-        <Segment {...presentation[6]} />
+      <!-- <ScreenUnit {...wrappers.cardsHeaderTitle} /> -->
+      <!-- <SegmentText {...cards.subText} /> -->
+      <ScreenUnit {...wrappers.cards}>
+        {features.map((feature: any, i: number) => <Segment key={i} {...feature} />)}
       </ScreenUnit>
     </ColorTheme>
     {
