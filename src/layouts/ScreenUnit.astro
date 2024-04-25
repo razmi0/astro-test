@@ -113,7 +113,7 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
         setupIntersectionObserver({
           element: group[0],
           debugLog: `debug-obs-title-${group[0].id}`,
-          threshold: parseInt(group[0].dataset.threshold || "") || 0.4,
+          threshold: parseInt(group[0]?.dataset?.threshold || "") || 0.4,
           onIntersect: () => onIntersect(title),
           onDisappear: () => onDisappear(title),
         });
@@ -161,10 +161,10 @@ const bezier = "cubic-bezier(.25,.75,.5,1.05)";
     wrapper?.className,
   ]}
   data-is="screen-unit-wrapper"
-  data-threshold={wrapper.threshold || 0.4}
-  data-name={wrapper.name}
-  style={{ minHeight: sizes[wrapper.size || "full"] }}
-  id={wrapper.id || ""}
+  data-threshold={wrapper?.threshold || 0.4}
+  data-name={wrapper?.name}
+  style={{ minHeight: sizes[wrapper?.size || "full"] }}
+  id={wrapper?.id || ""}
 >
   {
     title && (

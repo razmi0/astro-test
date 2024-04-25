@@ -38,7 +38,7 @@ export default {
         pur: {
           400: "#d5d4ea",
           500: "#7b8ec3",
-          600: "#ba9bc5",
+          600: "#f3d2ff", //#ba9bc5
         },
       },
       keyframes: {

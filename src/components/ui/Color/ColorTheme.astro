@@ -32,14 +32,10 @@ const bgColor = afterHero ? colorThemes[theme].containerAfterHero : colorThemes[
   }
 </style>
 
-<section class:list={[bgColor]}>
+<section class:list={["relative", bgColor]}>
   {
     bgName !== "none" && (
-      <Image
-        src={image()}
-        alt="abstract background image"
-        class="absolute right-0 object-cover  h-full opacity-20 bg-img pt-0 rounded-lg"
-      />
+      <Image src={image()} alt="abstract background image" class="absolute object-cover h-full opacity-10 bg-img" />
     )
   }
   <slot />

@@ -82,24 +82,16 @@ const duration = "0.5s";
 </script>
 
 <style define:vars={{ bezier, duration }}>
-  /* article[data-is="article-text"].animate-fade-in-card {
+  article[data-is="text-article-wrapper"].animate-fade-in-card {
     animation: fadeIn var(--duration) var(--bezier);
     animation-fill-mode: forwards;
-  } */
-
-  /* article[data-is="text-article-wrapper"].animate-fade-in-card {
-    transform: scale(1.1) translateY(-20vh);
-    animation: textScroll;
-    animation-timing-function: var(--bezier);
-    animation-timeline: scroll(y);
-    animation-duration: 1ms;
   }
 
-  @keyframes textScroll {
-    to {
-      transform: scale(0.9) translateY(60vh);
-    }
-  } */
+  article[data-is="text-article-wrapper"] {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(4px);
+  }
 
   @keyframes fadeIn {
     to {

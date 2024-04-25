@@ -1,19 +1,152 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/layouts/Header.astro";
-import Footer from "@/layouts/Footer.astro";
-import ScreenUnit from "@/layouts/ScreenUnit.astro";
-import Hero from "@/components/ui/Hero/Hero.astro";
+import RandomExploration from "@/assets/hero/hero-11.png";
+import RandomNature from "@/assets/hero/hero-15.png";
 import Segment from "@/components/Segment/Segment.astro";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
-import { features, wrappers, imageTextContent } from "@/shared/data";
-import SegmentText from "@/components/Segment/SegmentText.astro";
+import Hero from "@/components/ui/Hero/Hero.astro";
+import Leaf from "@/components/ui/Hero/Leaf.astro";
+import { generateLorem } from "@/helpers";
+import Footer from "@/layouts/Footer.astro";
+import Header from "@/layouts/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import ScreenUnit from "@/layouts/ScreenUnit.astro";
+import { features } from "@/shared/content";
+import { wrappers } from "@/shared/screen";
+import { Image } from "astro:assets";
+
+const bezier = "cubic-bezier(.25,.75,.5,1.05)";
+const duration = "0.5s";
 ---
 
+<script>
+  import { setupIntersectionObserver } from "@/helpers";
+  // --
+  const elements = Array.from(document.querySelectorAll("[data-content]")) as HTMLElement[];
+  const onIntersect = (element: HTMLElement) => element.classList.add("animate-fade-in-card");
+
+  elements.map((element) => {
+    setupIntersectionObserver({
+      element,
+      debugLog: "image",
+      onIntersect: () => onIntersect(element),
+      threshold: 0.8,
+    });
+  });
+</script>
+
+<style define:vars={{ bezier, duration }}>
+  [data-content].animate-fade-in-card {
+    animation: fadeIn var(--duration) var(--bezier);
+    animation-fill-mode: forwards;
+  }
+
+  [data-content] {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(4px);
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
+</style>
+
 <Layout title="Accueil">
+  {
+    /**
+     *
+     *
+     *
+     * Header
+     *
+     *
+     *
+     */
+  }
   <Header slot="header" />
+  {
+    /**
+     *
+     *
+     *
+     * Hero
+     *
+     *
+     *
+     */
+  }
   <Hero slot="hero" hrefs={["#features", "/activities"]} />
   <Fragment slot="main" id="main">
+    {
+      /**
+       *
+       *
+       *
+       * Nature & Adventure
+       *
+       *
+       *
+       */
+    }
+
+    <ColorTheme theme="light" afterHero bgName="none">
+      <ScreenUnit {...wrappers.natureHeader} />
+      <ScreenUnit {...wrappers.nature}>
+        <div class="flex w-full h-[250px] items-center justify-center gap-6" data-content>
+          <div class="flex flex-col h-full justify-evenly">
+            <h4 class="dark:text-slate-200 text-slate-900 text-2xl text-right">
+              {generateLorem(3)}...
+            </h4>
+            <p class="text-pur-400 text-lg font-bold max-w-[60ch] text-right text-balance">
+              {generateLorem(40)}
+            </p>
+          </div>
+          <div class="ps-3 border-s-4 border-s-pur-400 rounded-lg">
+            <Image
+              src={RandomNature}
+              alt={"random exploration picture"}
+              class={"object-cover rounded-lg h-full w-80"}
+            />
+          </div>
+        </div>
+      </ScreenUnit>
+    </ColorTheme>
+    {
+      /**
+       *
+       *
+       *
+       * Exploration & Culture
+       *
+       *
+       *
+       */
+    }
+
+    <ColorTheme theme="dark" rotate="180deg">
+      <ScreenUnit {...wrappers.explorationHeader} />
+      <ScreenUnit {...wrappers.exploration}>
+        <div class="flex w-full h-[250px] items-center justify-center gap-6" data-content>
+          <div class="pe-3 border-e-4 border-e-pur-600 rounded-lg">
+            <Image
+              src={RandomExploration}
+              alt={"random nature picture"}
+              class={" object-cover rounded-lg h-full w-80"}
+            />
+          </div>
+          <div class="flex flex-col h-full justify-evenly">
+            <h4 class="dark:text-slate-200 text-slate-900 text-2xl">
+              {generateLorem(3)}...
+            </h4>
+            <p class="text-pur-600 text-lg font-bold max-w-[60ch] text-left text-balance">{generateLorem(40)}</p>
+          </div>
+        </div>
+      </ScreenUnit>
+    </ColorTheme>
     {
       /**
        *
@@ -26,9 +159,10 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
        */
     }
 
-    <ColorTheme theme="light" afterHero bgName="none">
-      <!-- <ScreenUnit {...wrappers.cardsHeaderTitle} /> -->
-      <!-- <SegmentText {...cards.subText} /> -->
+    <ColorTheme theme="light" bgName="none">
+      <ScreenUnit {...wrappers.featuresHeader} />
+    </ColorTheme>
+    <ColorTheme theme="light">
       <ScreenUnit {...wrappers.features}>
         {features.map((feature: any, i: number) => <Segment key={i} {...feature} />)}
       </ScreenUnit>
@@ -38,36 +172,13 @@ import SegmentText from "@/components/Segment/SegmentText.astro";
        *
        *
        *
-       * Hook
+       * See us
        *
        *
        *
        */
     }
-    <ColorTheme theme="dark">
-      <ScreenUnit {...wrappers.hookHeaderPrimary} />
-      <ScreenUnit {...wrappers.hookPrimary}>
-        <Segment {...imageTextContent.hookPrimary} />
-      </ScreenUnit>
-    </ColorTheme>
-    <ColorTheme theme="dark">
-      <ScreenUnit {...wrappers.hookHeaderSecondary} />
-      <ScreenUnit {...wrappers.hookSecondary}>
-        <Segment {...imageTextContent.hookSecondary} />
-      </ScreenUnit>
-    </ColorTheme>
-
-    {
-      /**
-       *
-       *
-       *
-       * Convince ? CTA
-       *
-       *
-       *
-       */
-    }
+    <ColorTheme theme="dark" />
     {
       /**
        *
