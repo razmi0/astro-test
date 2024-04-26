@@ -2,52 +2,10 @@
 import Header from "@/layouts/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import Footer from "@/layouts/Footer.astro";
-import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
-import ScreenUnit from "@/layouts/ScreenUnit.astro";
-import Segment from "@/components/Segment/Segment.astro";
-import { wrappers, imageTextContent } from "@/shared/screenen";
 ---
 
 <Layout title="A propos">
   <Header slot="header" />
-  <Fragment slot="main" id="main">
-    {
-      /**
-       *
-       *
-       *
-       * Fondateurs
-       *
-       *
-       *
-       */
-    }
-    <ColorTheme theme="dark" rotate={"180deg"}>
-      <ScreenUnit {...wrappers.fondateurHeader} />
-      <ScreenUnit {...wrappers.fondateurVijay}>
-        <Segment {...imageTextContent.vijay} />
-      </ScreenUnit>
-      <ScreenUnit {...wrappers.fondateurLou}>
-        <Segment {...imageTextContent.lou} />
-      </ScreenUnit>
-    </ColorTheme>
-    {
-      /**
-       *
-       *
-       *
-       * Histoire
-       *
-       *
-       *
-       */
-    }
-    <ColorTheme theme="light">
-      <ScreenUnit {...wrappers.histoireHeader} />
-      <ScreenUnit {...wrappers.histoire}>
-        <Segment {...imageTextContent.histoire} />
-      </ScreenUnit>
-    </ColorTheme>
-  </Fragment>
+  <Fragment slot="main" id="main"> </Fragment>
   <Footer slot="footer" />
 </Layout>
