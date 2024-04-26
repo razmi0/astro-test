@@ -5,7 +5,6 @@ import { generateLorem } from "@/helpers";
 import Leaf from "./Leaf.astro";
 import Title from "./Title.astro";
 
-
 interface Props {
   hrefs: [string, string];
 }
@@ -18,19 +17,13 @@ const themedColorBtn = colorThemes.default("heroButton");
 
 <style>
   .animation-start-subtitle {
-    opacity: 0;
-    filter: blur(1px);
-    transform: scale(0.8) translateY(-30px);
+    transform: translateY(-30px) scale(0.8);
   }
   .animation-start-paragraph {
-    opacity: 0;
-    filter: blur(1px);
     transform: scale(0.8);
   }
   .animation-start-buttons {
-    opacity: 0;
-    filter: blur(2px);
-    transform: scale(0.8) translateY(30px);
+    transform: translateY(30px) scale(0.8);
   }
   :where(.animation-in-subtitle, .animation-in-paragraph, .animation-in-button) {
     animation-name: goInPlace;
@@ -45,29 +38,23 @@ const themedColorBtn = colorThemes.default("heroButton");
 </style>
 
 <section class="w-full h-screen flex items-center">
-  <div
-    class="w-full h-full flex flex-col items-center py-12 text-center justify-evenly gap-12 max-h-[50vh]"
-    data-is="hero-text-wrapper"
-  >
+  <div class="w-full h-full flex flex-col items-center py-12 text-center justify-evenly gap-12 max-h-[50vh]">
     <h4
-      class="animation-start-subtitle animation-in-subtitle animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-700 text-md text-black/90 dark:text-white/90 w-fit z-10"
-      data-is="subtitle"
+      class="opacity-0 blur-sm animation-start-subtitle animation-in-subtitle animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-700 text-md text-black/90 dark:text-white/90 w-fit z-10"
     >
       {generateLorem(5)}...
       <Leaf />
     </h4>
     <Title />
     <p
-      class="animation-start-paragraph animation-in-paragraph animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-1200 text-pretty max-w-[50ch] text-black/90 dark:text-white/90 font-bold text-[1.2rem] md:text-[1.3rem]"
-      data-is="paragraph"
+      class="opacity-0 blur-sm animation-start-paragraph animation-in-paragraph animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-1200 text-pretty max-w-[50ch] text-black/90 dark:text-white/90 font-bold text-[1.2rem] md:text-[1.3rem]"
     >
       {generateLorem(7)}
       <span class={`${themedColorHightlight}`}>{generateLorem(2)}</span>
       {generateLorem(7)}
     </p>
     <div
-      class="animation-start-buttons w-full flex justify-center items-center gap-12 animation-start-button animation-in-button animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-1700"
-      data-is="buttons"
+      class="opacity-0 blur-sm animation-start-buttons w-full flex justify-center items-center gap-12 animation-start-button animation-in-button animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-1700"
     >
       <a href={hrefs[0]} class="w-fit">
         <Button
