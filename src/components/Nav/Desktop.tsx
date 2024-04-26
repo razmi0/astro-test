@@ -1,5 +1,5 @@
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTrigger } from "../ui/Drawer";
-import ModeToggle from "../ui/ModeToggle";
+import ModeToggle from "../ui/ModeToggle/ModeToggle";
 import Spacer from "../ui/Spacer";
 import Footer from "./shared/Footer";
 import Logo from "./shared/Logo";

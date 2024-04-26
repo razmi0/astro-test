@@ -1,5 +1,5 @@
 import { Drawer, DrawerContent, DrawerHeader, DrawerTrigger } from "../ui/Drawer";
-import ModeToggle from "../ui/ModeToggle";
+import ModeToggle from "../ui/ModeToggle/ModeToggle";
 import MenuBody from "./shared/MenuBody";
 import MenuHeader from "./shared/MenuHeader";
 import MenuIcon from "./shared/MenuIcon";
