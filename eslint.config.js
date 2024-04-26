@@ -1,16 +1,21 @@
+import pluginJs from "@eslint/js";
 import eslintPluginAstro from "eslint-plugin-astro";
-export default [
-  // add more generic rule sets here, such as:
-  // js.configs.recommended,
-  ...eslintPluginAstro.configs["flat/strict"],
-  eslintPluginAstro.configs["flat/typescript"],
-  eslintPluginAstro.configs["flat/jsx-a11y-strict"],
+import jsxA11y from "eslint-plugin-jsx-a11y-strict";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
+export default [
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...eslintPluginAstro.configs.recommended,
+  ...jsxA11y.configs['jsx-a11y-strict'],
+  {
+    languageOptions: { globals: globals.browser },
+  },
   {
     rules: {
-      // override/add rules settings here, such as:
-      "typescript/no-unused-vars": ["warn"],
-      // "astro/no-set-html-directive": "error"
+      "no-unused-vars": "error",
+      "no-undef": "error",
     },
   },
 ];
