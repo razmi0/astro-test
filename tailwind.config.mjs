@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
-import colorThemes from "./src/components/ui/Color/data.ts";
+
+// 'sm': '640px' => (min-width: 640px)
+// 'md': '768px' => (min-width: 768px)
+// 'lg': '1024px' => (min-width: 1024px)
+// 'xl': '1280px' => (min-width: 1280px)
+// '2xl': '1536px' => (min-width: 1536px)
 
 export default {
   darkMode: ["class"],
@@ -18,11 +23,6 @@ export default {
       "2xs": "375px",
       xs: "475px",
       ...defaultTheme.screens,
-      // 'sm': '640px' => (min-width: 640px)
-      // 'md': '768px' => (min-width: 768px)
-      // 'lg': '1024px' => (min-width: 1024px)
-      // 'xl': '1280px' => (min-width: 1280px)
-      // '2xl': '1536px' => (min-width: 1536px)
     },
     extend: {
       colors: {
@@ -40,6 +40,46 @@ export default {
           500: "#7b8ec3",
           600: "#f3d2ff", //#ba9bc5
         },
+      },
+      animationDuration: {
+        75: "75ms",
+        100: "100ms",
+        150: "150ms",
+        200: "200ms",
+        300: "300ms",
+        500: "500ms",
+        700: "700ms",
+        1000: "1000ms",
+        1100: "1100ms",
+        1200: "1200ms",
+        1300: "1300ms",
+        1400: "1400ms",
+        1500: "1500ms",
+        1600: "1600ms",
+        1700: "1700ms",
+        1800: "1800ms",
+        1900: "1900ms",
+        2000: "2000ms",
+      },
+      animationDelay: {
+        75: "75ms",
+        100: "100ms",
+        150: "150ms",
+        200: "200ms",
+        300: "300ms",
+        500: "500ms",
+        700: "700ms",
+        1000: "1000ms",
+        1100: "1100ms",
+        1200: "1200ms",
+        1300: "1300ms",
+        1400: "1400ms",
+        1500: "1500ms",
+        1600: "1600ms",
+        1700: "1700ms",
+        1800: "1800ms",
+        1900: "1900ms",
+        2000: "2000ms",
       },
       keyframes: {
         "accordion-down": {
@@ -69,25 +109,63 @@ export default {
         });
       });
     },
-
-    // Build exception on native tw colors
-    // ({ addBase, theme }) => {
-    //   function extractColorVars(colorObj, colorGroup = "") {
-    //     return Object.keys(colorObj).reduce((vars, colorKey) => {
-    //       const value = colorObj[colorKey];
-
-    //       const newVars =
-    //         typeof value === "string"
-    //           ? { [`--color${colorGroup}-${colorKey * 100 + 100}`]: "value" }
-    //           : extractColorVars("value", `-${colorKey}`);
-
-    //       return { ...vars, ...newVars };
-    //     }, {});
-    //   }
-
-    //   addBase({
-    //     ":root": extractColorVars(theme("colors")),
-    //   });
-    // },
+    ({ addUtilities }) =>
+      addUtilities({
+        ".animate-fill-none": {
+          "animation-fill-mode": "normal",
+        },
+        ".animate-fill-forwards": {
+          "animation-fill-mode": "forwards",
+        },
+        ".animate-fill-backwards": {
+          "animation-fill-mode": "backwards",
+        },
+        ".animate-fill-both": {
+          "animation-fill-mode": "both",
+        },
+      }),
+    ({ addUtilities }) =>
+      addUtilities({
+        ".animate-timing-elastic": {
+          "animation-timing-function": "cubic-bezier(0.25, 0.75, 0.5, 1.25)",
+        },
+        ".animate-timing-inelastic": {
+          "animation-timing-function": "cubic-bezier(0.25, 0.75, 0.75, 1)",
+        },
+        ".animate-ease-linear": {
+          "animation-timing-function": "linear",
+        },
+        ".animate-ease-in": {
+          "animation-timing-function": "cubic-bezier(0.4, 0, 1, 1)",
+        },
+        ".animate-ease-out": {
+          "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+        },
+        ".animate-ease-in-out": {
+          "animation-timing-function": "cubic-bezier(0.4, 0, 0.2, 1)",
+        },
+      }),
+    ({ matchUtilities, theme }) =>
+      matchUtilities(
+        {
+          "animate-duration": (value) => ({
+            "animation-duration": value,
+          }),
+        },
+        {
+          values: theme("animationDuration"),
+        }
+      ),
+    ({ matchUtilities, theme }) =>
+      matchUtilities(
+        {
+          "animate-delay": (value) => ({
+            "animation-delay": value,
+          }),
+        },
+        {
+          values: theme("animationDelay"),
+        }
+      ),
   ],
 };
