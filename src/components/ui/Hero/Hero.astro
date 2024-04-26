@@ -3,6 +3,7 @@ import { generateLorem } from "@/helpers";
 import { Button } from "@/components/ui/Button";
 import colorThemes from "@/components/ui/Color/data";
 import Leaf from "./Leaf.astro";
+import Title from "./Title.astro";
 
 interface Props {
   hrefs: [string, string];
@@ -10,100 +11,36 @@ interface Props {
 
 const { hrefs } = Astro.props;
 
-const slowDelay = "0.8s";
-const mediumDelay = "1.2s";
-const fastDelay = "1.7s";
-const bezier = "cubic-bezier(.25,.75,.5,1.25)";
-
 const themedColorHightlight = colorThemes.default("heroHighlight");
 const themedColorBtn = colorThemes.default("heroButton");
 const themedColorCssVar = colorThemes.default("heroCssVar");
-
-//interface Props {
-//   bgName?:
-//     | "three-tree"
-//     | "oak"
-//     | "hero-23-tr"
-//     | `hero-${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30}`;
-//   folder?: "hero" | "tiles";
-//   extension?: "png" | "jpg" | "webp";
-// }
-
-// const image = selectImage({
-//   bgName,
-//   folder,
-//   extension,
-//   fallback: ThreeTree,
-// });
-
-// <Image src={image()} alt="Oak" class="absolute top-0 object-top max-w-[unset] hue-rotate-0" />
-// "md:[&>img]:object-cover md:[&>img]:w-full md:[&>img]:max-h-[200vh]",
-//     "lg:[&>div]:w-fit lg:[&>img]:w-fit lg:[&>img]:block lg:[&>img]:relative lg:[&>img]:max-h-screen",
 ---
 
-<style define:vars={{ slowDelay, mediumDelay, fastDelay, bezier, themedColorCssVar }}>
-  div[data-is="hero-text-wrapper"] {
-    --speedRatio: 0.1;
-    --title-delay: calc(0.2s * var(--speedRatio));
-    --sub-title-delay: calc(0.7s * var(--speedRatio));
-    /** */
-    --paragraph-delay-fast: calc(var(--fastDelay) * var(--speedRatio));
-    --paragraph-delay-medium: calc(var(--mediumDelay) * var(--speedRatio));
-    --paragraph-delay-slow: calc(var(--slowDelay) * var(--speedRatio));
-    /** */
-    --button-delay: calc(2s * var(--speedRatio));
+<style define:vars={{ themedColorCssVar }}>
+  .animation-start-subtitle {
+    opacity: 0;
+    filter: blur(1px);
+    transform: scale(0.8) translateY(-30px);
   }
 
-  .animation-start {
+  .animation-start-paragraph {
+    opacity: 0;
+    filter: blur(1px);
+    transform: scale(0.8);
+  }
+  .animation-start-buttons {
     opacity: 0;
     filter: blur(2px);
-    scale: 0.9;
+    transform: scale(0.8) translateY(30px);
   }
-
-  .animation-start-button {
-    transform: translateY(50px);
-    opacity: 0;
-    filter: blur(2px);
+  :where(.animation-in-subtitle, .animation-in-paragraph, .animation-in-button) {
+    animation-name: goInPlace;
   }
-
-  .animation-in-title {
-    animation: fadeIn 1s ease-in-out forwards;
-    animation-delay: var(--title-delay);
-  }
-
-  .animation-in-subtitle {
-    animation: fadeIn 1s var(--bezier) forwards;
-    animation-delay: var(--sub-title-delay);
-  }
-
-  [data-delay="fast"].animation-in-paragraph {
-    animation: fadeIn 1s var(--bezier) forwards;
-    animation-delay: var(--paragraph-delay-fast);
-  }
-
-  [data-delay="slow"].animation-in-paragraph {
-    animation: fadeIn 1s var(--bezier) forwards;
-    animation-delay: var(--paragraph-delay-slow);
-  }
-
-  .animation-in-button {
-    animation: fadeInButton 1s ease-in-out forwards;
-    animation-delay: var(--button-delay);
-  }
-
-  @keyframes fadeIn {
+  @keyframes goInPlace {
     to {
       opacity: 1;
       filter: blur(0px);
-      scale: 1;
-    }
-  }
-
-  @keyframes fadeInButton {
-    to {
-      opacity: 1;
-      filter: blur(0px);
-      transform: translateY(0px);
+      transform: translateY(0px) scale(1);
     }
   }
 </style>
@@ -113,28 +50,27 @@ const themedColorCssVar = colorThemes.default("heroCssVar");
     class="w-full h-full flex flex-col items-center py-12 text-center justify-evenly gap-12 max-h-[50vh]"
     data-is="hero-text-wrapper"
   >
-    <h4 class="animation-start animation-in-subtitle text-xl text-black/90 dark:text-white/90 w-fit z-10">
+    <h4
+      class="animation-start-subtitle animation-in-subtitle animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-700 text-md text-black/90 dark:text-white/90 w-fit z-10"
+      data-is="subtitle"
+    >
       {generateLorem(5)}...
       <Leaf />
     </h4>
-    <h1
-      class="relative animation-start animation-in-title text-[5rem] text-black/90 sm:whitespace-nowrap leading-[4rem] dark:text-white/90"
-      style="text-shadow: 0 0 2px rgba(0,0,0,1);"
-    >
-      A
-      <span class:list={[`${themedColorHightlight}`]}> l'abord </span>
-      Arbre
-    </h1>
+    <Title />
     <p
-      class="text-pretty animation-start animation-in-paragraph max-w-[50ch] text-black/90 dark:text-white/90 font-bold text-[1.2rem] md:text-[1.3rem]"
-      data-delay="fast"
+      class="animation-start-paragraph animation-in-paragraph animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-1200 text-pretty max-w-[50ch] text-black/90 dark:text-white/90 font-bold text-[1.2rem] md:text-[1.3rem]"
+      data-is="paragraph"
     >
       {generateLorem(7)}
       <span class={`${themedColorHightlight}`}>{generateLorem(2)}</span>
       {generateLorem(7)}
     </p>
-    <div class="w-full flex justify-center items-center gap-12">
-      <a href={hrefs[0]} class="animation-start-button animation-in-button w-fit">
+    <div
+      class="animation-start-buttons w-full flex justify-center items-center gap-12 animation-start-button animation-in-button animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-1700"
+      data-is="buttons"
+    >
+      <a href={hrefs[0]} class="w-fit">
         <Button
           variant={"outline"}
           className={`${themedColorBtn} rounded-full px-8 text-md h-16 w-32 ring-1 ring-black/80 hover:border-white dark:hover:ring-white`}
@@ -142,10 +78,10 @@ const themedColorCssVar = colorThemes.default("heroCssVar");
           <span class="text-black/90 dark:text-white/90 font-bold">Découvrir</span>
         </Button>
       </a>
-      <a href={hrefs[1]} class="animation-start-button animation-in-button w-fit">
+      <a href={hrefs[1]} class="w-fit">
         <Button
           variant={"ghost"}
-          className={`rounded-full px-8  text-md h-16 w-32 ring-1 ring-black/80 dark:hover:ring-white`}
+          className={`rounded-full px-8 text-md h-16 w-32 ring-1 ring-black/80 dark:hover:ring-white`}
         >
           <span class="text-black/90 dark:text-white/90 font-bold">S'inscrire</span>
         </Button>
