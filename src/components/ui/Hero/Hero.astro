@@ -13,16 +13,14 @@ const { hrefs } = Astro.props;
 
 const themedColorHightlight = colorThemes.default("heroHighlight");
 const themedColorBtn = colorThemes.default("heroButton");
-const themedColorCssVar = colorThemes.default("heroCssVar");
 ---
 
-<style define:vars={{ themedColorCssVar }}>
+<style>
   .animation-start-subtitle {
     opacity: 0;
     filter: blur(1px);
     transform: scale(0.8) translateY(-30px);
   }
-
   .animation-start-paragraph {
     opacity: 0;
     filter: blur(1px);
