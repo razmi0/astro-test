@@ -46,7 +46,7 @@ const features: SegmentProps<"text">[] = [
     title: {
       content: "Exploration",
       props: { class: `${colorThemes["dark"].title}` },
-      icon: "tree-1.png",
+      icon: "tree-1",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[8px] -translate-x-[7px]",
         alt: "tree icon representing feature number 1",
@@ -77,7 +77,7 @@ const features: SegmentProps<"text">[] = [
     title: {
       content: "Grimpe",
       props: { class: `${colorThemes["dark"].title}` },
-      icon: "tree-2.png",
+      icon: "tree-2",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[5px] -translate-x-[8px]",
         alt: "tree icon representing feature number 1",
@@ -108,7 +108,7 @@ const features: SegmentProps<"text">[] = [
     title: {
       content: "Séjour",
       props: { class: `${colorThemes["dark"].title}` },
-      icon: "tree-3.png",
+      icon: "tree-3",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[7px] -translate-x-[8.5px]",
         alt: "tree icon representing feature number 1",
@@ -140,7 +140,7 @@ const features: SegmentProps<"text">[] = [
     title: {
       content: "Aventure",
       props: { class: `${colorThemes["dark"].title}` },
-      icon: "tree-4.png",
+      icon: "tree-4",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[6px] -translate-x-[7px]",
         alt: "tree icon representing feature number 1",
@@ -172,7 +172,7 @@ const features: SegmentProps<"text">[] = [
     title: {
       content: "Déconnexion",
       props: { class: `${colorThemes["dark"].title}` },
-      icon: "tree-4.png",
+      icon: "tree-4",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[6px] -translate-x-[7px]",
         alt: "tree icon representing feature number 1",
@@ -204,7 +204,7 @@ const features: SegmentProps<"text">[] = [
     title: {
       content: "Partage",
       props: { class: `${colorThemes["dark"].title}` },
-      icon: "tree-4.png",
+      icon: "tree-4",
       iconProps: {
         class: "rounded-full min-w-[100px] min-h-[100px] -translate-y-[6px] -translate-x-[7px]",
         alt: "tree icon representing feature number 1",
