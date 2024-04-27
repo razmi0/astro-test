@@ -190,14 +190,16 @@
     0px 0px 0px 1px var(--tw-shadow-color);
 }
 
-.center {
-  @apply items-center justify-center;
-}
+@layer base {
+  .center {
+    @apply items-center justify-center;
+  }
 
-.vertical {
-  @apply flex flex-col;
-}
+  .vertical {
+    @apply flex flex-col;
+  }
 
-.horizontal {
-  @apply flex flex-row;
+  .horizontal {
+    @apply flex flex-row;
+  }
 }
