@@ -11,7 +11,7 @@ type SegmentType<T extends SegmentFormat> = {
 const cardsProps = {
   article: "max-w-[400px] max-h-[300px] flex flex-col items-center justify-evenly px-3 py-5",
   wrapperIcon: "overflow-hidden rounded-full max-w-[80px] max-h-[80px] shadow-sm shadow-black",
-  form: "flex flex-row items-center justify-center w-full",
+  form: "center w-full",
   text: {
     content: generateLorem(5),
     props: {

@@ -180,26 +180,6 @@
   background-color: var(--color-gr-600);
 }
 
-/**
- * 4 rows 1 col
-  * nth(1) rankX : 0; rankY : 0;
-  * nth(2) rankX : 0; rankY : 1;
-  * nth(3) rankX : 0; rankY : 1;
-  * nth(4) rankX : 0; rankY : 1;
-
- * 4 rows 2 cols 'md': '768px' => (min-width: 768px)
-  * nth(1) rankX : 0; rankY : 0;
-  * nth(2) rankX : 1; rankY : 0;
-  * nth(3) rankX : 0; rankY : 0;
-  * nth(4) rankX : 1; rankY : 0;
-
-  * 1 row 4 cols '2xl' : '1536px' => (min-width: 1536px)
-  * nth(1) rankX : 0; rankY : 0;
-  * nth(2) rankX : 1; rankY : 0;
-  * nth(3) rankX : 2; rankY : 0;
-  * nth(4) rankX : 3; rankY : 0;
-*/
-
 .card {
   --tw-shadow-color: black;
   border-width: 1px;
@@ -208,4 +188,12 @@
     0px 0px 0px 1px rgba(0, 0, 0, 0.25);
   --tw-shadow-colored: inset 0px 1px 0px 0px var(--tw-shadow-color), inset 0px 0px 0px 1px var(--tw-shadow-color),
     0px 0px 0px 1px var(--tw-shadow-color);
+}
+
+.center {
+  @apply flex items-center justify-center;
+}
+
+.vertical-center {
+  @apply flex flex-col items-center justify-center;
 }

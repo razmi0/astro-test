@@ -78,7 +78,7 @@ const wrappers: ScreenUnitType = {
       id: "natureHeader",
       name: "natureHeader",
       size: "quarter",
-      className: "flex items-center justify-center",
+      className: "center",
     },
     title: {
       text: "Nature et Aventure",
