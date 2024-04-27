@@ -2,22 +2,12 @@
 interface Props {
   size?: number;
   color?: string;
-  direction?: "up" | "down" | "left" | "right";
   class?: string;
 }
 
 export type ArrowProps = Props;
 
-const { color = "currentcolor", size = 24, direction = "up" } = Astro.props;
-
-const directions = {
-  up: 90,
-  down: 270,
-  left: 0,
-  right: 180,
-};
-
-// transform={`rotate(${directions[direction]})`}
+const { color = "currentcolor", size = 24 } = Astro.props;
 ---
 
 <svg

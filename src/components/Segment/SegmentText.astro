@@ -1,4 +1,6 @@
 ---
+import FallBackIcon from "@/assets/flat-trees/tree-1.png";
+import { selectImage } from "@/helpers";
 import { Image } from "astro:assets";
 import type { SegmentProps } from "./Segment.astro";
 import SegmentForm from "./SegmentForm.astro";
@@ -30,7 +32,6 @@ const {
   title,
   subtitle,
   text,
-  theme = "light",
   article,
   /**
    *
@@ -43,20 +44,12 @@ const {
    */
 } = Astro.props;
 
-let imgPath = "";
-let images: Record<
-  string,
-  () => Promise<{
-    default: ImageMetadata;
-  }>
-> = {};
-
-if (title?.icon) {
-  imgPath = `/src/assets/flat-trees/${title?.icon}`;
-  // import all images in the assets folder as a glob
-  images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/flat-trees/*.*");
-  if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "/src/assets/flat-trees/*.*"`);
-}
+const image = selectImage({
+  bgName: title?.icon,
+  fallback: FallBackIcon,
+  extension: "png",
+  folder: "flat-trees",
+});
 
 const bezier = "cubic-bezier(.25,.75,.5,1.05)";
 
@@ -126,7 +119,14 @@ const duration = "0.5s";
           ]}
           {...title.wrapperIconProps}
         >
-          <Image src={images[imgPath]()} alt="" {...(title?.iconProps as any)} />
+          {title.icon && (
+            <Image
+              src={image()}
+              alt={title.iconProps?.alt || "little card icon"}
+              class={title?.iconProps?.class || ""}
+              class:list={title?.iconProps?.["class:list"] || ""}
+            />
+          )}
         </div>
         <h2 class:list={["text-3xl", title.props?.class]} {...title.props}>
           {title.content}

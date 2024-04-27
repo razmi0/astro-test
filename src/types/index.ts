@@ -190,7 +190,7 @@ type TitleIconProps<T extends SegmentFormat> = T extends "text"
      */
     PropsWithContent<HTMLHeadingTags> & {
       icon?: ImageNames;
-      iconProps?: Omit<LocalImageProps<HTMLAttributes<"img">>, "src">;
+      iconProps?: Omit<HTMLAttributes<"img">, "src">;
       wrapperIconProps?: HTMLAttributes<"div">;
     }
   : /**

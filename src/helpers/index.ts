@@ -107,7 +107,7 @@ const selectImage = ({
   fallback,
 }: {
   bgName?: string;
-  folder?: "hero" | "tiles";
+  folder?: "hero" | "tiles" | "flat-trees";
   extension?: "png" | "jpg" | "webp";
   fallback: ImageMetadata;
 }) => {
@@ -124,6 +124,10 @@ const selectImage = ({
 
     case "tiles":
       images = import.meta.glob<{ default: ImageMetadata }>(`/src/assets/tiles/*.*`);
+      break;
+
+    case "flat-trees":
+      images = import.meta.glob<{ default: ImageMetadata }>(`/src/assets/flat-trees/*.*`);
       break;
 
     default:
