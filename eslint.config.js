@@ -4,6 +4,7 @@ import astroEslintParser from "astro-eslint-parser";
 import eslintPluginAstro from "eslint-plugin-astro";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+import a11y from "eslint-plugin-jsx-a11y";
 
 export default [
   js.configs.recommended,
@@ -14,6 +15,13 @@ export default [
       globals: {
         ...globals.browser,
       },
+    },
+  },
+  {
+    files: ["**/*.{js,jsx,astro}"],
+    plugins: { "jsx-a11y": a11y },
+    rules: {
+      ...a11y.configs.recommended.rules,
     },
   },
   {
