@@ -20,8 +20,7 @@ const handleIntersection = (
   entries: IntersectionObserverEntry[],
   debugLog: string,
   onIntersect: () => void,
-  onDisappear: () => void,
-  threshold: number
+  onDisappear: () => void
 ) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -49,12 +48,9 @@ const setupIntersectionObserver = ({
   onIntersect = () => {},
   onDisappear = () => {},
 }: SetupObserverProps) => {
-  const observer = new IntersectionObserver(
-    (entry) => handleIntersection(entry, debugLog, onIntersect, onDisappear, threshold),
-    {
-      threshold: threshold,
-    }
-  );
+  const observer = new IntersectionObserver((entry) => handleIntersection(entry, debugLog, onIntersect, onDisappear), {
+    threshold: threshold,
+  });
 
   // console.log(`Observing element : ${debugLog}`);
   observer.observe(element);
@@ -142,4 +138,4 @@ const selectImage = ({
   return images[imgPath];
 };
 
-export { actOnMedia, generateLorem, handleIntersection, setupIntersectionObserver, timeline, selectImage };
+export { actOnMedia, generateLorem, handleIntersection, selectImage, setupIntersectionObserver, timeline };
