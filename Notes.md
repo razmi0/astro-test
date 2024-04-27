@@ -64,8 +64,8 @@
 
 - lyreco : fourniture de bureau
 
-### Note rdv Lise
+### todo
 
-- grandstander
-- im fell dw pica
-  quattrocento sans
+- [ ] Faire un audit de site
+- [ ] Se débarraser de Segment comme componentHub
+- [ ] creer image component hub pour importer les glob a un seul endroit
