@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme");
+import defaultTheme from "tailwindcss/defaultTheme";
 
 // 'sm': '640px' => (min-width: 640px)
 // 'md': '768px' => (min-width: 768px)
@@ -98,7 +98,6 @@ export default {
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
     ({ addVariant, e, postcss }) => {
       addVariant("hover", ({ container, separator }) => {
         const hoverRule = postcss.atRule({ name: "media", params: "(hover: hover)" });
