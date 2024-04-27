@@ -30,14 +30,46 @@ import Spacer from "@/components/ui/Spacer.astro";
   const desktopHeader = document.querySelector("header[data-media='desktop']");
   const mobileHeader = document.querySelector("header[data-media='mobile']");
   const parentNode = document.querySelector("header")?.parentNode ?? null;
+  let scrollY = 0;
 
-  const onMobile = () =>
-    parentNode && mobileHeader && desktopHeader && parentNode.replaceChild(mobileHeader, desktopHeader);
-  const onDesktop = () =>
-    parentNode && mobileHeader && desktopHeader && parentNode.replaceChild(desktopHeader, mobileHeader);
+  //
+  // Hide mobile header on scroll down, reveal on scroll up
+  //
+
+  const scrollHandler = (currentScrollY: number) => {
+    currentScrollY > scrollY && mobileHeader?.classList.remove("slideOut");
+    currentScrollY < scrollY && mobileHeader?.classList.add("slideOut");
+    scrollY = currentScrollY;
+  };
+
+  const onMobile = () => {
+    if (mobileHeader && desktopHeader && parentNode) {
+      parentNode && mobileHeader && desktopHeader && parentNode.replaceChild(mobileHeader, desktopHeader);
+    }
+    window.addEventListener("scroll", () => scrollHandler(window.scrollY));
+  };
+
+  const onDesktop = () => {
+    if (mobileHeader && desktopHeader && parentNode) {
+      parentNode && mobileHeader && desktopHeader && parentNode.replaceChild(desktopHeader, mobileHeader);
+    }
+    window.removeEventListener("scroll", () => scrollHandler(window.scrollY));
+  };
 
   actOnMedia("md", onDesktop, onMobile);
 </script>
+
+<style>
+  .slideOut {
+    transform: translateY(0);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  header[data-media="mobile"]:not(.slideOut) {
+    transform: translateY(-100%);
+    transition: transform 0.2s ease-in-out;
+  }
+</style>
 
 <header data-media="desktop" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-50 w-full items-center"]}>
   <NavDesktop client:idle />
@@ -45,7 +77,10 @@ import Spacer from "@/components/ui/Spacer.astro";
   <Logo />
 </header>
 
-<header data-media="mobile" class:list={["fixed flex top-0 left-0 pt-10 px-10 z-50 w-full"]}>
+<header
+  data-media="mobile"
+  class:list={["fixed flex top-0 left-0 z-50 w-full bg-slate-300 dark:bg-slate-900 center h-20 px-5"]}
+>
   <NavMobile client:idle />
   <Spacer />
   <Logo />

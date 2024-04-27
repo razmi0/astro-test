@@ -107,6 +107,16 @@ const actOnMedia = (breakpoint: Breakpoints, matchCb?: () => void, unMatchCb?: (
   return () => media.removeEventListener("change", handler);
 };
 
+const debounce = <T>(func: (...args: T[]) => void, delay: number) => {
+  let timeoutId: number | null = null;
+  return (...args: T[]) => {
+    timeoutId && clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};
+
 const selectImage = ({
   bgName,
   folder,
@@ -149,4 +159,4 @@ const selectImage = ({
   return images[imgPath];
 };
 
-export { actOnMedia, generateLorem, handleIntersection, selectImage, setupIntersectionObserver, timeline };
+export { actOnMedia, generateLorem, handleIntersection, selectImage, setupIntersectionObserver, timeline, debounce };

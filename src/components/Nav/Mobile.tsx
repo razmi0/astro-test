@@ -4,7 +4,6 @@ import MenuBody from "./shared/MenuBody";
 import MenuHeader from "./shared/MenuHeader";
 import MenuIcon from "./shared/MenuIcon";
 import { triggerClass } from "./shared/data";
-
 /**
  *
  *
