@@ -1,27 +1,7 @@
 <style>
-  .anchor {
-    animation: wind 2s ease-in-out infinite;
-    width: 100%;
-    display: block;
-  }
-
-  .leaf {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 25px;
-    transform-origin: 0 0;
-    transform: rotate(10deg);
-    transition: all 0.5s ease-in-out;
-    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
-    fill: var(--themedColorCssVar);
-  }
-
   .anchor .leaf {
-    animation: slay 3s cubic-bezier(0.52, 0, 0.58, 1) infinite;
-    transform: rotate(10deg);
-    left: 0;
-    top: 0;
+    animation-name: slay;
+    animation-timing-function: cubic-bezier(0.52, 0, 0.58, 1);
   }
 
   @keyframes slay {
@@ -37,24 +17,12 @@
       transform: rotate(10deg);
     }
   }
-
-  @keyframes wind {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    0% {
-      background-position: 50% 100%;
-    }
-
-    0% {
-      background-position: 0% 50%;
-    }
-  }
 </style>
 
-<span class="relative anchor">
-  <div class="leaf">
+<span class="anchor relative animate-ease-in-out animate-iteration-count-infinite animate-duration-2000 w-full block">
+  <div
+    class="leaf left-0 top-0 animate-duration-3000 animate-iteration-count-infinite absolute right-0 w-[25px] origin-top-left rotate-[10deg] transition-all duration-500 ease-in-out fill-pur-500 [filter:drop-shadow(2px_2px_3px_rgba(0,_0,_0,_0.3))]"
+  >
     <svg
       viewBox="0 0 26.3 65.33"
       style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
