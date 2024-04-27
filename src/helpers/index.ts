@@ -80,6 +80,13 @@ const timeline = (data: AnimationTimeLine[]) => {
 };
 
 type Breakpoints = keyof typeof mediaQueries;
+/**
+ * @description Executes a callback when the media query matches or unmatches
+ * @param breakpoint
+ * @param matchCb
+ * @param unMatchCb
+ * @returns
+ */
 const actOnMedia = (breakpoint: Breakpoints, matchCb?: () => void, unMatchCb?: () => void) => {
   if (!mediaQueries || !(breakpoint in mediaQueries)) {
     console.error(`Invalid breakpoint: ${breakpoint}`);
