@@ -14,8 +14,8 @@ import Spacer from "@/components/ui/Spacer.astro";
           : "light",
     id = "dark" === f();
   if ((document.documentElement.classList[id ? "add" : "remove"]("dark"), "undefined" != typeof localStorage)) {
-    let e = new MutationObserver(() => {
-      let e = document.documentElement.classList.contains("dark");
+    new MutationObserver(() => {
+      const e = document.documentElement.classList.contains("dark");
       localStorage.setItem("theme", e ? "dark" : "light");
     });
     e.observe(document.documentElement, { attributes: !0, attributeFilter: ["class"] });
@@ -27,7 +27,7 @@ import Spacer from "@/components/ui/Spacer.astro";
 
   const desktopHeader = document.querySelector("header[data-media='desktop']");
   const mobileHeader = document.querySelector("header[data-media='mobile']");
-  const parentNode = document.querySelector("header")?.parentNode!;
+  const parentNode = document.querySelector("header")?.parentNode ?? null;
 
   const onMobile = () =>
     parentNode && mobileHeader && desktopHeader && parentNode.replaceChild(mobileHeader, desktopHeader);

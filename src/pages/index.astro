@@ -1,7 +1,7 @@
 ---
 import RandomExploration from "@/assets/hero/hero-11.png";
 import RandomNature from "@/assets/hero/hero-15.png";
-import Segment from "@/components/Segment/Segment.astro";
+import Segment, { type SegmentProps } from "@/components/Segment/Segment.astro";
 import ColorTheme from "@/components/ui/Color/ColorTheme.astro";
 import Hero from "@/components/ui/Hero/Hero.astro";
 import { generateLorem } from "@/helpers";
@@ -163,7 +163,7 @@ const duration = "0.5s";
     </ColorTheme>
     <ColorTheme theme="light">
       <ScreenUnit {...wrappers.features}>
-        {features.map((feature: any, i: number) => <Segment key={i} {...feature} />)}
+        {features.map((feature: SegmentProps<"text">, i: number) => <Segment key={i} {...feature} />)}
       </ScreenUnit>
     </ColorTheme>
     {
