@@ -100,7 +100,11 @@ const duration = "0.5s";
 
 <div data-is="card-article-wrapper" class="w-full h-full horizontal center">
   <article
-    class:list={["text-slate-900 dark:text-slate-100 w-full h-full relative", cardClass, article?.props?.class]}
+    class:list={[
+      "text-slate-900 dark:text-slate-100 w-full h-full relative  hover:ring-1 hover:ring-slate-900",
+      cardClass,
+      article?.props?.class,
+    ]}
     {...article?.props}
     data-threshold={text?.threshold || 0.5}
   >
