@@ -9,7 +9,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
   darkMode: ["class"],
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,css}"],
+  content: ["./src/**/*.{astro,html,js,jsx,ts,tsx,css}"],
   prefix: "",
   theme: {
     container: {
@@ -41,7 +41,6 @@ export default {
           600: "#f3d2ff", //#ba9bc5
         },
       },
-
       animationDuration: {
         75: "75ms",
         100: "100ms",
