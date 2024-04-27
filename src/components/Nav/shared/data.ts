@@ -125,19 +125,16 @@ export const headerItemClass = [
 export const triggerClass = [
   // -- BASE
   // --
-  "rounded-full card w-[56px] h-[56px] horizontal center",
+  "rounded-full w-[56px] h-[56px] horizontal center group/triggerNav",
   // -- HOVER
   // --
-  "hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors",
-  // -- THEME
-  // --
-  "bg-slate-300/80 dark:bg-slate-800/80",
+  "hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-700 transition-all",
   // -- PSEUDO-BASE
   // --
   "before:w-[inherit] before:h-[inherit] before:rounded-full before:blur-sm",
   // -- PSEUDO-POSITION
   // --
-  "before:mt-10 before:ml-10 z-10 before:top-0 before:left-0 before:absolute",
+  " z-10 before:top-0 before:left-0 before:absolute",
   // -- PSEUDO-THEME
   // --
   "before:bg-slate-300/30 before:dark:bg-slate-900/30",

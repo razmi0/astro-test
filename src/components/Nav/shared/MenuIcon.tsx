@@ -29,18 +29,31 @@ export default function MenuIcon({ direction = "right" }: { direction?: Directio
               width: 10px;
               transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
             }
-            svg:hover > .rects > .rect-1 {
-              width: 10px;
-            }
-            svg:hover > .rects > .rect-3 {
-              width: 25px;
-            }
+            
           `}</style>
       <g className="rects">
-        <rect y="25%" height="3" rx="1" className="rect-1 fill-slate-900 dark:fill-slate-300" />
+        <rect
+          y="25%"
+          height="3"
+          rx="1"
+          className="rect-1 fill-slate-900 dark:fill-slate-300 group-hover/triggerNav:w-[10px]"
+        />
         <rect y="50%" height="3" rx="1" className="rect-2 fill-slate-900 dark:fill-slate-300" />
-        <rect y="75%" height="3" rx="1" className="rect-3 fill-slate-900 dark:fill-slate-300" />
+        <rect
+          y="75%"
+          height="3"
+          rx="1"
+          className="rect-3 fill-slate-900 dark:fill-slate-300 group-hover/triggerNav:w-[25px]"
+        />
       </g>
     </svg>
   );
 }
+
+// svg:hover > .rects > .rect-1 {
+//   width: 10px;
+// }
+
+// svg:hover > .rects > .rect-3 {
+//   width: 25px;
+// }
