@@ -41,6 +41,7 @@ export default {
           600: "#f3d2ff", //#ba9bc5
         },
       },
+
       animationDuration: {
         75: "75ms",
         100: "100ms",
@@ -60,6 +61,12 @@ export default {
         1800: "1800ms",
         1900: "1900ms",
         2000: "2000ms",
+        2500: "2500ms",
+        3000: "3000ms",
+        3500: "3500ms",
+        4000: "4000ms",
+        4500: "4500ms",
+        5000: "5000ms",
       },
       animationDelay: {
         75: "75ms",
@@ -80,6 +87,12 @@ export default {
         1800: "1800ms",
         1900: "1900ms",
         2000: "2000ms",
+      },
+      animationIterationCount: {
+        once: "1",
+        twice: "2",
+        three: "3",
+        infinite: "infinite",
       },
       keyframes: {
         "accordion-down": {
@@ -164,6 +177,17 @@ export default {
         },
         {
           values: theme("animationDelay"),
+        }
+      ),
+    ({ matchUtilities, theme }) =>
+      matchUtilities(
+        {
+          "animate-iteration-count": (value) => ({
+            "animation-iteration-count": value,
+          }),
+        },
+        {
+          values: theme("animationIterationCount"),
         }
       ),
   ],
