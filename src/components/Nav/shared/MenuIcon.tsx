@@ -5,6 +5,7 @@ const dirs = {
   up: "rotate(90)",
   down: "rotate(-90)",
 };
+
 export default function MenuIcon({ direction = "right" }: { direction?: Direction }) {
   return (
     <svg
