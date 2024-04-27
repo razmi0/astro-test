@@ -98,7 +98,7 @@ const duration = "0.5s";
   }
 </style>
 
-<div data-is="card-article-wrapper" class="w-full h-full center">
+<div data-is="card-article-wrapper" class="w-full h-full horizontal center">
   <article
     class:list={["text-slate-900 dark:text-slate-100 w-full h-full relative", cardClass, article?.props?.class]}
     {...article?.props}
@@ -113,7 +113,7 @@ const duration = "0.5s";
     }
     {
       title && title?.icon && (
-        <div class="flex flex-col w-full justify-center items-center gap-5">
+        <div class="w-full vertical center gap-5">
           <div
             data-is="header-card-icon"
             class:list={[

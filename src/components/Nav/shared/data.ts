@@ -125,7 +125,7 @@ export const headerItemClass = [
 export const triggerClass = [
   // -- BASE
   // --
-  "rounded-full card w-[56px] h-[56px] center",
+  "rounded-full card w-[56px] h-[56px] horizontal center",
   // -- HOVER
   // --
   "hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors",

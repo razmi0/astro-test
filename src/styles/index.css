@@ -191,9 +191,13 @@
 }
 
 .center {
-  @apply flex items-center justify-center;
+  @apply items-center justify-center;
 }
 
-.vertical-center {
-  @apply flex flex-col items-center justify-center;
+.vertical {
+  @apply flex flex-col;
+}
+
+.horizontal {
+  @apply flex flex-row;
 }

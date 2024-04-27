@@ -78,7 +78,7 @@ const wrappers: ScreenUnitType = {
       id: "natureHeader",
       name: "natureHeader",
       size: "quarter",
-      className: "center",
+      className: "horizontal center",
     },
     title: {
       text: "Nature et Aventure",
@@ -92,7 +92,7 @@ const wrappers: ScreenUnitType = {
       id: "nature",
       name: "nature",
       size: "threeQuarter",
-      className: "flex flex-col justify-center items-center !pt-0",
+      className: "vertical center !pt-0",
     },
   },
   explorationHeader: {
@@ -114,7 +114,7 @@ const wrappers: ScreenUnitType = {
       id: "exploration",
       name: "exploration",
       size: "threeQuarter",
-      className: "flex flex-col justify-center items-center !pt-0",
+      className: "vertical center !pt-0",
     },
   },
   featuresHeader: {
@@ -139,7 +139,7 @@ const wrappers: ScreenUnitType = {
       size: "full",
       className: [
         // BASE
-        "pb-12 !px-2 w-full min-w-[400px] h-fit gap-1 justify-center items-center", // !mt-44
+        "pb-12 !px-2 w-full min-w-[400px] h-fit gap-1 center", // !mt-44
         // GRID
         "screen-unit-grid screen-unit-rank",
       ].join(" "),
