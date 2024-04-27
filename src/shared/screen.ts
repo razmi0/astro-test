@@ -1,7 +1,7 @@
 import type { ScreenUnitProps } from "@/layouts/ScreenUnit.astro";
 
 type ScreenUnitType = {
-  [key: string]: Omit<ScreenUnitProps, "children"> & { children?: any };
+  [key: string]: Omit<ScreenUnitProps, "children"> & { children?: HTMLElement };
 };
 
 const thresholds = {

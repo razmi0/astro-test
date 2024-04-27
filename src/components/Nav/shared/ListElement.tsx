@@ -15,7 +15,7 @@
  *
  *
  */
-export default function ListElement({ children }: { children: any }) {
+export default function ListElement({ children }: { children: React.ReactNode }) {
   return (
     <li className="px-4 flex items-center h-16 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 w-full">
       {children}

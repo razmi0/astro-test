@@ -7,7 +7,7 @@ export default function SimpleItem({
   iconName,
   iconClass,
 }: {
-  children: any;
+  children: React.ReactNode;
   href: string;
   iconName?: ReactIconName;
   iconClass?: string;

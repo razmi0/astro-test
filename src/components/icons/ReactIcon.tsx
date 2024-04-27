@@ -1,9 +1,11 @@
+import type { HTMLAttributes } from "react";
+
 export type ReactIconName = "contact" | "about" | "home" | "activities" | "faq";
 
 type IconProps = {
   name: ReactIconName;
   className?: string;
-  props?: any;
+  props?: HTMLAttributes<SVGElement>;
 };
 
 export default function ReactIcon({ name, className, ...props }: IconProps) {

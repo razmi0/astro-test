@@ -7,7 +7,7 @@ export default function Trigger({
   iconName,
   iconClass,
 }: {
-  children: any;
+  children: React.ReactNode;
   iconName?: ReactIconName;
   iconClass?: string;
 }) {

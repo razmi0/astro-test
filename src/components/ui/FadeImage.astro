@@ -1,8 +1,9 @@
 ---
+import FallbackImage from "@/assets/placeholder.webp";
+import { selectImage } from "@/helpers";
 import { cn } from "@/lib/utils";
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
 import type { ImageProps } from "@/types";
+import { Image } from "astro:assets";
 
 interface Props extends ImageProps {}
 
@@ -14,11 +15,11 @@ const imgClass = cn("object-cover w-full h-full aspect-[16/16] opacity-0 ", img?
 
 const captionClass = cn("text-center text-sm text-gray-500", figCaption?.props?.class);
 
-const imgPath = `/src/assets/${img?.name}`;
-
-// import all images in the assets folder as a glob
-const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/*.*");
-if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "/src/assets/*.*"`);
+const image = selectImage({
+  bgName: img?.name,
+  extension: img?.name?.split(".").pop()?.trim() as "png" | "webp" | "jpg" | undefined,
+  fallback: FallbackImage,
+});
 
 const bezier = "cubic-bezier(.25,.75,.5,1.25)";
 const duration = "0.3s";
@@ -83,10 +84,10 @@ const duration = "0.3s";
          */
       }
       <Image
-        src={images[imgPath]()}
+        src={image()}
         class:list={[imgClass]}
         alt={img?.props?.alt || ""}
-        {...img?.props as any}
+        class={img?.props?.class}
         data-anim="animate-fade-in-image"
       />
       {figCaption && <figcaption class:list={[captionClass]}>{figCaption?.content}</figcaption>}
