@@ -6,19 +6,21 @@ import Spacer from "@/components/ui/Spacer.astro";
 ---
 
 <script is:inline>
-  const f = () =>
-      "undefined" != typeof localStorage && localStorage.getItem("theme")
-        ? localStorage.getItem("theme")
-        : window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light",
-    id = "dark" === f();
-  if ((document.documentElement.classList[id ? "add" : "remove"]("dark"), "undefined" != typeof localStorage)) {
-    new MutationObserver(() => {
-      const e = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", e ? "dark" : "light");
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
     });
-    e.observe(document.documentElement, { attributes: !0, attributeFilter: ["class"] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   }
 </script>
 
