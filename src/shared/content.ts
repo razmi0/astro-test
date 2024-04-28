@@ -21,7 +21,7 @@ const cardsProps = {
   buttonProps: {
     props: {
       className: `${colorThemes["dark"].buttonText} 
-        group/btn hover:pe-10 transition-all duration-200
+        group/btn hover:pe-10 focus:pe-10 transition-all duration-200
         font-bold text-lg w-fit items-center 
         bg-slate-200 border border-slate-400 ring-1 ring-slate-300/80 
         dark:ring-slate-700/80 dark:bg-slate-600`,
