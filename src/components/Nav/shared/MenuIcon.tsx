@@ -18,15 +18,15 @@ export default function MenuIcon({ direction = "right" }: { direction?: Directio
     >
       <style>{`
             .rects > .rect-1 {
-              width: 20px;
+              width: 30px;
               transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
             }
             .rects > .rect-2 {
-              width: 10px;
+              width: 15px;
               transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
             }
             .rects > .rect-3 {
-              width: 5px;
+              width: 10px;
               transition: width 0.2s cubic-bezier(0.25, 0.75, 0.5, 1.25);
             }
             
@@ -36,14 +36,14 @@ export default function MenuIcon({ direction = "right" }: { direction?: Directio
           y="25%"
           height="2"
           rx="1"
-          className="rect-1 fill-slate-900 dark:fill-slate-300 group-hover/triggerNav:w-[5px]"
+          className="rect-1 fill-slate-900 dark:fill-slate-300 group-hover/triggerNav:w-[10px]"
         />
         <rect y="50%" height="2" rx="1" className="rect-2 fill-slate-900 dark:fill-slate-300" />
         <rect
           y="75%"
           height="2"
           rx="1"
-          className="rect-3 fill-slate-900 dark:fill-slate-300 group-hover/triggerNav:w-[20px]"
+          className="rect-3 fill-slate-900 dark:fill-slate-300 group-hover/triggerNav:w-[30px]"
         />
       </g>
     </svg>

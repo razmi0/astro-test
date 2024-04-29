@@ -1,8 +1,9 @@
 ---
+import HeroImage from "@/assets/hero/hero-29.png";
 import { Button } from "@/components/ui/Button";
 import colorThemes from "@/components/ui/Color/data";
 import { generateLorem } from "@/helpers";
-import Leaf from "./Leaf.astro";
+import { Image } from "astro:assets";
 import Title from "./Title.astro";
 
 interface Props {
@@ -11,67 +12,69 @@ interface Props {
 
 const { hrefs } = Astro.props;
 
-const themedColorHightlight = colorThemes.default("heroHighlight");
 const themedColorBtn = colorThemes.default("heroButton");
 ---
 
-<style>
-  .animation-start-subtitle {
-    transform: translateY(-30px) scale(0.8);
-  }
-  .animation-start-paragraph {
-    transform: scale(0.8);
-  }
-  .animation-start-buttons {
-    transform: translateY(30px) scale(0.8);
-  }
-  :where(.animation-in-subtitle, .animation-in-paragraph, .animation-in-button) {
-    animation-name: goInPlace;
-  }
-  @keyframes goInPlace {
-    to {
-      opacity: 1;
-      filter: blur(0px);
-      transform: translateY(0px) scale(1);
-    }
-  }
-</style>
+<section class="w-full max-h-screen h-screen vertical center px-11 pt-36 pb-24">
+  <div class="horizontal w-full h-full">
+    <div class="w-full h-full vertical items-start justify-between">
+      <!--  TOP ELEMENTS -->
+      <!--  TOP ELEMENTS -->
+      <!--  TOP ELEMENTS -->
+      <!--  TOP ELEMENTS -->
+      <!--  TOP ELEMENTS -->
+      <aside
+        class="w-full h-fit font-bold text-md im-fell-dw-pica-regular dark:text-white/90 text-dark/90 text-left text-balance"
+      >
+        <ul class="grid grid-cols-3 w-full leading-3 horizontal [&>li]:max-w-[10ch] h-fit list-disc ps-7">
+          <li class="marker:text-4xl marker:text-pur-400">Nature</li>
+          <li class="marker:text-6xl marker:text-pur-500">Respect</li>
+          <li class="marker:text-8xl marker:text-pur-600">Sport</li>
+        </ul>
+      </aside>
 
-<section class="w-full h-screen flex items-center">
-  <div class="w-full h-full vertical items-center py-12 text-center justify-evenly gap-12 max-h-[50vh]">
-    <h4
-      class="opacity-0 blur-sm animation-start-subtitle animation-in-subtitle animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-700 text-md text-black/90 dark:text-white/90 w-fit z-10"
-    >
-      {generateLorem(5)}...
-      <Leaf />
-    </h4>
-    <Title />
-    <p
-      class="opacity-0 blur-sm animation-start-paragraph animation-in-paragraph animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-1200 text-pretty max-w-[50ch] text-black/90 dark:text-white/90 font-bold text-[1.2rem] md:text-[1.3rem]"
-    >
-      {generateLorem(7)}
-      <span class={`${themedColorHightlight}`}>{generateLorem(2)}</span>
-      {generateLorem(7)}
-    </p>
-    <div
-      class="opacity-0 blur-sm animation-start-buttons w-full horizontal center gap-12 animation-start-button animation-in-button animate-fill-forwards animate-timing-elastic animate-duration-1000 animate-delay-1700"
-    >
-      <a href={hrefs[0]} class="w-fit">
-        <Button
-          variant={"outline"}
-          className={`${themedColorBtn} rounded-full px-8 text-md h-16 w-32 ring-1 ring-black/80 hover:border-white dark:hover:ring-white`}
+      <div class="horizontal">
+        <Title />
+
+        <!-- BUTTON -->
+        <!-- BUTTON -->
+        <!-- BUTTON -->
+        <!-- BUTTON -->
+        <!-- BUTTON -->
+        <div
+          class="center [&>a>button]:rounded-full [&>a>button]:px-8 [&>a>button]:h-16 [&>a>button]:w-32 [&>a>button]:ring-1 [&>a>button]:ring-black/80 [&>a>button]:hover:border-white [&>a>button]:dark:hover:ring-white text-md [&>a]:w-fit text-black w-full horizontal gap-12"
         >
-          <span class="text-black/90 dark:text-white/90 font-bold">Découvrir</span>
-        </Button>
-      </a>
-      <a href={hrefs[1]} class="w-fit">
-        <Button
-          variant={"ghost"}
-          className={`rounded-full px-8 text-md h-16 w-32 ring-1 ring-black/80 dark:hover:ring-white`}
-        >
-          <span class="text-black/90 dark:text-white/90 font-bold">S'inscrire</span>
-        </Button>
-      </a>
+          <a href={hrefs[0]}>
+            <Button variant="outline" className={`${themedColorBtn}`}>
+              <span class="dark:text-white font-bold">Découvrir</span>
+            </Button>
+          </a>
+          <a href={hrefs[1]}>
+            <Button variant="outline" className="bg-pur-600">
+              <span class="dark:text-black font-bold">S'inscrire</span>
+            </Button>
+          </a>
+        </div>
+      </div>
+      <article class="horizontal gap-12 w-full">
+        <p class="max-w-[25ch] text-black/90 dark:text-white/90 text-[1rem] md:text-[1.1rem]">
+          {generateLorem(5)}
+          <span class="text-pur-500">{generateLorem(2)}</span>
+          {generateLorem(5)}
+        </p>
+        <p class="max-w-[25ch] text-black/90 dark:text-white/90 text-[1rem] md:text-[1.1rem]">
+          {generateLorem(5)}
+          <span class="text-pur-400">{generateLorem(2)}</span>
+          {generateLorem(5)}
+        </p>
+      </article>
     </div>
+    <figure class="center flex h-full w-8/12 rounded-xl me-10">
+      <Image
+        src={HeroImage}
+        alt="a tree in a middle of a clear hill"
+        class={"aspect-[9/16] h-full w-full object-cover rounded-xl"}
+      />
+    </figure>
   </div>
 </section>

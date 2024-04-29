@@ -78,27 +78,25 @@ const duration = "0.5s";
 </script>
 
 <style define:vars={{ bezier, duration }}>
-  [data-is="card-article-wrapper"].animate-fade-in-card {
+  .fadeIn.animate-fade-in-card {
     animation: fadeIn var(--duration) var(--bezier);
     animation-fill-mode: forwards;
   }
 
-  [data-is="card-article-wrapper"] {
+  .fadeIn {
     opacity: 0;
-    transform: scale(0.95);
-    filter: blur(4px);
+    transform: scale(0.9);
   }
 
   @keyframes fadeIn {
     to {
       opacity: 1;
       transform: scale(1);
-      filter: blur(0);
     }
   }
 </style>
 
-<div data-is="card-article-wrapper" class="w-full h-full horizontal center">
+<div data-is="card" class="fadeIn w-full h-full horizontal center">
   <article
     class:list={[
       "text-slate-900 dark:text-slate-100 w-full h-full relative  hover:ring-1 hover:ring-slate-900",

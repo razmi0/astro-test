@@ -129,15 +129,6 @@ export const triggerClass = [
   // -- HOVER
   // --
   "hover:ring-1 hover:ring-slate-300 dark:hover:ring-slate-700 transition-all",
-  // -- PSEUDO-BASE
-  // --
-  "before:w-[inherit] before:h-[inherit] before:rounded-full before:blur-sm",
-  // -- PSEUDO-POSITION
-  // --
-  " z-10 before:top-0 before:left-0 before:absolute",
-  // -- PSEUDO-THEME
-  // --
-  "before:bg-slate-300/30 before:dark:bg-slate-900/30",
 ].join(" ");
 
 export const lorems = ["Lorem ipsum dolor ", "consectetur", "sed do eiusmod"];

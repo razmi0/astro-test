@@ -38,7 +38,7 @@ export default function NavDesktop() {
         >
           <DrawerHeader className="flex-row w-full flex items-center justify-between pt-7 px-5">
             <Logo />
-            <DrawerClose>
+            <DrawerClose className={triggerClass}>
               <MenuIcon direction="left" />
             </DrawerClose>
           </DrawerHeader>
