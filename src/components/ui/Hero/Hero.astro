@@ -1,7 +1,6 @@
 ---
 import HeroImage from "@/assets/hero/hero-29.png";
 import { Button } from "@/components/ui/Button";
-import colorThemes from "@/components/ui/Color/data";
 import { generateLorem } from "@/helpers";
 import { Image } from "astro:assets";
 import Title from "./Title.astro";
@@ -11,8 +10,6 @@ interface Props {
 }
 
 const { hrefs } = Astro.props;
-
-const themedColorBtn = colorThemes.default("heroButton");
 ---
 
 <section class="w-full max-h-screen h-screen vertical center px-11 pt-36 pb-24">
@@ -27,9 +24,9 @@ const themedColorBtn = colorThemes.default("heroButton");
         class="w-full h-fit font-bold text-md im-fell-dw-pica-regular dark:text-white/90 text-dark/90 text-left text-balance"
       >
         <ul class="grid grid-cols-3 w-full leading-3 horizontal [&>li]:max-w-[10ch] h-fit list-disc ps-7">
-          <li class="marker:text-4xl marker:text-pur-400">Nature</li>
-          <li class="marker:text-6xl marker:text-pur-500">Respect</li>
-          <li class="marker:text-8xl marker:text-pur-600">Sport</li>
+          <li class="marker:text-4xl marker:text-pur-600">Nature</li>
+          <li class="marker:text-6xl marker:text-pur-400">Respect</li>
+          <li class="marker:text-8xl marker:text-pur-500">Sport</li>
         </ul>
       </aside>
 
@@ -45,31 +42,45 @@ const themedColorBtn = colorThemes.default("heroButton");
           class="center [&>a>button]:rounded-full [&>a>button]:px-8 [&>a>button]:h-16 [&>a>button]:w-32 [&>a>button]:ring-1 [&>a>button]:ring-black/80 [&>a>button]:hover:border-white [&>a>button]:dark:hover:ring-white text-md [&>a]:w-fit text-black w-full horizontal gap-12"
         >
           <a href={hrefs[0]}>
-            <Button variant="outline" className={`${themedColorBtn}`}>
-              <span class="dark:text-white font-bold">Découvrir</span>
+            <Button variant="outline" className="!bg-pur-600">
+              <span class="dark:text-black font-bold">Découvrir</span>
             </Button>
           </a>
           <a href={hrefs[1]}>
-            <Button variant="outline" className="bg-pur-600">
+            <Button variant="outline" className="!bg-pur-400">
               <span class="dark:text-black font-bold">S'inscrire</span>
             </Button>
           </a>
         </div>
       </div>
       <article class="horizontal gap-12 w-full">
-        <p class="max-w-[25ch] text-black/90 dark:text-white/90 text-[1rem] md:text-[1.1rem]">
+        <p class="max-w-[25ch] text-black/90 dark:text-white/90 text-[1rem] md:text-[1.1rem] line-clamp-3">
           {generateLorem(5)}
           <span class="text-pur-500">{generateLorem(2)}</span>
           {generateLorem(5)}
         </p>
-        <p class="max-w-[25ch] text-black/90 dark:text-white/90 text-[1rem] md:text-[1.1rem]">
+        <p class="max-w-[25ch] text-black/90 dark:text-white/90 text-[1rem] md:text-[1.1rem] line-clamp-3">
           {generateLorem(5)}
           <span class="text-pur-400">{generateLorem(2)}</span>
           {generateLorem(5)}
         </p>
       </article>
     </div>
-    <figure class="center flex h-full w-8/12 rounded-xl me-10">
+    <figure class="relative center flex h-full w-8/12 rounded-xl me-10">
+      <div class="absolute bottom-0 z-10 h-1/2 w-12">
+        <svg viewBox="0 0 500 500" class="z-10">
+          <path class="path" fill="white" stroke="black" stroke-width="4" d="M0 0-164-452H-254Z"></path>
+        </svg>
+      </div>
+      <article
+        class="absolute h-fit w-48 dark:bg-slate-700 bg-slate-200 rounded-xl p-4 top-[7%] -translate-x-20 left-5 ring-1 ring-slate-200 [&>button]:rounded-full [&>button]:px-8 [&>button]:h-16 [&>button]:w-32 [&>button]:ring-1 [&>button]:ring-black/80 [&>button]:hover:border-white [&>button]:dark:hover:ring-white"
+      >
+        <Image src={HeroImage} alt="a tree in a middle of a clear hill" class="h-full w-full object-cover rounded-xl" />
+        <p class="dark:text-white/80 text-black/80 font-bold mt-4 leading-4 line-clamp-3">{generateLorem(7)}</p>
+        <Button className="mt-4 dark:text-black !bg-pur-500">
+          <span class="dark:text-black text-black font-bold">Grimper</span>
+        </Button>
+      </article>
       <Image
         src={HeroImage}
         alt="a tree in a middle of a clear hill"
