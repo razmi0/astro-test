@@ -23,7 +23,7 @@ const colorThemes = {
     return colorThemes["light"][type];
   },
   light: {
-    container: `bg-def-100 dark:bg-slate-800`,
+    container: `bg-white dark:bg-slate-800`,
     containerAfterHero: `bg-gradient-to-b from-white to-slate-300 dark:bg-gradient-to-b dark:from-slate-800 dark:to-slate-900`,
     title: `text-${defaultThemeValue}-600 dark:text-${defaultThemeValue}-600`,
     separator: `bg-${defaultThemeValue}-600 dark:bg-${defaultThemeValue}-600`,

@@ -159,4 +159,35 @@ const selectImage = ({
   return images[imgPath];
 };
 
-export { actOnMedia, generateLorem, handleIntersection, selectImage, setupIntersectionObserver, timeline, debounce };
+type CoordType = {
+  x: number;
+  y: number;
+};
+
+type DrawLineProps = {
+  coordOne: CoordType;
+  coordTwo: CoordType;
+  ctx: CanvasRenderingContext2D;
+  color?: string;
+  stroke?: number;
+};
+
+const drawLine = (data: DrawLineProps) => {
+  data.ctx.strokeStyle = data.color || "white";
+  data.ctx.lineWidth = data.stroke || 2;
+  data.ctx.beginPath();
+  data.ctx.moveTo(data.coordOne.x, data.coordOne.y);
+  data.ctx.lineTo(data.coordTwo.x, data.coordTwo.y);
+  data.ctx.stroke();
+};
+
+export {
+  actOnMedia,
+  debounce,
+  drawLine,
+  generateLorem,
+  handleIntersection,
+  selectImage,
+  setupIntersectionObserver,
+  timeline,
+};

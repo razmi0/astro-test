@@ -5,16 +5,13 @@
 :root {
   color-scheme: light dark;
 
-  /* --color-def-100: #f0f3f2;
-  --color-def-900: #2e2e2e;
-
   --color-pur-400: #d5d4ea;
   --color-pur-500: #7b8ec3;
   --color-pur-600: #f3d2ff;
 
   --color-gr-400: #a2c999;
   --color-gr-500: #397c5b;
-  --color-gr-600: #1d3822; */
+  --color-gr-600: #1d3822;
 }
 
 *,
@@ -181,15 +178,17 @@
 }
 
 .card {
-  --tw-shadow-color: black;
-  border-width: 1px;
-  border-color: rgba(0, 0, 0, 0.4);
-  --tw-shadow: 0px 1px 0px 0px hsla(0, 0%, 100%, 0.02) inset, 0px 0px 0px 1px hsla(0, 0%, 100%, 0.02) inset,
-    0px 0px 0px 1px rgba(0, 0, 0, 0.25);
-  --tw-shadow-colored: inset 0px 1px 0px 0px var(--tw-shadow-color), inset 0px 0px 0px 1px var(--tw-shadow-color),
-    0px 0px 0px 1px var(--tw-shadow-color);
-}
+  @apply relative drop-shadow-xl overflow-hidden rounded-xl bg-[#3d3c3d];
 
+  & > [data-style="dark-bg"] {
+    @apply absolute opacity-90 rounded-xl inset-0.5 bg-[#323132];
+  }
+
+  & > [data-style="light-border"] {
+    @apply absolute w-56 h-32 -left-1/2 -top-1/2 -z-10 bg-white blur-[50px];
+  }
+}
+/* -left-1/2 -top-1/2 */
 @layer base {
   .center {
     @apply items-center justify-center;

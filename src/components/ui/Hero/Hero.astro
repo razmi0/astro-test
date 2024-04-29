@@ -12,7 +12,73 @@ interface Props {
 const { hrefs } = Astro.props;
 ---
 
-<section class="w-full max-h-screen h-screen vertical center px-11 pt-36 pb-24">
+<script>
+  import { drawLine } from "@/helpers";
+  window.addEventListener("DOMContentLoaded", () => {
+    const cardImage = document.querySelector('[data-is="card-image"]')!;
+    const focusedTree = document.querySelector('[data-is="focused-tree"]')!;
+    const focusedCanvas = document.querySelector('[data-is="focused-canvas"]') as HTMLCanvasElement;
+    const ctx = focusedCanvas.getContext("2d")!;
+
+    const xCardOffset = 5;
+    const terminalLineSize = 10;
+
+    const data = {
+      update: function () {
+        this.canvas = { w: window.innerWidth, h: window.innerHeight };
+        focusedCanvas.width = this.canvas.w;
+        focusedCanvas.height = this.canvas.h;
+        this.card = {
+          x: cardImage.getBoundingClientRect().right + xCardOffset,
+          y: cardImage.getBoundingClientRect().bottom - cardImage.getBoundingClientRect().height / 2,
+        };
+        this.tree = {
+          x: focusedTree.getBoundingClientRect().left + focusedTree.getBoundingClientRect().width / 2,
+          y: focusedTree.getBoundingClientRect().top,
+        };
+        this.terminalLine = {
+          1: { x: this.card.x, y: this.card.y - terminalLineSize },
+          2: { x: this.card.x, y: this.card.y + terminalLineSize },
+        };
+        return this;
+      },
+      canvas: { w: 0, h: 0 },
+      card: { x: 0, y: 0 },
+      tree: { x: 0, y: 0 },
+      terminalLine: { 1: { x: 0, y: 0 }, 2: { x: 0, y: 0 } },
+    };
+
+    data.update();
+
+    const drawLineProps = {
+      coordOne: data.card,
+      coordTwo: data.tree,
+      color: "#ffffff99",
+      stroke: 1.2,
+      ctx,
+    };
+
+    const drawTerminalLineProps = {
+      coordOne: data.terminalLine[1],
+      coordTwo: data.terminalLine[2],
+      color: "#ffffff99",
+      stroke: 1.2,
+      ctx,
+    };
+
+    drawLine(drawLineProps);
+    drawLine(drawTerminalLineProps);
+
+    window.addEventListener("resize", () => {
+      const updated = data.update();
+      drawLine({ ...drawLineProps, coordOne: updated.card, coordTwo: updated.tree });
+      drawLine({ ...drawTerminalLineProps, coordOne: updated.terminalLine[1], coordTwo: updated.terminalLine[2] });
+    });
+  });
+</script>
+
+<section class="relative w-full max-h-screen h-screen vertical center px-11 pt-36 pb-24">
+  <canvas data-is="focused-canvas" class="z-20 top-0 absolute pointer-events-none"></canvas>
   <div class="horizontal w-full h-full">
     <div class="w-full h-full vertical items-start justify-between">
       <!--  TOP ELEMENTS -->
@@ -30,7 +96,7 @@ const { hrefs } = Astro.props;
         </ul>
       </aside>
 
-      <div class="horizontal">
+      <div class="vertical gap-12">
         <Title />
 
         <!-- BUTTON -->
@@ -38,7 +104,7 @@ const { hrefs } = Astro.props;
         <!-- BUTTON -->
         <!-- BUTTON -->
         <!-- BUTTON -->
-        <div class="center [&>a]:w-fit text-black w-full horizontal gap-12">
+        <div class="[&>a]:w-fit text-black w-full horizontal gap-12">
           <a href={hrefs[0]}>
             <Button size={"xl"} variant="hero" className="bg-pur-600 dark:bg-pur-600">Découvrir</Button>
           </a>
@@ -60,26 +126,48 @@ const { hrefs } = Astro.props;
         </p>
       </article>
     </div>
-    <figure class="relative center flex h-full w-8/12 rounded-xl me-10">
-      <div class="absolute bottom-0 z-10 h-1/2 w-12">
-        <svg viewBox="0 0 500 500" class="z-10">
-          <path class="path" fill="white" stroke="black" stroke-width="4" d="M0 0-164-452H-254Z"></path>
-        </svg>
+    <!-- CARD IMAGE -->
+    <!-- CARD IMAGE -->
+    <!-- CARD IMAGE -->
+    <!-- CARD IMAGE -->
+    <!-- CARD IMAGE -->
+    <!-- CARD IMAGE -->
+    <div class="relative w-8/12 h-full">
+      <div class="absolute h-1/4 w-48 z-10 top-[10%] -translate-x-[50%] group/card" data-is="card-image">
+        <article class="h-full card">
+          <Image
+            src={HeroImage}
+            alt="a tree in a middle of a clear hill"
+            class="h-full w-full object-cover"
+            data-style="dark-bg"
+          />
+          <div data-style="light-border"></div>
+          <div class="group-hover/card:translate-y-10 h-9 absolute bottom-0 right-1/2">YESS</div>
+        </article>
       </div>
-      <article
-        class="absolute h-fit w-48 dark:bg-slate-700 bg-slate-200 rounded-xl p-4 top-[7%] -translate-x-20 left-5"
-      >
-        <Image src={HeroImage} alt="a tree in a middle of a clear hill" class="h-full w-full object-cover rounded-xl" />
-        <p class="dark:text-white/80 text-black/80 font-bold mt-4 leading-4 line-clamp-3">{generateLorem(7)}</p>
-        <Button className="mt-4 bg-pur-500 dark:bg-pur-500 font-bold" size={"xl"} variant={"hero"}>
-          <span class="">Grimper</span>
-        </Button>
-      </article>
-      <Image
-        src={HeroImage}
-        alt="a tree in a middle of a clear hill"
-        class={"aspect-[9/16] h-full w-full object-cover rounded-xl"}
-      />
-    </figure>
+      <!-- IMAGE -->
+      <!-- IMAGE -->
+      <!-- IMAGE -->
+      <!-- IMAGE -->
+      <!-- IMAGE -->
+      <!-- IMAGE -->
+
+      <figure class="h-full me-10 card">
+        <div class="absolute bottom-0 h-full w-full">
+          <div
+            class="h-24 w-24 rounded-full ring-2 ring-white/50 bottom-[10.4rem] absolute right-1/2 translate-x-[3.7rem]"
+            data-is="focused-tree"
+          >
+          </div>
+        </div>
+        <Image
+          src={HeroImage}
+          alt="a tree in a middle of a clear hill"
+          class={"aspect-[9/16] h-full w-full object-cover rounded-xl -z-10"}
+          data-style="dark-bg"
+        />
+        <div data-style="light-border"></div>
+      </figure>
+    </div>
   </div>
 </section>

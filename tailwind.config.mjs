@@ -27,10 +27,6 @@ export default {
     },
     extend: {
       colors: {
-        def: {
-          100: "#FEFEFE",
-          900: "#2E2E2E",
-        },
         gr: {
           400: "#a2c999",
           500: "#397c5b",
