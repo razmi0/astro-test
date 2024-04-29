@@ -38,18 +38,12 @@ const { hrefs } = Astro.props;
         <!-- BUTTON -->
         <!-- BUTTON -->
         <!-- BUTTON -->
-        <div
-          class="center [&>a>button]:rounded-full [&>a>button]:px-8 [&>a>button]:h-16 [&>a>button]:w-32 [&>a>button]:ring-1 [&>a>button]:ring-black/80 [&>a>button]:hover:border-white [&>a>button]:dark:hover:ring-white text-md [&>a]:w-fit text-black w-full horizontal gap-12"
-        >
+        <div class="center [&>a]:w-fit text-black w-full horizontal gap-12">
           <a href={hrefs[0]}>
-            <Button variant="outline" className="!bg-pur-600">
-              <span class="dark:text-black font-bold">Découvrir</span>
-            </Button>
+            <Button size={"xl"} variant="hero" className="bg-pur-600 dark:bg-pur-600">Découvrir</Button>
           </a>
           <a href={hrefs[1]}>
-            <Button variant="outline" className="!bg-pur-400">
-              <span class="dark:text-black font-bold">S'inscrire</span>
-            </Button>
+            <Button size={"xl"} variant="hero" className="bg-pur-400 dark:bg-pur-400">S'inscrire</Button>
           </a>
         </div>
       </div>
@@ -73,12 +67,12 @@ const { hrefs } = Astro.props;
         </svg>
       </div>
       <article
-        class="absolute h-fit w-48 dark:bg-slate-700 bg-slate-200 rounded-xl p-4 top-[7%] -translate-x-20 left-5 ring-1 ring-slate-200 [&>button]:rounded-full [&>button]:px-8 [&>button]:h-16 [&>button]:w-32 [&>button]:ring-1 [&>button]:ring-black/80 [&>button]:hover:border-white [&>button]:dark:hover:ring-white"
+        class="absolute h-fit w-48 dark:bg-slate-700 bg-slate-200 rounded-xl p-4 top-[7%] -translate-x-20 left-5"
       >
         <Image src={HeroImage} alt="a tree in a middle of a clear hill" class="h-full w-full object-cover rounded-xl" />
         <p class="dark:text-white/80 text-black/80 font-bold mt-4 leading-4 line-clamp-3">{generateLorem(7)}</p>
-        <Button className="mt-4 dark:text-black !bg-pur-500">
-          <span class="dark:text-black text-black font-bold">Grimper</span>
+        <Button className="mt-4 bg-pur-500 dark:bg-pur-500 font-bold" size={"xl"} variant={"hero"}>
+          <span class="">Grimper</span>
         </Button>
       </article>
       <Image

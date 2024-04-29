@@ -17,11 +17,10 @@ const buttonVariants = cva(base.join(" "), {
     variant: {
       default:
         "bg-slate-900 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90",
-      destructive:
-        "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
+
       outline: "border border-slate-200 dark:border-slate-800 dark:hover:bg-slate-700 hover:bg-slate-100",
-      secondary:
-        "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
+      hero: "border border-slate-200 dark:border-slate-800 dark:hover:bg-slate-700 hover:bg-slate-100 ring-1 rounded-full hover:border-white ring-black/80 ring-1 font-bold hover:text-white",
+
       ghost: "border border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-700",
       link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50 text-md",
     },
@@ -31,6 +30,7 @@ const buttonVariants = cva(base.join(" "), {
       lg: "h-11 rounded-md px-8",
       icon: "h-10 w-10",
       none: "h-fit p-0 w-fit m-0",
+      xl: "h-16 w-32 px-8",
     },
   },
   defaultVariants: {
