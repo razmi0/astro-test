@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/Button";
 import { generateLorem } from "@/helpers";
 import { Image } from "astro:assets";
 import Title from "./Title.astro";
-
+import Curve from "@/assets/tiles/curve.jpg";
+// npx astro add tailwind
+// npx astro add react
 interface Props {
   hrefs: [string, string];
 }
@@ -78,6 +80,7 @@ const { hrefs } = Astro.props;
 </script>
 
 <section class="relative w-full max-h-screen h-screen vertical center px-11 pt-36 pb-24">
+  <Image src={Curve} alt="" class="absolute -z-10 top-0 left-0 w-full h-full object-cover" />
   <canvas data-is="focused-canvas" class="z-20 top-0 absolute pointer-events-none"></canvas>
   <div class="horizontal w-full h-full">
     <div class="w-full h-full vertical items-start justify-between">
@@ -142,7 +145,6 @@ const { hrefs } = Astro.props;
             data-style="dark-bg"
           />
           <div data-style="light-border"></div>
-          <div class="group-hover/card:translate-y-10 h-9 absolute bottom-0 right-1/2">YESS</div>
         </article>
       </div>
       <!-- IMAGE -->
